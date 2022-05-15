@@ -113,7 +113,7 @@ RedrawPartyMenu_::
 	db "NOT ABLE@"
 .evolutionStoneMenu
 	push hl
-	ld hl, EvosMovesPointerTable
+	ld hl, EvosAttacksPointers
 	ld b, 0
 	ld a, [wLoadedMonSpecies]
 	dec a
@@ -122,7 +122,7 @@ RedrawPartyMenu_::
 	ld c, a
 	add hl, bc
 	ld de, wEvosMoves
-	ld a, BANK(EvosMovesPointerTable)
+	ld a, BANK(EvosAttacksPointers)
 	ld bc, 2
 	call FarCopyData
 	ld hl, wEvosMoves
@@ -130,7 +130,7 @@ RedrawPartyMenu_::
 	ld h, [hl]
 	ld l, a
 	ld de, wEvosMoves
-	ld a, BANK(EvosMovesPointerTable)
+	ld a, BANK(EvosAttacksPointers)
 	ld bc, wEvosMovesEnd - wEvosMoves
 	call FarCopyData
 	ld hl, wEvosMoves

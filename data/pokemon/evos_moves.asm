@@ -1,8 +1,8 @@
 ; See constants/pokemon_data_constants.asm
 ; The max number of evolutions per monster is MAX_EVOLUTIONS
 
-EvosMovesPointerTable:
-	table_width 2, EvosMovesPointerTable
+EvosAttacksPointers:
+	table_width 2, EvosAttacksPointers
 	dw RhydonEvosMoves
 	dw KangaskhanEvosMoves
 	dw NidoranMEvosMoves
