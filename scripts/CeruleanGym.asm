@@ -93,6 +93,12 @@ CeruleanGymMistyText:
 	text_asm
 	CheckEvent EVENT_BEAT_MISTY
 	jr z, .beforeBeat
+
+	; If we beat the elite four we can rematch gym leader
+    CheckEvent EVENT_BEAT_ELITE_FOUR
+    call nz, .beforeBeat
+    ;end
+
 	CheckEventReuseA EVENT_GOT_TM11
 	jr nz, .afterBeat
 	call z, CeruleanGymReceiveTM11
@@ -115,6 +121,12 @@ CeruleanGymMistyText:
 	ld [wSpriteIndex], a
 	call EngageMapTrainer
 	call InitBattleEnemyParameters
+
+	; If we beat the elite four we set the new team for gym leader
+    CheckEvent EVENT_BEAT_ELITE_FOUR
+    call nz, RematchTeam
+    ;end
+
 	ld a, $2
 	ld [wGymLeaderNo], a
 	xor a

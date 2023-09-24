@@ -42,6 +42,7 @@ HallOfFameResetEventsAndSaveScript:
 	ld [wHallOfFameCurScript], a
 	; Elite 4 events
 	ResetEventRange INDIGO_PLATEAU_EVENTS_START, INDIGO_PLATEAU_EVENTS_END, 1
+	SetEvent EVENT_BEAT_ELITE_FOUR
 	xor a
 	ld [wHallOfFameCurScript], a
 	ld a, PALLET_TOWN
