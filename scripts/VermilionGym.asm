@@ -115,6 +115,12 @@ VermilionGymLTSurgeText:
 	text_asm
 	CheckEvent EVENT_BEAT_LT_SURGE
 	jr z, .before_beat
+
+	; If we beat the elite four we can rematch gym leader
+    CheckEvent EVENT_BEAT_ELITE_FOUR
+    call nz, .before_beat
+    ;end
+
 	CheckEventReuseA EVENT_GOT_TM24
 	jr nz, .got_tm24_already
 	call z, VermilionGymLTSurgeReceiveTM24Script
@@ -137,6 +143,12 @@ VermilionGymLTSurgeText:
 	ld [wSpriteIndex], a
 	call EngageMapTrainer
 	call InitBattleEnemyParameters
+
+	; If we beat the elite four we set the new team for gym leader
+    CheckEvent EVENT_BEAT_ELITE_FOUR
+    call nz, RematchTeam
+    ;end
+
 	ld a, $3
 	ld [wGymLeaderNo], a
 	xor a

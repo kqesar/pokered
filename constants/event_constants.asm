@@ -5,7 +5,8 @@
 	const EVENT_FOLLOWED_OAK_INTO_LAB
 	const_skip 2
 	const EVENT_HALL_OF_FAME_DEX_RATING
-	const_skip 2
+	const EVENT_BEAT_ELITE_FOUR
+	const_skip
 	const EVENT_PALLET_AFTER_GETTING_POKEBALLS
 	const_skip 17
 	const EVENT_GOT_TOWN_MAP
@@ -736,7 +737,6 @@ DEF INDIGO_PLATEAU_EVENTS_START EQU const_value
 	const_skip
 	const EVENT_BEAT_CHAMPION_RIVAL
 	const_skip 5
-	const_skip
 DEF INDIGO_PLATEAU_EVENTS_END EQU const_value - 1
 
 ; Victory Road 1F events
