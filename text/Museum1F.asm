@@ -1,8 +1,8 @@
-_Museum1FScientist1ComeAgainText::
+_Museum1FText_5c21a::
 	text "Come again!"
 	done
 
-_Museum1FScientist1WouldYouLikeToComeInText::
+_Museum1FText_5c21f::
 	text "It's ¥50 for a"
 	line "child's ticket."
 
@@ -10,17 +10,17 @@ _Museum1FScientist1WouldYouLikeToComeInText::
 	line "come in?"
 	done
 
-_Museum1FScientist1ThankYouText::
+_Museum1FText_5c224::
 	text "Right, ¥50!"
 	line "Thank you!"
 	done
 
-_Museum1FScientist1DontHaveEnoughMoneyText::
+_Museum1FText_5c229::
 	text "You don't have"
 	line "enough money."
 	prompt
 
-_Museum1FScientist1DoYouKnowWhatAmberIsText::
+_Museum1FText_5c22e::
 	text "You can't sneak"
 	line "in the back way!"
 
@@ -29,7 +29,7 @@ _Museum1FScientist1DoYouKnowWhatAmberIsText::
 	cont "AMBER is?"
 	done
 
-_Museum1FScientist1TheresALabSomewhereText::
+_Museum1FText_5c233::
 	text "There's a lab"
 	line "somewhere trying"
 	cont "to resurrect"
@@ -37,28 +37,28 @@ _Museum1FScientist1TheresALabSomewhereText::
 	cont "from AMBER."
 	done
 
-_Museum1FScientist1AmberIsFossilizedTreeSapText::
+_Museum1FText_5c238::
 	text "AMBER is fossil-"
 	line "ized tree sap."
 	done
 
-_Museum1FScientist1GoToOtherSideText::
+_Museum1FText_5c23d::
 	text "Please go to the"
 	line "other side!"
 	done
 
-_Museum1FScientist1TakePlentyOfTimeText::
+_Museum1FText_5c242::
 	text "Take plenty of"
 	line "time to look!"
 	done
 
-_Museum1FGamblerText::
+_Museum1FText_5c251::
 	text "That is one"
 	line "magnificent"
 	cont "fossil!"
 	done
 
-_Museum1FScientist2TakeThisToAPokemonLabText::
+_Museum1FText_5c28e::
 	text "Ssh! I think that"
 	line "this chunk of"
 	cont "AMBER contains"
@@ -80,29 +80,29 @@ _Museum1FScientist2TakeThisToAPokemonLabText::
 	cont "get it examined!"
 	prompt
 
-_Museum1FScientist2ReceivedOldAmberText::
+_ReceivedOldAmberText::
 	text "<PLAYER> received"
 	line "OLD AMBER!@"
 	text_end
 
-_Museum1FScientist2GetTheOldAmberCheckText::
+_Museum1FText_5c299::
 	text "Ssh! Get the OLD"
 	line "AMBER checked!"
 	done
 
-_Museum1FScientist2YouDontHaveSpaceText::
+_Museum1FText_5c29e::
 	text "You don't have"
 	line "space for this!"
 	done
 
-_Museum1FScientist3Text::
+_Museum1FText_5c2ad::
 	text "We are proud of 2"
 	line "fossils of very"
 	cont "rare, prehistoric"
 	cont "#MON!"
 	done
 
-_Museum1FOldAmberText::
+_Museum1FText_5c2bc::
 	text "The AMBER is"
 	line "clear and gold!"
 	done

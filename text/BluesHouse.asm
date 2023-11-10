@@ -1,10 +1,10 @@
-_BluesHouseDaisyRivalAtLabText::
+_DaisyInitialText::
 	text "Hi <PLAYER>!"
 	line "<RIVAL> is out at"
 	cont "Grandpa's lab."
 	done
 
-_BluesHouseDaisyOfferMapText::
+_DaisyOfferMapText::
 	text "Grandpa asked you"
 	line "to run an errand?"
 	cont "Here, this will"
@@ -18,12 +18,12 @@ _GotMapText::
 	text "!@"
 	text_end
 
-_BluesHouseDaisyBagFullText::
+_DaisyBagFullText::
 	text "You have too much"
 	line "stuff with you."
 	done
 
-_BluesHouseDaisyUseMapText::
+_DaisyUseMapText::
 	text "Use the TOWN MAP"
 	line "to find out where"
 	cont "you are."

@@ -4,9 +4,8 @@ UndergroundPathRoute6_Script:
 	jp EnableAutoTextBoxDrawing
 
 UndergroundPathRoute6_TextPointers:
-	def_text_pointers
-	dw_const UndergroundPathRoute6GirlText, TEXT_UNDERGROUNDPATHROUTE6_GIRL
+	dw UndergroundPathEntranceRoute6Text1
 
-UndergroundPathRoute6GirlText:
-	text_far _UndergroundPathRoute6GirlText
+UndergroundPathEntranceRoute6Text1:
+	text_far _UndergrdTunnelEntRoute6Text1
 	text_end

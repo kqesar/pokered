@@ -1,5 +1,13 @@
-SetDebugNewGameParty: ; unreferenced except in _DEBUG
-	ld de, DebugNewGameParty
+; This function is a debugging feature to give the player Tsunekazu Ishihara's
+; favorite Pokemon. This is indicated by the overpowered Exeggutor, which
+; Ishihara (president of Creatures Inc.) said was his favorite Pokemon in an ABC
+; interview on February 8, 2000.
+; "Exeggutor is my favorite. That's because I was always using this character
+; while I was debugging the program."
+; http://www.ign.com/articles/2000/02/09/abc-news-pokamon-chat-transcript
+
+SetIshiharaTeam:
+	ld de, IshiharaTeam
 .loop
 	ld a, [de]
 	cp -1
@@ -12,26 +20,28 @@ SetDebugNewGameParty: ; unreferenced except in _DEBUG
 	call AddPartyMon
 	jr .loop
 
-DebugNewGameParty: ; unreferenced except in _DEBUG
-	; Exeggutor is the only debug party member shared with Red, Green, and Japanese Blue.
-	; "Tsunekazu Ishihara: Exeggutor is my favorite. That's because I was
-	; always using this character while I was debugging the program."
-	; From https://web.archive.org/web/20000607152840/http://pocket.ign.com/news/14973.html
-    db MEWTWO, 100
-	db EXEGGUTOR, 100
-	db JOLTEON, 100
-	db DUGTRIO, 100
-	db ARTICUNO, 100
-	db PIKACHU, 100
+IshiharaTeam:
+	db EXEGGUTOR, 90
+IF DEF(_DEBUG)
+	db MEW, 5
+ELSE
+	db MEW, 20
+ENDC
+	db JOLTEON, 56
+	db DUGTRIO, 56
+	db ARTICUNO, 57
+IF DEF(_DEBUG)
+	db PIKACHU, 5
+ENDC
 	db -1 ; end
 
-PrepareNewGameDebug: ; dummy except in _DEBUG
+DebugStart:
 IF DEF(_DEBUG)
 	xor a ; PLAYER_PARTY_DATA
 	ld [wMonDataLocation], a
 
 	; Fly anywhere.
-	dec a ; $ff (all bits)
+	dec a ; $ff
 	ld [wTownVisitedFlag], a
 	ld [wTownVisitedFlag + 1], a
 
@@ -39,30 +49,10 @@ IF DEF(_DEBUG)
 	ld a, ~(1 << BIT_EARTHBADGE)
 	ld [wObtainedBadges], a
 
-	call SetDebugNewGameParty
-
-	; Mewtwo
-	ld hl, wPartyMon1Moves
-	ld a, PSYWAVE
-	ld [hli], a
-	ld a, THUNDERBOLT
-	ld [hli], a
-	ld a, ICE_BEAM
-	ld [hli], a
-	ld a, FLAMETHROWER
-	ld [hl], a
-	ld hl, wPartyMon1PP
-	ld a, 15
-	ld [hli], a
-	ld a, 15
-	ld [hli], a
-	ld a, 10
-	ld [hli], a
-	ld a, 15
-	ld [hl], a
+	call SetIshiharaTeam
 
 	; Exeggutor gets four HM moves.
-	ld hl, wPartyMon2Moves
+	ld hl, wPartyMon1Moves
 	ld a, FLY
 	ld [hli], a
 	ld a, CUT
@@ -71,7 +61,7 @@ IF DEF(_DEBUG)
 	ld [hli], a
 	ld a, STRENGTH
 	ld [hl], a
-	ld hl, wPartyMon2PP
+	ld hl, wPartyMon1PP
 	ld a, 15
 	ld [hli], a
 	ld a, 30

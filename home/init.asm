@@ -1,4 +1,4 @@
-SoftReset::
+SoftReset_orig:: ; HAX: "SoftReset" label moved elsewhere (calls this after)
 	call StopAllSounds
 	call GBPalWhiteOut
 	ld c, 32
@@ -116,7 +116,7 @@ DEF rLCDC_DEFAULT EQU %11100011
 	ld a, rLCDC_DEFAULT
 	ldh [rLCDC], a
 
-	jp PrepareTitleScreen
+	jp SetDefaultNamesBeforeTitlescreen
 
 ClearVram::
 	ld hl, VRAM_Begin

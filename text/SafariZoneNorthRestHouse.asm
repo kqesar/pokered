@@ -1,4 +1,4 @@
-_SafariZoneNorthRestHouseScientistText::
+_SafariZoneRestHouse4Text1::
 	text "You can keep any"
 	line "item you find on"
 	cont "the ground here."
@@ -9,14 +9,14 @@ _SafariZoneNorthRestHouseScientistText::
 	cont "of them at once!"
 	done
 
-_SafariZoneNorthRestHouseSafariZoneWorkerText::
+_SafariZoneRestHouse4Text2::
 	text "Go to the deepest"
 	line "part of the"
 	cont "SAFARI ZONE. You"
 	cont "will win a prize!"
 	done
 
-_SafariZoneNorthRestHouseGentlemanText::
+_SafariZoneRestHouse4Text3::
 	text "My EEVEE evolved"
 	line "into FLAREON!"
 

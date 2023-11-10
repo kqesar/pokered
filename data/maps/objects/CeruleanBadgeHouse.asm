@@ -1,6 +1,3 @@
-	object_const_def
-	const CERULEANBADGEHOUSE_MIDDLE_AGED_MAN
-
 CeruleanBadgeHouse_Object:
 	db $c ; border block
 
@@ -12,6 +9,6 @@ CeruleanBadgeHouse_Object:
 	def_bg_events
 
 	def_object_events
-	object_event  5,  3, SPRITE_MIDDLE_AGED_MAN, STAY, RIGHT, TEXT_CERULEANBADGEHOUSE_MIDDLE_AGED_MAN
+	object_event  5,  3, SPRITE_MIDDLE_AGED_MAN, STAY, RIGHT, 1 ; person
 
 	def_warps_to CERULEAN_BADGE_HOUSE

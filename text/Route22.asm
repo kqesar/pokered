@@ -31,13 +31,13 @@ _Route22RivalAfterBattleText1::
 	cont "a move on!"
 	done
 
-_Route22Rival1DefeatedText::
+_Route22RivalDefeatedText1::
 	text "Awww!"
 	line "You just lucked"
 	cont "out!"
 	prompt
 
-_Route22Rival1VictoryText::
+_Route22Text_511bc::
 	text "<RIVAL>: What?"
 	line "Why do I have 2"
 	cont "#MON?"
@@ -80,14 +80,14 @@ _Route22RivalAfterBattleText2::
 	cont "here. Smell ya!"
 	done
 
-_Route22Rival2DefeatedText::
+_Route22RivalDefeatedText2::
 	text "What!?"
 
 	para "I was just"
 	line "careless!"
 	prompt
 
-_Route22Rival2VictoryText::
+_Route22Text_511d0::
 	text "<RIVAL>: Hahaha!"
 	line "<PLAYER>! That's"
 	cont "your best? You're"
@@ -98,7 +98,7 @@ _Route22Rival2VictoryText::
 	line "more! You loser!"
 	prompt
 
-_Route22PokemonLeagueSignText::
+_Route22FrontGateText::
 	text "#MON LEAGUE"
 	line "Front Gate"
 	done

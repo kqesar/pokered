@@ -1,4 +1,4 @@
-_CeruleanGymMistyPreBattleText::
+_MistyPreBattleText::
 	text "Hi, you're a new"
 	line "face!"
 
@@ -17,7 +17,7 @@ _CeruleanGymMistyPreBattleText::
 	cont "#MON!"
 	done
 
-_CeruleanGymMistyTM11ExplanationText::
+_TM11ExplanationText::
 	text "TM11 teaches"
 	line "BUBBLEBEAM!"
 
@@ -25,7 +25,7 @@ _CeruleanGymMistyTM11ExplanationText::
 	line "aquatic #MON!"
 	done
 
-_CeruleanGymMistyCascadeBadgeInfoText::
+_MistyCascadeBadgeInfoText::
 	text "The CASCADEBADGE"
 	line "makes all #MON"
 	cont "up to L30 obey!"
@@ -45,17 +45,17 @@ _CeruleanGymMistyCascadeBadgeInfoText::
 	line "my favorite TM!"
 	done
 
-_CeruleanGymMistyReceivedTM11Text::
+_ReceivedTM11Text::
 	text "<PLAYER> received"
 	line "TM11!@"
 	text_end
 
-_CeruleanGymMistyTM11NoRoomText::
+_TM11NoRoomText::
 	text "You better make"
 	line "room for this!"
 	done
 
-_CeruleanGymMistyReceivedCascadeBadgeText::
+_ReceivedCascadeBadgeText::
 	text "Wow!"
 	line "You're too much!"
 
@@ -105,7 +105,7 @@ _CeruleanGymAfterBattleText2::
 	line "someone like you!"
 	done
 
-_CeruleanGymGymGuideChampInMakingText::
+_CeruleanGymGuidePreBattleText::
 	text "Yo! Champ in"
 	line "making!"
 
@@ -123,7 +123,7 @@ _CeruleanGymGymGuideChampInMakingText::
 	line "electricity!"
 	done
 
-_CeruleanGymGymGuideBeatMistyText::
+_CeruleanGymGuidePostBattleText::
 	text "You beat MISTY!"
 	line "What'd I tell ya?"
 

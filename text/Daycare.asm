@@ -1,16 +1,16 @@
-_DaycareGentlemanIntroText::
+_DayCareIntroText::
 	text "I run a DAYCARE."
 	line "Would you like me"
 	cont "to raise one of"
 	cont "your #MON?"
 	done
 
-_DaycareGentlemanWhichMonText::
+_DayCareWhichMonText::
 	text "Which #MON"
 	line "should I raise?"
 	prompt
 
-_DaycareGentlemanWillLookAfterMonText::
+_DayCareWillLookAfterMonText::
 	text "Fine, I'll look"
 	line "after @"
 	text_ram wcd6d
@@ -18,12 +18,12 @@ _DaycareGentlemanWillLookAfterMonText::
 	cont "for a while."
 	prompt
 
-_DaycareGentlemanComeSeeMeInAWhileText::
+_DayCareComeSeeMeInAWhileText::
 	text "Come see me in"
 	line "a while."
 	done
 
-_DaycareGentlemanMonHasGrownText::
+_DayCareMonHasGrownText::
 	text "Your @"
 	text_ram wcd6d
 	text_start
@@ -37,7 +37,7 @@ _DaycareGentlemanMonHasGrownText::
 	para "Aren't I great?"
 	prompt
 
-_DaycareGentlemanOweMoneyText::
+_DayCareOweMoneyText::
 	text "You owe me ¥@"
 	text_bcd wDayCareTotalCost, 2 | LEADING_ZEROES | LEFT_ALIGN
 	text_start
@@ -45,14 +45,14 @@ _DaycareGentlemanOweMoneyText::
 	cont "of this #MON."
 	done
 
-_DaycareGentlemanGotMonBackText::
+_DayCareGotMonBackText::
 	text "<PLAYER> got"
 	line "@"
 	text_ram wDayCareMonName
 	text " back!"
 	done
 
-_DaycareGentlemanMonNeedsMoreTimeText::
+_DayCareMonNeedsMoreTimeText::
 	text "Back already?"
 	line "Your @"
 	text_ram wcd6d

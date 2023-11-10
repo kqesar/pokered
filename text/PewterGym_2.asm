@@ -1,4 +1,4 @@
-_PewterGymBrockPostBattleAdviceText::
+_BrockPostBattleAdviceText::
 	text "There are all"
 	line "kinds of trainers"
 	cont "in the world!"
@@ -12,12 +12,12 @@ _PewterGymBrockPostBattleAdviceText::
 	cont "your abilities!"
 	done
 
-_PewterGymBrockWaitTakeThisText::
+_BeforeReceivedTM34Text::
 	text "Wait! Take this"
 	line "with you!"
 	done
 
-_PewterGymReceivedTM34Text::
+_ReceivedTM34Text::
 	text "<PLAYER> received"
 	line "TM34!@"
 	text_end
@@ -46,12 +46,12 @@ _TM34ExplanationText::
 	cont "it back double!"
 	done
 
-_PewterGymTM34NoRoomText::
+_TM34NoRoomText::
 	text "You don't have"
 	line "room for this!"
 	done
 
-_PewterGymBrockReceivedBoulderBadgeText::
+_ReceivedBoulderBadgeText::
 	text "I took"
 	line "you for granted."
 
@@ -63,7 +63,7 @@ _PewterGymBrockReceivedBoulderBadgeText::
 	line "the BOULDERBADGE!@"
 	text_end
 
-_PewterGymBrockBoulderBadgeInfoText::
+_BrockBoulerBadgeInfoText::
 	text_start
 
 	para "That's an official"
@@ -79,7 +79,7 @@ _PewterGymBrockBoulderBadgeInfoText::
 	cont "used any time!"
 	prompt
 
-_PewterGymCooltrainerMBattleText::
+_PewterGymBattleText1::
 	text "Stop right there,"
 	line "kid!"
 
@@ -88,7 +88,7 @@ _PewterGymCooltrainerMBattleText::
 	cont "BROCK!"
 	done
 
-_PewterGymCooltrainerMEndBattleText::
+_PewterGymEndBattleText1::
 	text "Darn!"
 
 	para "Light years isn't"
@@ -96,7 +96,7 @@ _PewterGymCooltrainerMEndBattleText::
 	cont "distance!"
 	prompt
 
-_PewterGymCooltrainerMAfterBattleText::
+_PewterGymAfterBattleText1::
 	text "You're pretty hot,"
 	line "but not as hot"
 	cont "as BROCK!"
@@ -133,7 +133,7 @@ _PewterGymGuideAdviceText::
 	cont "made easier!"
 	done
 
-_PewterGymGuideFreeServiceText::
+_PewterGymText_5c524::
 	text "It's a free"
 	line "service! Let's"
 	cont "get happening!"

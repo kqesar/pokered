@@ -1,4 +1,4 @@
-_SafariZoneSecretHouseFishingGuruYouHaveWonText::
+_SecretHouseText_4a350::
 	text "Ah! Finally!"
 
 	para "You're the first"
@@ -14,14 +14,14 @@ _SafariZoneSecretHouseFishingGuruYouHaveWonText::
 	line "You have won!"
 	prompt
 
-_SafariZoneSecretHouseFishingGuruReceivedHM03Text::
+_ReceivedHM03Text::
 	text "<PLAYER> received"
 	line "@"
 	text_ram wStringBuffer
 	text "!@"
 	text_end
 
-_SafariZoneSecretHouseFishingGuruHM03ExplanationText::
+_HM03ExplanationText::
 	text "HM03 is SURF!"
 
 	para "#MON will be"
@@ -38,7 +38,7 @@ _SafariZoneSecretHouseFishingGuruHM03ExplanationText::
 	cont "fabulous prize!"
 	done
 
-_SafariZoneSecretHouseFishingGuruHM03NoRoomText::
+_HM03NoRoomText::
 	text "You don't have"
 	line "room for this"
 	cont "fabulous prize!"

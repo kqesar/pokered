@@ -1,15 +1,15 @@
-_Route16Gate2FLittleBoyText::
+_Route16GateUpstairsText_49820::
 	text "I'm going for a"
 	line "ride with my girl"
 	cont "friend!"
 	done
 
-_Route16Gate2FLittleGirlText::
+_Route16GateUpstairsText_4982f::
 	text "We're going"
 	line "riding together!"
 	done
 
-_Route16Gate2FLeftBinocularsText::
+_Route16GateUpstairsText_4983b::
 	text "Looked into the"
 	line "binoculars."
 
@@ -17,7 +17,7 @@ _Route16Gate2FLeftBinocularsText::
 	line "STORE!"
 	done
 
-_Route16Gate2FRightBinocularsText::
+_Route16GateUpstairsText_49847::
 	text "Looked into the"
 	line "binoculars."
 

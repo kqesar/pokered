@@ -248,7 +248,9 @@ PlayAnimation:
 	ldh a, [rOBP0]
 	push af
 	ld a, [wAnimPalette]
-	ldh [rOBP0], a
+;	ldh [rOBP0], a	; HAX
+	nop
+	nop
 	call LoadMoveAnimationTiles
 	vc_hook Reduce_move_anim_flashing_Mega_Punch_Self_Destruct_Explosion
 	call LoadSubanimation
@@ -352,25 +354,32 @@ GetSubanimationTransform2:
 	ret
 
 ; loads tile patterns for battle animations
+; I HAXed with this function by shaving off a few bytes in order to
+; call a function to load sprite palettes.
 LoadMoveAnimationTiles:
 	ld a, [wWhichBattleAnimTileset]
 	add a
 	add a
-	ld hl, MoveAnimationTilesPointers
 	ld e, a
 	ld d, 0
+
+	; HAX: Load corresponding palettes as well
+	call _LoadAnimationTilesetPalettes
+
+	ld hl, MoveAnimationTilesPointers
 	add hl, de
 	ld a, [hli]
 	ld [wTempTilesetNumTiles], a ; number of tiles
+	ld c, a
 	ld a, [hli]
 	ld e, a
-	ld a, [hl]
-	ld d, a ; de = address of tileset
+	ld d, [hl] ; de = address of tileset
 	ld hl, vSprites tile $31
 	ld b, BANK(MoveAnimationTiles0) ; ROM bank
-	ld a, [wTempTilesetNumTiles]
-	ld c, a ; number of tiles
 	jp CopyVideoData ; load tileset
+
+	; Padding to prevent data shifting
+	nop
 
 MACRO anim_tileset
 	db \1
@@ -564,9 +573,13 @@ SetAnimationPalette:
 	ld b, $f0
 .next
 	ld a, b
-	ldh [rOBP0], a
+	;ldh [rOBP0], a ; HAX: don't mess with these palettes in-battle
+	nop
+	nop
 	ld a, $6c
-	ldh [rOBP1], a
+	;ldh [rOBP1], a ; HAX
+	nop
+	nop
 	ret
 .notSGB
 	ld a, $e4
@@ -2313,7 +2326,9 @@ AnimationLeavesFalling:
 	ldh a, [rOBP0]
 	push af
 	ld a, [wAnimPalette]
-	ldh [rOBP0], a
+;	ldh [rOBP0], a ; HAX
+	nop
+	nop
 	ld d, $37 ; leaf tile
 	ld a, 3 ; number of leaves
 	ld [wNumFallingObjects], a
@@ -2470,12 +2485,10 @@ FallingObjects_InitialMovementData:
 
 AnimationShakeEnemyHUD:
 ; Shakes the enemy HUD.
-
-; Make a copy of the back pic's tile patterns in sprite tile pattern VRAM.
-	ld de, vBackPic
-	ld hl, vSprites
-	ld bc, 7 * 7
-	call CopyVideoData
+	call SpriteifyPlayerPokemon
+	REPT 9
+	nop
+	ENDR
 
 	xor a
 	ldh [hSCX], a

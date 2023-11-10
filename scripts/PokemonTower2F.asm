@@ -4,27 +4,26 @@ PokemonTower2F_Script:
 	ld a, [wPokemonTower2FCurScript]
 	jp CallFunctionInTable
 
-PokemonTower2FResetRivalEncounter:
-	xor a ; SCRIPT_POKEMONTOWER2F_DEFAULT
+PokemonTower2Script_604fe:
+	xor a
 	ld [wJoyIgnore], a
 	ld [wPokemonTower2FCurScript], a
 	ld [wCurMapScript], a
 	ret
 
 PokemonTower2F_ScriptPointers:
-	def_script_pointers
-	dw_const PokemonTower2FDefaultScript,       SCRIPT_POKEMONTOWER2F_DEFAULT
-	dw_const PokemonTower2FDefeatedRivalScript, SCRIPT_POKEMONTOWER2F_DEFEATED_RIVAL
-	dw_const PokemonTower2FRivalExitsScript,    SCRIPT_POKEMONTOWER2F_RIVAL_EXITS
+	dw PokemonTower2Script0
+	dw PokemonTower2Script1
+	dw PokemonTower2Script2
 
-PokemonTower2FDefaultScript:
+PokemonTower2Script0:
 IF DEF(_DEBUG)
 	call DebugPressedOrHeldB
 	ret nz
 ENDC
 	CheckEvent EVENT_BEAT_POKEMON_TOWER_RIVAL
 	ret nz
-	ld hl, PokemonTower2FRivalEncounterEventCoords
+	ld hl, CoordsData_6055e
 	call ArePlayerCoordsInArray
 	ret nc
 	ld a, SFX_STOP_ALL_MUSIC
@@ -38,19 +37,19 @@ ENDC
 	cp $1
 	ld a, PLAYER_DIR_UP
 	ld b, SPRITE_FACING_DOWN
-	jr nz, .player_below_rival
+	jr nz, .asm_60544
 ; the rival is on the left side and the player is on the right side
 	SetEvent EVENT_POKEMON_TOWER_RIVAL_ON_LEFT
 	ld a, PLAYER_DIR_LEFT
 	ld b, SPRITE_FACING_RIGHT
-.player_below_rival
+.asm_60544
 	ld [wPlayerMovingDirection], a
-	ld a, POKEMONTOWER2F_RIVAL
+	ld a, $1
 	ldh [hSpriteIndex], a
 	ld a, b
 	ldh [hSpriteFacingDirection], a
 	call SetSpriteFacingDirectionAndDelay
-	ld a, TEXT_POKEMONTOWER2F_RIVAL
+	ld a, $1
 	ldh [hSpriteIndexOrTextID], a
 	call DisplayTextID
 	xor a
@@ -58,39 +57,39 @@ ENDC
 	ldh [hJoyPressed], a
 	ret
 
-PokemonTower2FRivalEncounterEventCoords:
+CoordsData_6055e:
 	dbmapcoord 15,  5
 	dbmapcoord 14,  6
 	db $0F ; end? (should be $ff?)
 
-PokemonTower2FDefeatedRivalScript:
+PokemonTower2Script1:
 	ld a, [wIsInBattle]
 	cp $ff
-	jp z, PokemonTower2FResetRivalEncounter
-	ld a, D_RIGHT | D_LEFT | D_UP | D_DOWN
+	jp z, PokemonTower2Script_604fe
+	ld a, $f0
 	ld [wJoyIgnore], a
 	SetEvent EVENT_BEAT_POKEMON_TOWER_RIVAL
-	ld a, TEXT_POKEMONTOWER2F_RIVAL
+	ld a, $1
 	ldh [hSpriteIndexOrTextID], a
 	call DisplayTextID
-	ld de, PokemonTower2FRivalDownThenRightMovement
+	ld de, MovementData_605b2
 	CheckEvent EVENT_POKEMON_TOWER_RIVAL_ON_LEFT
-	jr nz, .got_movement
-	ld de, PokemonTower2FRivalRightThenDownMovement
-.got_movement
-	ld a, POKEMONTOWER2F_RIVAL
+	jr nz, .asm_60589
+	ld de, MovementData_605a9
+.asm_60589
+	ld a, $1
 	ldh [hSpriteIndex], a
 	call MoveSprite
 	ld a, SFX_STOP_ALL_MUSIC
 	ld [wNewSoundID], a
 	call PlaySound
 	farcall Music_RivalAlternateStart
-	ld a, SCRIPT_POKEMONTOWER2F_RIVAL_EXITS
+	ld a, $2
 	ld [wPokemonTower2FCurScript], a
 	ld [wCurMapScript], a
 	ret
 
-PokemonTower2FRivalRightThenDownMovement:
+MovementData_605a9:
 	db NPC_MOVEMENT_RIGHT
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
@@ -101,7 +100,7 @@ PokemonTower2FRivalRightThenDownMovement:
 	db NPC_MOVEMENT_RIGHT
 	db -1 ; end
 
-PokemonTower2FRivalDownThenRightMovement:
+MovementData_605b2:
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_RIGHT
@@ -112,7 +111,7 @@ PokemonTower2FRivalDownThenRightMovement:
 	db NPC_MOVEMENT_DOWN
 	db -1 ; end
 
-PokemonTower2FRivalExitsScript:
+PokemonTower2Script2:
 	ld a, [wd730]
 	bit 0, a
 	ret nz
@@ -122,31 +121,30 @@ PokemonTower2FRivalExitsScript:
 	xor a
 	ld [wJoyIgnore], a
 	call PlayDefaultMusic
-	ld a, SCRIPT_POKEMONTOWER2F_DEFAULT
+	ld a, $0
 	ld [wPokemonTower2FCurScript], a
 	ld [wCurMapScript], a
 	ret
 
 PokemonTower2F_TextPointers:
-	def_text_pointers
-	dw_const PokemonTower2FRivalText,     TEXT_POKEMONTOWER2F_RIVAL
-	dw_const PokemonTower2FChannelerText, TEXT_POKEMONTOWER2F_CHANNELER
+	dw PokemonTower2Text1
+	dw PokemonTower2Text2
 
-PokemonTower2FRivalText:
+PokemonTower2Text1:
 	text_asm
 	CheckEvent EVENT_BEAT_POKEMON_TOWER_RIVAL
-	jr z, .do_battle
-	ld hl, .HowsYourDexText
+	jr z, .asm_16f24
+	ld hl, PokemonTower2Text_6063c
 	call PrintText
-	jr .text_script_end
-.do_battle
-	ld hl, .WhatBringsYouHereText
+	jr .asm_41852
+.asm_16f24
+	ld hl, PokemonTower2Text_6062d
 	call PrintText
 	ld hl, wd72d
 	set 6, [hl]
 	set 7, [hl]
-	ld hl, .DefeatedText
-	ld de, .VictoryText
+	ld hl, PokemonTower2Text_60632
+	ld de, PokemonTower2Text_60637
 	call SaveEndBattleTextPointers
 	ld a, OPP_RIVAL2
 	ld [wCurOpponent], a
@@ -167,28 +165,28 @@ PokemonTower2FRivalText:
 .done
 	ld [wTrainerNo], a
 
-	ld a, SCRIPT_POKEMONTOWER2F_DEFEATED_RIVAL
+	ld a, $1
 	ld [wPokemonTower2FCurScript], a
 	ld [wCurMapScript], a
-.text_script_end
+.asm_41852
 	jp TextScriptEnd
 
-.WhatBringsYouHereText:
-	text_far _PokemonTower2FRivalWhatBringsYouHereText
+PokemonTower2Text_6062d:
+	text_far _PokemonTower2Text_6062d
 	text_end
 
-.DefeatedText:
-	text_far _PokemonTower2FRivalDefeatedText
+PokemonTower2Text_60632:
+	text_far _PokemonTower2Text_60632
 	text_end
 
-.VictoryText:
-	text_far _PokemonTower2FRivalVictoryText
+PokemonTower2Text_60637:
+	text_far _PokemonTower2Text_60637
 	text_end
 
-.HowsYourDexText:
-	text_far _PokemonTower2FRivalHowsYourDexText
+PokemonTower2Text_6063c:
+	text_far _PokemonTower2Text_6063c
 	text_end
 
-PokemonTower2FChannelerText:
-	text_far _PokemonTower2FChannelerText
+PokemonTower2Text2:
+	text_far _PokemonTower2Text2
 	text_end

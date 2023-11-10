@@ -1,4 +1,4 @@
-_CeruleanPokecenterSuperNerdText::
+_CeruleanPokecenterText2::
 	text "That BILL!"
 
 	para "I heard that"
@@ -7,7 +7,7 @@ _CeruleanPokecenterSuperNerdText::
 	cont "rare #MON!"
 	done
 
-_CeruleanPokecenterGentlemanText::
+_CeruleanPokecenterText3::
 	text "Have you heard"
 	line "about BILL?"
 

@@ -3,22 +3,21 @@ CeladonPokecenter_Script:
 	jp EnableAutoTextBoxDrawing
 
 CeladonPokecenter_TextPointers:
-	def_text_pointers
-	dw_const CeladonPokecenterNurseText,            TEXT_CELADONPOKECENTER_NURSE
-	dw_const CeladonPokecenterGentlemanText,        TEXT_CELADONPOKECENTER_GENTLEMAN
-	dw_const CeladonPokecenterBeautyText,           TEXT_CELADONPOKECENTER_BEAUTY
-	dw_const CeladonPokecenterLinkReceptionistText, TEXT_CELADONPOKECENTER_LINK_RECEPTIONIST
+	dw CeladonHealNurseText
+	dw CeladonPokecenterText2
+	dw CeladonPokecenterText3
+	dw CeladonTradeNurseText
 
-CeladonPokecenterLinkReceptionistText:
+CeladonTradeNurseText:
 	script_cable_club_receptionist
 
-CeladonPokecenterNurseText:
+CeladonHealNurseText:
 	script_pokecenter_nurse
 
-CeladonPokecenterGentlemanText:
-	text_far _CeladonPokecenterGentlemanText
+CeladonPokecenterText2:
+	text_far _CeladonPokecenterText2
 	text_end
 
-CeladonPokecenterBeautyText:
-	text_far _CeladonPokecenterBeautyText
+CeladonPokecenterText3:
+	text_far _CeladonPokecenterText3
 	text_end

@@ -1,5 +1,5 @@
 SilphCo8F_Script:
-	call SilphCo8FGateCallbackScript
+	call SilphCo8Script_5651a
 	call EnableAutoTextBoxDrawing
 	ld hl, SilphCo8TrainerHeaders
 	ld de, SilphCo8F_ScriptPointers
@@ -8,14 +8,14 @@ SilphCo8F_Script:
 	ld [wSilphCo8FCurScript], a
 	ret
 
-SilphCo8FGateCallbackScript:
+SilphCo8Script_5651a:
 	ld hl, wCurrentMapScriptFlags
 	bit 5, [hl]
 	res 5, [hl]
 	ret z
-	ld hl, .GateCoordinates
-	call SilphCo8F_SetCardKeyDoorYScript
-	call SilphCo8F_UnlockedDoorEventScript
+	ld hl, SilphCo8GateCoords
+	call SilphCo8Script_56541
+	call SilphCo8Script_5656d
 	CheckEvent EVENT_SILPH_CO_8_UNLOCKED_DOOR
 	ret nz
 	ld a, $5f
@@ -23,11 +23,11 @@ SilphCo8FGateCallbackScript:
 	lb bc, 4, 3
 	predef_jump ReplaceTileBlock
 
-.GateCoordinates:
+SilphCo8GateCoords:
 	dbmapcoord  3,  4
 	db -1 ; end
 
-SilphCo8F_SetCardKeyDoorYScript:
+SilphCo8Script_56541:
 	push hl
 	ld hl, wCardKeyDoorY
 	ld a, [hli]
@@ -37,33 +37,33 @@ SilphCo8F_SetCardKeyDoorYScript:
 	xor a
 	ldh [hUnlockedSilphCoDoors], a
 	pop hl
-.loop_check_doors
+.asm_5654d
 	ld a, [hli]
 	cp $ff
-	jr z, .exit_loop
+	jr z, .asm_56569
 	push hl
 	ld hl, hUnlockedSilphCoDoors
 	inc [hl]
 	pop hl
 	cp b
-	jr z, .check_y_coord
+	jr z, .asm_5655e
 	inc hl
-	jr .loop_check_doors
-.check_y_coord
+	jr .asm_5654d
+.asm_5655e
 	ld a, [hli]
 	cp c
-	jr nz, .loop_check_doors
+	jr nz, .asm_5654d
 	ld hl, wCardKeyDoorY
 	xor a
 	ld [hli], a
 	ld [hl], a
 	ret
-.exit_loop
+.asm_56569
 	xor a
 	ldh [hUnlockedSilphCoDoors], a
 	ret
 
-SilphCo8F_UnlockedDoorEventScript:
+SilphCo8Script_5656d:
 	ldh a, [hUnlockedSilphCoDoors]
 	and a
 	ret z
@@ -71,96 +71,94 @@ SilphCo8F_UnlockedDoorEventScript:
 	ret
 
 SilphCo8F_ScriptPointers:
-	def_script_pointers
-	dw_const CheckFightingMapTrainers,              SCRIPT_SILPHCO8F_DEFAULT
-	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_SILPHCO8F_START_BATTLE
-	dw_const EndTrainerBattle,                      SCRIPT_SILPHCO8F_END_BATTLE
+	dw CheckFightingMapTrainers
+	dw DisplayEnemyTrainerTextAndStartBattle
+	dw EndTrainerBattle
 
 SilphCo8F_TextPointers:
-	def_text_pointers
-	dw_const SilphCo8FSilphWorkerMText, TEXT_SILPHCO8F_SILPH_WORKER_M
-	dw_const SilphCo8FRocket1Text,      TEXT_SILPHCO8F_ROCKET1
-	dw_const SilphCo8FScientistText,    TEXT_SILPHCO8F_SCIENTIST
-	dw_const SilphCo8FRocket2Text,      TEXT_SILPHCO8F_ROCKET2
+	dw SilphCo8Text1
+	dw SilphCo8Text2
+	dw SilphCo8Text3
+	dw SilphCo8Text4
 
 SilphCo8TrainerHeaders:
 	def_trainers 2
 SilphCo8TrainerHeader0:
-	trainer EVENT_BEAT_SILPH_CO_8F_TRAINER_0, 4, SilphCo8FRocket1BattleText, SilphCo8FRocket1EndBattleText, SilphCo8FRocket1AfterBattleText
+	trainer EVENT_BEAT_SILPH_CO_8F_TRAINER_0, 4, SilphCo8BattleText1, SilphCo8EndBattleText1, SilphCo8AfterBattleText1
 SilphCo8TrainerHeader1:
-	trainer EVENT_BEAT_SILPH_CO_8F_TRAINER_1, 4, SilphCo8FScientistBattleText, SilphCo8FScientistEndBattleText, SilphCo8FScientistAfterBattleText
+	trainer EVENT_BEAT_SILPH_CO_8F_TRAINER_1, 4, SilphCo8BattleText2, SilphCo8EndBattleText2, SilphCo8AfterBattleText2
 SilphCo8TrainerHeader2:
-	trainer EVENT_BEAT_SILPH_CO_8F_TRAINER_2, 4, SilphCo8FRocket2BattleText, SilphCo8FRocket2EndBattleText, SilphCo8FRocket2AfterBattleText
+	trainer EVENT_BEAT_SILPH_CO_8F_TRAINER_2, 4, SilphCo8BattleText3, SilphCo8EndBattleText3, SilphCo8AfterBattleText3
 	db -1 ; end
 
-SilphCo8FSilphWorkerMText:
+SilphCo8Text1:
 	text_asm
 	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
-	ld hl, .ThanksForSavingUsText
-	jr nz, .beat_giovanni
-	ld hl, .SilphIsFinishedText
-.beat_giovanni
+	ld hl, SilphCo8Text_565c3
+	jr nz, .asm_565b8
+	ld hl, SilphCo8Text_565be
+.asm_565b8
 	call PrintText
 	jp TextScriptEnd
 
-.SilphIsFinishedText:
-	text_far __SilphCo8FSilphWorkerMThanksForSavingUsText
+SilphCo8Text_565be:
+	text_far _SilphCo8Text_565be
 	text_end
 
-.ThanksForSavingUsText:
-	text_far _SilphCo8FSilphWorkerMThanksForSavingUsText
+SilphCo8Text_565c3:
+	text_far _SilphCo8Text_565c3
 	text_end
 
-SilphCo8FRocket1Text:
+SilphCo8Text2:
 	text_asm
 	ld hl, SilphCo8TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
-SilphCo8FScientistText:
+SilphCo8Text3:
 	text_asm
 	ld hl, SilphCo8TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
-SilphCo8FRocket2Text:
+SilphCo8Text4:
 	text_asm
 	ld hl, SilphCo8TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
-SilphCo8FRocket1BattleText:
-	text_far _SilphCo8FRocket1BattleText
+SilphCo8BattleText1:
+	text_far _SilphCo8BattleText1
 	text_end
 
-SilphCo8FRocket1EndBattleText:
-	text_far _SilphCo8FRocket1EndBattleText
+SilphCo8EndBattleText1:
+	text_far _SilphCo8EndBattleText1
 	text_end
 
-SilphCo8FRocket1AfterBattleText:
-	text_far _SilphCo8FRocket1AfterBattleText
+SilphCo8AfterBattleText1:
+	text_far _SilphCo8AfterBattleText1
 	text_end
 
-SilphCo8FScientistBattleText:
-	text_far _SilphCo8FScientistBattleText
+SilphCo8BattleText2:
+	text_far _SilphCo8BattleText2
 	text_end
 
-SilphCo8FScientistEndBattleText:
-	text_far _SilphCo8FScientistEndBattleText
+SilphCo8EndBattleText2:
+	text_far _SilphCo8EndBattleText2
 	text_end
 
-SilphCo8FScientistAfterBattleText:
-	text_far _SilphCo8FScientistAfterBattleText
+SilphCo8AfterBattleText2:
+	text_far _SilphCo8AfterBattleText2
 	text_end
 
-SilphCo8FRocket2BattleText:
-	text_far _SilphCo8FRocket2BattleText
+SilphCo8BattleText3:
+	text_far _SilphCo8BattleText3
 	text_end
 
-SilphCo8FRocket2EndBattleText:
-	text_far _SilphCo8FRocket2EndBattleText
+SilphCo8EndBattleText3:
+	text_far _SilphCo8EndBattleText3
 	text_end
 
-SilphCo8FRocket2AfterBattleText:
-	text_far _SilphCo8FRocket2AfterBattleText
+SilphCo8AfterBattleText3:
+	text_far _SilphCo8AfterBattleText3
 	text_end

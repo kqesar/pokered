@@ -2,21 +2,20 @@ Route11Gate2F_Script:
 	jp DisableAutoTextBoxDrawing
 
 Route11Gate2F_TextPointers:
-	def_text_pointers
-	dw_const Route11Gate2FYoungsterText,       TEXT_ROUTE11GATE2F_YOUNGSTER
-	dw_const Route11Gate2FOaksAideText,        TEXT_ROUTE11GATE2F_OAKS_AIDE
-	dw_const Route11Gate2FLeftBinocularsText,  TEXT_ROUTE11GATE2F_LEFT_BINOCULARS
-	dw_const Route11Gate2FRightBinocularsText, TEXT_ROUTE11GATE2F_RIGHT_BINOCULARS
+	dw Route11GateUpstairsText1
+	dw Route11GateUpstairsText2
+	dw Route11GateUpstairsText3
+	dw Route11GateUpstairsText4
 
-Route11Gate2FYoungsterText:
+Route11GateUpstairsText1:
 	text_asm
 	xor a ; TRADE_FOR_TERRY
 	ld [wWhichTrade], a
 	predef DoInGameTradeDialogue
-Route11Gate2FScriptEnd:
+Route11GateUpstairsScriptEnd:
 	jp TextScriptEnd
 
-Route11Gate2FOaksAideText:
+Route11GateUpstairsText2:
 	text_asm
 	CheckEvent EVENT_GOT_ITEMFINDER, 1
 	jr c, .got_item
@@ -37,41 +36,41 @@ Route11Gate2FOaksAideText:
 	jr nz, .no_item
 	SetEvent EVENT_GOT_ITEMFINDER
 .got_item
-	ld hl, .ItemfinderDescriptionText
+	ld hl, Route11GateUpstairsText_494a3
 	call PrintText
 .no_item
-	jr Route11Gate2FScriptEnd
+	jr Route11GateUpstairsScriptEnd
 
-.ItemfinderDescriptionText:
-	text_far _Route11Gate2FOaksAideItemfinderDescriptionText
+Route11GateUpstairsText_494a3:
+	text_far _Route11GateUpstairsText_494a3
 	text_end
 
-Route11Gate2FLeftBinocularsText:
+Route11GateUpstairsText3:
 	text_asm
 	ld a, [wSpritePlayerStateData1FacingDirection]
 	cp SPRITE_FACING_UP
 	jp nz, GateUpstairsScript_PrintIfFacingUp
 	CheckEvent EVENT_BEAT_ROUTE12_SNORLAX
-	ld hl, .SnorlaxText
+	ld hl, BinocularsSnorlaxText
 	jr z, .print
-	ld hl, .NoSnorlaxText
+	ld hl, BinocularsNoSnorlaxText
 .print
 	call PrintText
 	jp TextScriptEnd
 
-.SnorlaxText:
-	text_far _Route11Gate2FLeftBinocularsSnorlaxText
+BinocularsSnorlaxText:
+	text_far _BinocularsSnorlaxText
 	text_end
 
-.NoSnorlaxText:
-	text_far _Route11Gate2FLeftBinocularsNoSnorlaxText
+BinocularsNoSnorlaxText:
+	text_far _BinocularsNoSnorlaxText
 	text_end
 
-Route11Gate2FRightBinocularsText:
+Route11GateUpstairsText4:
 	text_asm
-	ld hl, .Text
+	ld hl, Route11GateUpstairsText_494d5
 	jp GateUpstairsScript_PrintIfFacingUp
 
-.Text:
-	text_far _Route11Gate2FRightBinocularsText
+Route11GateUpstairsText_494d5:
+	text_far _Route11GateUpstairsText_494d5
 	text_end

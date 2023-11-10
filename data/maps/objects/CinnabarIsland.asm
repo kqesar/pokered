@@ -1,7 +1,3 @@
-	object_const_def
-	const CINNABARISLAND_GIRL
-	const CINNABARISLAND_GAMBLER
-
 CinnabarIsland_Object:
 	db $43 ; border block
 
@@ -13,14 +9,14 @@ CinnabarIsland_Object:
 	warp_event 15, 11, CINNABAR_MART, 1
 
 	def_bg_events
-	bg_event  9,  5, TEXT_CINNABARISLAND_SIGN
-	bg_event 16, 11, TEXT_CINNABARISLAND_MART_SIGN
-	bg_event 12, 11, TEXT_CINNABARISLAND_POKECENTER_SIGN
-	bg_event  9, 11, TEXT_CINNABARISLAND_POKEMONLAB_SIGN
-	bg_event 13,  3, TEXT_CINNABARISLAND_GYM_SIGN
+	bg_event  9,  5, 3 ; CinnabarIslandText3
+	bg_event 16, 11, 4 ; MartSignText
+	bg_event 12, 11, 5 ; PokeCenterSignText
+	bg_event  9, 11, 6 ; CinnabarIslandText6
+	bg_event 13,  3, 7 ; CinnabarIslandText7
 
 	def_object_events
-	object_event 12,  5, SPRITE_GIRL, WALK, LEFT_RIGHT, TEXT_CINNABARISLAND_GIRL
-	object_event 14,  6, SPRITE_GAMBLER, STAY, NONE, TEXT_CINNABARISLAND_GAMBLER
+	object_event 12,  5, SPRITE_GIRL, WALK, LEFT_RIGHT, 1 ; person
+	object_event 14,  6, SPRITE_GAMBLER, STAY, NONE, 2 ; person
 
 	def_warps_to CINNABAR_ISLAND

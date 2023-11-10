@@ -8,13 +8,12 @@ RocketHideoutB3F_Script:
 	ret
 
 RocketHideoutB3F_ScriptPointers:
-	def_script_pointers
-	dw_const RocketHideoutB3FDefaultScript,         SCRIPT_ROCKETHIDEOUTB3F_DEFAULT
-	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_ROCKETHIDEOUTB3F_START_BATTLE
-	dw_const EndTrainerBattle,                      SCRIPT_ROCKETHIDEOUTB3F_END_BATTLE
-	dw_const RocketHideoutB3FPlayerSpinningScript,  SCRIPT_ROCKETHIDEOUTB3F_PLAYER_SPINNING
+	dw RocketHideout3Script0
+	dw DisplayEnemyTrainerTextAndStartBattle
+	dw EndTrainerBattle
+	dw RocketHideout3Script3
 
-RocketHideoutB3FDefaultScript:
+RocketHideout3Script0:
 	ld a, [wYCoord]
 	ld b, a
 	ld a, [wXCoord]
@@ -28,9 +27,9 @@ RocketHideoutB3FDefaultScript:
 	call StartSimulatingJoypadStates
 	ld a, SFX_ARROW_TILES
 	call PlaySound
-	ld a, A_BUTTON | B_BUTTON | SELECT | START | D_RIGHT | D_LEFT | D_UP | D_DOWN
+	ld a, $ff
 	ld [wJoyIgnore], a
-	ld a, SCRIPT_ROCKETHIDEOUTB3F_PLAYER_SPINNING
+	ld a, $3
 	ld [wCurMapScript], a
 	ret
 
@@ -113,7 +112,7 @@ RocketHideout3ArrowMovement12:
 	db D_UP, 1
 	db -1 ; end
 
-RocketHideoutB3FPlayerSpinningScript:
+RocketHideout3Script3:
 	ld a, [wSimulatedJoypadStatesIndex]
 	and a
 	jp nz, LoadSpinnerArrowTiles
@@ -121,57 +120,56 @@ RocketHideoutB3FPlayerSpinningScript:
 	ld [wJoyIgnore], a
 	ld hl, wd736
 	res 7, [hl]
-	ld a, SCRIPT_ROCKETHIDEOUTB3F_DEFAULT
+	ld a, $0
 	ld [wCurMapScript], a
 	ret
 
 RocketHideoutB3F_TextPointers:
-	def_text_pointers
-	dw_const RocketHideoutB3FRocket1Text, TEXT_ROCKETHIDEOUTB3F_ROCKET1
-	dw_const RocketHideoutB3FRocket2Text, TEXT_ROCKETHIDEOUTB3F_ROCKET2
-	dw_const PickUpItemText,              TEXT_ROCKETHIDEOUTB3F_TM_DOUBLE_EDGE
-	dw_const PickUpItemText,              TEXT_ROCKETHIDEOUTB3F_RARE_CANDY
+	dw RocketHideout3Text1
+	dw RocketHideout3Text2
+	dw PickUpItemText
+	dw PickUpItemText
 
 RocketHideout3TrainerHeaders:
 	def_trainers
 RocketHideout3TrainerHeader0:
-	trainer EVENT_BEAT_ROCKET_HIDEOUT_3_TRAINER_0, 2, RocketHideoutB3FRocket1BattleText, RocketHideoutB3FRocket1EndBattleText, RocketHideoutB3FRocket1AfterBattleText
+	trainer EVENT_BEAT_ROCKET_HIDEOUT_3_TRAINER_0, 2, RocketHideout3BattleText2, RocketHideout3EndBattleText2, RocketHideout3AfterBattleTxt2
 RocketHideout3TrainerHeader1:
-	trainer EVENT_BEAT_ROCKET_HIDEOUT_3_TRAINER_1, 4, RocketHideoutB3FRocket2BattleText, RocketHideoutB3FRocket2EndBattleText, RocketHideoutB3FRocket2AfterBattleText
+	trainer EVENT_BEAT_ROCKET_HIDEOUT_3_TRAINER_1, 4, RocketHideout3BattleTxt, RocketHideout3EndBattleText3, RocketHideout3AfterBattleText3
 	db -1 ; end
 
-RocketHideoutB3FRocket1Text:
+RocketHideout3Text1:
 	text_asm
 	ld hl, RocketHideout3TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
-RocketHideoutB3FRocket1BattleText:
-	text_far _RocketHideoutB3FRocket1BattleText
+RocketHideout3BattleText2:
+	text_far _RocketHideout3BattleText2
 	text_end
 
-RocketHideoutB3FRocket1EndBattleText:
-	text_far _RocketHideoutB3FRocket1EndBattleText
+RocketHideout3EndBattleText2:
+	text_far _RocketHideout3EndBattleText2
 	text_end
 
-RocketHideoutB3FRocket1AfterBattleText:
-	text_far _RocketHideoutB3FRocket1AfterBattleText
+RocketHideout3AfterBattleTxt2:
+	text_far _RocketHideout3AfterBattleTxt2
 	text_end
 
-RocketHideoutB3FRocket2Text:
+RocketHideout3Text2:
 	text_asm
 	ld hl, RocketHideout3TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
-RocketHideoutB3FRocket2BattleText:
+RocketHideout3BattleTxt:
 	text_far _RocketHideout3BattleTxt
 	text_end
 
-RocketHideoutB3FRocket2EndBattleText:
+RocketHideout3EndBattleText3:
 	text_far _RocketHideout3EndBattleText3
 	text_end
 
-RocketHideoutB3FRocket2AfterBattleText:
+RocketHideout3AfterBattleText3:
 	text_far _RocketHide3AfterBattleText3
 	text_end

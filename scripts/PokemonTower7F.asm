@@ -7,40 +7,39 @@ PokemonTower7F_Script:
 	ld [wPokemonTower7FCurScript], a
 	ret
 
-PokemonTower7FSetDefaultScript:
+PokemonTower7Script_60d18:
 	xor a
 	ld [wJoyIgnore], a
-	ld [wPokemonTower7FCurScript], a ; SCRIPT_POKEMONTOWER7F_DEFAULT
-	ld [wCurMapScript], a ; SCRIPT_POKEMONTOWER7F_DEFAULT
-	ret
-
-PokemonTower7F_ScriptPointers:
-	def_script_pointers
-	dw_const CheckFightingMapTrainers,              SCRIPT_POKEMONTOWER7F_DEFAULT
-	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_POKEMONTOWER7F_START_BATTLE
-	dw_const PokemonTower7FEndBattleScript,         SCRIPT_POKEMONTOWER7F_END_BATTLE
-	dw_const PokemonTower7FHideNPCScript,           SCRIPT_POKEMONTOWER7F_HIDE_NPC
-	dw_const PokemonTower7FWarpToMrFujiHouseScript, SCRIPT_POKEMONTOWER7F_WARP_TO_MR_FUJI_HOUSE
-
-PokemonTower7FEndBattleScript:
-	ld hl, wFlags_0xcd60
-	res 0, [hl]
-	ld a, [wIsInBattle]
-	cp $ff
-	jp z, PokemonTower7FSetDefaultScript
-	call EndTrainerBattle
-	ld a, D_RIGHT | D_LEFT | D_UP | D_DOWN
-	ld [wJoyIgnore], a
-	ld a, [wSpriteIndex]
-	ldh [hSpriteIndexOrTextID], a
-	call DisplayTextID
-	call PokemonTower7FRocketLeaveMovementScript
-	ld a, SCRIPT_POKEMONTOWER7F_HIDE_NPC
 	ld [wPokemonTower7FCurScript], a
 	ld [wCurMapScript], a
 	ret
 
-PokemonTower7FHideNPCScript:
+PokemonTower7F_ScriptPointers:
+	dw CheckFightingMapTrainers
+	dw DisplayEnemyTrainerTextAndStartBattle
+	dw PokemonTower7Script2
+	dw PokemonTower7Script3
+	dw PokemonTower7Script4
+
+PokemonTower7Script2:
+	ld hl, wFlags_0xcd60
+	res 0, [hl]
+	ld a, [wIsInBattle]
+	cp $ff
+	jp z, PokemonTower7Script_60d18
+	call EndTrainerBattle
+	ld a, $f0
+	ld [wJoyIgnore], a
+	ld a, [wSpriteIndex]
+	ldh [hSpriteIndexOrTextID], a
+	call DisplayTextID
+	call PokemonTower7Script_60db6
+	ld a, $3
+	ld [wPokemonTower7FCurScript], a
+	ld [wCurMapScript], a
+	ret
+
+PokemonTower7Script3:
 	ld a, [wd730]
 	bit 0, a
 	ret nz
@@ -59,13 +58,13 @@ PokemonTower7FHideNPCScript:
 	ld [wSpriteIndex], a
 	ld [wTrainerHeaderFlagBit], a
 	ld [wUnusedDA38], a
-	ld a, SCRIPT_POKEMONTOWER7F_DEFAULT
+	ld a, $0
 	ld [wPokemonTower7FCurScript], a
 	ld [wCurMapScript], a
 	ret
 
-PokemonTower7FWarpToMrFujiHouseScript:
-	ld a, A_BUTTON | B_BUTTON | SELECT | START | D_RIGHT | D_LEFT | D_UP | D_DOWN
+PokemonTower7Script4:
+	ld a, $ff
 	ld [wJoyIgnore], a
 	ld a, HS_POKEMON_TOWER_7F_MR_FUJI
 	ld [wMissableObjectIndex], a
@@ -80,13 +79,13 @@ PokemonTower7FWarpToMrFujiHouseScript:
 	ld [wLastMap], a
 	ld hl, wd72d
 	set 3, [hl]
-	ld a, SCRIPT_POKEMONTOWER7F_DEFAULT
+	ld a, $0
 	ld [wPokemonTower7FCurScript], a
 	ld [wCurMapScript], a
 	ret
 
-PokemonTower7FRocketLeaveMovementScript:
-	ld hl, PokemonTower7FNPCCoordMovementTable
+PokemonTower7Script_60db6:
+	ld hl, CoordsData_60de3
 	ld a, [wSpriteIndex]
 	dec a
 	swap a
@@ -97,41 +96,41 @@ PokemonTower7FRocketLeaveMovementScript:
 	ld b, a
 	ld a, [wXCoord]
 	ld c, a
-.loop
+.asm_60dcb
 	ld a, [hli]
 	cp b
-	jr nz, .inc_and_skip
+	jr nz, .asm_60dde
 	ld a, [hli]
 	cp c
-	jr nz, .skip
+	jr nz, .asm_60ddf
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
 	ld a, [wSpriteIndex]
 	ldh [hSpriteIndex], a
 	jp MoveSprite
-.inc_and_skip
+.asm_60dde
 	inc hl
-.skip
+.asm_60ddf
 	inc hl
 	inc hl
-	jr .loop
+	jr .asm_60dcb
 
-PokemonTower7FNPCCoordMovementTable:
-	map_coord_movement  9, 12, PokemonTower7FRocket1ExitRightDownMovement
-	map_coord_movement 10, 11, PokemonTower7FRocket1ExitDownRightMovement
-	map_coord_movement 11, 11, PokemonTower7FRocketExitDownMovement
-	map_coord_movement 12, 11, PokemonTower7FRocketExitDownMovement
-	map_coord_movement 12, 10, PokemonTower7FRocket2ExitLeftDownMovement
-	map_coord_movement 11,  9, PokemonTower7FRocket2ExitDownLeftMovement
-	map_coord_movement 10,  9, PokemonTower7FRocketExitDownMovement
-	map_coord_movement  9,  9, PokemonTower7FRocketExitDownMovement
-	map_coord_movement  9,  8, PokemonTower7FRocket3ExitRightDownMovement
-	map_coord_movement 10,  7, PokemonTower7FRocketExitDownMovement
-	map_coord_movement 11,  7, PokemonTower7FRocketExitDownMovement
-	map_coord_movement 12,  7, PokemonTower7FRocketExitDownMovement
+CoordsData_60de3:
+	map_coord_movement  9, 12, MovementData_60e13
+	map_coord_movement 10, 11, MovementData_60e1b
+	map_coord_movement 11, 11, MovementData_60e22
+	map_coord_movement 12, 11, MovementData_60e22
+	map_coord_movement 12, 10, MovementData_60e28
+	map_coord_movement 11,  9, MovementData_60e30
+	map_coord_movement 10,  9, MovementData_60e22
+	map_coord_movement  9,  9, MovementData_60e22
+	map_coord_movement  9,  8, MovementData_60e37
+	map_coord_movement 10,  7, MovementData_60e22
+	map_coord_movement 11,  7, MovementData_60e22
+	map_coord_movement 12,  7, MovementData_60e22
 
-PokemonTower7FRocket1ExitRightDownMovement:
+MovementData_60e13:
 	db NPC_MOVEMENT_RIGHT
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
@@ -141,7 +140,7 @@ PokemonTower7FRocket1ExitRightDownMovement:
 	db NPC_MOVEMENT_LEFT
 	db -1 ; end
 
-PokemonTower7FRocket1ExitDownRightMovement:
+MovementData_60e1b:
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_RIGHT
 	db NPC_MOVEMENT_DOWN
@@ -150,7 +149,7 @@ PokemonTower7FRocket1ExitDownRightMovement:
 	db NPC_MOVEMENT_DOWN
 	db -1 ; end
 
-PokemonTower7FRocketExitDownMovement:
+MovementData_60e22:
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
@@ -158,7 +157,7 @@ PokemonTower7FRocketExitDownMovement:
 	db NPC_MOVEMENT_DOWN
 	db -1 ; end
 
-PokemonTower7FRocket2ExitLeftDownMovement:
+MovementData_60e28:
 	db NPC_MOVEMENT_LEFT
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
@@ -168,7 +167,7 @@ PokemonTower7FRocket2ExitLeftDownMovement:
 	db NPC_MOVEMENT_DOWN
 	db -1 ; end
 
-PokemonTower7FRocket2ExitDownLeftMovement:
+MovementData_60e30:
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
@@ -177,7 +176,7 @@ PokemonTower7FRocket2ExitDownLeftMovement:
 	db NPC_MOVEMENT_DOWN
 	db -1 ; end
 
-PokemonTower7FRocket3ExitRightDownMovement:
+MovementData_60e37:
 	db NPC_MOVEMENT_RIGHT
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
@@ -188,43 +187,42 @@ PokemonTower7FRocket3ExitRightDownMovement:
 	db -1 ; end
 
 PokemonTower7F_TextPointers:
-	def_text_pointers
-	dw_const PokemonTower7FRocket1Text, TEXT_POKEMONTOWER7F_ROCKET1
-	dw_const PokemonTower7FRocket2Text, TEXT_POKEMONTOWER7F_ROCKET2
-	dw_const PokemonTower7FRocket3Text, TEXT_POKEMONTOWER7F_ROCKET3
-	dw_const PokemonTower7FMrFujiText,  TEXT_POKEMONTOWER7F_MR_FUJI
+	dw PokemonTower7Text1
+	dw PokemonTower7Text2
+	dw PokemonTower7Text3
+	dw PokemonTower7FujiText
 
 PokemonTower7TrainerHeaders:
 	def_trainers
 PokemonTower7TrainerHeader0:
-	trainer EVENT_BEAT_POKEMONTOWER_7_TRAINER_0, 3, PokemonTower7FRocket1BattleText, PokemonTower7FRocket1EndBattleText, PokemonTower7FRocket1AfterBattleText
+	trainer EVENT_BEAT_POKEMONTOWER_7_TRAINER_0, 3, PokemonTower7BattleText1, PokemonTower7EndBattleText1, PokemonTower7AfterBattleText1
 PokemonTower7TrainerHeader1:
-	trainer EVENT_BEAT_POKEMONTOWER_7_TRAINER_1, 3, PokemonTower7FRocket2BattleText, PokemonTower7FRocket2EndBattleText, PokemonTower7FRocket2AfterBattleText
+	trainer EVENT_BEAT_POKEMONTOWER_7_TRAINER_1, 3, PokemonTower7BattleText2, PokemonTower7EndBattleText2, PokemonTower7AfterBattleText2
 PokemonTower7TrainerHeader2:
-	trainer EVENT_BEAT_POKEMONTOWER_7_TRAINER_2, 3, PokemonTower7FRocket3BattleText, PokemonTower7FRocket3EndBattleText, PokemonTower7FRocket3AfterBattleText
+	trainer EVENT_BEAT_POKEMONTOWER_7_TRAINER_2, 3, PokemonTower7BattleText3, PokemonTower7EndBattleText3, PokemonTower7AfterBattleText3
 	db -1 ; end
 
-PokemonTower7FRocket1Text:
+PokemonTower7Text1:
 	text_asm
 	ld hl, PokemonTower7TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
-PokemonTower7FRocket2Text:
+PokemonTower7Text2:
 	text_asm
 	ld hl, PokemonTower7TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
-PokemonTower7FRocket3Text:
+PokemonTower7Text3:
 	text_asm
 	ld hl, PokemonTower7TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
-PokemonTower7FMrFujiText:
+PokemonTower7FujiText:
 	text_asm
-	ld hl, .RescueText
+	ld hl, TowerRescueFujiText
 	call PrintText
 	SetEvent EVENT_RESCUED_MR_FUJI
 	SetEvent EVENT_RESCUED_MR_FUJI_2
@@ -237,47 +235,47 @@ PokemonTower7FMrFujiText:
 	ld a, HS_SAFFRON_CITY_F
 	ld [wMissableObjectIndex], a
 	predef ShowObject
-	ld a, SCRIPT_POKEMONTOWER7F_WARP_TO_MR_FUJI_HOUSE
+	ld a, $4
 	ld [wPokemonTower7FCurScript], a
 	ld [wCurMapScript], a
 	jp TextScriptEnd
 
-.RescueText:
-	text_far _PokemonTower7FMrFujiRescueText
+TowerRescueFujiText:
+	text_far _TowerRescueFujiText
 	text_end
 
-PokemonTower7FRocket1BattleText:
-	text_far _PokemonTower7FRocket1BattleText
+PokemonTower7BattleText1:
+	text_far _PokemonTower7BattleText1
 	text_end
 
-PokemonTower7FRocket1EndBattleText:
-	text_far _PokemonTower7FRocket1EndBattleText
+PokemonTower7EndBattleText1:
+	text_far _PokemonTower7EndBattleText1
 	text_end
 
-PokemonTower7FRocket1AfterBattleText:
-	text_far _PokemonTower7FRocket1AfterBattleText
+PokemonTower7AfterBattleText1:
+	text_far _PokemonTower7AfterBattleText1
 	text_end
 
-PokemonTower7FRocket2BattleText:
-	text_far _PokemonTower7FRocket2BattleText
+PokemonTower7BattleText2:
+	text_far _PokemonTower7BattleText2
 	text_end
 
-PokemonTower7FRocket2EndBattleText:
-	text_far _PokemonTower7FRocket2EndBattleText
+PokemonTower7EndBattleText2:
+	text_far _PokemonTower7EndBattleText2
 	text_end
 
-PokemonTower7FRocket2AfterBattleText:
-	text_far _PokemonTower7FRocket2AfterBattleText
+PokemonTower7AfterBattleText2:
+	text_far _PokemonTower7AfterBattleText2
 	text_end
 
-PokemonTower7FRocket3BattleText:
-	text_far _PokemonTower7FRocket3BattleText
+PokemonTower7BattleText3:
+	text_far _PokemonTower7BattleText3
 	text_end
 
-PokemonTower7FRocket3EndBattleText:
-	text_far _PokemonTower7FRocket3EndBattleText
+PokemonTower7EndBattleText3:
+	text_far _PokemonTower7EndBattleText3
 	text_end
 
-PokemonTower7FRocket3AfterBattleText:
-	text_far _PokemonTower7FRocket3AfterBattleText
+PokemonTower7AfterBattleText3:
+	text_far _PokemonTower7AfterBattleText3
 	text_end

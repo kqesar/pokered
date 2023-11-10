@@ -2,15 +2,14 @@ Route2TradeHouse_Script:
 	jp EnableAutoTextBoxDrawing
 
 Route2TradeHouse_TextPointers:
-	def_text_pointers
-	dw_const Route2TradeHouseScientistText,  TEXT_ROUTE2TRADEHOUSE_SCIENTIST
-	dw_const Route2TradeHouseGameboyKidText, TEXT_ROUTE2TRADEHOUSE_GAMEBOY_KID
+	dw Route2HouseText1
+	dw Route2HouseText2
 
-Route2TradeHouseScientistText:
-	text_far _Route2TradeHouseScientistText
+Route2HouseText1:
+	text_far _Route2HouseText1
 	text_end
 
-Route2TradeHouseGameboyKidText:
+Route2HouseText2:
 	text_asm
 	ld a, TRADE_FOR_MARCEL
 	ld [wWhichTrade], a

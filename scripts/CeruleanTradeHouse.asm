@@ -2,15 +2,14 @@ CeruleanTradeHouse_Script:
 	jp EnableAutoTextBoxDrawing
 
 CeruleanTradeHouse_TextPointers:
-	def_text_pointers
-	dw_const CeruleanTradeHouseGrannyText,  TEXT_CERULEANTRADEHOUSE_GRANNY
-	dw_const CeruleanTradeHouseGamblerText, TEXT_CERULEANTRADEHOUSE_GAMBLER
+	dw CeruleanHouse1Text1
+	dw CeruleanHouse1Text2
 
-CeruleanTradeHouseGrannyText:
-	text_far _CeruleanTradeHouseGrannyText
+CeruleanHouse1Text1:
+	text_far _CeruleanHouse1Text1
 	text_end
 
-CeruleanTradeHouseGamblerText:
+CeruleanHouse1Text2:
 	text_asm
 	ld a, TRADE_FOR_LOLA
 	ld [wWhichTrade], a

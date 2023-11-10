@@ -1,4 +1,4 @@
-_NameRatersHouseNameRaterWantMeToRateText::
+_NameRaterText_1dab3::
 	text "Hello, hello!"
 	line "I am the official"
 	cont "NAME RATER!"
@@ -8,12 +8,12 @@ _NameRatersHouseNameRaterWantMeToRateText::
 	cont "your #MON?"
 	done
 
-_NameRatersHouseNameRaterWhichPokemonText::
+_NameRaterText_1dab8::
 	text "Which #MON"
 	line "should I look at?"
 	prompt
 
-_NameRatersHouseNameRaterGiveItANiceNameText::
+_NameRaterText_1dabd::
 	text_ram wcd6d
 	text ", is it?"
 	line "That is a decent"
@@ -26,12 +26,12 @@ _NameRatersHouseNameRaterGiveItANiceNameText::
 	para "How about it?"
 	done
 
-_NameRatersHouseNameRaterWhatShouldWeNameItText::
+_NameRaterText_1dac2::
 	text "Fine! What should"
 	line "we name it?"
 	prompt
 
-_NameRatersHouseNameRaterPokemonHasBeenRenamedText::
+_NameRaterText_1dac7::
 	text "OK! This #MON"
 	line "has been renamed"
 	cont "@"
@@ -42,12 +42,12 @@ _NameRatersHouseNameRaterPokemonHasBeenRenamedText::
 	line "name than before!"
 	done
 
-_NameRatersHouseNameRaterComeAnyTimeYouLikeText::
+_NameRaterText_1dacc::
 	text "Fine! Come any"
 	line "time you like!"
 	done
 
-_NameRatersHouseNameRaterATrulyImpeccableNameText::
+_NameRaterText_1dad1::
 	text_ram wcd6d
 	text ", is it?"
 	line "That is a truly"

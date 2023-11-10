@@ -2,122 +2,121 @@ SaffronCity_Script:
 	jp EnableAutoTextBoxDrawing
 
 SaffronCity_TextPointers:
-	def_text_pointers
-	dw_const SaffronCityRocket1Text,                  TEXT_SAFFRONCITY_ROCKET1
-	dw_const SaffronCityRocket2Text,                  TEXT_SAFFRONCITY_ROCKET2
-	dw_const SaffronCityRocket3Text,                  TEXT_SAFFRONCITY_ROCKET3
-	dw_const SaffronCityRocket4Text,                  TEXT_SAFFRONCITY_ROCKET4
-	dw_const SaffronCityRocket5Text,                  TEXT_SAFFRONCITY_ROCKET5
-	dw_const SaffronCityRocket6Text,                  TEXT_SAFFRONCITY_ROCKET6
-	dw_const SaffronCityRocket7Text,                  TEXT_SAFFRONCITY_ROCKET7
-	dw_const SaffronCityScientistText,                TEXT_SAFFRONCITY_SCIENTIST
-	dw_const SaffronCitySilphWorkerMText,             TEXT_SAFFRONCITY_SILPH_WORKER_M
-	dw_const SaffronCitySilphWorkerFText,             TEXT_SAFFRONCITY_SILPH_WORKER_F
-	dw_const SaffronCityGentlemanText,                TEXT_SAFFRONCITY_GENTLEMAN
-	dw_const SaffronCityPidgeotText,                  TEXT_SAFFRONCITY_PIDGEOT
-	dw_const SaffronCityRockerText,                   TEXT_SAFFRONCITY_ROCKER
-	dw_const SaffronCityRocket8Text,                  TEXT_SAFFRONCITY_ROCKET8
-	dw_const SaffronCityRocket9Text,                  TEXT_SAFFRONCITY_ROCKET9
-	dw_const SaffronCitySignText,                     TEXT_SAFFRONCITY_SIGN
-	dw_const SaffronCityFightingDojoSignText,         TEXT_SAFFRONCITY_FIGHTING_DOJO_SIGN
-	dw_const SaffronCityGymSignText,                  TEXT_SAFFRONCITY_GYM_SIGN
-	dw_const MartSignText,                            TEXT_SAFFRONCITY_MART_SIGN
-	dw_const SaffronCityTrainerTips1Text,             TEXT_SAFFRONCITY_TRAINER_TIPS1
-	dw_const SaffronCityTrainerTips2Text,             TEXT_SAFFRONCITY_TRAINER_TIPS2
-	dw_const SaffronCitySilphCoSignText,              TEXT_SAFFRONCITY_SILPH_CO_SIGN
-	dw_const PokeCenterSignText,                      TEXT_SAFFRONCITY_POKECENTER_SIGN
-	dw_const SaffronCityMrPsychicsHouseSignText,      TEXT_SAFFRONCITY_MR_PSYCHICS_HOUSE_SIGN
-	dw_const SaffronCitySilphCoLatestProductSignText, TEXT_SAFFRONCITY_SILPH_CO_LATEST_PRODUCT_SIGN
+	dw SaffronCityText1
+	dw SaffronCityText2
+	dw SaffronCityText3
+	dw SaffronCityText4
+	dw SaffronCityText5
+	dw SaffronCityText6
+	dw SaffronCityText7
+	dw SaffronCityText8
+	dw SaffronCityText9
+	dw SaffronCityText10
+	dw SaffronCityText11
+	dw SaffronCityText12
+	dw SaffronCityText13
+	dw SaffronCityText14
+	dw SaffronCityText15
+	dw SaffronCityText16
+	dw SaffronCityText17
+	dw SaffronCityText18
+	dw MartSignText
+	dw SaffronCityText20
+	dw SaffronCityText21
+	dw SaffronCityText22
+	dw PokeCenterSignText
+	dw SaffronCityText24
+	dw SaffronCityText25
 
-SaffronCityRocket1Text:
-	text_far _SaffronCityRocket1Text
+SaffronCityText1:
+	text_far _SaffronCityText1
 	text_end
 
-SaffronCityRocket2Text:
-	text_far _SaffronCityRocket2Text
+SaffronCityText2:
+	text_far _SaffronCityText2
 	text_end
 
-SaffronCityRocket3Text:
-	text_far _SaffronCityRocket3Text
+SaffronCityText3:
+	text_far _SaffronCityText3
 	text_end
 
-SaffronCityRocket4Text:
-	text_far _SaffronCityRocket4Text
+SaffronCityText4:
+	text_far _SaffronCityText4
 	text_end
 
-SaffronCityRocket5Text:
-	text_far _SaffronCityRocket5Text
+SaffronCityText5:
+	text_far _SaffronCityText5
 	text_end
 
-SaffronCityRocket6Text:
-	text_far _SaffronCityRocket6Text
+SaffronCityText6:
+	text_far _SaffronCityText6
 	text_end
 
-SaffronCityRocket7Text:
-	text_far _SaffronCityRocket7Text
+SaffronCityText7:
+	text_far _SaffronCityText7
 	text_end
 
-SaffronCityScientistText:
-	text_far _SaffronCityScientistText
+SaffronCityText8:
+	text_far _SaffronCityText8
 	text_end
 
-SaffronCitySilphWorkerMText:
-	text_far _SaffronCitySilphWorkerMText
+SaffronCityText9:
+	text_far _SaffronCityText9
 	text_end
 
-SaffronCitySilphWorkerFText:
-	text_far _SaffronCitySilphWorkerFText
+SaffronCityText10:
+	text_far _SaffronCityText10
 	text_end
 
-SaffronCityGentlemanText:
-	text_far _SaffronCityGentlemanText
+SaffronCityText11:
+	text_far _SaffronCityText11
 	text_end
 
-SaffronCityPidgeotText:
-	text_far _SaffronCityPidgeotText
+SaffronCityText12:
+	text_far _SaffronCityText12
 	sound_cry_pidgeot
 	text_end
 
-SaffronCityRockerText:
-	text_far _SaffronCityRockerText
+SaffronCityText13:
+	text_far _SaffronCityText13
 	text_end
 
-SaffronCityRocket8Text:
-	text_far _SaffronCityRocket8Text
+SaffronCityText14:
+	text_far _SaffronCityText14
 	text_end
 
-SaffronCityRocket9Text:
-	text_far _SaffronCityRocket9Text
+SaffronCityText15:
+	text_far _SaffronCityText15
 	text_end
 
-SaffronCitySignText:
-	text_far _SaffronCitySignText
+SaffronCityText16:
+	text_far _SaffronCityText16
 	text_end
 
-SaffronCityFightingDojoSignText:
-	text_far _SaffronCityFightingDojoSignText
+SaffronCityText17:
+	text_far _SaffronCityText17
 	text_end
 
-SaffronCityGymSignText:
-	text_far _SaffronCityGymSignText
+SaffronCityText18:
+	text_far _SaffronCityText18
 	text_end
 
-SaffronCityTrainerTips1Text:
-	text_far _SaffronCityTrainerTips1Text
+SaffronCityText20:
+	text_far _SaffronCityText20
 	text_end
 
-SaffronCityTrainerTips2Text:
-	text_far _SaffronCityTrainerTips2Text
+SaffronCityText21:
+	text_far _SaffronCityText21
 	text_end
 
-SaffronCitySilphCoSignText:
-	text_far _SaffronCitySilphCoSignText
+SaffronCityText22:
+	text_far _SaffronCityText22
 	text_end
 
-SaffronCityMrPsychicsHouseSignText:
-	text_far _SaffronCityMrPsychicsHouseSignText
+SaffronCityText24:
+	text_far _SaffronCityText24
 	text_end
 
-SaffronCitySilphCoLatestProductSignText:
-	text_far _SaffronCitySilphCoLatestProductSignText
+SaffronCityText25:
+	text_far _SaffronCityText25
 	text_end

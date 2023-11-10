@@ -2,19 +2,18 @@ CeladonHotel_Script:
 	jp EnableAutoTextBoxDrawing
 
 CeladonHotel_TextPointers:
-	def_text_pointers
-	dw_const CeladonHotelGrannyText,    TEXT_CELADONHOTEL_GRANNY
-	dw_const CeladonHotelBeautyText,    TEXT_CELADONHOTEL_BEAUTY
-	dw_const CeladonHotelSuperNerdText, TEXT_CELADONHOTEL_SUPER_NERD
+	dw CeladonHotelText1
+	dw CeladonHotelText2
+	dw CeladonHotelText3
 
-CeladonHotelGrannyText:
-	text_far _CeladonHotelGrannyText
+CeladonHotelText1:
+	text_far _CeladonHotelText1
 	text_end
 
-CeladonHotelBeautyText:
-	text_far _CeladonHotelBeautyText
+CeladonHotelText2:
+	text_far _CeladonHotelText2
 	text_end
 
-CeladonHotelSuperNerdText:
-	text_far _CeladonHotelSuperNerdText
+CeladonHotelText3:
+	text_far _CeladonHotelText3
 	text_end

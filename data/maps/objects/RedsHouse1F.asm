@@ -1,6 +1,3 @@
-	object_const_def
-	const REDSHOUSE1F_MOM
-
 RedsHouse1F_Object:
 	db $a ; border block
 
@@ -10,9 +7,9 @@ RedsHouse1F_Object:
 	warp_event  7,  1, REDS_HOUSE_2F, 1
 
 	def_bg_events
-	bg_event  3,  1, TEXT_REDSHOUSE1F_TV
+	bg_event  3,  1, 2 ; RedsHouse1FTVText
 
 	def_object_events
-	object_event  5,  4, SPRITE_MOM, STAY, LEFT, TEXT_REDSHOUSE1F_MOM
+	object_event  5,  4, SPRITE_MOM, STAY, LEFT, 1
 
 	def_warps_to REDS_HOUSE_1F

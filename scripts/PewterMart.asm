@@ -5,27 +5,26 @@ PewterMart_Script:
 	ret
 
 PewterMart_TextPointers:
-	def_text_pointers
-	dw_const PewterMartClerkText,     TEXT_PEWTERMART_CLERK
-	dw_const PewterMartYoungsterText, TEXT_PEWTERMART_YOUNGSTER
-	dw_const PewterMartSuperNerdText, TEXT_PEWTERMART_SUPER_NERD
+	dw PewterCashierText
+	dw PewterMartText2
+	dw PewterMartText3
 
-PewterMartYoungsterText:
+PewterMartText2:
 	text_asm
 	ld hl, .Text
 	call PrintText
 	jp TextScriptEnd
 
-.Text:
-	text_far _PewterMartYoungsterText
+.Text
+	text_far _PewterMartText2
 	text_end
 
-PewterMartSuperNerdText:
+PewterMartText3:
 	text_asm
 	ld hl, .Text
 	call PrintText
 	jp TextScriptEnd
 
-.Text:
-	text_far _PewterMartSuperNerdText
+.Text
+	text_far _PewterMartText3
 	text_end

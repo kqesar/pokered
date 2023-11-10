@@ -1,6 +1,3 @@
-	object_const_def
-	const SSANNECAPTAINSROOM_CAPTAIN
-
 SSAnneCaptainsRoom_Object:
 	db $c ; border block
 
@@ -8,10 +5,10 @@ SSAnneCaptainsRoom_Object:
 	warp_event  0,  7, SS_ANNE_2F, 9
 
 	def_bg_events
-	bg_event  4,  1, TEXT_SSANNECAPTAINSROOM_TRASH
-	bg_event  1,  2, TEXT_SSANNECAPTAINSROOM_SEASICK_BOOK
+	bg_event  4,  1, 2 ; SSAnne7Text2
+	bg_event  1,  2, 3 ; SSAnne7Text3
 
 	def_object_events
-	object_event  4,  2, SPRITE_CAPTAIN, STAY, UP, TEXT_SSANNECAPTAINSROOM_CAPTAIN
+	object_event  4,  2, SPRITE_CAPTAIN, STAY, UP, 1 ; person
 
 	def_warps_to SS_ANNE_CAPTAINS_ROOM

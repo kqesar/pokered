@@ -1,54 +1,52 @@
 NameRatersHouse_Script:
 	jp EnableAutoTextBoxDrawing
 
-NameRatersHouseYesNoScript:
+NameRaterScript_1da15:
 	call PrintText
 	call YesNoChoice
 	ld a, [wCurrentMenuItem]
 	and a
 	ret
 
-NameRatersHouseCheckMonOTScript:
-; return carry if mon's OT name or OT ID do not match the player's
+NameRaterScript_1da20:
 	ld hl, wPartyMonOT
 	ld bc, NAME_LENGTH
 	ld a, [wWhichPokemon]
 	call AddNTimes
 	ld de, wPlayerName
 	ld c, NAME_LENGTH
-	call .check_match_loop
-	jr c, .no_match
+	call .asm_1da47
+	jr c, .asm_1da52
 	ld hl, wPartyMon1OTID
 	ld bc, wPartyMon2 - wPartyMon1
 	ld a, [wWhichPokemon]
 	call AddNTimes
 	ld de, wPlayerID
 	ld c, $2
-.check_match_loop
+.asm_1da47
 	ld a, [de]
 	cp [hl]
-	jr nz, .no_match
+	jr nz, .asm_1da52
 	inc hl
 	inc de
 	dec c
-	jr nz, .check_match_loop
+	jr nz, .asm_1da47
 	and a
 	ret
-.no_match
+.asm_1da52
 	scf
 	ret
 
 NameRatersHouse_TextPointers:
-	def_text_pointers
-	dw_const NameRatersHouseNameRaterText, TEXT_NAMERATERSHOUSE_NAME_RATER
+	dw NameRaterText1
 
-NameRatersHouseNameRaterText:
+NameRaterText1:
 	text_asm
 	call SaveScreenTilesToBuffer2
-	ld hl, .WantMeToRateText
-	call NameRatersHouseYesNoScript
-	jr nz, .did_not_rename
-	ld hl, .WhichPokemonText
+	ld hl, NameRaterText_1dab3
+	call NameRaterScript_1da15
+	jr nz, .asm_1daae
+	ld hl, NameRaterText_1dab8
 	call PrintText
 	xor a
 	ld [wPartyMenuTypeOrMessageID], a
@@ -60,50 +58,50 @@ NameRatersHouseNameRaterText:
 	call RestoreScreenTilesAndReloadTilePatterns
 	call LoadGBPal
 	pop af
-	jr c, .did_not_rename
+	jr c, .asm_1daae
 	call GetPartyMonName2
-	call NameRatersHouseCheckMonOTScript
-	ld hl, .ATrulyImpeccableNameText
-	jr c, .done
-	ld hl, .GiveItANiceNameText
-	call NameRatersHouseYesNoScript
-	jr nz, .did_not_rename
-	ld hl, .WhatShouldWeNameItText
+	call NameRaterScript_1da20
+	ld hl, NameRaterText_1dad1
+	jr c, .asm_1daa8
+	ld hl, NameRaterText_1dabd
+	call NameRaterScript_1da15
+	jr nz, .asm_1daae
+	ld hl, NameRaterText_1dac2
 	call PrintText
 	farcall DisplayNameRaterScreen
-	jr c, .did_not_rename
-	ld hl, .PokemonHasBeenRenamedText
-.done
+	jr c, .asm_1daae
+	ld hl, NameRaterText_1dac7
+.asm_1daa8
 	call PrintText
 	jp TextScriptEnd
-.did_not_rename
-	ld hl, .ComeAnyTimeYouLikeText
-	jr .done
+.asm_1daae
+	ld hl, NameRaterText_1dacc
+	jr .asm_1daa8
 
-.WantMeToRateText:
-	text_far _NameRatersHouseNameRaterWantMeToRateText
+NameRaterText_1dab3:
+	text_far _NameRaterText_1dab3
 	text_end
 
-.WhichPokemonText:
-	text_far _NameRatersHouseNameRaterWhichPokemonText
+NameRaterText_1dab8:
+	text_far _NameRaterText_1dab8
 	text_end
 
-.GiveItANiceNameText:
-	text_far _NameRatersHouseNameRaterGiveItANiceNameText
+NameRaterText_1dabd:
+	text_far _NameRaterText_1dabd
 	text_end
 
-.WhatShouldWeNameItText:
-	text_far _NameRatersHouseNameRaterWhatShouldWeNameItText
+NameRaterText_1dac2:
+	text_far _NameRaterText_1dac2
 	text_end
 
-.PokemonHasBeenRenamedText:
-	text_far _NameRatersHouseNameRaterPokemonHasBeenRenamedText
+NameRaterText_1dac7:
+	text_far _NameRaterText_1dac7
 	text_end
 
-.ComeAnyTimeYouLikeText:
-	text_far _NameRatersHouseNameRaterComeAnyTimeYouLikeText
+NameRaterText_1dacc:
+	text_far _NameRaterText_1dacc
 	text_end
 
-.ATrulyImpeccableNameText:
-	text_far _NameRatersHouseNameRaterATrulyImpeccableNameText
+NameRaterText_1dad1:
+	text_far _NameRaterText_1dad1
 	text_end

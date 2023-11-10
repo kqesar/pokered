@@ -7,71 +7,70 @@ PokemonTower6F_Script:
 	ld [wPokemonTower6FCurScript], a
 	ret
 
-PokemonTower6FSetDefaultScript:
+PokemonTower6Script_60b02:
 	xor a
 	ld [wJoyIgnore], a
-	ld [wPokemonTower6FCurScript], a ; SCRIPT_POKEMONTOWER6F_DEFAULT
-	ld [wCurMapScript], a ; SCRIPT_POKEMONTOWER6F_DEFAULT
+	ld [wPokemonTower6FCurScript], a
+	ld [wCurMapScript], a
 	ret
 
 PokemonTower6F_ScriptPointers:
-	def_script_pointers
-	dw_const PokemonTower6FDefaultScript,           SCRIPT_POKEMONTOWER6F_DEFAULT
-	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_POKEMONTOWER6F_START_BATTLE
-	dw_const EndTrainerBattle,                      SCRIPT_POKEMONTOWER6F_END_BATTLE
-	dw_const PokemonTower6FPlayerMovingScript,      SCRIPT_POKEMONTOWER6F_PLAYER_MOVING
-	dw_const PokemonTower6FMarowakBattleScript,     SCRIPT_POKEMONTOWER6F_MAROWAK_BATTLE
+	dw PokemonTower6Script0
+	dw DisplayEnemyTrainerTextAndStartBattle
+	dw EndTrainerBattle
+	dw PokemonTower6Script3
+	dw PokemonTower6Script4
 
-PokemonTower6FDefaultScript:
+PokemonTower6Script0:
 	CheckEvent EVENT_BEAT_GHOST_MAROWAK
 	jp nz, CheckFightingMapTrainers
-	ld hl, PokemonTower6FMarowakCoords
+	ld hl, CoordsData_60b45
 	call ArePlayerCoordsInArray
 	jp nc, CheckFightingMapTrainers
 	xor a
 	ldh [hJoyHeld], a
-	ld a, TEXT_POKEMONTOWER6F_BEGONE
+	ld a, $6
 	ldh [hSpriteIndexOrTextID], a
 	call DisplayTextID
 	ld a, RESTLESS_SOUL
 	ld [wCurOpponent], a
 	ld a, 30
 	ld [wCurEnemyLVL], a
-	ld a, SCRIPT_POKEMONTOWER6F_MAROWAK_BATTLE
+	ld a, $4
 	ld [wPokemonTower6FCurScript], a
 	ld [wCurMapScript], a
 	ret
 
-PokemonTower6FMarowakCoords:
+CoordsData_60b45:
 	dbmapcoord 10, 16
 	db -1 ; end
 
-PokemonTower6FMarowakBattleScript:
+PokemonTower6Script4:
 	ld a, [wIsInBattle]
 	cp $ff
-	jp z, PokemonTower6FSetDefaultScript
-	ld a, A_BUTTON | B_BUTTON | SELECT | START | D_RIGHT | D_LEFT | D_UP | D_DOWN
+	jp z, PokemonTower6Script_60b02
+	ld a, $ff
 	ld [wJoyIgnore], a
 	ld a, [wd72d]
 	bit 6, a
 	ret nz
 	call UpdateSprites
-	ld a, D_RIGHT | D_LEFT | D_UP | D_DOWN
+	ld a, $f0
 	ld [wJoyIgnore], a
 	ld a, [wBattleResult]
 	and a
-	jr nz, .did_not_defeat
+	jr nz, .asm_60b82
 	SetEvent EVENT_BEAT_GHOST_MAROWAK
-	ld a, TEXT_POKEMONTOWER6F_MAROWAK_DEPARTED
+	ld a, $7
 	ldh [hSpriteIndexOrTextID], a
 	call DisplayTextID
 	xor a
 	ld [wJoyIgnore], a
-	ld a, SCRIPT_POKEMONTOWER6F_DEFAULT
+	ld a, $0
 	ld [wPokemonTower6FCurScript], a
 	ld [wCurMapScript], a
 	ret
-.did_not_defeat
+.asm_60b82
 	ld a, $1
 	ld [wSimulatedJoypadStatesIndex], a
 	ld a, $10
@@ -81,12 +80,12 @@ PokemonTower6FMarowakBattleScript:
 	ld [wOverrideSimulatedJoypadStatesMask], a
 	ld hl, wd730
 	set 7, [hl]
-	ld a, SCRIPT_POKEMONTOWER6F_PLAYER_MOVING
+	ld a, $3
 	ld [wPokemonTower6FCurScript], a
 	ld [wCurMapScript], a
 	ret
 
-PokemonTower6FPlayerMovingScript:
+PokemonTower6Script3:
 	ld a, [wSimulatedJoypadStatesIndex]
 	and a
 	ret nz
@@ -97,100 +96,99 @@ PokemonTower6FPlayerMovingScript:
 	ret
 
 PokemonTower6F_TextPointers:
-	def_text_pointers
-	dw_const PokemonTower6FChanneler1Text,      TEXT_POKEMONTOWER6F_CHANNELER1
-	dw_const PokemonTower6FChanneler2Text,      TEXT_POKEMONTOWER6F_CHANNELER2
-	dw_const PokemonTower6FChanneler3Text,      TEXT_POKEMONTOWER6F_CHANNELER3
-	dw_const PickUpItemText,                    TEXT_POKEMONTOWER6F_RARE_CANDY
-	dw_const PickUpItemText,                    TEXT_POKEMONTOWER6F_X_ACCURACY
-	dw_const PokemonTower6FBeGoneText,          TEXT_POKEMONTOWER6F_BEGONE
-	dw_const PokemonTower6FMarowakDepartedText, TEXT_POKEMONTOWER6F_MAROWAK_DEPARTED
+	dw PokemonTower6Text1
+	dw PokemonTower6Text2
+	dw PokemonTower6Text3
+	dw PickUpItemText
+	dw PickUpItemText
+	dw PokemonTower6Text6
+	dw PokemonTower6Text7
 
 PokemonTower6TrainerHeaders:
 	def_trainers
 PokemonTower6TrainerHeader0:
-	trainer EVENT_BEAT_POKEMONTOWER_6_TRAINER_0, 3, PokemonTower6FChanneler1BattleText, PokemonTower6FChanneler1EndBattleText, PokemonTower6FChanneler1AfterBattleText
+	trainer EVENT_BEAT_POKEMONTOWER_6_TRAINER_0, 3, PokemonTower6BattleText1, PokemonTower6EndBattleText1, PokemonTower6AfterBattleText1
 PokemonTower6TrainerHeader1:
-	trainer EVENT_BEAT_POKEMONTOWER_6_TRAINER_1, 3, PokemonTower6FChanneler2BattleText, PokemonTower6FChanneler2EndBattleText, PokemonTower6FChanneler2AfterBattleText
+	trainer EVENT_BEAT_POKEMONTOWER_6_TRAINER_1, 3, PokemonTower6BattleText2, PokemonTower6EndBattleText2, PokemonTower6AfterBattleText2
 PokemonTower6TrainerHeader2:
-	trainer EVENT_BEAT_POKEMONTOWER_6_TRAINER_2, 2, PokemonTower6FChanneler3BattleText, PokemonTower6FChanneler3EndBattleText, PokemonTower6FChanneler3AfterBattleText
+	trainer EVENT_BEAT_POKEMONTOWER_6_TRAINER_2, 2, PokemonTower6BattleText3, PokemonTower6EndBattleText3, PokemonTower6AfterBattleText3
 	db -1 ; end
 
-PokemonTower6FChanneler1Text:
+PokemonTower6Text1:
 	text_asm
 	ld hl, PokemonTower6TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
-PokemonTower6FChanneler2Text:
+PokemonTower6Text2:
 	text_asm
 	ld hl, PokemonTower6TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
-PokemonTower6FChanneler3Text:
+PokemonTower6Text3:
 	text_asm
 	ld hl, PokemonTower6TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
-PokemonTower6FMarowakDepartedText:
+PokemonTower6Text7:
 	text_asm
-	ld hl, PokemonTower6FGhostWasCubonesMotherText
+	ld hl, PokemonTower2Text_60c1f
 	call PrintText
 	ld a, RESTLESS_SOUL
 	call PlayCry
 	call WaitForSoundToFinish
 	ld c, 30
 	call DelayFrames
-	ld hl, PokemonTower6FSoulWasCalmedText
+	ld hl, PokemonTower2Text_60c24
 	call PrintText
 	jp TextScriptEnd
 
-PokemonTower6FGhostWasCubonesMotherText:
-	text_far _PokemonTower6FGhostWasCubonesMotherText
+PokemonTower2Text_60c1f:
+	text_far _PokemonTower2Text_60c1f
 	text_end
 
-PokemonTower6FSoulWasCalmedText:
-	text_far _PokemonTower6FSoulWasCalmedText
+PokemonTower2Text_60c24:
+	text_far _PokemonTower2Text_60c24
 	text_end
 
-PokemonTower6FChanneler1BattleText:
-	text_far _PokemonTower6FChanneler1BattleText
+PokemonTower6BattleText1:
+	text_far _PokemonTower6BattleText1
 	text_end
 
-PokemonTower6FChanneler1EndBattleText:
-	text_far _PokemonTower6FChanneler1EndBattleText
+PokemonTower6EndBattleText1:
+	text_far _PokemonTower6EndBattleText1
 	text_end
 
-PokemonTower6FChanneler1AfterBattleText:
-	text_far _PokemonTower6FChanneler1AfterBattleText
+PokemonTower6AfterBattleText1:
+	text_far _PokemonTower6AfterBattleText1
 	text_end
 
-PokemonTower6FChanneler2BattleText:
-	text_far _PokemonTower6FChanneler2BattleText
+PokemonTower6BattleText2:
+	text_far _PokemonTower6BattleText2
 	text_end
 
-PokemonTower6FChanneler2EndBattleText:
-	text_far _PokemonTower6FChanneler2EndBattleText
+PokemonTower6EndBattleText2:
+	text_far _PokemonTower6EndBattleText2
 	text_end
 
-PokemonTower6FChanneler2AfterBattleText:
-	text_far _PokemonTower6FChanneler2AfterBattleText
+PokemonTower6AfterBattleText2:
+	text_far _PokemonTower6AfterBattleText2
 	text_end
 
-PokemonTower6FChanneler3BattleText:
-	text_far _PokemonTower6FChanneler3BattleText
+PokemonTower6BattleText3:
+	text_far _PokemonTower6BattleText3
 	text_end
 
-PokemonTower6FChanneler3EndBattleText:
-	text_far _PokemonTower6FChanneler3EndBattleText
+PokemonTower6EndBattleText3:
+	text_far _PokemonTower6EndBattleText3
 	text_end
 
-PokemonTower6FChanneler3AfterBattleText:
-	text_far _PokemonTower6FChanneler3AfterBattleText
+PokemonTower6AfterBattleText3:
+	text_far _PokemonTower6AfterBattleText3
 	text_end
 
-PokemonTower6FBeGoneText:
-	text_far _PokemonTower6FBeGoneText
+PokemonTower6Text6:
+	text_far _PokemonTower6Text6
 	text_end

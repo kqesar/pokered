@@ -2,9 +2,8 @@ SSAnne3F_Script:
 	jp EnableAutoTextBoxDrawing
 
 SSAnne3F_TextPointers:
-	def_text_pointers
-	dw_const SSAnne3FSailorText, TEXT_SSANNE3F_SAILOR
+	dw SSAnne3Text1
 
-SSAnne3FSailorText:
-	text_far _SSAnne3FSailorText
+SSAnne3Text1:
+	text_far _SSAnne3Text1
 	text_end

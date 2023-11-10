@@ -1,16 +1,16 @@
-_PokemonFanClubPikachuFanNormalText::
+PikachuFanText::
 	text "Won't you admire"
 	line "my PIKACHU's"
 	cont "adorable tail?"
 	done
 
-_PokemonFanClubPikachuFanBetterText::
+PikachuFanBetterText::
 	text "Humph! My PIKACHU"
 	line "is twice as cute"
 	cont "as that one!"
 	done
 
-_PokemonFanClubSeelFanNormalText::
+SeelFanText::
 	text "I just love my"
 	line "SEEL!"
 
@@ -18,23 +18,23 @@ _PokemonFanClubSeelFanNormalText::
 	line "hug it!"
 	done
 
-_PokemonFanClubSeelFanBetterText::
+SeelFanBetterText::
 	text "Oh dear!"
 
 	para "My SEEL is far"
 	line "more attractive!"
 	done
 
-_PokemonFanClubPikachuText::
+FanClubPikachuText::
 	text "PIKACHU: Chu!"
 	line "Pikachu!"
 	done
 
-_PokemonFanClubSeelText::
+FanClubSeelText::
 	text "SEEL: Kyuoo!"
 	done
 
-_PokemonFanClubChairmanIntroText::
+FanClubMeetChairText::
 	text "I chair the"
 	line "#MON Fan Club!"
 
@@ -52,7 +52,7 @@ _PokemonFanClubChairmanIntroText::
 	cont "about my #MON?"
 	done
 
-_PokemonFanClubChairmanStoryText::
+FanClubChairStoryText::
 	text "Good!"
 	line "Then listen up!"
 
@@ -82,16 +82,15 @@ _PokemonFanClubChairmanStoryText::
 	cont "you to have this!"
 	prompt
 
-_PokemonFanClubReceivedBikeVoucherText::
+ReceivedBikeVoucherText::
 	text "<PLAYER> received"
 	line "a @"
 	text_ram wStringBuffer
 	text "!@"
 	text_end
 
-_PokemonFanClubExplainBikeVoucherText::
+ExplainBikeVoucherText::
 	text_start
-
 	para "Exchange that for"
 	line "a BICYCLE!"
 
@@ -106,13 +105,13 @@ _PokemonFanClubExplainBikeVoucherText::
 	line "cycling!"
 	done
 
-_PokemonFanClubNoStoryText::
+FanClubNoStoryText::
 	text "Oh. Come back"
 	line "when you want to"
 	cont "hear my story!"
 	done
 
-_PokemonFanClubChairFinalText::
+FanClubChairFinalText::
 	text "Hello, <PLAYER>!"
 
 	para "Did you come see"
@@ -122,24 +121,24 @@ _PokemonFanClubChairFinalText::
 	para "No? Too bad!"
 	done
 
-_PokemonFanClubBagFullText::
+FanClubBagFullText::
 	text "Make room for"
 	line "this!"
 	done
 
-_PokemonFanClubReceptionistText::
+_FanClubText6::
 	text "Our Chairman is"
 	line "very vocal about"
 	cont "#MON."
 	done
 
-_PokemonFanClubSign1Text::
+_FanClubText7::
 	text "Let's all listen"
 	line "politely to other"
 	cont "trainers!"
 	done
 
-_PokemonFanClubSign2Text::
+_FanClubText8::
 	text "If someone brags,"
 	line "brag right back!"
 	done

@@ -1,5 +1,5 @@
 SilphCo10F_Script:
-	call SilphCo10FGateCallbackScript
+	call SilphCo10Script_5a14f
 	call EnableAutoTextBoxDrawing
 	ld hl, SilphCo10TrainerHeaders
 	ld de, SilphCo10F_ScriptPointers
@@ -8,14 +8,14 @@ SilphCo10F_Script:
 	ld [wSilphCo10FCurScript], a
 	ret
 
-SilphCo10FGateCallbackScript:
+SilphCo10Script_5a14f:
 	ld hl, wCurrentMapScriptFlags
 	bit 5, [hl]
 	res 5, [hl]
 	ret z
-	ld hl, .GateCoordinates
-	call SilphCo2F_SetCardKeyDoorYScript
-	call SilphCo10F_SetUnlockedSilphCoDoorsScript
+	ld hl, SilphCo10GateCoords
+	call SilphCo2Script_59d43
+	call SilphCo10Text_5a176
 	CheckEvent EVENT_SILPH_CO_10_UNLOCKED_DOOR
 	ret nz
 	ld a, $54
@@ -23,11 +23,11 @@ SilphCo10FGateCallbackScript:
 	lb bc, 4, 5
 	predef_jump ReplaceTileBlock
 
-.GateCoordinates:
+SilphCo10GateCoords:
 	dbmapcoord  5,  4
 	db -1 ; end
 
-SilphCo10F_SetUnlockedSilphCoDoorsScript:
+SilphCo10Text_5a176:
 	ldh a, [hUnlockedSilphCoDoors]
 	and a
 	ret z
@@ -35,78 +35,76 @@ SilphCo10F_SetUnlockedSilphCoDoorsScript:
 	ret
 
 SilphCo10F_ScriptPointers:
-	def_script_pointers
-	dw_const CheckFightingMapTrainers,              SCRIPT_SILPHCO10F_DEFAULT
-	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_SILPHCO10F_START_BATTLE
-	dw_const EndTrainerBattle,                      SCRIPT_SILPHCO10F_END_BATTLE
+	dw CheckFightingMapTrainers
+	dw DisplayEnemyTrainerTextAndStartBattle
+	dw EndTrainerBattle
 
 SilphCo10F_TextPointers:
-	def_text_pointers
-	dw_const SilphCo10FRocketText,       TEXT_SILPHCO10F_ROCKET
-	dw_const SilphCo10FScientistText,    TEXT_SILPHCO10F_SCIENTIST
-	dw_const SilphCo10FSilphWorkerFText, TEXT_SILPHCO10F_SILPH_WORKER_F
-	dw_const PickUpItemText,             TEXT_SILPHCO10F_TM_EARTHQUAKE
-	dw_const PickUpItemText,             TEXT_SILPHCO10F_RARE_CANDY
-	dw_const PickUpItemText,             TEXT_SILPHCO10F_CARBOS
+	dw SilphCo10Text1
+	dw SilphCo10Text2
+	dw SilphCo10Text3
+	dw PickUpItemText
+	dw PickUpItemText
+	dw PickUpItemText
 
 SilphCo10TrainerHeaders:
 	def_trainers
 SilphCo10TrainerHeader0:
-	trainer EVENT_BEAT_SILPH_CO_10F_TRAINER_0, 3, SilphCo10FRocketBattleText, SilphCo10FRocketEndBattleText, SilphCo10FRocketAfterBattleText
+	trainer EVENT_BEAT_SILPH_CO_10F_TRAINER_0, 3, SilphCo10BattleText1, SilphCo10EndBattleText1, SilphCo10AfterBattleText1
 SilphCo10TrainerHeader1:
-	trainer EVENT_BEAT_SILPH_CO_10F_TRAINER_1, 4, SilphCo10FScientistBattleText, SilphCo10FScientistEndBattleText, SilphCo10FScientistAfterBattleText
+	trainer EVENT_BEAT_SILPH_CO_10F_TRAINER_1, 4, SilphCo10BattleText2, SilphCo10EndBattleText2, SilphCo10AfterBattleText2
 	db -1 ; end
 
-SilphCo10FRocketText:
+SilphCo10Text1:
 	text_asm
 	ld hl, SilphCo10TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
-SilphCo10FScientistText:
+SilphCo10Text2:
 	text_asm
 	ld hl, SilphCo10TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
-SilphCo10FSilphWorkerFText:
+SilphCo10Text3:
 	text_asm
 	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
-	ld hl, .QuietAboutMyCryingText
-	jr nz, .beat_giovanni
-	ld hl, .ImScaredText
-.beat_giovanni
+	ld hl, SilphCo10Text_5a1d8
+	jr nz, .asm_cf85f
+	ld hl, SilphCo10Text_5a1d3
+.asm_cf85f
 	call PrintText
 	jp TextScriptEnd
 
-.ImScaredText:
-	text_far _SilphCo10FSilphWorkerFImScaredText
+SilphCo10Text_5a1d3:
+	text_far _SilphCo10Text_5a1d3
 	text_end
 
-.QuietAboutMyCryingText:
-	text_far _SilphCo10FSilphWorkerFQuietAboutMyCryingText
+SilphCo10Text_5a1d8:
+	text_far _SilphCo10Text_5a1d8
 	text_end
 
-SilphCo10FRocketBattleText:
-	text_far _SilphCo10FRocketBattleText
+SilphCo10BattleText1:
+	text_far _SilphCo10BattleText1
 	text_end
 
-SilphCo10FRocketEndBattleText:
-	text_far _SilphCo10FRocketEndBattleText
+SilphCo10EndBattleText1:
+	text_far _SilphCo10EndBattleText1
 	text_end
 
-SilphCo10FRocketAfterBattleText:
-	text_far _SilphCo10FRocketAfterBattleText
+SilphCo10AfterBattleText1:
+	text_far _SilphCo10AfterBattleText1
 	text_end
 
-SilphCo10FScientistBattleText:
-	text_far _SilphCo10FScientistBattleText
+SilphCo10BattleText2:
+	text_far _SilphCo10BattleText2
 	text_end
 
-SilphCo10FScientistEndBattleText:
-	text_far _SilphCo10FScientistEndBattleText
+SilphCo10EndBattleText2:
+	text_far _SilphCo10EndBattleText2
 	text_end
 
-SilphCo10FScientistAfterBattleText:
-	text_far _SilphCo10FScientistAfterBattleText
+SilphCo10AfterBattleText2:
+	text_far _SilphCo10AfterBattleText2
 	text_end

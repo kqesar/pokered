@@ -3,30 +3,29 @@ MtMoonPokecenter_Script:
 	jp EnableAutoTextBoxDrawing
 
 MtMoonPokecenter_TextPointers:
-	def_text_pointers
-	dw_const MtMoonPokecenterNurseText,            TEXT_MTMOONPOKECENTER_NURSE
-	dw_const MtMoonPokecenterYoungsterText,        TEXT_MTMOONPOKECENTER_YOUNGSTER
-	dw_const MtMoonPokecenterGentlemanText,        TEXT_MTMOONPOKECENTER_GENTLEMAN
-	dw_const MtMoonPokecenterMagikarpSalesmanText, TEXT_MTMOONPOKECENTER_MAGIKARP_SALESMAN
-	dw_const MtMoonPokecenterClipboardText,        TEXT_MTMOONPOKECENTER_CLIPBOARD
-	dw_const MtMoonPokecenterLinkReceptionistText, TEXT_MTMOONPOKECENTER_LINK_RECEPTIONIST
+	dw MtMoonHealNurseText
+	dw MtMoonPokecenterText2
+	dw MtMoonPokecenterText3
+	dw MagikarpSalesmanText
+	dw MtMoonPokecenterText5
+	dw MtMoonTradeNurseText
 
-MtMoonPokecenterNurseText:
+MtMoonHealNurseText:
 	script_pokecenter_nurse
 
-MtMoonPokecenterYoungsterText:
-	text_far _MtMoonPokecenterYoungsterText
+MtMoonPokecenterText2:
+	text_far _MtMoonPokecenterText1
 	text_end
 
-MtMoonPokecenterGentlemanText:
-	text_far _MtMoonPokecenterGentlemanText
+MtMoonPokecenterText3:
+	text_far _MtMoonPokecenterText3
 	text_end
 
-MtMoonPokecenterMagikarpSalesmanText:
+MagikarpSalesmanText:
 	text_asm
 	CheckEvent EVENT_BOUGHT_MAGIKARP, 1
 	jp c, .alreadyBoughtMagikarp
-	ld hl, .IGotADealText
+	ld hl, .Text1
 	call PrintText
 	ld a, MONEY_BOX
 	ld [wTextBoxID], a
@@ -62,34 +61,34 @@ MtMoonPokecenterMagikarpSalesmanText:
 	SetEvent EVENT_BOUGHT_MAGIKARP
 	jr .done
 .choseNo
-	ld hl, .NoText
+	ld hl, .RefuseText
 	jr .printText
 .alreadyBoughtMagikarp
-	ld hl, .NoRefundsText
+	ld hl, .Text2
 .printText
 	call PrintText
 .done
 	jp TextScriptEnd
 
-.IGotADealText
-	text_far _MtMoonPokecenterMagikarpSalesmanIGotADealText
+.Text1
+	text_far _MagikarpSalesmanText1
 	text_end
 
-.NoText
-	text_far _MtMoonPokecenterMagikarpSalesmanNoText
+.RefuseText
+	text_far _MagikarpSalesmanNoText
 	text_end
 
 .NoMoneyText
-	text_far _MtMoonPokecenterMagikarpSalesmanNoMoneyText
+	text_far _MagikarpSalesmanNoMoneyText
 	text_end
 
-.NoRefundsText
-	text_far _MtMoonPokecenterMagikarpSalesmanNoRefundsText
+.Text2
+	text_far _MagikarpSalesmanText2
 	text_end
 
-MtMoonPokecenterClipboardText:
-	text_far _MtMoonPokecenterClipboardText
+MtMoonPokecenterText5:
+	text_far _MtMoonPokecenterText5
 	text_end
 
-MtMoonPokecenterLinkReceptionistText:
+MtMoonTradeNurseText:
 	script_cable_club_receptionist

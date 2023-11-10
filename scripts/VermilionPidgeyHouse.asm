@@ -3,23 +3,22 @@ VermilionPidgeyHouse_Script:
 	ret
 
 VermilionPidgeyHouse_TextPointers:
-	def_text_pointers
-	dw_const VermilionPidgeyHouseYoungsterText, TEXT_VERMILIONPIDGEYHOUSE_YOUNGSTER
-	dw_const VermilionPidgeyHousePidgeyText,    TEXT_VERMILIONPIDGEYHOUSE_PIDGEY
-	dw_const VermilionPidgeyHouseLetterText,    TEXT_VERMILIONPIDGEYHOUSE_LETTER
+	dw VermilionHouse1Text1
+	dw VermilionHouse1Text2
+	dw VermilionHouse1Text3
 
-VermilionPidgeyHouseYoungsterText:
-	text_far _VermilionPidgeyHouseYoungsterText
+VermilionHouse1Text1:
+	text_far _VermilionHouse1Text1
 	text_end
 
-VermilionPidgeyHousePidgeyText:
-	text_far _VermilionPidgeyHousePidgeyText
+VermilionHouse1Text2:
+	text_far _VermilionHouse1Text2
 	text_asm
 	ld a, PIDGEY
 	call PlayCry
 	call WaitForSoundToFinish
 	jp TextScriptEnd
 
-VermilionPidgeyHouseLetterText:
-	text_far _VermilionPidgeyHouseLetterText
+VermilionHouse1Text3:
+	text_far _VermilionHouse1Text3
 	text_end

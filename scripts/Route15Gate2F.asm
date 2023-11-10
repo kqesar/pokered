@@ -2,11 +2,10 @@ Route15Gate2F_Script:
 	jp DisableAutoTextBoxDrawing
 
 Route15Gate2F_TextPointers:
-	def_text_pointers
-	dw_const Route15Gate2FOaksAideText,   TEXT_ROUTE15GATE2F_OAKS_AIDE
-	dw_const Route15Gate2FBinocularsText, TEXT_ROUTE15GATE2F_BINOCULARS
+	dw Route15GateUpstairsText1
+	dw Route15GateUpstairsText2
 
-Route15Gate2FOaksAideText:
+Route15GateUpstairsText1:
 	text_asm
 	CheckEvent EVENT_GOT_EXP_ALL
 	jr nz, .got_item
@@ -26,20 +25,20 @@ Route15Gate2FOaksAideText:
 	jr nz, .no_item
 	SetEvent EVENT_GOT_EXP_ALL
 .got_item
-	ld hl, .ExpAllText
+	ld hl, Route15GateUpstairsText_4968c
 	call PrintText
 .no_item
 	jp TextScriptEnd
 
-.ExpAllText:
-	text_far _Route15Gate2FOaksAideExpAllText
+Route15GateUpstairsText_4968c:
+	text_far _Route15GateUpstairsText_4968c
 	text_end
 
-Route15Gate2FBinocularsText:
+Route15GateUpstairsText2:
 	text_asm
-	ld hl, .Text
+	ld hl, Route15GateUpstairsText_49698
 	jp GateUpstairsScript_PrintIfFacingUp
 
-.Text:
-	text_far _Route15Gate2FBinocularsText
+Route15GateUpstairsText_49698:
+	text_far _Route15GateUpstairsText_49698
 	text_end

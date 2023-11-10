@@ -3,24 +3,23 @@ PewterPokecenter_Script:
 	jp EnableAutoTextBoxDrawing
 
 PewterPokecenter_TextPointers:
-	def_text_pointers
-	dw_const PewterPokecenterNurseText,            TEXT_PEWTERPOKECENTER_NURSE
-	dw_const PewterPokecenterGentlemanText,        TEXT_PEWTERPOKECENTER_GENTLEMAN
-	dw_const PewterPokecenterJigglypuffText,       TEXT_PEWTERPOKECENTER_JIGGLYPUFF
-	dw_const PewterPokecenterLinkReceptionistText, TEXT_PEWTERPOKECENTER_LINK_RECEPTIONIST
+	dw PewterHealNurseText
+	dw PewterPokecenterText2
+	dw PewterJigglypuffText
+	dw PewterTradeNurseText
 
-PewterPokecenterNurseText:
+PewterHealNurseText:
 	script_pokecenter_nurse
 
-PewterPokecenterGentlemanText:
-	text_far _PewterPokecenterGentlemanText
+PewterPokecenterText2:
+	text_far _PewterPokecenterText2
 	text_end
 
-PewterPokecenterJigglypuffText:
+PewterJigglypuffText:
 	text_asm
 	ld a, TRUE
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
-	ld hl, .Text
+	ld hl, .JigglypuffText
 	call PrintText
 
 	ld a, SFX_STOP_ALL_MUSIC
@@ -28,9 +27,9 @@ PewterPokecenterJigglypuffText:
 	ld c, 32
 	call DelayFrames
 
-	ld hl, .FacingDirections
+	ld hl, JigglypuffFacingDirections
 	ld de, wJigglypuffFacingDirections
-	ld bc, .FacingDirectionsEnd - .FacingDirections
+	ld bc, JigglypuffFacingDirectionsEnd - JigglypuffFacingDirections
 	call CopyData
 
 	ld a, [wSprite03StateData1ImageIndex]
@@ -54,7 +53,7 @@ PewterPokecenterJigglypuffText:
 	push hl
 	ld hl, wJigglypuffFacingDirections
 	ld de, wJigglypuffFacingDirections - 1
-	ld bc, .FacingDirectionsEnd - .FacingDirections
+	ld bc, JigglypuffFacingDirectionsEnd - JigglypuffFacingDirections
 	call CopyData
 	ld a, [wJigglypuffFacingDirections - 1]
 	ld [wJigglypuffFacingDirections + 3], a
@@ -72,16 +71,16 @@ PewterPokecenterJigglypuffText:
 	call PlayDefaultMusic
 	jp TextScriptEnd
 
-.Text:
-	text_far _PewterPokecenterJigglypuffText
+.JigglypuffText:
+	text_far _PewterJigglypuffText
 	text_end
 
-.FacingDirections:
+JigglypuffFacingDirections:
 	db $30 | SPRITE_FACING_DOWN
 	db $30 | SPRITE_FACING_LEFT
 	db $30 | SPRITE_FACING_UP
 	db $30 | SPRITE_FACING_RIGHT
-.FacingDirectionsEnd:
+JigglypuffFacingDirectionsEnd:
 
-PewterPokecenterLinkReceptionistText:
+PewterTradeNurseText:
 	script_cable_club_receptionist

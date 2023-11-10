@@ -1,5 +1,5 @@
 RocketHideoutB4F_Script:
-	call RocketHideoutB4FDoorCallbackScript
+	call RocketHideout4Script_45473
 	call EnableAutoTextBoxDrawing
 	ld hl, RocketHideout4TrainerHeaders
 	ld de, RocketHideoutB4F_ScriptPointers
@@ -8,29 +8,29 @@ RocketHideoutB4F_Script:
 	ld [wRocketHideoutB4FCurScript], a
 	ret
 
-RocketHideoutB4FDoorCallbackScript:
+RocketHideout4Script_45473:
 	ld hl, wCurrentMapScriptFlags
 	bit 5, [hl]
 	res 5, [hl]
 	ret z
 	CheckEvent EVENT_ROCKET_HIDEOUT_4_DOOR_UNLOCKED
-	jr nz, .door_already_unlocked
+	jr nz, .asm_45496
 	CheckBothEventsSet EVENT_BEAT_ROCKET_HIDEOUT_4_TRAINER_0, EVENT_BEAT_ROCKET_HIDEOUT_4_TRAINER_1, 1
-	jr z, .unlock_door
-	ld a, $2d ; Door block
-	jr .set_block
-.unlock_door
+	jr z, .asm_4548c
+	ld a, $2d
+	jr .asm_45498
+.asm_4548c
 	ld a, SFX_GO_INSIDE
 	call PlaySound
 	SetEvent EVENT_ROCKET_HIDEOUT_4_DOOR_UNLOCKED
-.door_already_unlocked
-	ld a, $e ; Floor block
-.set_block
+.asm_45496
+	ld a, $e
+.asm_45498
 	ld [wNewTileBlockID], a
 	lb bc, 5, 12
 	predef_jump ReplaceTileBlock
 
-RocketHideoutB4FSetDefaultScript:
+RocketHideout4Script_454a3:
 	xor a
 	ld [wJoyIgnore], a
 	ld [wRocketHideoutB4FCurScript], a
@@ -38,21 +38,20 @@ RocketHideoutB4FSetDefaultScript:
 	ret
 
 RocketHideoutB4F_ScriptPointers:
-	def_script_pointers
-	dw_const CheckFightingMapTrainers,              SCRIPT_ROCKETHIDEOUTB4F_DEFAULT
-	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_ROCKETHIDEOUTB4F_START_BATTLE
-	dw_const EndTrainerBattle,                      SCRIPT_ROCKETHIDEOUTB4F_END_BATTLE
-	dw_const RocketHideoutB4FBeatGiovanniScript,    SCRIPT_ROCKETHIDEOUTB4F_BEAT_GIOVANNI
+	dw CheckFightingMapTrainers
+	dw DisplayEnemyTrainerTextAndStartBattle
+	dw EndTrainerBattle
+	dw RocketHideout4Script3
 
-RocketHideoutB4FBeatGiovanniScript:
+RocketHideout4Script3:
 	ld a, [wIsInBattle]
 	cp $ff
-	jp z, RocketHideoutB4FSetDefaultScript
+	jp z, RocketHideout4Script_454a3
 	call UpdateSprites
-	ld a, D_RIGHT | D_LEFT | D_UP | D_DOWN
+	ld a, $f0
 	ld [wJoyIgnore], a
 	SetEvent EVENT_BEAT_ROCKET_HIDEOUT_GIOVANNI
-	ld a, TEXT_ROCKETHIDEOUTB4F_GIOVANNI_HOPE_WE_MEET_AGAIN
+	ld a, $a
 	ldh [hSpriteIndexOrTextID], a
 	call DisplayTextID
 	call GBFadeOutToBlack
@@ -68,45 +67,44 @@ RocketHideoutB4FBeatGiovanniScript:
 	ld [wJoyIgnore], a
 	ld hl, wCurrentMapScriptFlags
 	set 5, [hl]
-	ld a, SCRIPT_ROCKETHIDEOUTB4F_DEFAULT
+	ld a, $0
 	ld [wRocketHideoutB4FCurScript], a
 	ld [wCurMapScript], a
 	ret
 
 RocketHideoutB4F_TextPointers:
-	def_text_pointers
-	dw_const RocketHideoutB4FGiovanniText,                TEXT_ROCKETHIDEOUTB4F_GIOVANNI
-	dw_const RocketHideoutB4FRocket1Text,                 TEXT_ROCKETHIDEOUTB4F_ROCKET1
-	dw_const RocketHideoutB4FRocket2Text,                 TEXT_ROCKETHIDEOUTB4F_ROCKET2
-	dw_const RocketHideoutB4FRocket3Text,                 TEXT_ROCKETHIDEOUTB4F_ROCKET3
-	dw_const PickUpItemText,                              TEXT_ROCKETHIDEOUTB4F_HP_UP
-	dw_const PickUpItemText,                              TEXT_ROCKETHIDEOUTB4F_TM_RAZOR_WIND
-	dw_const PickUpItemText,                              TEXT_ROCKETHIDEOUTB4F_IRON
-	dw_const PickUpItemText,                              TEXT_ROCKETHIDEOUTB4F_SILPH_SCOPE
-	dw_const PickUpItemText,                              TEXT_ROCKETHIDEOUTB4F_LIFT_KEY
-	dw_const RocketHideoutB4FGiovanniHopeWeMeetAgainText, TEXT_ROCKETHIDEOUTB4F_GIOVANNI_HOPE_WE_MEET_AGAIN
+	dw RocketHideout4Text1
+	dw RocketHideout4Text2
+	dw RocketHideout4Text3
+	dw RocketHideout4Text4
+	dw PickUpItemText
+	dw PickUpItemText
+	dw PickUpItemText
+	dw PickUpItemText
+	dw PickUpItemText
+	dw RocketHideout4Text10
 
 RocketHideout4TrainerHeaders:
 	def_trainers 2
 RocketHideout4TrainerHeader0:
-	trainer EVENT_BEAT_ROCKET_HIDEOUT_4_TRAINER_0, 0, RocketHideoutB4FGiovanniBattleText, RocketHideoutB4FGiovanniEndBattleText, RocketHideoutB4FGiovanniAfterBattleText
+	trainer EVENT_BEAT_ROCKET_HIDEOUT_4_TRAINER_0, 0, RocketHideout4BattleText2, RocketHideout4EndBattleText2, RocketHideout4AfterBattleText2
 RocketHideout4TrainerHeader1:
-	trainer EVENT_BEAT_ROCKET_HIDEOUT_4_TRAINER_1, 0, RocketHideoutB4FRocket1BattleText, RocketHideoutB4FRocket1EndBattleText, RocketHideoutB4FRocket1AfterBattleText
+	trainer EVENT_BEAT_ROCKET_HIDEOUT_4_TRAINER_1, 0, RocketHideout4BattleText3, RocketHideout4EndBattleText3, RocketHideout4AfterBattleText3
 RocketHideout4TrainerHeader2:
-	trainer EVENT_BEAT_ROCKET_HIDEOUT_4_TRAINER_2, 1, RocketHideoutB4FRocket2BattleText, RocketHideoutB4FRocket2EndBattleText, RocketHideoutB4FRocket2AfterBattleText
+	trainer EVENT_BEAT_ROCKET_HIDEOUT_4_TRAINER_2, 1, RocketHideout4BattleText4, RocketHideout4EndBattleText4, RocketHideout4AfterBattleText4
 	db -1 ; end
 
-RocketHideoutB4FGiovanniText:
+RocketHideout4Text1:
 	text_asm
 	CheckEvent EVENT_BEAT_ROCKET_HIDEOUT_GIOVANNI
-	jp nz, .beat_giovanni
-	ld hl, .ImpressedYouGotHereText
+	jp nz, .asm_545571
+	ld hl, RocketHideout4Text_4557a
 	call PrintText
 	ld hl, wd72d
 	set 6, [hl]
 	set 7, [hl]
-	ld hl, .WhatCannotBeText
-	ld de, .WhatCannotBeText
+	ld hl, RocketHideout4Text_4557f
+	ld de, RocketHideout4Text_4557f
 	call SaveEndBattleTextPointers
 	ldh a, [hSpriteIndex]
 	ld [wSpriteIndex], a
@@ -114,81 +112,81 @@ RocketHideoutB4FGiovanniText:
 	call InitBattleEnemyParameters
 	xor a
 	ldh [hJoyHeld], a
-	ld a, SCRIPT_ROCKETHIDEOUTB4F_BEAT_GIOVANNI
+	ld a, $3
 	ld [wRocketHideoutB4FCurScript], a
 	ld [wCurMapScript], a
 	jr .asm_209f0
-.beat_giovanni
-	ld hl, RocketHideoutB4FGiovanniHopeWeMeetAgainText
+.asm_545571
+	ld hl, RocketHideout4Text10
 	call PrintText
 .asm_209f0
 	jp TextScriptEnd
 
-.ImpressedYouGotHereText:
-	text_far _RocketHideoutB4FGiovanniImpressedYouGotHereText
+RocketHideout4Text_4557a:
+	text_far _RocketHideout4Text_4557a
 	text_end
 
-.WhatCannotBeText:
-	text_far _RocketHideoutB4FGiovanniWhatCannotBeText
+RocketHideout4Text_4557f:
+	text_far _RocketHideout4Text_4557f
 	text_end
 
-RocketHideoutB4FGiovanniHopeWeMeetAgainText:
-	text_far _RocketHideoutB4FGiovanniHopeWeMeetAgainText
+RocketHideout4Text10:
+	text_far _RocketHideout4Text_45584
 	text_end
 
-RocketHideoutB4FRocket1Text:
+RocketHideout4Text2:
 	text_asm
 	ld hl, RocketHideout4TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
-RocketHideoutB4FGiovanniBattleText:
-	text_far _RocketHideoutB4FGiovanniBattleText
+RocketHideout4BattleText2:
+	text_far _RocketHideout4BattleText2
 	text_end
 
-RocketHideoutB4FGiovanniEndBattleText:
-	text_far _RocketHideoutB4FGiovanniEndBattleText
+RocketHideout4EndBattleText2:
+	text_far _RocketHideout4EndBattleText2
 	text_end
 
-RocketHideoutB4FGiovanniAfterBattleText:
-	text_far _RocketHideoutB4FGiovanniAfterBattleText
+RocketHideout4AfterBattleText2:
+	text_far _RocketHide4AfterBattleText2
 	text_end
 
-RocketHideoutB4FRocket2Text:
+RocketHideout4Text3:
 	text_asm
 	ld hl, RocketHideout4TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
-RocketHideoutB4FRocket1BattleText:
-	text_far _RocketHideoutB4FRocket1BattleText
+RocketHideout4BattleText3:
+	text_far _RocketHideout4BattleText3
 	text_end
 
-RocketHideoutB4FRocket1EndBattleText:
-	text_far _RocketHideoutB4FRocket1EndBattleText
+RocketHideout4EndBattleText3:
+	text_far _RocketHideout4EndBattleText3
 	text_end
 
-RocketHideoutB4FRocket1AfterBattleText:
-	text_far _RocketHideoutB4FRocket1AfterBattleText
+RocketHideout4AfterBattleText3:
+	text_far _RocketHide4AfterBattleText3
 	text_end
 
-RocketHideoutB4FRocket3Text:
+RocketHideout4Text4:
 	text_asm
 	ld hl, RocketHideout4TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
-RocketHideoutB4FRocket2BattleText:
-	text_far _RocketHideoutB4FRocket2BattleText
+RocketHideout4BattleText4:
+	text_far _RocketHideout4BattleText4
 	text_end
 
-RocketHideoutB4FRocket2EndBattleText:
-	text_far _RocketHideoutB4FRocket2EndBattleText
+RocketHideout4EndBattleText4:
+	text_far _RocketHideout4EndBattleText4
 	text_end
 
-RocketHideoutB4FRocket2AfterBattleText:
+RocketHideout4AfterBattleText4:
 	text_asm
-	ld hl, .Text
+	ld hl, RocketHideout4Text_455ec
 	call PrintText
 	CheckAndSetEvent EVENT_ROCKET_DROPPED_LIFT_KEY
 	jr nz, .asm_455e9
@@ -198,6 +196,6 @@ RocketHideoutB4FRocket2AfterBattleText:
 .asm_455e9
 	jp TextScriptEnd
 
-.Text:
-	text_far _RocketHideoutB4FRocket2AfterBattleText
+RocketHideout4Text_455ec:
+	text_far _RocketHideout4Text_455ec
 	text_end

@@ -28,19 +28,18 @@ LoreleiShowOrHideExitBlock:
 	predef_jump ReplaceTileBlock
 
 ResetLoreleiScript:
-	xor a ; SCRIPT_LORELEISROOM_DEFAULT
+	xor a
 	ld [wLoreleisRoomCurScript], a
 	ret
 
 LoreleisRoom_ScriptPointers:
-	def_script_pointers
-	dw_const LoreleisRoomDefaultScript,             SCRIPT_LORELEISROOM_DEFAULT
-	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_LORELEISROOM_LORELEI_START_BATTLE
-	dw_const LoreleisRoomLoreleiEndBattleScript,    SCRIPT_LORELEISROOM_LORELEI_END_BATTLE
-	dw_const LoreleisRoomPlayerIsMovingScript,      SCRIPT_LORELEISROOM_PLAYER_IS_MOVING
-	dw_const LoreleisRoomNoopScript,                SCRIPT_LORELEISROOM_NOOP
+	dw LoreleiScript0
+	dw DisplayEnemyTrainerTextAndStartBattle
+	dw LoreleiScript2
+	dw LoreleiScript3
+	dw LoreleiScript4
 
-LoreleisRoomNoopScript:
+LoreleiScript4:
 	ret
 
 LoreleiScriptWalkIntoRoom:
@@ -56,12 +55,12 @@ LoreleiScriptWalkIntoRoom:
 	ld a, $6
 	ld [wSimulatedJoypadStatesIndex], a
 	call StartSimulatingJoypadStates
-	ld a, SCRIPT_LORELEISROOM_PLAYER_IS_MOVING
+	ld a, $3
 	ld [wLoreleisRoomCurScript], a
 	ld [wCurMapScript], a
 	ret
 
-LoreleisRoomDefaultScript:
+LoreleiScript0:
 	ld hl, LoreleiEntranceCoords
 	call ArePlayerCoordsInArray
 	jp nc, CheckFightingMapTrainers
@@ -76,7 +75,7 @@ LoreleisRoomDefaultScript:
 	CheckAndSetEvent EVENT_AUTOWALKED_INTO_LORELEIS_ROOM
 	jr z, LoreleiScriptWalkIntoRoom
 .stopPlayerFromLeaving
-	ld a, TEXT_LORELEISROOM_DONT_RUN_AWAY
+	ld a, $2
 	ldh [hSpriteIndexOrTextID], a
 	call DisplayTextID  ; "Don't run away!"
 	ld a, D_UP
@@ -84,7 +83,7 @@ LoreleisRoomDefaultScript:
 	ld a, $1
 	ld [wSimulatedJoypadStatesIndex], a
 	call StartSimulatingJoypadStates
-	ld a, SCRIPT_LORELEISROOM_PLAYER_IS_MOVING
+	ld a, $3
 	ld [wLoreleisRoomCurScript], a
 	ld [wCurMapScript], a
 	ret
@@ -96,7 +95,7 @@ LoreleiEntranceCoords:
 	dbmapcoord  5, 11
 	db -1 ; end
 
-LoreleisRoomPlayerIsMovingScript:
+LoreleiScript3:
 	ld a, [wSimulatedJoypadStatesIndex]
 	and a
 	ret nz
@@ -107,44 +106,43 @@ LoreleisRoomPlayerIsMovingScript:
 	ld [wCurMapScript], a
 	ret
 
-LoreleisRoomLoreleiEndBattleScript:
+LoreleiScript2:
 	call EndTrainerBattle
 	ld a, [wIsInBattle]
 	cp $ff
 	jp z, ResetLoreleiScript
-	ld a, TEXT_LORELEISROOM_LORELEI
+	ld a, $1
 	ldh [hSpriteIndexOrTextID], a
 	jp DisplayTextID
 
 LoreleisRoom_TextPointers:
-	def_text_pointers
-	dw_const LoreleisRoomLoreleiText,            TEXT_LORELEISROOM_LORELEI
-	dw_const LoreleisRoomLoreleiDontRunAwayText, TEXT_LORELEISROOM_DONT_RUN_AWAY
+	dw LoreleiText1
+	dw LoreleiDontRunAwayText
 
 LoreleisRoomTrainerHeaders:
 	def_trainers
 LoreleisRoomTrainerHeader0:
-	trainer EVENT_BEAT_LORELEIS_ROOM_TRAINER_0, 0, LoreleisRoomLoreleiBeforeBattleText, LoreleisRoomLoreleiEndBattleText, LoreleisRoomLoreleiAfterBattleText
+	trainer EVENT_BEAT_LORELEIS_ROOM_TRAINER_0, 0, LoreleiBeforeBattleText, LoreleiEndBattleText, LoreleiAfterBattleText
 	db -1 ; end
 
-LoreleisRoomLoreleiText:
+LoreleiText1:
 	text_asm
 	ld hl, LoreleisRoomTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
-LoreleisRoomLoreleiBeforeBattleText:
-	text_far _LoreleisRoomLoreleiBeforeBattleText
+LoreleiBeforeBattleText:
+	text_far _LoreleiBeforeBattleText
 	text_end
 
-LoreleisRoomLoreleiEndBattleText:
-	text_far _LoreleisRoomLoreleiEndBattleText
+LoreleiEndBattleText:
+	text_far _LoreleiEndBattleText
 	text_end
 
-LoreleisRoomLoreleiAfterBattleText:
-	text_far _LoreleisRoomLoreleiAfterBattleText
+LoreleiAfterBattleText:
+	text_far _LoreleiAfterBattleText
 	text_end
 
-LoreleisRoomLoreleiDontRunAwayText:
-	text_far _LoreleisRoomLoreleiDontRunAwayText
+LoreleiDontRunAwayText:
+	text_far _LoreleiDontRunAwayText
 	text_end

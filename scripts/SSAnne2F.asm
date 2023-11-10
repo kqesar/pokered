@@ -4,25 +4,24 @@ SSAnne2F_Script:
 	ld a, [wSSAnne2FCurScript]
 	jp CallFunctionInTable
 
-SSAnne2FResetScripts:
+SSAnne2Script_613ab:
 	xor a
 	ld [wJoyIgnore], a
 	ld [wSSAnne2FCurScript], a
 	ret
 
 SSAnne2F_ScriptPointers:
-	def_script_pointers
-	dw_const SSAnne2FDefaultScript,          SCRIPT_SSANNE2F_DEFAULT
-	dw_const SSAnne2FRivalStartBattleScript, SCRIPT_SSANNE2F_RIVAL_START_BATTLE
-	dw_const SSAnne2FRivalAfterBattleScript, SCRIPT_SSANNE2F_RIVAL_AFTER_BATTLE
-	dw_const SSAnne2FRivalExitScript,        SCRIPT_SSANNE2F_RIVAL_EXIT
-	dw_const SSAnne2FNoopScript,             SCRIPT_SSANNE2F_NOOP
+	dw SSAnne2Script0
+	dw SSAnne2Script1
+	dw SSAnne2Script2
+	dw SSAnne2Script3
+	dw SSAnne2Script4
 
-SSAnne2FNoopScript:
+SSAnne2Script4:
 	ret
 
-SSAnne2FDefaultScript:
-	ld hl, .PlayerCoordinatesArray
+SSAnne2Script0:
+	ld hl, CoordsData_61411
 	call ArePlayerCoordsInArray
 	ret nc
 	ld a, SFX_STOP_ALL_MUSIC
@@ -37,63 +36,63 @@ SSAnne2FDefaultScript:
 	ld [wMissableObjectIndex], a
 	predef ShowObject
 	call Delay3
-	ld a, SSANNE2F_RIVAL
+	ld a, $2
 	ldh [hSpriteIndex], a
 	call SetSpriteMovementBytesToFF
 	xor a
 	ldh [hJoyHeld], a
-	ld a, D_RIGHT | D_LEFT | D_UP | D_DOWN
+	ld a, $f0
 	ld [wJoyIgnore], a
 	ldh a, [hSavedCoordIndex]
 	cp $2
-	jr nz, .player_standing_right
-	ld de, .RivalDownFourMovement
-	jr .move_sprite
-.player_standing_right
-	ld de, .RivalDownThreeMovement
-.move_sprite
+	jr nz, .asm_61400
+	ld de, MovementData_6140c
+	jr .asm_61403
+.asm_61400
+	ld de, MovementData_6140d
+.asm_61403
 	call MoveSprite
-	ld a, SCRIPT_SSANNE2F_RIVAL_START_BATTLE
+	ld a, $1
 	ld [wSSAnne2FCurScript], a
 	ret
 
-.RivalDownFourMovement:
+MovementData_6140c:
 	db NPC_MOVEMENT_DOWN
-.RivalDownThreeMovement:
+MovementData_6140d:
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
 	db -1 ; end
 
-.PlayerCoordinatesArray:
+CoordsData_61411:
 	dbmapcoord 36,  8
 	dbmapcoord 37,  8
 	db -1 ; end
 
-SSAnne2FSetFacingDirectionScript:
+SSAnne2Script_61416:
 	ld a, [wXCoord]
 	cp 37
-	jr nz, .player_standing_left
+	jr nz, .asm_61426
 	ld a, PLAYER_DIR_LEFT
 	ld [wPlayerMovingDirection], a
 	ld a, SPRITE_FACING_RIGHT
-	jr .set_facing_direction
-.player_standing_left
+	jr .asm_61427
+.asm_61426
 	xor a ; SPRITE_FACING_DOWN
-.set_facing_direction
+.asm_61427
 	ldh [hSpriteFacingDirection], a
-	ld a, SSANNE2F_RIVAL
+	ld a, $2
 	ldh [hSpriteIndex], a
 	jp SetSpriteFacingDirectionAndDelay
 
-SSAnne2FRivalStartBattleScript:
+SSAnne2Script1:
 	ld a, [wd730]
 	bit 0, a
 	ret nz
-	call SSAnne2FSetFacingDirectionScript
+	call SSAnne2Script_61416
 	xor a
 	ld [wJoyIgnore], a
-	ld a, TEXT_SSANNE2F_RIVAL
+	ld a, $2
 	ldh [hSpriteIndexOrTextID], a
 	call DisplayTextID
 	call Delay3
@@ -116,54 +115,54 @@ SSAnne2FRivalStartBattleScript:
 .done
 	ld [wTrainerNo], a
 
-	call SSAnne2FSetFacingDirectionScript
-	ld a, SCRIPT_SSANNE2F_RIVAL_AFTER_BATTLE
+	call SSAnne2Script_61416
+	ld a, $2
 	ld [wSSAnne2FCurScript], a
 	ret
 
-SSAnne2FRivalAfterBattleScript:
+SSAnne2Script2:
 	ld a, [wIsInBattle]
 	cp $ff
-	jp z, SSAnne2FResetScripts
-	call SSAnne2FSetFacingDirectionScript
-	ld a, D_RIGHT | D_LEFT | D_UP | D_DOWN
+	jp z, SSAnne2Script_613ab
+	call SSAnne2Script_61416
+	ld a, $f0
 	ld [wJoyIgnore], a
-	ld a, TEXT_SSANNE2F_RIVAL_CUT_MASTER
+	ld a, $3
 	ldh [hSpriteIndexOrTextID], a
 	call DisplayTextID
-	ld a, SSANNE2F_RIVAL
+	ld a, $2
 	ldh [hSpriteIndex], a
 	call SetSpriteMovementBytesToFF
 	ld a, [wXCoord]
 	cp 37
-	jr nz, .player_standing_left
-	ld de, .RivalDownFourMovement
-	jr .move_sprite
-.player_standing_left
-	ld de, .RivalWalkAroundPlayerMovement
-.move_sprite
-	ld a, SSANNE2F_RIVAL
+	jr nz, .asm_61497
+	ld de, MovementData_614b9
+	jr .asm_6149a
+.asm_61497
+	ld de, MovementData_614b7
+.asm_6149a
+	ld a, $2
 	ldh [hSpriteIndex], a
 	call MoveSprite
 	ld a, SFX_STOP_ALL_MUSIC
 	ld [wNewSoundID], a
 	call PlaySound
 	farcall Music_RivalAlternateStart
-	ld a, SCRIPT_SSANNE2F_RIVAL_EXIT
+	ld a, $3
 	ld [wSSAnne2FCurScript], a
 	ret
 
-.RivalWalkAroundPlayerMovement:
+MovementData_614b7:
 	db NPC_MOVEMENT_RIGHT
 	db NPC_MOVEMENT_DOWN
-.RivalDownFourMovement:
+MovementData_614b9:
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
 	db -1 ; end
 
-SSAnne2FRivalExitScript:
+SSAnne2Script3:
 	ld a, [wd730]
 	bit 0, a
 	ret nz
@@ -173,44 +172,43 @@ SSAnne2FRivalExitScript:
 	ld [wMissableObjectIndex], a
 	predef HideObject
 	call PlayDefaultMusic
-	ld a, SCRIPT_SSANNE2F_NOOP
+	ld a, $4
 	ld [wSSAnne2FCurScript], a
 	ret
 
 SSAnne2F_TextPointers:
-	def_text_pointers
-	dw_const SSAnne2FWaiterText,         TEXT_SSANNE2F_WAITER
-	dw_const SSAnne2FRivalText,          TEXT_SSANNE2F_RIVAL
-	dw_const SSAnne2FRivalCutMasterText, TEXT_SSANNE2F_RIVAL_CUT_MASTER
+	dw SSAnne2Text1
+	dw SSAnne2Text2
+	dw SSAnne2Text3
 
-SSAnne2FWaiterText:
-	text_far _SSAnne2FWaiterText
+SSAnne2Text1:
+	text_far _SSAnne2Text1
 	text_end
 
-SSAnne2FRivalText:
+SSAnne2Text2:
 	text_asm
-	ld hl, .Text
+	ld hl, SSAnneRivalBeforeBattleText
 	call PrintText
 	ld hl, wd72d
 	set 6, [hl]
 	set 7, [hl]
-	ld hl, SSAnne2FRivalDefeatedText
-	ld de, SSAnne2FRivalVictoryText
+	ld hl, SSAnneRivalDefeatedText
+	ld de, SSAnneRivalWonText
 	call SaveEndBattleTextPointers
 	jp TextScriptEnd
 
-.Text:
-	text_far _SSAnne2FRivalText
+SSAnneRivalBeforeBattleText:
+	text_far _SSAnneRivalBeforeBattleText
 	text_end
 
-SSAnne2FRivalDefeatedText:
-	text_far _SSAnne2FRivalDefeatedText
+SSAnneRivalDefeatedText:
+	text_far _SSAnneRivalDefeatedText
 	text_end
 
-SSAnne2FRivalVictoryText:
-	text_far _SSAnne2FRivalVictoryText
+SSAnneRivalWonText:
+	text_far _SSAnneRivalWonText
 	text_end
 
-SSAnne2FRivalCutMasterText:
-	text_far _SSAnne2FRivalCutMasterText
+SSAnne2Text3:
+	text_far _SSAnneRivalCaptainText
 	text_end

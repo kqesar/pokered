@@ -1,17 +1,15 @@
-CopyDebugName: ; unused
+; copy text of fixed length NAME_LENGTH (like player name, rival name, mon names, ...)
+CopyFixedLengthText:
 	ld bc, NAME_LENGTH
 	jp CopyData
 
-PrepareTitleScreen::
-	; These debug names are already copied later in PrepareOakSpeech.
-	; Removing the unused copies below has no apparent impact.
-	; CopyDebugName can also be safely deleted afterwards.
-	ld hl, DebugNewGamePlayerName
+SetDefaultNamesBeforeTitlescreen::
+	ld hl, NintenText
 	ld de, wPlayerName
-	call CopyDebugName
-	ld hl, DebugNewGameRivalName
+	call CopyFixedLengthText
+	ld hl, SonyText
 	ld de, wRivalName
-	call CopyDebugName
+	call CopyFixedLengthText
 	xor a
 	ldh [hWY], a
 	ld [wLetterPrintingDelayFlags], a
@@ -42,10 +40,10 @@ DisplayTitleScreen:
 	ld bc, 5 tiles
 	ld a, BANK(NintendoCopyrightLogoGraphics)
 	call FarCopyData2
-	ld hl, GameFreakLogoGraphics
+	ld hl, GamefreakLogoGraphics
 	ld de, vTitleLogo2 tile (16 + 5)
 	ld bc, 9 tiles
-	ld a, BANK(GameFreakLogoGraphics)
+	ld a, BANK(GamefreakLogoGraphics)
 	call FarCopyData2
 	ld hl, PokemonLogoGraphics
 	ld de, vTitleLogo
@@ -290,7 +288,8 @@ TitleScreenPickNewMon:
 	ld a, $90
 	ldh [hWY], a
 	ld d, 1 ; scroll out
-	farcall TitleScroll
+	; HAX; palette must be refreshed
+	farcall LoadTitleMonTilesAndPalettes
 	ret
 
 TitleScreenScrollInMon:
@@ -378,7 +377,7 @@ LoadCopyrightAndTextBoxTiles:
 LoadCopyrightTiles:
 	ld de, NintendoCopyrightLogoGraphics
 	ld hl, vChars2 tile $60
-	lb bc, BANK(NintendoCopyrightLogoGraphics), (GameFreakLogoGraphicsEnd - NintendoCopyrightLogoGraphics) / $10
+	lb bc, BANK(NintendoCopyrightLogoGraphics), (GamefreakLogoGraphicsEnd - NintendoCopyrightLogoGraphics) / $10
 	call CopyVideoData
 	hlcoord 2, 7
 	ld de, CopyrightTextString
@@ -407,8 +406,5 @@ IF DEF(_BLUE)
 	db $61,$62,$63,$64,$65,$66,$67,$68,"@" ; "Blue Version"
 ENDC
 
-DebugNewGamePlayerName:
-	db "NINTEN@"
-
-DebugNewGameRivalName:
-	db "SONY@"
+NintenText: db "NINTEN@"
+SonyText:   db "SONY@"

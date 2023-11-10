@@ -2,33 +2,32 @@ ViridianNicknameHouse_Script:
 	jp EnableAutoTextBoxDrawing
 
 ViridianNicknameHouse_TextPointers:
-	def_text_pointers
-	dw_const ViridianNicknameHouseBaldingGuyText, TEXT_VIRIDIANNICKNAMEHOUSE_BALDING_GUY
-	dw_const ViridianNicknameHouseLittleGirlText, TEXT_VIRIDIANNICKNAMEHOUSE_LITTLE_GIRL
-	dw_const ViridianNicknameHouseSpearowText,    TEXT_VIRIDIANNICKNAMEHOUSE_SPEAROW
-	dw_const ViridianNicknameHouseSpearySignText, TEXT_VIRIDIANNICKNAMEHOUSE_SPEARY_SIGN
+	dw ViridianHouseText1
+	dw ViridianHouseText2
+	dw ViridianHouseText3
+	dw ViridianHouseText4
 
-ViridianNicknameHouseBaldingGuyText:
-	text_far _ViridianNicknameHouseBaldingGuyText
+ViridianHouseText1:
+	text_far _ViridianHouseText1
 	text_end
 
-ViridianNicknameHouseLittleGirlText:
-	text_far _ViridianNicknameHouseLittleGirlText
+ViridianHouseText2:
+	text_far _ViridianHouseText2
 	text_end
 
-ViridianNicknameHouseSpearowText:
+ViridianHouseText3:
 	text_asm
-	ld hl, .Text
+	ld hl, ViridianHouseText_1d5b1
 	call PrintText
 	ld a, SPEAROW
 	call PlayCry
 	call WaitForSoundToFinish
 	jp TextScriptEnd
 
-.Text:
-	text_far _ViridianNicknameHouseSpearowText
+ViridianHouseText_1d5b1:
+	text_far _ViridianHouseText_1d5b1
 	text_end
 
-ViridianNicknameHouseSpearySignText:
-	text_far _ViridianNicknameHouseSpearySignText
+ViridianHouseText4:
+	text_far _ViridianHouseText4
 	text_end

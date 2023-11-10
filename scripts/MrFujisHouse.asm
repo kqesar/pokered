@@ -3,111 +3,110 @@ MrFujisHouse_Script:
 	ret
 
 MrFujisHouse_TextPointers:
-	def_text_pointers
-	dw_const MrFujisHouseSuperNerdText,     TEXT_MRFUJISHOUSE_SUPER_NERD
-	dw_const MrFujisHouseLittleGirlText,    TEXT_MRFUJISHOUSE_LITTLE_GIRL
-	dw_const MrFujisHousePsyduckText,       TEXT_MRFUJISHOUSE_PSYDUCK
-	dw_const MrFujisHouseNidorinoText,      TEXT_MRFUJISHOUSE_NIDORINO
-	dw_const MrFujisHouseMrFujiText,        TEXT_MRFUJISHOUSE_MR_FUJI
-	dw_const MrFujisHouseMrFujiPokedexText, TEXT_MRFUJISHOUSE_POKEDEX
+	dw LavenderHouse1Text1
+	dw LavenderHouse1Text2
+	dw LavenderHouse1Text3
+	dw LavenderHouse1Text4
+	dw LavenderHouse1Text5
+	dw LavenderHouse1Text6
 
-MrFujisHouseSuperNerdText:
+LavenderHouse1Text1:
 	text_asm
 	CheckEvent EVENT_RESCUED_MR_FUJI
 	jr nz, .rescued_mr_fuji
-	ld hl, .MrFujiIsntHereText
+	ld hl, LavenderHouse1Text_1d8d1
 	call PrintText
 	jr .done
 .rescued_mr_fuji
-	ld hl, .MrFujiHadBeenPrayingText
+	ld hl, LavenderHouse1Text_1d8d6
 	call PrintText
 .done
 	jp TextScriptEnd
 
-.MrFujiIsntHereText:
-	text_far _MrFujisHouseSuperNerdMrFujiIsntHereText
+LavenderHouse1Text_1d8d1:
+	text_far _LavenderHouse1Text_1d8d1
 	text_end
 
-.MrFujiHadBeenPrayingText:
-	text_far _MrFujisHouseSuperNerdMrFujiHadBeenPrayingText
+LavenderHouse1Text_1d8d6:
+	text_far _LavenderHouse1Text_1d8d6
 	text_end
 
-MrFujisHouseLittleGirlText:
+LavenderHouse1Text2:
 	text_asm
 	CheckEvent EVENT_RESCUED_MR_FUJI
 	jr nz, .rescued_mr_fuji
-	ld hl, .ThisIsMrFujisHouseText
+	ld hl, LavenderHouse1Text_1d8f4
 	call PrintText
 	jr .done
 .rescued_mr_fuji
-	ld hl, .PokemonAreNiceToHugText
+	ld hl, LavenderHouse1Text_1d8f9
 	call PrintText
 .done
 	jp TextScriptEnd
 
-.ThisIsMrFujisHouseText:
-	text_far _MrFujisHouseLittleGirlThisIsMrFujisHouseText
+LavenderHouse1Text_1d8f4:
+	text_far _LavenderHouse1Text_1d8f4
 	text_end
 
-.PokemonAreNiceToHugText:
-	text_far _MrFujisHouseLittleGirlPokemonAreNiceToHugText
+LavenderHouse1Text_1d8f9:
+	text_far _LavenderHouse1Text_1d8f9
 	text_end
 
-MrFujisHousePsyduckText:
-	text_far _MrFujisHousePsyduckText
+LavenderHouse1Text3:
+	text_far _LavenderHouse1Text3
 	text_asm
 	ld a, PSYDUCK
 	call PlayCry
 	jp TextScriptEnd
 
-MrFujisHouseNidorinoText:
-	text_far _MrFujisHouseNidorinoText
+LavenderHouse1Text4:
+	text_far _LavenderHouse1Text4
 	text_asm
 	ld a, NIDORINO
 	call PlayCry
 	jp TextScriptEnd
 
-MrFujisHouseMrFujiText:
+LavenderHouse1Text5:
 	text_asm
 	CheckEvent EVENT_GOT_POKE_FLUTE
 	jr nz, .got_item
-	ld hl, .IThinkThisMayHelpYourQuestText
+	ld hl, LavenderHouse1Text_1d94c
 	call PrintText
 	lb bc, POKE_FLUTE, 1
 	call GiveItem
 	jr nc, .bag_full
-	ld hl, .ReceivedPokeFluteText
+	ld hl, ReceivedFluteText
 	call PrintText
 	SetEvent EVENT_GOT_POKE_FLUTE
 	jr .done
 .bag_full
-	ld hl, .PokeFluteNoRoomText
+	ld hl, FluteNoRoomText
 	call PrintText
 	jr .done
 .got_item
-	ld hl, .HasMyFluteHelpedYouText
+	ld hl, MrFujiAfterFluteText
 	call PrintText
 .done
 	jp TextScriptEnd
 
-.IThinkThisMayHelpYourQuestText:
-	text_far _MrFujisHouseMrFujiIThinkThisMayHelpYourQuestText
+LavenderHouse1Text_1d94c:
+	text_far _LavenderHouse1Text_1d94c
 	text_end
 
-.ReceivedPokeFluteText:
-	text_far _MrFujisHouseMrFujiReceivedPokeFluteText
+ReceivedFluteText:
+	text_far _ReceivedFluteText
 	sound_get_key_item
-	text_far _MrFujisHouseMrFujiPokeFluteExplanationText
+	text_far _FluteExplanationText
 	text_end
 
-.PokeFluteNoRoomText:
-	text_far _MrFujisHouseMrFujiPokeFluteNoRoomText
+FluteNoRoomText:
+	text_far _FluteNoRoomText
 	text_end
 
-.HasMyFluteHelpedYouText:
-	text_far _MrFujisHouseMrFujiHasMyFluteHelpedYouText
+MrFujiAfterFluteText:
+	text_far _MrFujiAfterFluteText
 	text_end
 
-MrFujisHouseMrFujiPokedexText:
-	text_far _MrFujisHouseMrFujiPokedexText
+LavenderHouse1Text6:
+	text_far _LavenderHouse1Text6
 	text_end

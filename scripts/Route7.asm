@@ -2,9 +2,8 @@ Route7_Script:
 	jp EnableAutoTextBoxDrawing
 
 Route7_TextPointers:
-	def_text_pointers
-	dw_const Route7UndergroundPathSignText, TEXT_ROUTE7_UNDERGROUND_PATH_SIGN
+	dw Route7Text1
 
-Route7UndergroundPathSignText:
-	text_far _Route7UndergroundPathSignText
+Route7Text1:
+	text_far _Route7Text1
 	text_end

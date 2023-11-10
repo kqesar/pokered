@@ -1,4 +1,4 @@
-_GameCornerBeauty1Text::
+_CeladonGameCornerText1::
 	text "Welcome!"
 
 	para "You can exchange"
@@ -7,7 +7,7 @@ _GameCornerBeauty1Text::
 	cont "next door."
 	done
 
-_GameCornerClerk1DoYouNeedSomeGameCoinsText::
+_CeladonGameCornerText_48d22::
 	text "Welcome to ROCKET"
 	line "GAME CORNER!"
 
@@ -19,32 +19,32 @@ _GameCornerClerk1DoYouNeedSomeGameCoinsText::
 	cont "like some?"
 	done
 
-_GameCornerClerk1ThanksHereAre50CoinsText::
+_CeladonGameCornerText_48d27::
 	text "Thanks! Here are"
 	line "your 50 coins!"
 	done
 
-_GameCornerClerk1PleaseComePlaySometimeText::
+_CeladonGameCornerText_48d2c::
 	text "No? Please come"
 	line "play sometime!"
 	done
 
-_GameCornerClerk1CantAffordTheCoinsText::
+_CeladonGameCornerText_48d31::
 	text "You can't afford"
 	line "the coins!"
 	done
 
-_GameCornerClerk1CoinCaseIsFullText::
+_CeladonGameCornerText_48d36::
 	text "Oops! Your COIN"
 	line "CASE is full."
 	done
 
-_GameCornerClerk1DontHaveCoinCaseText::
+_CeladonGameCornerText_48d3b::
 	text "You don't have a"
 	line "COIN CASE!"
 	done
 
-_GameCornerMiddleAgedMan1Text::
+_CeladonGameCornerText3::
 	text "Keep this quiet."
 
 	para "It's rumored that"
@@ -52,38 +52,38 @@ _GameCornerMiddleAgedMan1Text::
 	cont "by TEAM ROCKET."
 	done
 
-_GameCornerBeauty2Text::
+_CeladonGameCornerText4::
 	text "I think these"
 	line "machines have"
 	cont "different odds."
 	done
 
-_GameCornerFishingGuruWantToPlayText::
+_CeladonGameCornerText_48d9c::
 	text "Kid, do you want"
 	line "to play?"
 	prompt
 
-_GameCornerFishingGuruReceived10CoinsText::
+_Received10CoinsText::
 	text "<PLAYER> received"
 	line "10 coins!@"
 	text_end
 
-_GameCornerFishingGuruDontNeedMyCoinsText::
+_CeladonGameCornerText_48da7::
 	text "You don't need my"
 	line "coins!"
 	done
 
-_GameCornerFishingGuruWinsComeAndGoText::
+_CeladonGameCornerText_48dac::
 	text "Wins seem to come"
 	line "and go."
 	done
 
-_GameCornerMiddleAgedWomanText::
+_CeladonGameCornerText6::
 	text "I'm having a"
 	line "wonderful time!"
 	done
 
-_GameCornerGymGuideChampInMakingText::
+_CeladonGameCornerText_48dca::
 	text "Hey!"
 
 	para "You have better"
@@ -100,7 +100,7 @@ _GameCornerGymGuideChampInMakingText::
 	cont "be fooled!"
 	done
 
-_GameCornerGymGuideTheyOfferRarePokemonText::
+_CeladonGameCornerText_48dcf::
 	text "They offer rare"
 	line "#MON that can"
 	cont "be exchanged for"
@@ -110,73 +110,73 @@ _GameCornerGymGuideTheyOfferRarePokemonText::
 	line "seem to win!"
 	done
 
-_GameCornerGamblerText::
+_CeladonGameCornerText8::
 	text "Games are scary!"
 	line "It's so easy to"
 	cont "get hooked!"
 	done
 
-_GameCornerClerk2WantSomeCoinsText::
+_CeladonGameCornerText_48e26::
 	text "What's up? Want"
 	line "some coins?"
 	prompt
 
-_GameCornerClerk2Received20CoinsText::
+_Received20CoinsText::
 	text "<PLAYER> received"
 	line "20 coins!@"
 	text_end
 
-_GameCornerClerk2YouHaveLotsOfCoinsText::
+_CeladonGameCornerText_48e31::
 	text "You have lots of"
 	line "coins!"
 	done
 
-_GameCornerClerk2INeedMoreCoinsText::
+_CeladonGameCornerText_48e36::
 	text "Darn! I need more"
 	line "coins for the"
 	cont "#MON I want!"
 	done
 
-_GameCornerGentlemanThrowingMeOffText::
+_CeladonGameCornerText_48e88::
 	text "Hey, what? You're"
 	line "throwing me off!"
 	cont "Here are some"
 	cont "coins, shoo!"
 	prompt
 
-_GameCornerGentlemanReceived20CoinsText::
+_CeladonGameCornerText_48e8d::
 	text "<PLAYER> received"
 	line "20 coins!@"
 	text_end
 
-_GameCornerGentlemanYouGotYourOwnCoinsText::
+_CeladonGameCornerText_48e93::
 	text "You've got your"
 	line "own coins!"
 	done
 
-_GameCornerGentlemanCloselyWatchTheReelsText::
+_CeladonGameCornerText_48e98::
 	text "The trick is to"
 	line "watch the reels"
 	cont "closely!"
 	done
 
-_GameCornerRocketImGuardingThisPosterText::
+_CeladonGameCornerText_48ece::
 	text "I'm guarding this"
 	line "poster!"
 	cont "Go away, or else!"
 	done
 
-_GameCornerRocketBattleEndText::
+_CeladonGameCornerText_48ed3::
 	text "Dang!"
 	prompt
 
-_GameCornerRocketAfterBattleText::
+_CeladonGameCornerText_48ed8::
 	text "Our hideout might"
 	line "be discovered! I"
 	cont "better tell BOSS!"
 	done
 
-_GameCornerPosterSwitchBehindPosterText::
+_CeladonGameCornerText_48f09::
 	text "Hey!"
 
 	para "A switch behind"
@@ -184,7 +184,7 @@ _GameCornerPosterSwitchBehindPosterText::
 	cont "Let's push it!@"
 	text_end
 
-_GameCornerOopsForgotCoinCaseText::
+_CeladonGameCornerText_48f19::
 	text "Oops! Forgot the"
 	line "COIN CASE!"
 	done

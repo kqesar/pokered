@@ -1,4 +1,4 @@
-_CeladonGymErikaPreBattleText::
+_ErikaPreBattleText::
 	text "Hello. Lovely"
 	line "weather isn't it?"
 	cont "It's so pleasant."
@@ -25,7 +25,7 @@ _CeladonGymErikaPreBattleText::
 	line "shall not lose."
 	done
 
-_CeladonGymErikaReceivedRainbowBadgeText::
+_ReceivedRainbowBadgeText::
 	text "Oh!"
 	line "I concede defeat."
 
@@ -36,7 +36,7 @@ _CeladonGymErikaReceivedRainbowBadgeText::
 	line "the RAINBOWBADGE."
 	prompt
 
-_CeladonGymErikaPostBattleAdviceText::
+_ErikaPostBattleAdviceText::
 	text "You are cataloging"
 	line "#MON? I must"
 	cont "say I'm impressed."
@@ -47,7 +47,7 @@ _CeladonGymErikaPostBattleAdviceText::
 	cont "unattractive."
 	done
 
-_CeladonGymRainbowBadgeInfoText::
+_ErikaRainbowBadgeInfoText::
 	text "The RAINBOWBADGE"
 	line "will make #MON"
 	cont "up to L50 obey."
@@ -61,7 +61,7 @@ _CeladonGymRainbowBadgeInfoText::
 	line "this with you."
 	done
 
-_CeladonGymReceivedTM21Text::
+_ReceivedTM21Text::
 	text "<PLAYER> received"
 	line "@"
 	text_ram wStringBuffer
@@ -80,7 +80,7 @@ _TM21ExplanationText::
 	cont "your #MON!"
 	done
 
-_CeladonGymTM21NoRoomText::
+_TM21NoRoomText::
 	text "You should make"
 	line "room for this."
 	done

@@ -8,80 +8,78 @@ PokemonTower4F_Script:
 	ret
 
 PokemonTower4F_ScriptPointers:
-	def_script_pointers
-	dw_const CheckFightingMapTrainers,              SCRIPT_POKEMONTOWER4F_DEFAULT
-	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_POKEMONTOWER4F_START_BATTLE
-	dw_const EndTrainerBattle,                      SCRIPT_POKEMONTOWER4F_END_BATTLE
+	dw CheckFightingMapTrainers
+	dw DisplayEnemyTrainerTextAndStartBattle
+	dw EndTrainerBattle
 
 PokemonTower4F_TextPointers:
-	def_text_pointers
-	dw_const PokemonTower4FChanneler1Text, TEXT_POKEMONTOWER4F_CHANNELER1
-	dw_const PokemonTower4FChanneler2Text, TEXT_POKEMONTOWER4F_CHANNELER2
-	dw_const PokemonTower4FChanneler3Text, TEXT_POKEMONTOWER4F_CHANNELER3
-	dw_const PickUpItemText,               TEXT_POKEMONTOWER4F_ELIXER
-	dw_const PickUpItemText,               TEXT_POKEMONTOWER4F_AWAKENING
-	dw_const PickUpItemText,               TEXT_POKEMONTOWER4F_HP_UP
+	dw PokemonTower4Text1
+	dw PokemonTower4Text2
+	dw PokemonTower4Text3
+	dw PickUpItemText
+	dw PickUpItemText
+	dw PickUpItemText
 
 PokemonTower4TrainerHeaders:
 	def_trainers
 PokemonTower4TrainerHeader0:
-	trainer EVENT_BEAT_POKEMONTOWER_4_TRAINER_0, 2, PokemonTower4FChanneler1BattleText, PokemonTower4FChanneler1EndBattleText, PokemonTower4FChanneler1AfterBattleText
+	trainer EVENT_BEAT_POKEMONTOWER_4_TRAINER_0, 2, PokemonTower4BattleText1, PokemonTower4EndBattleText1, PokemonTower4AfterBattleText1
 PokemonTower4TrainerHeader1:
-	trainer EVENT_BEAT_POKEMONTOWER_4_TRAINER_1, 2, PokemonTower4FChanneler2BattleText, PokemonTower4FChanneler2EndBattleText, PokemonTower4FChanneler2AfterBattleText
+	trainer EVENT_BEAT_POKEMONTOWER_4_TRAINER_1, 2, PokemonTower4BattleText2, PokemonTower4EndBattleText2, PokemonTower4AfterBattleText2
 PokemonTower4TrainerHeader2:
-	trainer EVENT_BEAT_POKEMONTOWER_4_TRAINER_2, 2, PokemonTower4FChanneler3BattleText, PokemonTower4FChanneler3EndBattleText, PokemonTower4FChanneler3AfterBattleText
+	trainer EVENT_BEAT_POKEMONTOWER_4_TRAINER_2, 2, PokemonTower4BattleText3, PokemonTower4EndBattleText3, PokemonTower4AfterBattleText3
 	db -1 ; end
 
-PokemonTower4FChanneler1Text:
+PokemonTower4Text1:
 	text_asm
 	ld hl, PokemonTower4TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
-PokemonTower4FChanneler2Text:
+PokemonTower4Text2:
 	text_asm
 	ld hl, PokemonTower4TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
-PokemonTower4FChanneler3Text:
+PokemonTower4Text3:
 	text_asm
 	ld hl, PokemonTower4TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
-PokemonTower4FChanneler1BattleText:
-	text_far _PokemonTower4FChanneler1BattleText
+PokemonTower4BattleText1:
+	text_far _PokemonTower4BattleText1
 	text_end
 
-PokemonTower4FChanneler1EndBattleText:
-	text_far _PokemonTower4FChanneler1EndBattleText
+PokemonTower4EndBattleText1:
+	text_far _PokemonTower4EndBattleText1
 	text_end
 
-PokemonTower4FChanneler1AfterBattleText:
-	text_far _PokemonTower4FChanneler1AfterBattleText
+PokemonTower4AfterBattleText1:
+	text_far _PokemonTower4AfterBattleText1
 	text_end
 
-PokemonTower4FChanneler2BattleText:
-	text_far _PokemonTower4FChanneler2BattleText
+PokemonTower4BattleText2:
+	text_far _PokemonTower4BattleText2
 	text_end
 
-PokemonTower4FChanneler2EndBattleText:
-	text_far _PokemonTower4FChanneler2EndBattleText
+PokemonTower4EndBattleText2:
+	text_far _PokemonTower4EndBattleText2
 	text_end
 
-PokemonTower4FChanneler2AfterBattleText:
-	text_far _PokemonTower4FChanneler2AfterBattleText
+PokemonTower4AfterBattleText2:
+	text_far _PokemonTower4AfterBattleText2
 	text_end
 
-PokemonTower4FChanneler3BattleText:
-	text_far _PokemonTower4FChanneler3BattleText
+PokemonTower4BattleText3:
+	text_far _PokemonTower4BattleText3
 	text_end
 
-PokemonTower4FChanneler3EndBattleText:
-	text_far _PokemonTower4FChanneler3EndBattleText
+PokemonTower4EndBattleText3:
+	text_far _PokemonTower4EndBattleText3
 	text_end
 
-PokemonTower4FChanneler3AfterBattleText:
-	text_far _PokemonTower4FChanneler3AfterBattleText
+PokemonTower4AfterBattleText3:
+	text_far _PokemonTower4AfterBattleText3
 	text_end

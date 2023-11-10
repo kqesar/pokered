@@ -11,16 +11,15 @@ HallofFameRoomScript_5a4aa:
 	ret
 
 HallOfFame_ScriptPointers:
-	def_script_pointers
-	dw_const HallOfFameDefaultScript,            SCRIPT_HALLOFFAME_DEFAULT
-	dw_const HallOfFameOakCongratulationsScript, SCRIPT_HALLOFFAME_OAK_CONGRATULATIONS
-	dw_const HallOfFameResetEventsAndSaveScript, SCRIPT_HALLOFFAME_RESET_EVENTS_AND_SAVE
-	dw_const HallOfFameNoopScript,               SCRIPT_HALLOFFAME_NOOP
+	dw HallofFameRoomScript0
+	dw HallofFameRoomScript1
+	dw HallofFameRoomScript2
+	dw HallofFameRoomScript3
 
-HallOfFameNoopScript:
+HallofFameRoomScript3:
 	ret
 
-HallOfFameResetEventsAndSaveScript:
+HallofFameRoomScript2:
 	call Delay3
 	ld a, [wLetterPrintingDelayFlags]
 	push af
@@ -32,8 +31,8 @@ HallOfFameResetEventsAndSaveScript:
 	ld hl, wFlags_D733
 	res 1, [hl]
 	inc hl
-	set BIT_TEST_BATTLE, [hl] ; debug, unused?
-	xor a ; SCRIPT_*_DEFAULT
+	set 0, [hl]
+	xor a
 	ld hl, wLoreleisRoomCurScript
 	ld [hli], a ; wLoreleisRoomCurScript
 	ld [hli], a ; wBrunosRoomCurScript
@@ -42,7 +41,6 @@ HallOfFameResetEventsAndSaveScript:
 	ld [wHallOfFameCurScript], a
 	; Elite 4 events
 	ResetEventRange INDIGO_PLATEAU_EVENTS_START, INDIGO_PLATEAU_EVENTS_END, 1
-	SetEvent EVENT_BEAT_ELITE_FOUR
 	xor a
 	ld [wHallOfFameCurScript], a
 	ld a, PALLET_TOWN
@@ -57,8 +55,8 @@ HallOfFameResetEventsAndSaveScript:
 	call WaitForTextScrollButtonPress
 	jp Init
 
-HallOfFameDefaultScript:
-	ld a, A_BUTTON | B_BUTTON | SELECT | START | D_RIGHT | D_LEFT | D_UP | D_DOWN
+HallofFameRoomScript0:
+	ld a, $ff
 	ld [wJoyIgnore], a
 	ld hl, wSimulatedJoypadStatesEnd
 	ld de, RLEMovement5a528
@@ -66,7 +64,7 @@ HallOfFameDefaultScript:
 	dec a
 	ld [wSimulatedJoypadStatesIndex], a
 	call StartSimulatingJoypadStates
-	ld a, SCRIPT_HALLOFFAME_OAK_CONGRATULATIONS
+	ld a, $1
 	ld [wHallOfFameCurScript], a
 	ret
 
@@ -74,13 +72,13 @@ RLEMovement5a528:
 	db D_UP, 5
 	db -1 ; end
 
-HallOfFameOakCongratulationsScript:
+HallofFameRoomScript1:
 	ld a, [wSimulatedJoypadStatesIndex]
 	and a
 	ret nz
 	ld a, PLAYER_DIR_RIGHT
 	ld [wPlayerMovingDirection], a
-	ld a, HALLOFFAME_OAK
+	ld a, $1
 	ldh [hSpriteIndex], a
 	call SetSpriteMovementBytesToFF
 	ld a, SPRITE_FACING_LEFT
@@ -91,22 +89,21 @@ HallOfFameOakCongratulationsScript:
 	ld [wJoyIgnore], a
 	inc a ; PLAYER_DIR_RIGHT
 	ld [wPlayerMovingDirection], a
-	ld a, TEXT_HALLOFFAME_OAK
+	ld a, $1
 	ldh [hSpriteIndexOrTextID], a
 	call DisplayTextID
-	ld a, A_BUTTON | B_BUTTON | SELECT | START | D_RIGHT | D_LEFT | D_UP | D_DOWN
+	ld a, $ff
 	ld [wJoyIgnore], a
 	ld a, HS_CERULEAN_CAVE_GUY
 	ld [wMissableObjectIndex], a
 	predef HideObject
-	ld a, SCRIPT_HALLOFFAME_RESET_EVENTS_AND_SAVE
+	ld a, $2
 	ld [wHallOfFameCurScript], a
 	ret
 
 HallOfFame_TextPointers:
-	def_text_pointers
-	dw_const HallOfFameOakText, TEXT_HALLOFFAME_OAK
+	dw HallofFameRoomText1
 
-HallOfFameOakText:
-	text_far _HallOfFameOakText
+HallofFameRoomText1:
+	text_far _HallofFameRoomText1
 	text_end

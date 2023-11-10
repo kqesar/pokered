@@ -1,11 +1,11 @@
-_FuchsiaCityYoungster1Text::
+_FuchsiaCityText1::
 	text "Did you try the"
 	line "SAFARI GAME? Some"
 	cont "#MON can only"
 	cont "be caught there."
 	done
 
-_FuchsiaCityGamblerText::
+_FuchsiaCityText2::
 	text "SAFARI ZONE has a"
 	line "zoo in front of"
 	cont "the entrance."
@@ -15,44 +15,44 @@ _FuchsiaCityGamblerText::
 	cont "catching #MON."
 	done
 
-_FuchsiaCityErikText::
+_FuchsiaCityText3::
 	text "ERIK: Where's"
 	line "SARA? I said I'd"
 	cont "meet her here."
 	done
 
-_FuchsiaCityYoungster2Text::
+_FuchsiaCityText4::
 	text "That item ball in"
 	line "there is really a"
 	cont "#MON."
 	done
 
-_FuchsiaCityPokemonText::
+_FuchsiaCityText5::
 	text "!"
 	done
 
-_FuchsiaCitySignText::
+_FuchsiaCityText11::
 	text "FUCHSIA CITY"
 	line "Behold! It's"
 	cont "Passion Pink!"
 	done
 
-_FuchsiaCitySafariGameSignText::
+_FuchsiaCityText13::
 	text "SAFARI GAME"
 	line "#MON-U-CATCH!"
 	done
 
-_FuchsiaCityWardensHomeSignText::
+_FuchsiaCityText16::
 	text "SAFARI ZONE"
 	line "WARDEN's HOME"
 	done
 
-_FuchsiaCitySafariZoneSignText::
+_FuchsiaCityText17::
 	text "#MON PARADISE"
 	line "SAFARI ZONE"
 	done
 
-_FuchsiaCityGymSignText::
+_FuchsiaCityText18::
 	text "FUCHSIA CITY"
 	line "#MON GYM"
 	cont "LEADER: KOGA"
@@ -61,21 +61,21 @@ _FuchsiaCityGymSignText::
 	line "Ninja Master"
 	done
 
-_FuchsiaCityChanseySignText::
+_FuchsiaCityChanseyText::
 	text "Name: CHANSEY"
 
 	para "Catching one is"
 	line "all up to chance."
 	prompt
 
-_FuchsiaCityVoltorbSignText::
+_FuchsiaCityVoltorbText::
 	text "Name: VOLTORB"
 
 	para "The very image of"
 	line "a # BALL."
 	prompt
 
-_FuchsiaCityKangaskhanSignText::
+_FuchsiaCityKangaskhanText::
 	text "Name: KANGASKHAN"
 
 	para "A maternal #MON"
@@ -84,21 +84,21 @@ _FuchsiaCityKangaskhanSignText::
 	cont "on its belly."
 	prompt
 
-_FuchsiaCitySlowpokeSignText::
+_FuchsiaCitySlowpokeText::
 	text "Name: SLOWPOKE"
 
 	para "Friendly and very"
 	line "slow moving."
 	prompt
 
-_FuchsiaCityLaprasSignText::
+_FuchsiaCityLaprasText::
 	text "Name: LAPRAS"
 
 	para "A.K.A. the king"
 	line "of the seas."
 	prompt
 
-_FuchsiaCityFossilSignOmanyteText::
+_FuchsiaCityOmanyteText::
 	text "Name: OMANYTE"
 
 	para "A #MON that"
@@ -106,7 +106,7 @@ _FuchsiaCityFossilSignOmanyteText::
 	cont "from a fossil."
 	prompt
 
-_FuchsiaCityFossilSignKabutoText::
+_FuchsiaCityKabutoText::
 	text "Name: KABUTO"
 
 	para "A #MON that"
@@ -114,6 +114,6 @@ _FuchsiaCityFossilSignKabutoText::
 	cont "from a fossil."
 	prompt
 
-_FuchsiaCityFossilSignUndeterminedText::
+_FuchsiaCityText_19b2a::
 	text "..."
 	done

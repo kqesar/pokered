@@ -6,25 +6,24 @@ Route22Gate_Script:
 	ld a, [wYCoord]
 	cp 4
 	ld a, ROUTE_23
-	jr c, .set_last_map
+	jr c, .asm_1e69a
 	ld a, ROUTE_22
-.set_last_map
+.asm_1e69a
 	ld [wLastMap], a
 	ret
 
 Route22Gate_ScriptPointers:
-	def_script_pointers
-	dw_const Route22GateDefaultScript,      SCRIPT_ROUTE22GATE_DEFAULT
-	dw_const Route22GatePlayerMovingScript, SCRIPT_ROUTE22GATE_PLAYER_MOVING
-	dw_const Route22GateNoopScript,         SCRIPT_ROUTE22GATE_NOOP
+	dw Route22GateScript0
+	dw Route22GateScript1
+	dw Route22GateScript2
 
-Route22GateDefaultScript:
+Route22GateScript0:
 	ld hl, Route22GateScriptCoords
 	call ArePlayerCoordsInArray
 	ret nc
 	xor a
 	ldh [hJoyHeld], a
-	ld a, TEXT_ROUTE22GATE_GUARD
+	ld a, $1
 	ldh [hSpriteIndexOrTextID], a
 	jp DisplayTextID
 
@@ -33,7 +32,7 @@ Route22GateScriptCoords:
 	dbmapcoord  5,  2
 	db -1 ; end
 
-Route22GateMovePlayerDownScript:
+Route22GateScript_1e6ba:
 	ld a, $1
 	ld [wSimulatedJoypadStatesIndex], a
 	ld a, D_DOWN
@@ -42,54 +41,53 @@ Route22GateMovePlayerDownScript:
 	ld [wJoyIgnore], a
 	jp StartSimulatingJoypadStates
 
-Route22GatePlayerMovingScript:
+Route22GateScript1:
 	ld a, [wSimulatedJoypadStatesIndex]
 	and a
 	ret nz
 	xor a
 	ld [wJoyIgnore], a
 	call Delay3
-	ld a, SCRIPT_ROUTE22GATE_DEFAULT
+	ld a, $0
 	ld [wRoute22GateCurScript], a
-Route22GateNoopScript:
+Route22GateScript2:
 	ret
 
 Route22Gate_TextPointers:
-	def_text_pointers
-	dw_const Route22GateGuardText, TEXT_ROUTE22GATE_GUARD
+	dw Route22GateText1
 
-Route22GateGuardText:
+Route22GateText1:
 	text_asm
 	ld a, [wObtainedBadges]
 	bit BIT_BOULDERBADGE, a
-	jr nz, .has_boulderbadge
-	ld hl, Route22GateGuardNoBoulderbadgeText
+	jr nz, .asm_1e6f6
+	ld hl, Route22GateText_1e704
 	call PrintText
-	call Route22GateMovePlayerDownScript
-	ld a, SCRIPT_ROUTE22GATE_PLAYER_MOVING
-	jr .set_current_script
-.has_boulderbadge
-	ld hl, Route22GateGuardGoRightAheadText
+	call Route22GateScript_1e6ba
+	ld a, $1
+	jr .asm_1e6fe
+.asm_1e6f6
+	ld hl, Route22GateText_1e71a
 	call PrintText
-	ld a, SCRIPT_ROUTE22GATE_NOOP
-.set_current_script
+	ld a, $2
+.asm_1e6fe
 	ld [wRoute22GateCurScript], a
 	jp TextScriptEnd
 
-Route22GateGuardNoBoulderbadgeText:
-	text_far _Route22GateGuardNoBoulderbadgeText
+Route22GateText_1e704:
+	text_far _Route22GateText_1e704
 	text_asm
 	ld a, SFX_DENIED
 	call PlaySoundWaitForCurrent
 	call WaitForSoundToFinish
-	ld hl, Route22GateGuardICantLetYouPassText
+	ld hl, Route22GateText_1e715
 	ret
 
-Route22GateGuardICantLetYouPassText:
-	text_far _Route22GateGuardICantLetYouPassText
+Route22GateText_1e715:
+	text_far _Route22GateText_1e715
 	text_end
 
-Route22GateGuardGoRightAheadText:
-	text_far _Route22GateGuardGoRightAheadText
+Route22GateText_1e71a:
+	text_far _Route22GateText_1e71a
 	sound_get_item_1
 	text_end

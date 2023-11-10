@@ -2,15 +2,14 @@ CeladonMansionRoofHouse_Script:
 	jp EnableAutoTextBoxDrawing
 
 CeladonMansionRoofHouse_TextPointers:
-	def_text_pointers
-	dw_const CeladonMansionRoofHouseHikerText,         TEXT_CELADONMANSION_ROOF_HOUSE_HIKER
-	dw_const CeladonMansionRoofHouseEeveePokeballText, TEXT_CELADONMANSION_ROOF_HOUSE_EEVEE_POKEBALL
+	dw CeladonMansion5Text1
+	dw CeladonMansion5Text2
 
-CeladonMansionRoofHouseHikerText:
-	text_far _CeladonMansionRoofHouseHikerText
+CeladonMansion5Text1:
+	text_far _CeladonMansion5Text1
 	text_end
 
-CeladonMansionRoofHouseEeveePokeballText:
+CeladonMansion5Text2:
 	text_asm
 	lb bc, EEVEE, 25
 	call GivePokemon

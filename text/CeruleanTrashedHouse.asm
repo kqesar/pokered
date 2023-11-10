@@ -1,4 +1,4 @@
-_CeruleanTrashedHouseFishingGuruTheyStoleATMText::
+_CeruleanTrashedText_1d6ab::
 	text "Those miserable"
 	line "ROCKETs!"
 
@@ -14,7 +14,7 @@ _CeruleanTrashedHouseFishingGuruTheyStoleATMText::
 	line "bundle, it did!"
 	done
 
-_CeruleanTrashedHouseFishingGuruWhatsLostIsLostText::
+_CeruleanTrashedText_1d6b0::
 	text "I figure what's"
 	line "lost is lost!"
 
@@ -23,14 +23,14 @@ _CeruleanTrashedHouseFishingGuruWhatsLostIsLostText::
 	cont "DIG without a TM!"
 	done
 
-_CeruleanTrashedHouseGirlText::
+_CeruleanHouseTrashedText2::
 	text "TEAM ROCKET must"
 	line "be trying to DIG"
 	cont "their way into no"
 	cont "good!"
 	done
 
-_CeruleanTrashedHouseWallHoleText::
+_CeruleanHouseTrashedText3::
 	text "TEAM ROCKET left"
 	line "a way out!"
 	done

@@ -1,7 +1,3 @@
-	object_const_def
-	const PEWTERSPEECHHOUSE_GAMBLER
-	const PEWTERSPEECHHOUSE_YOUNGSTER
-
 PewterSpeechHouse_Object:
 	db $a ; border block
 
@@ -12,7 +8,7 @@ PewterSpeechHouse_Object:
 	def_bg_events
 
 	def_object_events
-	object_event  2,  3, SPRITE_GAMBLER, STAY, RIGHT, TEXT_PEWTERSPEECHHOUSE_GAMBLER
-	object_event  4,  5, SPRITE_YOUNGSTER, STAY, NONE, TEXT_PEWTERSPEECHHOUSE_YOUNGSTER
+	object_event  2,  3, SPRITE_GAMBLER, STAY, RIGHT, 1 ; person
+	object_event  4,  5, SPRITE_YOUNGSTER, STAY, NONE, 2 ; person
 
 	def_warps_to PEWTER_SPEECH_HOUSE

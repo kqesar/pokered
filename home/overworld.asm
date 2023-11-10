@@ -5,7 +5,7 @@ HandleMidJump::
 
 EnterMap::
 ; Load a new map.
-	ld a, A_BUTTON | B_BUTTON | SELECT | START | D_RIGHT | D_LEFT | D_UP | D_DOWN
+	ld a, $ff
 	ld [wJoyIgnore], a
 	call LoadMapData
 	farcall ClearVariablesOnEnterMap
@@ -117,7 +117,7 @@ OverworldLoopLessDelay::
 	predef LoadSAV
 	ld a, [wCurMap]
 	ld [wDestinationMap], a
-	call PrepareForSpecialWarp
+	call SpecialWarpIn
 	ld a, [wCurMap]
 	call SwitchToMapRomBank ; switch to the ROM bank of the current map
 	ld hl, wCurMapTileset
@@ -700,7 +700,7 @@ PlayMapChangeSound::
 	ld a, [wMapPalOffset]
 	and a
 	ret nz
-	jp GBFadeOutToBlack
+	jp GBFadeOutToWhite ; HAX: Fade to white instead of black. Looks nicer IMO.
 
 CheckIfInOutsideMap::
 ; If the player is in an outside map (a town or route), set the z flag
@@ -762,11 +762,11 @@ HandleBlackOut::
 	call StopMusic
 	ld hl, wd72e
 	res 5, [hl]
-	ld a, BANK(ResetStatusAndHalveMoneyOnBlackout) ; also BANK(PrepareForSpecialWarp) and BANK(SpecialEnterMap)
+	ld a, BANK(ResetStatusAndHalveMoneyOnBlackout) ; also BANK(SpecialWarpIn) and BANK(SpecialEnterMap)
 	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a
 	call ResetStatusAndHalveMoneyOnBlackout
-	call PrepareForSpecialWarp
+	call SpecialWarpIn
 	call PlayDefaultMusicFadeOutCurrent
 	jp SpecialEnterMap
 
@@ -793,10 +793,10 @@ HandleFlyWarpOrDungeonWarp::
 	set 2, [hl] ; fly warp or dungeon warp
 	res 5, [hl] ; forced to ride bike
 	call LeaveMapAnim
-	ld a, BANK(PrepareForSpecialWarp)
+	ld a, BANK(SpecialWarpIn)
 	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a
-	call PrepareForSpecialWarp
+	call SpecialWarpIn
 	jp SpecialEnterMap
 
 LeaveMapAnim::
@@ -2318,31 +2318,15 @@ LoadMapData::
 	call LoadTileBlockMap
 	call LoadTilesetTilePatternData
 	call LoadCurrentMapView
-; copy current map view to VRAM
-	hlcoord 0, 0
-	ld de, vBGMap0
-	ld b, SCREEN_HEIGHT
-.vramCopyLoop
-	ld c, SCREEN_WIDTH
-.vramCopyInnerLoop
-	ld a, [hli]
-	ld [de], a
-	inc e
-	dec c
-	jr nz, .vramCopyInnerLoop
-	ld a, BG_MAP_WIDTH - SCREEN_WIDTH
-	add e
-	ld e, a
-	jr nc, .noCarry
-	inc d
-.noCarry
-	dec b
-	jr nz, .vramCopyLoop
+
+	ld b, SET_PAL_OVERWORLD
+	call RunPaletteCommand ; HAX: this function call was moved to be above _LoadMapVramAndColors
+; copy current map view + corresponding palettes to VRAM
+	call _LoadMapVramAndColors ; HAX
+
 	ld a, $01
 	ld [wUpdateSpritesEnabled], a
 	call EnableLCD
-	ld b, SET_PAL_OVERWORLD
-	call RunPaletteCommand
 	call LoadPlayerSpriteGraphics
 	ld a, [wd732]
 	and 1 << 4 | 1 << 3 ; fly warp or dungeon warp
@@ -2357,6 +2341,11 @@ LoadMapData::
 	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a
 	ret
+
+; HAX: Padding to prevent data shifting
+rept $17
+	nop
+endr
 
 ; function to switch to the ROM bank that a map is stored in
 ; Input: a = map number

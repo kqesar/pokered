@@ -1,6 +1,3 @@
-	object_const_def
-	const CINNABARLAB_FISHING_GURU
-
 CinnabarLab_Object:
 	db $17 ; border block
 
@@ -12,12 +9,12 @@ CinnabarLab_Object:
 	warp_event 16,  4, CINNABAR_LAB_FOSSIL_ROOM, 1
 
 	def_bg_events
-	bg_event  3,  2, TEXT_CINNABARLAB_PHOTO
-	bg_event  9,  4, TEXT_CINNABARLAB_MEETING_ROOM_SIGN
-	bg_event 13,  4, TEXT_CINNABARLAB_R_AND_D_SIGN
-	bg_event 17,  4, TEXT_CINNABARLAB_TESTING_ROOM_SIGN
+	bg_event  3,  2, 2 ; Lab1Text2
+	bg_event  9,  4, 3 ; Lab1Text3
+	bg_event 13,  4, 4 ; Lab1Text4
+	bg_event 17,  4, 5 ; Lab1Text5
 
 	def_object_events
-	object_event  1,  3, SPRITE_FISHING_GURU, STAY, NONE, TEXT_CINNABARLAB_FISHING_GURU
+	object_event  1,  3, SPRITE_FISHING_GURU, STAY, NONE, 1 ; person
 
 	def_warps_to CINNABAR_LAB

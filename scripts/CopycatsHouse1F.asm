@@ -2,21 +2,20 @@ CopycatsHouse1F_Script:
 	jp EnableAutoTextBoxDrawing
 
 CopycatsHouse1F_TextPointers:
-	def_text_pointers
-	dw_const CopycatsHouse1FMiddleAgedWomanText, TEXT_COPYCATSHOUSE1F_MIDDLE_AGED_WOMAN
-	dw_const CopycatsHouse1FMiddleAgedManText,   TEXT_COPYCATSHOUSE1F_MIDDLE_AGED_MAN
-	dw_const CopycatsHouse1FChanseyText,         TEXT_COPYCATSHOUSE1F_CHANSEY
+	dw CopycatsHouse1FText1
+	dw CopycatsHouse1FText2
+	dw CopycatsHouse1FText3
 
-CopycatsHouse1FMiddleAgedWomanText:
-	text_far _CopycatsHouse1FMiddleAgedWomanText
+CopycatsHouse1FText1:
+	text_far _CopycatsHouse1FText1
 	text_end
 
-CopycatsHouse1FMiddleAgedManText:
-	text_far _CopycatsHouse1FMiddleAgedManText
+CopycatsHouse1FText2:
+	text_far _CopycatsHouse1FText2
 	text_end
 
-CopycatsHouse1FChanseyText:
-	text_far _CopycatsHouse1FChanseyText
+CopycatsHouse1FText3:
+	text_far _CopycatsHouse1FText3
 	text_asm
 	ld a, CHANSEY
 	call PlayCry

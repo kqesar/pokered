@@ -49,7 +49,7 @@ SafariZoneGameOver:
 	ldh [hWarpDestinationMap], a
 	ld a, $3
 	ld [wDestinationWarpID], a
-	ld a, SCRIPT_SAFARIZONEGATE_LEAVING_SAFARI
+	ld a, $5
 	ld [wSafariZoneGateCurScript], a
 	SetEvent EVENT_SAFARI_GAME_OVER
 	ld a, 1

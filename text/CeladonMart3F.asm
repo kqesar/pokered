@@ -1,4 +1,4 @@
-_CeladonMart3FClerkTM18PreReceiveText::
+_TM18PreReceiveText::
 	text "Oh, hi! I finally"
 	line "finished #MON!"
 
@@ -7,26 +7,26 @@ _CeladonMart3FClerkTM18PreReceiveText::
 	cont "useful!"
 	prompt
 
-_CeladonMart3FClerkReceivedTM18Text::
+_ReceivedTM18Text::
 	text "<PLAYER> received"
 	line "@"
 	text_ram wStringBuffer
 	text "!@"
 	text_end
 
-_CeladonMart3FClerkTM18ExplanationText::
+_TM18ExplanationText::
 	text "TM18 is COUNTER!"
 	line "Not like the one"
 	cont "I'm leaning on,"
 	cont "mind you!"
 	done
 
-_CeladonMart3FClerkTM18NoRoomText::
+_TM18NoRoomText::
 	text "Your pack is full"
 	line "of items!"
 	done
 
-_CeladonMart3FGameBoyKid1Text::
+_CeladonMart3Text2::
 	text "Captured #MON"
 	line "are registered"
 	cont "with an ID No."
@@ -36,7 +36,7 @@ _CeladonMart3FGameBoyKid1Text::
 	cont "caught it!"
 	done
 
-_CeladonMart3FGameBoyKid2Text::
+_CeladonMart3Text3::
 	text "All right!"
 
 	para "My buddy's going"
@@ -45,7 +45,7 @@ _CeladonMart3FGameBoyKid2Text::
 	cont "GRAVELER!"
 	done
 
-_CeladonMart3FGameBoyKid3Text::
+_CeladonMart3Text4::
 	text "Come on GRAVELER!"
 
 	para "I love GRAVELER!"
@@ -58,42 +58,42 @@ _CeladonMart3FGameBoyKid3Text::
 	cont "#MON!"
 	done
 
-_CeladonMart3FLittleBoyText::
+_CeladonMart3Text5::
 	text "You can identify"
 	line "#MON you got"
 	cont "in trades by"
 	cont "their ID Numbers!"
 	done
 
-_CeladonMart3FSNESText::
+_CeladonMart3Text6::
 	text "It's an SNES!"
 	done
 
-_CeladonMart3FRPGText::
+_CeladonMart3Text7::
 	text "An RPG! There's"
 	line "no time for that!"
 	done
 
-_CeladonMart3FSportsGameText::
+_CeladonMart3Text9::
 	text "A sports game!"
 	line "Dad'll like that!"
 	done
 
-_CeladonMart3FPuzzleGameText::
+_CeladonMart3Text11::
 	text "A puzzle game!"
 	line "Looks addictive!"
 	done
 
-_CeladonMart3FFightingGameText::
+_CeladonMart3Text13::
 	text "A fighting game!"
 	line "Looks tough!"
 	done
 
-_CeladonMart3FCurrentFloorSignText::
+_CeladonMart3Text14::
 	text "3F: TV GAME SHOP"
 	done
 
-_CeladonMart3FPokemonPosterText::
+_CeladonMart3Text15::
 	text "Red and Blue!"
 	line "Both are #MON!"
 	done

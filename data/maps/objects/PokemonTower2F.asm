@@ -1,7 +1,3 @@
-	object_const_def
-	const POKEMONTOWER2F_RIVAL
-	const POKEMONTOWER2F_CHANNELER
-
 PokemonTower2F_Object:
 	db $1 ; border block
 
@@ -12,7 +8,7 @@ PokemonTower2F_Object:
 	def_bg_events
 
 	def_object_events
-	object_event 14,  5, SPRITE_BLUE, STAY, NONE, TEXT_POKEMONTOWER2F_RIVAL
-	object_event  3,  7, SPRITE_CHANNELER, STAY, RIGHT, TEXT_POKEMONTOWER2F_CHANNELER
+	object_event 14,  5, SPRITE_BLUE, STAY, NONE, 1 ; person
+	object_event  3,  7, SPRITE_CHANNELER, STAY, RIGHT, 2 ; person
 
 	def_warps_to POKEMON_TOWER_2F

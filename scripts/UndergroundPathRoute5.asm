@@ -7,10 +7,9 @@ UndergroundPathEntranceRoute5_TextScriptEndingText:
 	text_end
 
 UndergroundPathRoute5_TextPointers:
-	def_text_pointers
-	dw_const UndergroundPathRoute5LittleGirlText, TEXT_UNDERGROUNDPATHROUTE5_LITTLE_GIRL
+	dw UndergroundPathEntranceRoute5Text1
 
-UndergroundPathRoute5LittleGirlText:
+UndergroundPathEntranceRoute5Text1:
 	text_asm
 	ld a, TRADE_FOR_SPOT
 	ld [wWhichTrade], a

@@ -2,29 +2,28 @@ CeladonMansion3F_Script:
 	jp EnableAutoTextBoxDrawing
 
 CeladonMansion3F_TextPointers:
-	def_text_pointers
-	dw_const CeladonMansion3FProgrammerText,     TEXT_CELADONMANSION3F_PROGRAMMER
-	dw_const CeladonMansion3FGraphicArtistText,  TEXT_CELADONMANSION3F_GRAPHIC_ARTIST
-	dw_const CeladonMansion3FWriterText,         TEXT_CELADONMANSION3F_WRITER
-	dw_const CeladonMansion3FGameDesignerText,   TEXT_CELADONMANSION3F_GAME_DESIGNER
-	dw_const CeladonMansion3FGameProgramPCText,  TEXT_CELADONMANSION3F_GAME_PROGRAM_PC
-	dw_const CeladonMansion3FPlayingGamePCText,  TEXT_CELADONMANSION3F_PLAYING_GAME_PC
-	dw_const CeladonMansion3FGameScriptPCText,   TEXT_CELADONMANSION3F_GAME_SCRIPT_PC
-	dw_const CeladonMansion3FDevRoomSignText,    TEXT_CELADONMANSION3F_DEV_ROOM_SIGN
+	dw ProgrammerText
+	dw GraphicArtistText
+	dw WriterText
+	dw DirectorText
+	dw GameFreakPCText1
+	dw GameFreakPCText2
+	dw GameFreakPCText3
+	dw GameFreakSignText
 
-CeladonMansion3FProgrammerText:
-	text_far _CeladonMansion3FProgrammerText
+ProgrammerText:
+	text_far _ProgrammerText
 	text_end
 
-CeladonMansion3FGraphicArtistText:
-	text_far _CeladonMansion3FGraphicArtistText
+GraphicArtistText:
+	text_far _GraphicArtistText
 	text_end
 
-CeladonMansion3FWriterText:
-	text_far _CeladonMansion3FWriterText
+WriterText:
+	text_far _WriterText
 	text_end
 
-CeladonMansion3FGameDesignerText:
+DirectorText:
 	text_asm
 	ld hl, wPokedexOwned
 	ld b, wPokedexOwnedEnd - wPokedexOwned
@@ -32,7 +31,7 @@ CeladonMansion3FGameDesignerText:
 	ld a, [wNumSetBits]
 	cp NUM_POKEMON - 1 ; discount Mew
 	jr nc, .completed_dex
-	ld hl, .Text
+	ld hl, .GameDesignerText
 	jr .done
 .completed_dex
 	ld hl, .CompletedDexText
@@ -40,12 +39,12 @@ CeladonMansion3FGameDesignerText:
 	call PrintText
 	jp TextScriptEnd
 
-.Text:
-	text_far _CeladonMansion3FGameDesignerText
+.GameDesignerText:
+	text_far _GameDesignerText
 	text_end
 
 .CompletedDexText:
-	text_far _CeladonMansion3FGameDesignerCompletedDexText
+	text_far _CompletedDexText
 	text_promptbutton
 	text_asm
 	callfar DisplayDiploma
@@ -53,18 +52,18 @@ CeladonMansion3FGameDesignerText:
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
 	jp TextScriptEnd
 
-CeladonMansion3FGameProgramPCText:
-	text_far _CeladonMansion3FGameProgramPCText
+GameFreakPCText1:
+	text_far _CeladonMansion3Text5
 	text_end
 
-CeladonMansion3FPlayingGamePCText:
-	text_far _CeladonMansion3FPlayingGamePCText
+GameFreakPCText2:
+	text_far _CeladonMansion3Text6
 	text_end
 
-CeladonMansion3FGameScriptPCText:
-	text_far _CeladonMansion3FGameScriptPCText
+GameFreakPCText3:
+	text_far _CeladonMansion3Text7
 	text_end
 
-CeladonMansion3FDevRoomSignText:
-	text_far _CeladonMansion3FDevRoomSignText
+GameFreakSignText:
+	text_far _CeladonMansion3Text8
 	text_end

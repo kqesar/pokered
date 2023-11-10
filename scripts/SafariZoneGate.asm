@@ -5,24 +5,22 @@ SafariZoneGate_Script:
 	jp CallFunctionInTable
 
 SafariZoneGate_ScriptPointers:
-	def_script_pointers
-	dw_const SafariZoneGateDefaultScript,                SCRIPT_SAFARIZONEGATE_DEFAULT
-	dw_const SafariZoneGatePlayerMovingRightScript,      SCRIPT_SAFARIZONEGATE_PLAYER_MOVING_RIGHT
-	dw_const SafariZoneGateWouldYouLikeToJoinScript,     SCRIPT_SAFARIZONEGATE_WOULD_YOU_LIKE_TO_JOIN
-	dw_const SafariZoneGatePlayerMovingUpScript,         SCRIPT_SAFARIZONEGATE_PLAYER_MOVING
-	dw_const SafariZoneGatePlayerMovingDownScript,       SCRIPT_SAFARIZONEGATE_PLAYER_MOVING_DOWN
-	dw_const SafariZoneGateLeavingSafariScript,          SCRIPT_SAFARIZONEGATE_LEAVING_SAFARI
-	dw_const SafariZoneGateSetScriptAfterMoveScript,     SCRIPT_SAFARIZONEGATE_SET_SCRIPT_AFTER_MOVE
-	EXPORT SCRIPT_SAFARIZONEGATE_LEAVING_SAFARI ; used by engine/events/hidden_objects/safari_game.asm
+	dw .SafariZoneEntranceScript0
+	dw .SafariZoneEntranceScript1
+	dw .SafariZoneEntranceScript2
+	dw .SafariZoneEntranceScript3
+	dw .SafariZoneEntranceScript4
+	dw .SafariZoneEntranceScript5
+	dw .SafariZoneEntranceScript6
 
-SafariZoneGateDefaultScript:
-	ld hl, .PlayerNextToSafariZoneWorker1CoordsArray
+.SafariZoneEntranceScript0
+	ld hl, .CoordsData_75221
 	call ArePlayerCoordsInArray
 	ret nc
-	ld a, TEXT_SAFARIZONEGATE_SAFARI_ZONE_WORKER1_1
+	ld a, $3
 	ldh [hSpriteIndexOrTextID], a
 	call DisplayTextID
-	ld a, A_BUTTON | B_BUTTON | SELECT | START | D_RIGHT | D_LEFT | D_UP | D_DOWN
+	ld a, $ff
 	ld [wJoyIgnore], a
 	xor a
 	ldh [hJoyHeld], a
@@ -30,59 +28,59 @@ SafariZoneGateDefaultScript:
 	ld [wSpritePlayerStateData1FacingDirection], a
 	ld a, [wCoordIndex]
 	cp $1
-	jr z, .player_not_next_to_worker
-	ld a, SCRIPT_SAFARIZONEGATE_WOULD_YOU_LIKE_TO_JOIN
+	jr z, .asm_7520f
+	ld a, $2
 	ld [wSafariZoneGateCurScript], a
 	ret
-.player_not_next_to_worker
+.asm_7520f
 	ld a, D_RIGHT
 	ld c, $1
 	call SafariZoneEntranceAutoWalk
-	ld a, D_RIGHT | D_LEFT | D_UP | D_DOWN
+	ld a, $f0
 	ld [wJoyIgnore], a
-	ld a, SCRIPT_SAFARIZONEGATE_PLAYER_MOVING_RIGHT
+	ld a, $1
 	ld [wSafariZoneGateCurScript], a
 	ret
 
-.PlayerNextToSafariZoneWorker1CoordsArray:
+.CoordsData_75221:
 	dbmapcoord  3,  2
 	dbmapcoord  4,  2
 	db -1 ; end
 
-SafariZoneGatePlayerMovingRightScript:
-	call SafariZoneGateReturnSimulatedJoypadStateScript
+.SafariZoneEntranceScript1
+	call SafariZoneEntranceScript_752b4
 	ret nz
-SafariZoneGateWouldYouLikeToJoinScript:
+.SafariZoneEntranceScript2
 	xor a
 	ldh [hJoyHeld], a
 	ld [wJoyIgnore], a
 	call UpdateSprites
-	ld a, TEXT_SAFARIZONEGATE_SAFARI_ZONE_WORKER1_WOULD_YOU_LIKE_TO_JOIN
+	ld a, $4
 	ldh [hSpriteIndexOrTextID], a
 	call DisplayTextID
-	ld a, A_BUTTON | B_BUTTON | SELECT | START | D_RIGHT | D_LEFT | D_UP | D_DOWN
+	ld a, $ff
 	ld [wJoyIgnore], a
 	ret
 
-SafariZoneGatePlayerMovingUpScript:
-	call SafariZoneGateReturnSimulatedJoypadStateScript
+.SafariZoneEntranceScript3
+	call SafariZoneEntranceScript_752b4
 	ret nz
 	xor a
 	ld [wJoyIgnore], a
-	ld a, SCRIPT_SAFARIZONEGATE_LEAVING_SAFARI
+	ld a, $5
 	ld [wSafariZoneGateCurScript], a
 	ret
 
-SafariZoneGateLeavingSafariScript:
+.SafariZoneEntranceScript5
 	ld a, PLAYER_DIR_DOWN
 	ld [wPlayerMovingDirection], a
 	CheckAndResetEvent EVENT_SAFARI_GAME_OVER
-	jr z, .leaving_early
+	jr z, .asm_7527f
 	ResetEventReuseHL EVENT_IN_SAFARI_ZONE
 	call UpdateSprites
-	ld a, D_RIGHT | D_LEFT | D_UP | D_DOWN
+	ld a, $f0
 	ld [wJoyIgnore], a
-	ld a, TEXT_SAFARIZONEGATE_SAFARI_ZONE_WORKER1_GOOD_HAUL_COME_AGAIN
+	ld a, $6
 	ldh [hSpriteIndexOrTextID], a
 	call DisplayTextID
 	xor a
@@ -90,27 +88,27 @@ SafariZoneGateLeavingSafariScript:
 	ld a, D_DOWN
 	ld c, $3
 	call SafariZoneEntranceAutoWalk
-	ld a, SCRIPT_SAFARIZONEGATE_PLAYER_MOVING_DOWN
+	ld a, $4
 	ld [wSafariZoneGateCurScript], a
-	jr .return
-.leaving_early
-	ld a, TEXT_SAFARIZONEGATE_SAFARI_ZONE_WORKER1_LEAVING_EARLY
+	jr .asm_75286
+.asm_7527f
+	ld a, $5
 	ldh [hSpriteIndexOrTextID], a
 	call DisplayTextID
-.return
+.asm_75286
 	ret
 
-SafariZoneGatePlayerMovingDownScript:
-	call SafariZoneGateReturnSimulatedJoypadStateScript
+.SafariZoneEntranceScript4
+	call SafariZoneEntranceScript_752b4
 	ret nz
 	xor a
 	ld [wJoyIgnore], a
-	ld a, SCRIPT_SAFARIZONEGATE_DEFAULT
+	ld a, $0
 	ld [wSafariZoneGateCurScript], a
 	ret
 
-SafariZoneGateSetScriptAfterMoveScript:
-	call SafariZoneGateReturnSimulatedJoypadStateScript
+.SafariZoneEntranceScript6
+	call SafariZoneEntranceScript_752b4
 	ret nz
 	call Delay3
 	ld a, [wcf0d]
@@ -127,26 +125,25 @@ SafariZoneEntranceAutoWalk:
 	call FillMemory
 	jp StartSimulatingJoypadStates
 
-SafariZoneGateReturnSimulatedJoypadStateScript:
+SafariZoneEntranceScript_752b4:
 	ld a, [wSimulatedJoypadStatesIndex]
 	and a
 	ret
 
 SafariZoneGate_TextPointers:
-	def_text_pointers
-	dw_const SafariZoneGateSafariZoneWorker1Text,                   TEXT_SAFARIZONEGATE_SAFARI_ZONE_WORKER1
-	dw_const SafariZoneGateSafariZoneWorker2Text,                   TEXT_SAFARIZONEGATE_SAFARI_ZONE_WORKER2
-	dw_const SafariZoneGateSafariZoneWorker1Text,                   TEXT_SAFARIZONEGATE_SAFARI_ZONE_WORKER1_1
-	dw_const SafariZoneGateSafariZoneWorker1WouldYouLikeToJoinText, TEXT_SAFARIZONEGATE_SAFARI_ZONE_WORKER1_WOULD_YOU_LIKE_TO_JOIN
-	dw_const SafariZoneGateSafariZoneWorker1LeavingEarlyText,       TEXT_SAFARIZONEGATE_SAFARI_ZONE_WORKER1_LEAVING_EARLY
-	dw_const SafariZoneGateSafariZoneWorker1GoodHaulComeAgainText,  TEXT_SAFARIZONEGATE_SAFARI_ZONE_WORKER1_GOOD_HAUL_COME_AGAIN
+	dw .SafariZoneEntranceText1
+	dw .SafariZoneEntranceText2
+	dw .SafariZoneEntranceText1
+	dw .SafariZoneEntranceText4
+	dw .SafariZoneEntranceText5
+	dw .SafariZoneEntranceText6
 
-SafariZoneGateSafariZoneWorker1Text:
-	text_far _SafariZoneGateSafariZoneWorker1Text
+.SafariZoneEntranceText1
+	text_far _SafariZoneEntranceText1
 	text_end
 
-SafariZoneGateSafariZoneWorker1WouldYouLikeToJoinText:
-	text_far _SafariZoneGateSafariZoneWorker1WouldYouLikeToJoinText
+.SafariZoneEntranceText4
+	text_far SafariZoneEntranceText_9e6e4
 	text_asm
 	ld a, MONEY_BOX
 	ld [wTextBoxID], a
@@ -194,7 +191,7 @@ SafariZoneGateSafariZoneWorker1WouldYouLikeToJoinText:
 	call SafariZoneEntranceAutoWalk
 	SetEvent EVENT_IN_SAFARI_ZONE
 	ResetEventReuseHL EVENT_SAFARI_GAME_OVER
-	ld a, SCRIPT_SAFARIZONEGATE_PLAYER_MOVING
+	ld a, 3
 	ld [wSafariZoneGateCurScript], a
 	jr .done
 
@@ -205,33 +202,33 @@ SafariZoneGateSafariZoneWorker1WouldYouLikeToJoinText:
 	ld a, D_DOWN
 	ld c, 1
 	call SafariZoneEntranceAutoWalk
-	ld a, SCRIPT_SAFARIZONEGATE_PLAYER_MOVING_DOWN
+	ld a, 4
 	ld [wSafariZoneGateCurScript], a
 .done
 	jp TextScriptEnd
 
 .MakePaymentText
-	text_far _SafariZoneGateSafariZoneWorker1ThatllBe500PleaseText
+	text_far SafariZoneEntranceText_9e747
 	sound_get_item_1
-	text_far _SafariZoneGateSafariZoneWorker1CallYouOnThePAText
+	text_far _SafariZoneEntranceText_75360
 	text_end
 
 .PleaseComeAgainText
-	text_far _SafariZoneGateSafariZoneWorker1PleaseComeAgainText
+	text_far _SafariZoneEntranceText_75365
 	text_end
 
 .NotEnoughMoneyText
-	text_far _SafariZoneGateSafariZoneWorker1NotEnoughMoneyText
+	text_far _SafariZoneEntranceText_7536a
 	text_end
 
-SafariZoneGateSafariZoneWorker1LeavingEarlyText:
-	text_far _SafariZoneGateSafariZoneWorker1LeavingEarlyText
+.SafariZoneEntranceText5
+	text_far SafariZoneEntranceText_9e814
 	text_asm
 	call YesNoChoice
 	ld a, [wCurrentMenuItem]
 	and a
-	jr nz, .not_ready_to_leave
-	ld hl, .ReturnSafariBallsText
+	jr nz, .asm_7539c
+	ld hl, .SafariZoneEntranceText_753bb
 	call PrintText
 	xor a
 	ld [wSpritePlayerStateData1FacingDirection], a
@@ -241,56 +238,56 @@ SafariZoneGateSafariZoneWorker1LeavingEarlyText:
 	ResetEvents EVENT_SAFARI_GAME_OVER, EVENT_IN_SAFARI_ZONE
 	ld a, $0
 	ld [wcf0d], a
-	jr .set_current_script
-.not_ready_to_leave
-	ld hl, .GoodLuckText
+	jr .asm_753b3
+.asm_7539c
+	ld hl, .SafariZoneEntranceText_753c0
 	call PrintText
 	ld a, SPRITE_FACING_UP
 	ld [wSpritePlayerStateData1FacingDirection], a
 	ld a, D_UP
 	ld c, $1
 	call SafariZoneEntranceAutoWalk
-	ld a, SCRIPT_SAFARIZONEGATE_LEAVING_SAFARI
+	ld a, $5
 	ld [wcf0d], a
-.set_current_script
-	ld a, SCRIPT_SAFARIZONEGATE_SET_SCRIPT_AFTER_MOVE
+.asm_753b3
+	ld a, $6
 	ld [wSafariZoneGateCurScript], a
 	jp TextScriptEnd
 
-.ReturnSafariBallsText
-	text_far _SafariZoneGateSafariZoneWorker1ReturnSafariBallsText
+.SafariZoneEntranceText_753bb
+	text_far _SafariZoneEntranceText_753bb
 	text_end
 
-.GoodLuckText
-	text_far _SafariZoneGateSafariZoneWorker1GoodLuckText
+.SafariZoneEntranceText_753c0
+	text_far _SafariZoneEntranceText_753c0
 	text_end
 
-SafariZoneGateSafariZoneWorker1GoodHaulComeAgainText:
-	text_far _SafariZoneGateSafariZoneWorker1GoodHaulComeAgainText
+.SafariZoneEntranceText6
+	text_far _SafariZoneEntranceText_753c5
 	text_end
 
-SafariZoneGateSafariZoneWorker2Text:
+.SafariZoneEntranceText2
 	text_asm
-	ld hl, .FirstTimeHereText
+	ld hl, .FirstTimeQuestionText
 	call PrintText
 	call YesNoChoice
 	ld a, [wCurrentMenuItem]
 	and a
-	ld hl, .YoureARegularHereText
-	jr nz, .print_text
-	ld hl, .SafariZoneExplanationText
-.print_text
+	ld hl, .RegularText
+	jr nz, .Explanation
+	ld hl, .ExplanationText
+.Explanation
 	call PrintText
 	jp TextScriptEnd
 
-.FirstTimeHereText
-	text_far _SafariZoneGateSafariZoneWorker2FirstTimeHereText
+.FirstTimeQuestionText
+	text_far _SafariZoneEntranceText_753e6
 	text_end
 
-.SafariZoneExplanationText
-	text_far _SafariZoneGateSafariZoneWorker2SafariZoneExplanationText
+.ExplanationText
+	text_far _SafariZoneEntranceText_753eb
 	text_end
 
-.YoureARegularHereText
-	text_far _SafariZoneGateSafariZoneWorker2YoureARegularHereText
+.RegularText
+	text_far _SafariZoneEntranceText_753f0
 	text_end

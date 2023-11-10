@@ -33,9 +33,3 @@ GetTrainerInformation::
 
 GetTrainerName::
 	farjp GetTrainerName_
-
-; We get the offset of trainer's team and we get the next line (the second team to rematch)
-RematchTeam::
-    ld a, [wTrainerNo]
-	inc a ; we add 1 to a register ( it same that add a, 1)
-	ld [wTrainerNo], a

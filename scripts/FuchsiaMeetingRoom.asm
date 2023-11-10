@@ -3,19 +3,18 @@ FuchsiaMeetingRoom_Script:
 	ret
 
 FuchsiaMeetingRoom_TextPointers:
-	def_text_pointers
-	dw_const FuchsiaMeetingRoomSafariZoneWorker1, TEXT_FUCHSIAMEETINGROOM_SAFARI_ZONE_WORKER1
-	dw_const FuchsiaMeetingRoomSafariZoneWorker2, TEXT_FUCHSIAMEETINGROOM_SAFARI_ZONE_WORKER2
-	dw_const FuchsiaMeetingRoomSafariZoneWorker3, TEXT_FUCHSIAMEETINGROOM_SAFARI_ZONE_WORKER3
+	dw FuchsiaMeetingRoomText1
+	dw FuchsiaMeetingRoomText2
+	dw FuchsiaMeetingRoomText3
 
-FuchsiaMeetingRoomSafariZoneWorker1:
-	text_far _FuchsiaMeetingRoomSafariZoneWorker1
+FuchsiaMeetingRoomText1:
+	text_far _FuchsiaMeetingRoomText1
 	text_end
 
-FuchsiaMeetingRoomSafariZoneWorker2:
-	text_far _FuchsiaMeetingRoomSafariZoneWorker2
+FuchsiaMeetingRoomText2:
+	text_far _FuchsiaMeetingRoomText2
 	text_end
 
-FuchsiaMeetingRoomSafariZoneWorker3:
-	text_far _FuchsiaMeetingRoomSafariZoneWorker3
+FuchsiaMeetingRoomText3:
+	text_far _FuchsiaMeetingRoomText3
 	text_end

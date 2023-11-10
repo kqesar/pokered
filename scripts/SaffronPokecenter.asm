@@ -3,22 +3,21 @@ SaffronPokecenter_Script:
 	jp EnableAutoTextBoxDrawing
 
 SaffronPokecenter_TextPointers:
-	def_text_pointers
-	dw_const SaffronPokecenterNurseText,            TEXT_SAFFRONPOKECENTER_NURSE
-	dw_const SaffronPokecenterBeautyText,           TEXT_SAFFRONPOKECENTER_BEAUTY
-	dw_const SaffronPokecenterGentlemanText,        TEXT_SAFFRONPOKECENTER_GENTLEMAN
-	dw_const SaffronPokecenterLinkReceptionistText, TEXT_SAFFRONPOKECENTER_LINK_RECEPTIONIST
+	dw SaffronHealNurseText
+	dw SaffronPokecenterText2
+	dw SaffronPokecenterText3
+	dw SaffronTradeNurseText
 
-SaffronPokecenterNurseText:
+SaffronHealNurseText:
 	script_pokecenter_nurse
 
-SaffronPokecenterBeautyText:
-	text_far _SaffronPokecenterBeautyText
+SaffronPokecenterText2:
+	text_far _SaffronPokecenterText2
 	text_end
 
-SaffronPokecenterGentlemanText:
-	text_far _SaffronPokecenterGentlemanText
+SaffronPokecenterText3:
+	text_far _SaffronPokecenterText3
 	text_end
 
-SaffronPokecenterLinkReceptionistText:
+SaffronTradeNurseText:
 	script_cable_club_receptionist

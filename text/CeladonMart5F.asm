@@ -1,4 +1,4 @@
-_CeladonMart5FGentlemanText::
+_CeladonMart5Text1::
 	text "#MON ability"
 	line "enhancers can be"
 	cont "bought only here."
@@ -11,7 +11,7 @@ _CeladonMart5FGentlemanText::
 	line "increase SPEED."
 	done
 
-_CeladonMart5FSailorText::
+_CeladonMart5Text2::
 	text "I'm here for"
 	line "#MON ability"
 	cont "enhancers."
@@ -23,6 +23,6 @@ _CeladonMart5FSailorText::
 	line "DEFENSE!"
 	done
 
-_CeladonMart5FCurrentFloorSignText::
+_CeladonMart5Text5::
 	text "5F: DRUG STORE"
 	done

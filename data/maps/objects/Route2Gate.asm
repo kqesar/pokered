@@ -1,7 +1,3 @@
-	object_const_def
-	const ROUTE2_OAKS_AIDE
-	const ROUTE2_YOUNGSTER
-
 Route2Gate_Object:
 	db $a ; border block
 
@@ -14,7 +10,7 @@ Route2Gate_Object:
 	def_bg_events
 
 	def_object_events
-	object_event  1,  4, SPRITE_SCIENTIST, STAY, LEFT, TEXT_ROUTE2GATE_OAKS_AIDE
-	object_event  5,  4, SPRITE_YOUNGSTER, WALK, LEFT_RIGHT, TEXT_ROUTE2GATE_YOUNGSTER
+	object_event  1,  4, SPRITE_SCIENTIST, STAY, LEFT, 1 ; person
+	object_event  5,  4, SPRITE_YOUNGSTER, WALK, LEFT_RIGHT, 2 ; person
 
 	def_warps_to ROUTE_2_GATE

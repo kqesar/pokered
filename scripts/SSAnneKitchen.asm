@@ -3,71 +3,70 @@ SSAnneKitchen_Script:
 	ret
 
 SSAnneKitchen_TextPointers:
-	def_text_pointers
-	dw_const SSAnneKitchenCook1Text, TEXT_SSANNEKITCHEN_COOK1
-	dw_const SSAnneKitchenCook2Text, TEXT_SSANNEKITCHEN_COOK2
-	dw_const SSAnneKitchenCook3Text, TEXT_SSANNEKITCHEN_COOK3
-	dw_const SSAnneKitchenCook4Text, TEXT_SSANNEKITCHEN_COOK4
-	dw_const SSAnneKitchenCook5Text, TEXT_SSANNEKITCHEN_COOK5
-	dw_const SSAnneKitchenCook6Text, TEXT_SSANNEKITCHEN_COOK6
-	dw_const SSAnneKitchenCook7Text, TEXT_SSANNEKITCHEN_COOK7
+	dw SSAnne6Text1
+	dw SSAnne6Text2
+	dw SSAnne6Text3
+	dw SSAnne6Text4
+	dw SSAnne6Text5
+	dw SSAnne6Text6
+	dw SSAnne6Text7
 
-SSAnneKitchenCook1Text:
-	text_far _SSAnneKitchenCook1Text
+SSAnne6Text1:
+	text_far _SSAnne6Text1
 	text_end
 
-SSAnneKitchenCook2Text:
-	text_far _SSAnneKitchenCook2Text
+SSAnne6Text2:
+	text_far _SSAnne6Text2
 	text_end
 
-SSAnneKitchenCook3Text:
-	text_far _SSAnneKitchenCook3Text
+SSAnne6Text3:
+	text_far _SSAnne6Text3
 	text_end
 
-SSAnneKitchenCook4Text:
-	text_far _SSAnneKitchenCook4Text
+SSAnne6Text4:
+	text_far _SSAnne6Text4
 	text_end
 
-SSAnneKitchenCook5Text:
-	text_far _SSAnneKitchenCook5Text
+SSAnne6Text5:
+	text_far _SSAnne6Text5
 	text_end
 
-SSAnneKitchenCook6Text:
-	text_far _SSAnneKitchenCook6Text
+SSAnne6Text6:
+	text_far _SSAnne6Text6
 	text_end
 
-SSAnneKitchenCook7Text:
+SSAnne6Text7:
 	text_asm
-	ld hl, .MainCourseIsText
+	ld hl, SSAnne6Text_61807
 	call PrintText
 	ldh a, [hRandomAdd]
 	bit 7, a
 	jr z, .not_dialog_1
-	ld hl, .SalmonDuSaladText
+	ld hl, SSAnne6Text_6180c
 	jr .done
 .not_dialog_1
 	bit 4, a
 	jr z, .not_dialog_2
-	ld hl, .EelsAuBarbecueText
+	ld hl, SSAnne6Text_61811
 	jr .done
 .not_dialog_2
-	ld hl, .PrimeBeefSteakText
+	ld hl, SSAnne6Text_61816
 .done
 	call PrintText
 	jp TextScriptEnd
 
-.MainCourseIsText:
-	text_far _SSAnneKitchenCook7MainCourseIsText
+SSAnne6Text_61807:
+	text_far _SSAnne6Text_61807
 	text_end
 
-.SalmonDuSaladText:
-	text_far SSAnneKitchenCook7SalmonDuSaladText
+SSAnne6Text_6180c:
+	text_far _SSAnne6Text_6180c
 	text_end
 
-.EelsAuBarbecueText:
-	text_far SSAnneKitchenCook7EelsAuBarbecueText
+SSAnne6Text_61811:
+	text_far _SSAnne6Text_61811
 	text_end
 
-.PrimeBeefSteakText:
-	text_far SSAnneKitchenCook7PrimeBeefSteakText
+SSAnne6Text_61816:
+	text_far _SSAnne6Text_61816
 	text_end

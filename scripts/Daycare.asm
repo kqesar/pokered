@@ -2,27 +2,26 @@ Daycare_Script:
 	jp EnableAutoTextBoxDrawing
 
 Daycare_TextPointers:
-	def_text_pointers
-	dw_const DaycareGentlemanText, TEXT_DAYCARE_GENTLEMAN
+	dw DayCareMText1
 
-DaycareGentlemanText:
+DayCareMText1:
 	text_asm
 	call SaveScreenTilesToBuffer2
 	ld a, [wDayCareInUse]
 	and a
 	jp nz, .daycareInUse
-	ld hl, .IntroText
+	ld hl, DayCareIntroText
 	call PrintText
 	call YesNoChoice
 	ld a, [wCurrentMenuItem]
 	and a
-	ld hl, .ComeAgainText
+	ld hl, DayCareComeAgainText
 	jp nz, .done
 	ld a, [wPartyCount]
 	dec a
-	ld hl, .OnlyHaveOneMonText
+	ld hl, DayCareOnlyHaveOneMonText
 	jp z, .done
-	ld hl, .WhichMonText
+	ld hl, DayCareWhichMonText
 	call PrintText
 	xor a
 	ld [wUpdateSpritesEnabled], a
@@ -34,17 +33,17 @@ DaycareGentlemanText:
 	call RestoreScreenTilesAndReloadTilePatterns
 	call LoadGBPal
 	pop af
-	ld hl, .AllRightThenText
+	ld hl, DayCareAllRightThenText
 	jp c, .done
 	callfar KnowsHMMove
-	ld hl, .CantAcceptMonWithHMText
+	ld hl, DayCareCantAcceptMonWithHMText
 	jp c, .done
 	xor a
 	ld [wPartyAndBillsPCSavedMenuItem], a
 	ld a, [wWhichPokemon]
 	ld hl, wPartyMonNicks
 	call GetPartyMonName
-	ld hl, .WillLookAfterMonText
+	ld hl, DayCareWillLookAfterMonText
 	call PrintText
 	ld a, 1
 	ld [wDayCareInUse], a
@@ -56,7 +55,7 @@ DaycareGentlemanText:
 	call RemovePokemon
 	ld a, [wcf91]
 	call PlayCry
-	ld hl, .ComeSeeMeInAWhileText
+	ld hl, DayCareComeSeeMeInAWhileText
 	jp .done
 
 .daycareInUse
@@ -90,20 +89,20 @@ DaycareGentlemanText:
 	ld [wDayCareStartLevel], a
 	cp d
 	ld [hl], d
-	ld hl, .MonNeedsMoreTimeText
+	ld hl, DayCareMonNeedsMoreTimeText
 	jr z, .next
 	ld a, [wDayCareStartLevel]
 	ld b, a
 	ld a, d
 	sub b
 	ld [wDayCareNumLevelsGrown], a
-	ld hl, .MonHasGrownText
+	ld hl, DayCareMonHasGrownText
 
 .next
 	call PrintText
 	ld a, [wPartyCount]
 	cp PARTY_LENGTH
-	ld hl, .NoRoomForMonText
+	ld hl, DayCareNoRoomForMonText
 	jp z, .leaveMonInDayCare
 	ld de, wDayCareTotalCost
 	xor a
@@ -128,13 +127,13 @@ DaycareGentlemanText:
 	pop hl
 	dec b
 	jr nz, .calcPriceLoop
-	ld hl, .OweMoneyText
+	ld hl, DayCareOweMoneyText
 	call PrintText
 	ld a, MONEY_BOX
 	ld [wTextBoxID], a
 	call DisplayTextBoxID
 	call YesNoChoice
-	ld hl, .AllRightThenText
+	ld hl, DayCareAllRightThenText
 	ld a, [wCurrentMenuItem]
 	and a
 	jp nz, .leaveMonInDayCare
@@ -146,7 +145,7 @@ DaycareGentlemanText:
 	ldh [hMoney + 2], a
 	call HasEnoughMoney
 	jr nc, .enoughMoney
-	ld hl, .NotEnoughMoneyText
+	ld hl, DayCareNotEnoughMoneyText
 	jp .leaveMonInDayCare
 
 .enoughMoney
@@ -163,7 +162,7 @@ DaycareGentlemanText:
 	ld a, MONEY_BOX
 	ld [wTextBoxID], a
 	call DisplayTextBoxID
-	ld hl, .HeresYourMonText
+	ld hl, DayCareHeresYourMonText
 	call PrintText
 	ld a, DAYCARE_TO_PARTY
 	ld [wMoveMonType], a
@@ -200,7 +199,7 @@ DaycareGentlemanText:
 
 	ld a, [wcf91]
 	call PlayCry
-	ld hl, .GotMonBackText
+	ld hl, DayCareGotMonBackText
 	jr .done
 
 .leaveMonInDayCare
@@ -211,60 +210,60 @@ DaycareGentlemanText:
 	call PrintText
 	jp TextScriptEnd
 
-.IntroText:
-	text_far _DaycareGentlemanIntroText
+DayCareIntroText:
+	text_far _DayCareIntroText
 	text_end
 
-.WhichMonText:
-	text_far _DaycareGentlemanWhichMonText
+DayCareWhichMonText:
+	text_far _DayCareWhichMonText
 	text_end
 
-.WillLookAfterMonText:
-	text_far _DaycareGentlemanWillLookAfterMonText
+DayCareWillLookAfterMonText:
+	text_far _DayCareWillLookAfterMonText
 	text_end
 
-.ComeSeeMeInAWhileText:
-	text_far _DaycareGentlemanComeSeeMeInAWhileText
+DayCareComeSeeMeInAWhileText:
+	text_far _DayCareComeSeeMeInAWhileText
 	text_end
 
-.MonHasGrownText:
-	text_far _DaycareGentlemanMonHasGrownText
+DayCareMonHasGrownText:
+	text_far _DayCareMonHasGrownText
 	text_end
 
-.OweMoneyText:
-	text_far _DaycareGentlemanOweMoneyText
+DayCareOweMoneyText:
+	text_far _DayCareOweMoneyText
 	text_end
 
-.GotMonBackText:
-	text_far _DaycareGentlemanGotMonBackText
+DayCareGotMonBackText:
+	text_far _DayCareGotMonBackText
 	text_end
 
-.MonNeedsMoreTimeText:
-	text_far _DaycareGentlemanMonNeedsMoreTimeText
+DayCareMonNeedsMoreTimeText:
+	text_far _DayCareMonNeedsMoreTimeText
 	text_end
 
-.AllRightThenText:
-	text_far _DaycareGentlemanAllRightThenText
-.ComeAgainText:
-	text_far _DaycareGentlemanComeAgainText
+DayCareAllRightThenText:
+	text_far _DayCareAllRightThenText
+DayCareComeAgainText:
+	text_far _DayCareComeAgainText
 	text_end
 
-.NoRoomForMonText:
-	text_far _DaycareGentlemanNoRoomForMonText
+DayCareNoRoomForMonText:
+	text_far _DayCareNoRoomForMonText
 	text_end
 
-.OnlyHaveOneMonText:
-	text_far _DaycareGentlemanOnlyHaveOneMonText
+DayCareOnlyHaveOneMonText:
+	text_far _DayCareOnlyHaveOneMonText
 	text_end
 
-.CantAcceptMonWithHMText:
-	text_far _DaycareGentlemanCantAcceptMonWithHMText
+DayCareCantAcceptMonWithHMText:
+	text_far _DayCareCantAcceptMonWithHMText
 	text_end
 
-.HeresYourMonText:
-	text_far _DaycareGentlemanHeresYourMonText
+DayCareHeresYourMonText:
+	text_far _DayCareHeresYourMonText
 	text_end
 
-.NotEnoughMoneyText:
-	text_far _DaycareGentlemanNotEnoughMoneyText
+DayCareNotEnoughMoneyText:
+	text_far _DayCareNotEnoughMoneyText
 	text_end

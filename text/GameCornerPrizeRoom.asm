@@ -1,4 +1,4 @@
-_GameCornerPrizeRoomBaldingGuyText::
+_CeladonPrizeRoomText1::
 	text "I sure do fancy"
 	line "that PORYGON!"
 
@@ -6,7 +6,7 @@ _GameCornerPrizeRoomBaldingGuyText::
 	line "win at slots!"
 	done
 
-_GameCornerPrizeRoomGamblerText::
+_CeladonPrizeRoomText2::
 	text "I had a major"
 	line "haul today!"
 	done

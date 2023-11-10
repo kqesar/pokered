@@ -121,7 +121,7 @@ MainMenu:
 	ld [wDestinationMap], a
 	ld hl, wd732
 	set 2, [hl] ; fly warp or dungeon warp
-	call PrepareForSpecialWarp
+	call SpecialWarpIn
 	jp SpecialEnterMap
 
 InitOptions:
@@ -268,10 +268,10 @@ LinkMenu:
 	ld c, 50
 	call DelayFrames
 	ld hl, wd732
-	res BIT_DEBUG_MODE, [hl]
+	res 1, [hl]
 	ld a, [wDefaultMap]
 	ld [wDestinationMap], a
-	call PrepareForSpecialWarp
+	call SpecialWarpIn
 	ld c, 20
 	call DelayFrames
 	xor a
@@ -308,13 +308,7 @@ LinkCanceledText:
 
 StartNewGame:
 	ld hl, wd732
-	; Ensure debug mode is not used when
-	; starting a regular new game.
-	; Debug mode persists in saved games for
-	; both debug and non-debug builds, and is
-	; only reset here by the main menu.
-	res BIT_DEBUG_MODE, [hl]
-	; fallthrough
+	res 1, [hl]
 StartNewGameDebug:
 	call OakSpeech
 	ld c, 20

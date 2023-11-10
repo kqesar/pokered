@@ -1,6 +1,3 @@
-	object_const_def
-	const DIGLETTSCAVEROUTE2_FISHING_GURU
-
 DiglettsCaveRoute2_Object:
 	db $7d ; border block
 
@@ -12,6 +9,6 @@ DiglettsCaveRoute2_Object:
 	def_bg_events
 
 	def_object_events
-	object_event  3,  3, SPRITE_FISHING_GURU, STAY, NONE, TEXT_DIGLETTSCAVEROUTE2_FISHING_GURU
+	object_event  3,  3, SPRITE_FISHING_GURU, STAY, NONE, 1 ; person
 
 	def_warps_to DIGLETTS_CAVE_ROUTE_2

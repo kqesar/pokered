@@ -1,4 +1,4 @@
-_SilphCo11FSilphPresidentText::
+_SilphCoPresidentText::
 	text "PRESIDENT: Thank"
 	line "you for saving"
 	cont "SILPH!"
@@ -19,14 +19,14 @@ _SilphCo11FSilphPresidentText::
 	line "will do!"
 	prompt
 
-_SilphCo11FSilphPresidentReceivedMasterBallText::
+_ReceivedSilphCoMasterBallText::
 	text "<PLAYER> got a"
 	line "@"
 	text_ram wStringBuffer
 	text "!@"
 	text_end
 
-_SilphCo11FSilphPresidentMasterBallDescriptionText::
+_SilphCo10Text_6231c::
 	text "PRESIDENT: You"
 	line "can't buy that"
 	cont "anywhere!"
@@ -44,12 +44,12 @@ _SilphCo11FSilphPresidentMasterBallDescriptionText::
 	cont "it, though."
 	done
 
-_SilphCo11FSilphPresidentNoRoomText::
+_SilphCoMasterBallNoRoomText::
 	text "You have no"
 	line "room for this."
 	done
 
-_SilphCo11FBeautyText::
+_SilphCo11Text2::
 	text "SECRETARY: Thank"
 	line "you for rescuing"
 	cont "all of us!"
@@ -58,7 +58,7 @@ _SilphCo11FBeautyText::
 	line "courage."
 	done
 
-_SilphCo11FGiovanniText::
+_SilphCo11Text3::
 	text "Ah <PLAYER>!"
 	line "So we meet again!"
 
@@ -75,12 +75,12 @@ _SilphCo11FGiovanniText::
 	line "world of pain!"
 	done
 
-_SilphCo10FGiovanniILostAgainText::
+_SilphCo10Text_62330::
 	text "Arrgh!!"
 	line "I lost again!?"
 	prompt
 
-_SilphCo11FGiovanniYouRuinedOurPlansText::
+_SilphCo10Text_62335::
 	text "Blast it all!"
 	line "You ruined our"
 	cont "plans for SILPH!"
@@ -97,39 +97,39 @@ _SilphCo11FGiovanniYouRuinedOurPlansText::
 	line "shall return!"
 	done
 
-_SilphCo11FRocket1BattleText::
+_SilphCo11BattleText1::
 	text "Stop right there!"
 	line "Don't you move!"
 	done
 
-_SilphCo11FRocket1EndBattleText::
+_SilphCo11EndBattleText1::
 	text "Don't..."
 	line "Please!"
 	prompt
 
-_SilphCo11FRocket1AfterBattleText::
+_SilphCo11AfterBattleText1::
 	text "So, you want to"
 	line "see my BOSS?"
 	done
 
-_SilphCo11FRocket2BattleText::
+_SilphCo11BattleText2::
 	text "Halt! Do you have"
 	line "an appointment"
 	cont "with my BOSS?"
 	done
 
-_SilphCo11FRocket2EndBattleText::
+_SilphCo11EndBattleText2::
 	text "Gaah!"
 	line "Demolished!"
 	prompt
 
-_SilphCo11FRocket2AfterBattleText::
+_SilphCo11AfterBattleText2::
 	text "Watch your step,"
 	line "my BOSS likes his"
 	cont "#MON tough!"
 	done
 
-_SilphCo10FPorygonText::
+_SilphCo10Text_6237b::
 	text "The monitor has"
 	line "#MON on it!"
 	done

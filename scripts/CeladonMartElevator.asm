@@ -62,10 +62,9 @@ CeladonMartElevatorScript_48654:
 	farjp ShakeElevator
 
 CeladonMartElevator_TextPointers:
-	def_text_pointers
-	dw_const CeladonMartElevatorText, TEXT_CELADONMARTELEVATOR
+	dw CeladonMartElevatorText1
 
-CeladonMartElevatorText:
+CeladonMartElevatorText1:
 	text_asm
 	call CeladonMartElevatorScript_48631
 	ld hl, CeladonMartElevatorWarpMaps

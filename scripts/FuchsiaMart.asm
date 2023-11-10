@@ -2,15 +2,14 @@ FuchsiaMart_Script:
 	jp EnableAutoTextBoxDrawing
 
 FuchsiaMart_TextPointers:
-	def_text_pointers
-	dw_const FuchsiaMartClerkText,         TEXT_FUCHSIAMART_CLERK
-	dw_const FuchsiaMartMiddleAgedManText, TEXT_FUCHSIAMART_MIDDLE_AGED_MAN
-	dw_const FuchsiaMartCooltrainerFText,  TEXT_FUCHSIAMART_COOLTRAINER_F
+	dw FuchsiaCashierText
+	dw FuchsiaMartText2
+	dw FuchsiaMartText3
 
-FuchsiaMartMiddleAgedManText:
-	text_far _FuchsiaMartMiddleAgedManText
+FuchsiaMartText2:
+	text_far _FuchsiaMartText2
 	text_end
 
-FuchsiaMartCooltrainerFText:
-	text_far _FuchsiaMartCooltrainerFText
+FuchsiaMartText3:
+	text_far _FuchsiaMartText3
 	text_end

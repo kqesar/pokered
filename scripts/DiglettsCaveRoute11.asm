@@ -5,9 +5,8 @@ DiglettsCaveRoute11_Script:
 	ret
 
 DiglettsCaveRoute11_TextPointers:
-	def_text_pointers
-	dw_const DiglettsCaveRoute11GamblerText, TEXT_DIGLETTSCAVEROUTE11_GAMBLER
+	dw DiglettsCaveEntranceRoute11Text1
 
-DiglettsCaveRoute11GamblerText:
-	text_far _DiglettsCaveRoute11GamblerText
+DiglettsCaveEntranceRoute11Text1:
+	text_far _DiglettsCaveEntRoute11Text1
 	text_end

@@ -4,9 +4,8 @@ UndergroundPathRoute8_Script:
 	jp EnableAutoTextBoxDrawing
 
 UndergroundPathRoute8_TextPointers:
-	def_text_pointers
-	dw_const UndergroundPathRoute8GirlText, TEXT_UNDERGROUNDPATHROUTE8_GIRL
+	dw UndergroundPathEntranceRoute8Text1
 
-UndergroundPathRoute8GirlText:
-	text_far _UndergroundPathRoute8GirlText
+UndergroundPathEntranceRoute8Text1:
+	text_far _UndergroundPathEntRoute8Text1
 	text_end

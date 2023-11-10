@@ -1,7 +1,3 @@
-	object_const_def
-	const CINNABARLABFOSSILROOM_SCIENTIST1
-	const CINNABARLABFOSSILROOM_SCIENTIST2
-
 CinnabarLabFossilRoom_Object:
 	db $17 ; border block
 
@@ -12,7 +8,7 @@ CinnabarLabFossilRoom_Object:
 	def_bg_events
 
 	def_object_events
-	object_event  5,  2, SPRITE_SCIENTIST, WALK, LEFT_RIGHT, TEXT_CINNABARLABFOSSILROOM_SCIENTIST1
-	object_event  7,  6, SPRITE_SCIENTIST, STAY, UP, TEXT_CINNABARLABFOSSILROOM_SCIENTIST2
+	object_event  5,  2, SPRITE_SCIENTIST, WALK, LEFT_RIGHT, 1 ; person
+	object_event  7,  6, SPRITE_SCIENTIST, STAY, UP, 2 ; person
 
 	def_warps_to CINNABAR_LAB_FOSSIL_ROOM

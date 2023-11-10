@@ -4,22 +4,21 @@ UndergroundPathRoute7Copy_Script:
 	ret
 
 UndergroundPathRoute7Copy_TextPointers:
-	def_text_pointers
-	dw_const UndergroundPathRoute7CopyUnusedGirlText,          TEXT_UNDERGROUNDPATHROUTE7COPY_UNUSED_GIRL
-	dw_const UndergroundPathRoute7CopyUnusedMiddleAgedManText, TEXT_UNDERGROUNDPATHROUTE7COPY_UNUSED_MIDDLE_AGED_MAN
+	dw UGPathRoute7EntranceUnusedText_5d773
+	dw UGPathRoute7EntranceUnusedText_5d77d
 
-UndergroundPathRoute7CopyUnusedGirlText:
-	text_far _UndergroundPathRoute7CopyUnusedGirlText
+UGPathRoute7EntranceUnusedText_5d773:
+	text_far _UGPathRoute7EntranceUnusedText_5d773
 	text_end
 
-UndergroundPathRoute7CopyUnusedTeamRocketHadAHideoutText:
-	text_far _UndergroundPathRoute7CopyUnusedTeamRocketHadAHideoutText
+UGPathRoute7EntranceUnusedText_5d778:
+	text_far _UGPathRoute7EntranceUnusedText_5d778
 	text_end
 
-UndergroundPathRoute7CopyUnusedMiddleAgedManText:
-	text_far _UndergroundPathRoute7CopyUnusedMiddleAgedManText
+UGPathRoute7EntranceUnusedText_5d77d:
+	text_far _UGPathRoute7EntranceUnusedText_5d77d
 	text_end
 
-UndergroundPathRoute7CopyUnusedGoesUnderSaffronText:
-	text_far _UndergroundPathRoute7CopyUnusedGoesUnderSaffronText
+UGPathRoute7EntranceUnusedText_5d782:
+	text_far _UGPathRoute7EntranceUnusedText_5d782
 	text_end

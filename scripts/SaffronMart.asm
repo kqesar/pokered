@@ -2,15 +2,14 @@ SaffronMart_Script:
 	jp EnableAutoTextBoxDrawing
 
 SaffronMart_TextPointers:
-	def_text_pointers
-	dw_const SaffronMartClerkText,        TEXT_SAFFRONMART_CLERK
-	dw_const SaffronMartSuperNerdText,    TEXT_SAFFRONMART_SUPER_NERD
-	dw_const SaffronMartCooltrainerFText, TEXT_SAFFRONMART_COOLTRAINER_F
+	dw SaffronCashierText
+	dw SaffronMartText2
+	dw SaffronMartText3
 
-SaffronMartSuperNerdText:
-	text_far _SaffronMartSuperNerdText
+SaffronMartText2:
+	text_far _SaffronMartText2
 	text_end
 
-SaffronMartCooltrainerFText:
-	text_far _SaffronMartCooltrainerFText
+SaffronMartText3:
+	text_far _SaffronMartText3
 	text_end

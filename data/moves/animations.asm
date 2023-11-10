@@ -192,7 +192,7 @@ AttackAnimationPointers:
 	dw SleepEnemyAnim
 	dw ConfusedPlayerAnim
 	dw ConfusedEnemyAnim
-	dw SlideDownAnim
+	dw FaintAnim
 	dw BallTossAnim
 	dw BallShakeAnim
 	dw BallPoofAnim
@@ -1263,7 +1263,7 @@ BallBlockAnim:
 	battle_anim NO_MOVE, SUBANIM_0_BALL_BLOCK, 0, 3
 	db -1 ; end
 
-SlideDownAnim:
+FaintAnim:
 	battle_anim DIG, SE_SLIDE_MON_DOWN
 	db -1 ; end
 

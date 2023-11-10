@@ -3,22 +3,21 @@ FuchsiaPokecenter_Script:
 	jp EnableAutoTextBoxDrawing
 
 FuchsiaPokecenter_TextPointers:
-	def_text_pointers
-	dw_const FuchsiaPokecenterNurseText,            TEXT_FUCHSIAPOKECENTER_NURSE
-	dw_const FuchsiaPokecenterRockerText,           TEXT_FUCHSIAPOKECENTER_ROCKER
-	dw_const FuchsiaPokecenterCooltrainerFText,     TEXT_FUCHSIAPOKECENTER_COOLTRAINER_F
-	dw_const FuchsiaPokecenterLinkReceptionistText, TEXT_FUCHSIAPOKECENTER_LINK_RECEPTIONIST
+	dw FuchsiaHealNurseText
+	dw FuchsiaPokecenterText2
+	dw FuchsiaPokecenterText3
+	dw FuchsiaTradeNurseText
 
-FuchsiaPokecenterNurseText:
+FuchsiaHealNurseText:
 	script_pokecenter_nurse
 
-FuchsiaPokecenterRockerText:
-	text_far _FuchsiaPokecenterRockerText
+FuchsiaPokecenterText2:
+	text_far _FuchsiaPokecenterText1
 	text_end
 
-FuchsiaPokecenterCooltrainerFText:
-	text_far _FuchsiaPokecenterCooltrainerFText
+FuchsiaPokecenterText3:
+	text_far _FuchsiaPokecenterText3
 	text_end
 
-FuchsiaPokecenterLinkReceptionistText:
+FuchsiaTradeNurseText:
 	script_cable_club_receptionist

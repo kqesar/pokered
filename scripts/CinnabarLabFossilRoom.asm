@@ -2,9 +2,8 @@ CinnabarLabFossilRoom_Script:
 	jp EnableAutoTextBoxDrawing
 
 CinnabarLabFossilRoom_TextPointers:
-	def_text_pointers
-	dw_const CinnabarLabFossilRoomScientist1Text, TEXT_CINNABARLABFOSSILROOM_SCIENTIST1
-	dw_const CinnabarLabFossilRoomScientist2Text, TEXT_CINNABARLABFOSSILROOM_SCIENTIST2
+	dw Lab4Text1
+	dw Lab4Text2
 
 Lab4Script_GetFossilsInBag:
 ; construct a list of all fossils in the player's bag
@@ -47,59 +46,59 @@ FossilsList:
 	db OLD_AMBER
 	db 0 ; end
 
-CinnabarLabFossilRoomScientist1Text:
+Lab4Text1:
 	text_asm
 	CheckEvent EVENT_GAVE_FOSSIL_TO_LAB
-	jr nz, .check_done_reviving
-	ld hl, .Text
+	jr nz, .asm_75d96
+	ld hl, Lab4Text_75dc6
 	call PrintText
 	call Lab4Script_GetFossilsInBag
 	ld a, [wFilteredBagItemsCount]
 	and a
-	jr z, .no_fossils
+	jr z, .asm_75d8d
 	farcall GiveFossilToCinnabarLab
-	jr .done
-.no_fossils
-	ld hl, .NoFossilsText
+	jr .asm_75d93
+.asm_75d8d
+	ld hl, Lab4Text_75dcb
 	call PrintText
-.done
+.asm_75d93
 	jp TextScriptEnd
-.check_done_reviving
+.asm_75d96
 	CheckEventAfterBranchReuseA EVENT_LAB_STILL_REVIVING_FOSSIL, EVENT_GAVE_FOSSIL_TO_LAB
-	jr z, .done_reviving
-	ld hl, .GoForAWalkText
+	jr z, .asm_75da2
+	ld hl, Lab4Text_75dd0
 	call PrintText
-	jr .done
-.done_reviving
+	jr .asm_75d93
+.asm_75da2
 	call LoadFossilItemAndMonNameBank1D
-	ld hl, .FossilIsBackToLifeText
+	ld hl, Lab4Text_75dd5
 	call PrintText
 	SetEvent EVENT_LAB_HANDING_OVER_FOSSIL_MON
 	ld a, [wFossilMon]
 	ld b, a
 	ld c, 30
 	call GivePokemon
-	jr nc, .done
+	jr nc, .asm_75d93
 	ResetEvents EVENT_GAVE_FOSSIL_TO_LAB, EVENT_LAB_STILL_REVIVING_FOSSIL, EVENT_LAB_HANDING_OVER_FOSSIL_MON
-	jr .done
+	jr .asm_75d93
 
-.Text:
-	text_far _CinnabarLabFossilRoomScientist1Text
+Lab4Text_75dc6:
+	text_far _Lab4Text_75dc6
 	text_end
 
-.NoFossilsText:
-	text_far _CinnabarLabFossilRoomScientist1NoFossilsText
+Lab4Text_75dcb:
+	text_far _Lab4Text_75dcb
 	text_end
 
-.GoForAWalkText:
-	text_far _CinnabarLabFossilRoomScientist1GoForAWalkText
+Lab4Text_75dd0:
+	text_far _Lab4Text_75dd0
 	text_end
 
-.FossilIsBackToLifeText:
-	text_far _CinnabarLabFossilRoomScientist1FossilIsBackToLifeText
+Lab4Text_75dd5:
+	text_far _Lab4Text_75dd5
 	text_end
 
-CinnabarLabFossilRoomScientist2Text:
+Lab4Text2:
 	text_asm
 	ld a, TRADE_FOR_SAILOR
 	ld [wWhichTrade], a

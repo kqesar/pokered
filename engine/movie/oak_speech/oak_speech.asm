@@ -1,13 +1,8 @@
-PrepareOakSpeech:
+SetDefaultNames:
 	ld a, [wLetterPrintingDelayFlags]
 	push af
 	ld a, [wOptions]
 	push af
-	; Retrieve BIT_DEBUG_MODE set in DebugMenu for StartNewGameDebug.
-	; BUG: StartNewGame carries over bit 5 from previous save files,
-	; which causes CheckForceBikeOrSurf to not return.
-	; To fix this in debug builds, reset bit 5 here or in StartNewGame.
-	; In non-debug builds, the instructions can be removed.
 	ld a, [wd732]
 	push af
 	ld hl, wPlayerName
@@ -27,14 +22,11 @@ PrepareOakSpeech:
 	ld a, [wOptionsInitialized]
 	and a
 	call z, InitOptions
-	; These debug names are used for StartNewGameDebug.
-	; TestBattle uses the debug names from DebugMenu.
-	; A variant of this process is performed in PrepareTitleScreen.
-	ld hl, DebugNewGamePlayerName
+	ld hl, NintenText
 	ld de, wPlayerName
 	ld bc, NAME_LENGTH
 	call CopyData
-	ld hl, DebugNewGameRivalName
+	ld hl, SonyText
 	ld de, wRivalName
 	ld bc, NAME_LENGTH
 	jp CopyData
@@ -48,22 +40,31 @@ OakSpeech:
 	call PlayMusic
 	call ClearScreen
 	call LoadTextBoxTilePatterns
-	call PrepareOakSpeech
+	call SetDefaultNames
 	predef InitPlayerData2
 	ld hl, wNumBoxItems
 	ld a, POTION
 	ld [wcf91], a
 	ld a, 1
 	ld [wItemQuantity], a
-	call AddItemToInventory
+	call AddItemToInventory  ; give one potion
 	ld a, [wDefaultMap]
 	ld [wDestinationMap], a
-	call PrepareForSpecialWarp
+	call SpecialWarpIn
 	xor a
 	ldh [hTileAnimations], a
-	ld a, [wd732]
-	bit BIT_DEBUG_MODE, a
-	jp nz, .skipSpeech
+IF GEN_2_GRAPHICS
+	ld a, PAL_OAK
+ELSE
+	ld a, PAL_BROWNMON
+ENDC
+	call GotPalID ; HAX
+	nop
+	nop
+	nop
+	;ld a, [wd732]
+	;bit 1, a ; possibly a debug mode bit
+	;jp nz, .skipChoosingNames
 	ld de, ProfOakPic
 	lb bc, BANK(ProfOakPic), $00
 	call IntroDisplayPicCenteredOrUpperRight
@@ -71,7 +72,8 @@ OakSpeech:
 	ld hl, OakSpeechText1
 	call PrintText
 	call GBFadeOutToWhite
-	call ClearScreen
+	;call ClearScreen
+	call GetNidorinoPalID ; HAX
 	ld a, NIDORINO
 	ld [wd0b5], a
 	ld [wcf91], a
@@ -82,7 +84,7 @@ OakSpeech:
 	ld hl, OakSpeechText2
 	call PrintText
 	call GBFadeOutToWhite
-	call ClearScreen
+	call GetRedPalID ; HAX
 	ld de, RedPicFront
 	lb bc, BANK(RedPicFront), $00
 	call IntroDisplayPicCenteredOrUpperRight
@@ -91,7 +93,7 @@ OakSpeech:
 	call PrintText
 	call ChoosePlayerName
 	call GBFadeOutToWhite
-	call ClearScreen
+	call GetRivalPalID ; HAX
 	ld de, Rival1Pic
 	lb bc, BANK(Rival1Pic), $00
 	call IntroDisplayPicCenteredOrUpperRight
@@ -99,9 +101,9 @@ OakSpeech:
 	ld hl, IntroduceRivalText
 	call PrintText
 	call ChooseRivalName
-.skipSpeech
+.skipChoosingNames
 	call GBFadeOutToWhite
-	call ClearScreen
+	call GetRedPalID ; HAX
 	ld de, RedPicFront
 	lb bc, BANK(RedPicFront), $00
 	call IntroDisplayPicCenteredOrUpperRight
@@ -165,7 +167,6 @@ OakSpeechText1:
 	text_end
 OakSpeechText2:
 	text_far _OakSpeechText2A
-	; BUG: The cry played does not match the sprite displayed.
 	sound_cry_nidorina
 	text_far _OakSpeechText2B
 	text_end

@@ -8,120 +8,118 @@ ViridianForest_Script:
 	ret
 
 ViridianForest_ScriptPointers:
-	def_script_pointers
-	dw_const CheckFightingMapTrainers,              SCRIPT_VIRIDIANFOREST_DEFAULT
-	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_VIRIDIANFOREST_START_BATTLE
-	dw_const EndTrainerBattle,                      SCRIPT_VIRIDIANFOREST_END_BATTLE
+	dw CheckFightingMapTrainers
+	dw DisplayEnemyTrainerTextAndStartBattle
+	dw EndTrainerBattle
 
 ViridianForest_TextPointers:
-	def_text_pointers
-	dw_const ViridianForestYoungster1Text,      TEXT_VIRIDIANFOREST_YOUNGSTER1
-	dw_const ViridianForestYoungster2Text,      TEXT_VIRIDIANFOREST_YOUNGSTER2
-	dw_const ViridianForestYoungster3Text,      TEXT_VIRIDIANFOREST_YOUNGSTER3
-	dw_const ViridianForestYoungster4Text,      TEXT_VIRIDIANFOREST_YOUNGSTER4
-	dw_const PickUpItemText,                    TEXT_VIRIDIANFOREST_ANTIDOTE
-	dw_const PickUpItemText,                    TEXT_VIRIDIANFOREST_POTION
-	dw_const PickUpItemText,                    TEXT_VIRIDIANFOREST_POKE_BALL
-	dw_const ViridianForestYoungster5Text,      TEXT_VIRIDIANFOREST_YOUNGSTER5
-	dw_const ViridianForestTrainerTips1Text,    TEXT_VIRIDIANFOREST_TRAINER_TIPS1
-	dw_const ViridianForestUseAntidoteSignText, TEXT_VIRIDIANFOREST_USE_ANTIDOTE_SIGN
-	dw_const ViridianForestTrainerTips2Text,    TEXT_VIRIDIANFOREST_TRAINER_TIPS2
-	dw_const ViridianForestTrainerTips3Text,    TEXT_VIRIDIANFOREST_TRAINER_TIPS3
-	dw_const ViridianForestTrainerTips4Text,    TEXT_VIRIDIANFOREST_TRAINER_TIPS4
-	dw_const ViridianForestLeavingSignText,     TEXT_VIRIDIANFOREST_LEAVING_SIGN
+	dw ViridianForestText1
+	dw ViridianForestText2
+	dw ViridianForestText3
+	dw ViridianForestText4
+	dw PickUpItemText
+	dw PickUpItemText
+	dw PickUpItemText
+	dw ViridianForestText8
+	dw ViridianForestText9
+	dw ViridianForestText10
+	dw ViridianForestText11
+	dw ViridianForestText12
+	dw ViridianForestText13
+	dw ViridianForestText14
 
 ViridianForestTrainerHeaders:
 	def_trainers 2
 ViridianForestTrainerHeader0:
-	trainer EVENT_BEAT_VIRIDIAN_FOREST_TRAINER_0, 4, ViridianForestYoungster2BattleText, ViridianForestYoungster2EndBattleText, ViridianForestYoungster2AfterBattleText
+	trainer EVENT_BEAT_VIRIDIAN_FOREST_TRAINER_0, 4, ViridianForestBattleText1, ViridianForestEndBattleText1, ViridianForestAfterBattleText1
 ViridianForestTrainerHeader1:
-	trainer EVENT_BEAT_VIRIDIAN_FOREST_TRAINER_1, 4, ViridianForestYoungster3BattleText, ViridianForestYoungster3EndBattleText, ViridianForestYoungster3AfterBattleText
+	trainer EVENT_BEAT_VIRIDIAN_FOREST_TRAINER_1, 4, ViridianForestBattleText2, ViridianForestEndBattleText2, ViridianForestAfterBattleText2
 ViridianForestTrainerHeader2:
-	trainer EVENT_BEAT_VIRIDIAN_FOREST_TRAINER_2, 1, ViridianForestYoungster4BattleText, ViridianForestYoungster4EndBattleText, ViridianForestYoungster4AfterBattleText
+	trainer EVENT_BEAT_VIRIDIAN_FOREST_TRAINER_2, 1, ViridianForestBattleText3, ViridianForestEndBattleText3, ViridianForestAfterBattleText3
 	db -1 ; end
 
-ViridianForestYoungster1Text:
-	text_far _ViridianForestYoungster1Text
+ViridianForestText1:
+	text_far _ViridianForestText1
 	text_end
 
-ViridianForestYoungster2Text:
+ViridianForestText2:
 	text_asm
 	ld hl, ViridianForestTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
-ViridianForestYoungster3Text:
+ViridianForestText3:
 	text_asm
 	ld hl, ViridianForestTrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
-ViridianForestYoungster4Text:
+ViridianForestText4:
 	text_asm
 	ld hl, ViridianForestTrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
-ViridianForestYoungster2BattleText:
-	text_far _ViridianForestYoungster2BattleText
+ViridianForestBattleText1:
+	text_far _ViridianForestBattleText1
 	text_end
 
-ViridianForestYoungster2EndBattleText:
-	text_far _ViridianForestYoungster2EndBattleText
+ViridianForestEndBattleText1:
+	text_far _ViridianForestEndBattleText1
 	text_end
 
-ViridianForestYoungster2AfterBattleText:
-	text_far _ViridianForestYoungster2AfterBattleText
+ViridianForestAfterBattleText1:
+	text_far _ViridianFrstAfterBattleText1
 	text_end
 
-ViridianForestYoungster3BattleText:
-	text_far _ViridianForestYoungster3BattleText
+ViridianForestBattleText2:
+	text_far _ViridianForestBattleText2
 	text_end
 
-ViridianForestYoungster3EndBattleText:
-	text_far _ViridianForestYoungster3EndBattleText
+ViridianForestEndBattleText2:
+	text_far _ViridianForestEndBattleText2
 	text_end
 
-ViridianForestYoungster3AfterBattleText:
-	text_far _ViridianForestYoungster3AfterBattleText
+ViridianForestAfterBattleText2:
+	text_far _ViridianFrstAfterBattleText2
 	text_end
 
-ViridianForestYoungster4BattleText:
-	text_far _ViridianForestYoungster4BattleText
+ViridianForestBattleText3:
+	text_far _ViridianForestBattleText3
 	text_end
 
-ViridianForestYoungster4EndBattleText:
-	text_far _ViridianForestYoungster4EndBattleText
+ViridianForestEndBattleText3:
+	text_far _ViridianForestEndBattleText3
 	text_end
 
-ViridianForestYoungster4AfterBattleText:
-	text_far _ViridianForestYoungster4AfterBattleText
+ViridianForestAfterBattleText3:
+	text_far _ViridianFrstAfterBattleText3
 	text_end
 
-ViridianForestYoungster5Text:
-	text_far _ViridianForestYoungster5Text
+ViridianForestText8:
+	text_far _ViridianForestText8
 	text_end
 
-ViridianForestTrainerTips1Text:
-	text_far _ViridianForestTrainerTips1Text
+ViridianForestText9:
+	text_far _ViridianForestText9
 	text_end
 
-ViridianForestUseAntidoteSignText:
-	text_far _ViridianForestUseAntidoteSignText
+ViridianForestText10:
+	text_far _ViridianForestText10
 	text_end
 
-ViridianForestTrainerTips2Text:
-	text_far _ViridianForestTrainerTips2Text
+ViridianForestText11:
+	text_far _ViridianForestText11
 	text_end
 
-ViridianForestTrainerTips3Text:
-	text_far _ViridianForestTrainerTips3Text
+ViridianForestText12:
+	text_far _ViridianForestText12
 	text_end
 
-ViridianForestTrainerTips4Text:
-	text_far _ViridianForestTrainerTips4Text
+ViridianForestText13:
+	text_far _ViridianForestText13
 	text_end
 
-ViridianForestLeavingSignText:
-	text_far _ViridianForestLeavingSignText
+ViridianForestText14:
+	text_far _ViridianForestText14
 	text_end

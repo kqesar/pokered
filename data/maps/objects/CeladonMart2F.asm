@@ -1,9 +1,3 @@
-	object_const_def
-	const CELADONMART2F_CLERK1
-	const CELADONMART2F_CLERK2
-	const CELADONMART2F_MIDDLE_AGED_MAN
-	const CELADONMART2F_GIRL
-
 CeladonMart2F_Object:
 	db $f ; border block
 
@@ -13,12 +7,12 @@ CeladonMart2F_Object:
 	warp_event  1,  1, CELADON_MART_ELEVATOR, 1
 
 	def_bg_events
-	bg_event 14,  1, TEXT_CELADONMART2F_CURRENT_FLOOR_SIGN
+	bg_event 14,  1, 5 ; CeladonMart2Text5
 
 	def_object_events
-	object_event  5,  3, SPRITE_CLERK, STAY, DOWN, TEXT_CELADONMART2F_CLERK1
-	object_event  6,  3, SPRITE_CLERK, STAY, DOWN, TEXT_CELADONMART2F_CLERK2
-	object_event 19,  5, SPRITE_MIDDLE_AGED_MAN, STAY, NONE, TEXT_CELADONMART2F_MIDDLE_AGED_MAN
-	object_event 14,  4, SPRITE_GIRL, WALK, UP_DOWN, TEXT_CELADONMART2F_GIRL
+	object_event  5,  3, SPRITE_CLERK, STAY, DOWN, 1 ; person
+	object_event  6,  3, SPRITE_CLERK, STAY, DOWN, 2 ; person
+	object_event 19,  5, SPRITE_MIDDLE_AGED_MAN, STAY, NONE, 3 ; person
+	object_event 14,  4, SPRITE_GIRL, WALK, UP_DOWN, 4 ; person
 
 	def_warps_to CELADON_MART_2F

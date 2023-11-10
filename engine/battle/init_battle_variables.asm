@@ -20,7 +20,7 @@ InitBattleVariables:
 	ld [hli], a ; wPlayerHPBarColor
 	ld [hl], a ; wEnemyHPBarColor
 	ld hl, wCanEvolveFlags
-	ld b, wMiscBattleDataEnd - wMiscBattleData
+	ld b, $3c
 .loop
 	ld [hli], a
 	dec b

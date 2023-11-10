@@ -1,4 +1,4 @@
-_ViridianForestYoungster1Text::
+_ViridianForestText1::
 	text "I came here with"
 	line "some friends!"
 
@@ -6,53 +6,53 @@ _ViridianForestYoungster1Text::
 	line "#MON fights!"
 	done
 
-_ViridianForestYoungster2BattleText::
+_ViridianForestBattleText1::
 	text "Hey! You have"
 	line "#MON! Come on!"
 	cont "Let's battle'em!"
 	done
 
-_ViridianForestYoungster2EndBattleText::
+_ViridianForestEndBattleText1::
 	text "No!"
 	line "CATERPIE can't"
 	cont "cut it!"
 	prompt
 
-_ViridianForestYoungster2AfterBattleText::
+_ViridianFrstAfterBattleText1::
 	text "Ssh! You'll scare"
 	line "the bugs away!"
 	done
 
-_ViridianForestYoungster3BattleText::
+_ViridianForestBattleText2::
 	text "Yo! You can't jam"
 	line "out if you're a"
 	cont "#MON trainer!"
 	done
 
-_ViridianForestYoungster3EndBattleText::
+_ViridianForestEndBattleText2::
 	text "Huh?"
 	line "I ran out of"
 	cont "#MON!"
 	prompt
 
-_ViridianForestYoungster3AfterBattleText::
+_ViridianFrstAfterBattleText2::
 	text "Darn! I'm going"
 	line "to catch some"
 	cont "stronger ones!"
 	done
 
-_ViridianForestYoungster4BattleText::
+_ViridianForestBattleText3::
 	text "Hey, wait up!"
 	line "What's the hurry?"
 	done
 
-_ViridianForestYoungster4EndBattleText::
+_ViridianForestEndBattleText3::
 	text "I"
 	line "give! You're good"
 	cont "at this!"
 	prompt
 
-_ViridianForestYoungster4AfterBattleText::
+_ViridianFrstAfterBattleText3::
 	text "Sometimes, you"
 	line "can find stuff on"
 	cont "the ground!"
@@ -62,7 +62,7 @@ _ViridianForestYoungster4AfterBattleText::
 	cont "dropped!"
 	done
 
-_ViridianForestYoungster5Text::
+_ViridianForestText8::
 	text "I ran out of #"
 	line "BALLs to catch"
 	cont "#MON with!"
@@ -71,7 +71,7 @@ _ViridianForestYoungster5Text::
 	line "extras!"
 	done
 
-_ViridianForestTrainerTips1Text::
+_ViridianForestText9::
 	text "TRAINER TIPS"
 
 	para "If you want to"
@@ -80,13 +80,13 @@ _ViridianForestTrainerTips1Text::
 	cont "grassy areas!"
 	done
 
-_ViridianForestUseAntidoteSignText::
+_ViridianForestText10::
 	text "For poison, use"
 	line "ANTIDOTE! Get it"
 	cont "at #MON MARTs!"
 	done
 
-_ViridianForestTrainerTips2Text::
+_ViridianForestText11::
 	text "TRAINER TIPS"
 
 	para "Contact PROF.OAK"
@@ -95,7 +95,7 @@ _ViridianForestTrainerTips2Text::
 	cont "evaluated!"
 	done
 
-_ViridianForestTrainerTips3Text::
+_ViridianForestText12::
 	text "TRAINER TIPS"
 
 	para "No stealing of"
@@ -105,7 +105,7 @@ _ViridianForestTrainerTips3Text::
 	cont "#MON!"
 	done
 
-_ViridianForestTrainerTips4Text::
+_ViridianForestText13::
 	text "TRAINER TIPS"
 
 	para "Weaken #MON"
@@ -116,7 +116,7 @@ _ViridianForestTrainerTips4Text::
 	line "they may escape!"
 	done
 
-_ViridianForestLeavingSignText::
+_ViridianForestText14::
 	text "LEAVING"
 	line "VIRIDIAN FOREST"
 	cont "PEWTER CITY AHEAD"

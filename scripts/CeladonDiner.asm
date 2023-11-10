@@ -3,65 +3,64 @@ CeladonDiner_Script:
 	ret
 
 CeladonDiner_TextPointers:
-	def_text_pointers
-	dw_const CeladonDinerCookText,            TEXT_CELADONDINER_COOK
-	dw_const CeladonDinerMiddleAgedWomanText, TEXT_CELADONDINER_MIDDLE_AGED_WOMAN
-	dw_const CeladonDinerMiddleAgedManText,   TEXT_CELADONDINER_MIDDLE_AGED_MAN
-	dw_const CeladonDinerFisherText,          TEXT_CELADONDINER_FISHER
-	dw_const CeladonDinerGymGuideText,        TEXT_CELADONDINER_GYM_GUIDE
+	dw CeladonDinerText1
+	dw CeladonDinerText2
+	dw CeladonDinerText3
+	dw CeladonDinerText4
+	dw CeladonDinerText5
 
-CeladonDinerCookText:
-	text_far _CeladonDinerCookText
+CeladonDinerText1:
+	text_far _CeladonDinerText1
 	text_end
 
-CeladonDinerMiddleAgedWomanText:
-	text_far _CeladonDinerMiddleAgedWomanText
+CeladonDinerText2:
+	text_far _CeladonDinerText2
 	text_end
 
-CeladonDinerMiddleAgedManText:
-	text_far _CeladonDinerMiddleAgedManText
+CeladonDinerText3:
+	text_far _CeladonDinerText3
 	text_end
 
-CeladonDinerFisherText:
-	text_far _CeladonDinerFisherText
+CeladonDinerText4:
+	text_far _CeladonDinerText4
 	text_end
 
-CeladonDinerGymGuideText:
+CeladonDinerText5:
 	text_asm
 	CheckEvent EVENT_GOT_COIN_CASE
 	jr nz, .got_item
-	ld hl, .ImFlatOutBustedText
+	ld hl, CeladonDinerText_491a7
 	call PrintText
 	lb bc, COIN_CASE, 1
 	call GiveItem
 	jr nc, .bag_full
 	SetEvent EVENT_GOT_COIN_CASE
-	ld hl, .ReceivedCoinCaseText
+	ld hl, ReceivedCoinCaseText
 	call PrintText
 	jr .done
 .bag_full
-	ld hl, .CoinCaseNoRoomText
+	ld hl, CoinCaseNoRoomText
 	call PrintText
 	jr .done
 .got_item
-	ld hl, .WinItBackText
+	ld hl, CeladonDinerText_491b7
 	call PrintText
 .done
 	jp TextScriptEnd
 
-.ImFlatOutBustedText:
-	text_far _CeladonDinerGymGuideImFlatOutBustedText
+CeladonDinerText_491a7:
+	text_far _CeladonDinerText_491a7
 	text_end
 
-.ReceivedCoinCaseText:
-	text_far _CeladonDinerGymGuideReceivedCoinCaseText
+ReceivedCoinCaseText:
+	text_far _ReceivedCoinCaseText
 	sound_get_key_item
 	text_end
 
-.CoinCaseNoRoomText:
-	text_far _CeladonDinerGymGuideCoinCaseNoRoomText
+CoinCaseNoRoomText:
+	text_far _CoinCaseNoRoomText
 	text_end
 
-.WinItBackText:
-	text_far _CeladonDinerGymGuideWinItBackText
+CeladonDinerText_491b7:
+	text_far _CeladonDinerText_491b7
 	text_end

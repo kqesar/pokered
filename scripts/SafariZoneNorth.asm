@@ -2,31 +2,30 @@ SafariZoneNorth_Script:
 	jp EnableAutoTextBoxDrawing
 
 SafariZoneNorth_TextPointers:
-	def_text_pointers
-	dw_const PickUpItemText,                   TEXT_SAFARIZONENORTH_PROTEIN
-	dw_const PickUpItemText,                   TEXT_SAFARIZONENORTH_TM_SKULL_BASH
-	dw_const SafariZoneNorthRestHouseSignText, TEXT_SAFARIZONENORTH_REST_HOUSE_SIGN
-	dw_const SafariZoneNorthTrainerTips1Text,  TEXT_SAFARIZONENORTH_TRAINER_TIPS_1
-	dw_const SafariZoneNorthSignText,          TEXT_SAFARIZONENORTH_SIGN
-	dw_const SafariZoneNorthTrainerTips2Text,  TEXT_SAFARIZONENORTH_TRAINER_TIPS_2
-	dw_const SafariZoneNorthTrainerTips3Text,  TEXT_SAFARIZONENORTH_TRAINER_TIPS_3
+	dw PickUpItemText
+	dw PickUpItemText
+	dw SafariZoneNorthText3
+	dw SafariZoneNorthText4
+	dw SafariZoneNorthText5
+	dw SafariZoneNorthText6
+	dw SafariZoneNorthText7
 
-SafariZoneNorthRestHouseSignText:
-	text_far _SafariZoneNorthRestHouseSignText
+SafariZoneNorthText3:
+	text_far _SafariZoneNorthText3
 	text_end
 
-SafariZoneNorthTrainerTips1Text:
-	text_far _SafariZoneNorthTrainerTips1Text
+SafariZoneNorthText4:
+	text_far _SafariZoneNorthText4
 	text_end
 
-SafariZoneNorthSignText:
-	text_far _SafariZoneNorthSignText
+SafariZoneNorthText5:
+	text_far _SafariZoneNorthText5
 	text_end
 
-SafariZoneNorthTrainerTips2Text:
-	text_far _SafariZoneNorthTrainerTips2Text
+SafariZoneNorthText6:
+	text_far _SafariZoneNorthText6
 	text_end
 
-SafariZoneNorthTrainerTips3Text:
-	text_far _SafariZoneNorthTrainerTips3Text
+SafariZoneNorthText7:
+	text_far _SafariZoneNorthText7
 	text_end

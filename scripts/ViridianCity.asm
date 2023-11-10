@@ -5,17 +5,16 @@ ViridianCity_Script:
 	jp CallFunctionInTable
 
 ViridianCity_ScriptPointers:
-	def_script_pointers
-	dw_const ViridianCityDefaultScript,                  SCRIPT_VIRIDIANCITY_DEFAULT
-	dw_const ViridianCityOldManStartCatchTrainingScript, SCRIPT_VIRIDIANCITY_OLD_MAN_START_CATCH_TRAINING
-	dw_const ViridianCityOldManEndCatchTrainingScript,   SCRIPT_VIRIDIANCITY_OLD_MAN_END_CATCH_TRAINING
-	dw_const ViridianCityPlayerMovingDownScript,         SCRIPT_VIRIDIANCITY_PLAYER_MOVING_DOWN
+	dw ViridianCityScript0
+	dw ViridianCityScript1
+	dw ViridianCityScript2
+	dw ViridianCityScript3
 
-ViridianCityDefaultScript:
-	call ViridianCityCheckGymOpenScript
-	jp ViridianCityCheckGotPokedexScript
+ViridianCityScript0:
+	call ViridianCityScript_1900b
+	jp ViridianCityScript_1903d
 
-ViridianCityCheckGymOpenScript:
+ViridianCityScript_1900b:
 	CheckEvent EVENT_VIRIDIAN_GYM_OPEN
 	ret nz
 	ld a, [wObtainedBadges]
@@ -30,17 +29,17 @@ ViridianCityCheckGymOpenScript:
 	ld a, [wXCoord]
 	cp 32
 	ret nz
-	ld a, TEXT_VIRIDIANCITY_GYM_LOCKED
+	ld a, $e
 	ldh [hSpriteIndexOrTextID], a
 	call DisplayTextID
 	xor a
 	ldh [hJoyHeld], a
-	call ViridianCityMovePlayerDownScript
-	ld a, SCRIPT_VIRIDIANCITY_PLAYER_MOVING_DOWN
+	call ViridianCityScript_190cf
+	ld a, $3
 	ld [wViridianCityCurScript], a
 	ret
 
-ViridianCityCheckGotPokedexScript:
+ViridianCityScript_1903d:
 	CheckEvent EVENT_GOT_POKEDEX
 	ret nz
 	ld a, [wYCoord]
@@ -49,17 +48,17 @@ ViridianCityCheckGotPokedexScript:
 	ld a, [wXCoord]
 	cp 19
 	ret nz
-	ld a, TEXT_VIRIDIANCITY_OLD_MAN_SLEEPY
+	ld a, $5
 	ldh [hSpriteIndexOrTextID], a
 	call DisplayTextID
 	xor a
 	ldh [hJoyHeld], a
-	call ViridianCityMovePlayerDownScript
-	ld a, SCRIPT_VIRIDIANCITY_PLAYER_MOVING_DOWN
+	call ViridianCityScript_190cf
+	ld a, $3
 	ld [wViridianCityCurScript], a
 	ret
 
-ViridianCityOldManStartCatchTrainingScript:
+ViridianCityScript1:
 	ld a, [wSprite03StateData1YPixels]
 	ldh [hSpriteScreenYCoord], a
 	ld a, [wSprite03StateData1XPixels]
@@ -78,11 +77,11 @@ ViridianCityOldManStartCatchTrainingScript:
 	ld [wCurEnemyLVL], a
 	ld a, WEEDLE
 	ld [wCurOpponent], a
-	ld a, SCRIPT_VIRIDIANCITY_OLD_MAN_END_CATCH_TRAINING
+	ld a, $2
 	ld [wViridianCityCurScript], a
 	ret
 
-ViridianCityOldManEndCatchTrainingScript:
+ViridianCityScript2:
 	ldh a, [hSpriteScreenYCoord]
 	ld [wSprite03StateData1YPixels], a
 	ldh a, [hSpriteScreenXCoord]
@@ -95,26 +94,26 @@ ViridianCityOldManEndCatchTrainingScript:
 	call Delay3
 	xor a
 	ld [wJoyIgnore], a
-	ld a, TEXT_VIRIDIANCITY_OLD_MAN_YOU_NEED_TO_WEAKEN_THE_TARGET
+	ld a, $f
 	ldh [hSpriteIndexOrTextID], a
 	call DisplayTextID
 	xor a
 	ld [wBattleType], a
 	ld [wJoyIgnore], a
-	ld a, SCRIPT_VIRIDIANCITY_DEFAULT
+	ld a, $0
 	ld [wViridianCityCurScript], a
 	ret
 
-ViridianCityPlayerMovingDownScript:
+ViridianCityScript3:
 	ld a, [wSimulatedJoypadStatesIndex]
 	and a
 	ret nz
 	call Delay3
-	ld a, SCRIPT_VIRIDIANCITY_DEFAULT
+	ld a, 0
 	ld [wViridianCityCurScript], a
 	ret
 
-ViridianCityMovePlayerDownScript:
+ViridianCityScript_190cf:
 	call StartSimulatingJoypadStates
 	ld a, $1
 	ld [wSimulatedJoypadStatesIndex], a
@@ -126,154 +125,153 @@ ViridianCityMovePlayerDownScript:
 	ret
 
 ViridianCity_TextPointers:
-	def_text_pointers
-	dw_const ViridianCityYoungster1Text,                     TEXT_VIRIDIANCITY_YOUNGSTER1
-	dw_const ViridianCityGambler1Text,                       TEXT_VIRIDIANCITY_GAMBLER1
-	dw_const ViridianCityYoungster2Text,                     TEXT_VIRIDIANCITY_YOUNGSTER2
-	dw_const ViridianCityGirlText,                           TEXT_VIRIDIANCITY_GIRL
-	dw_const ViridianCityOldManSleepyText,                   TEXT_VIRIDIANCITY_OLD_MAN_SLEEPY
-	dw_const ViridianCityFisherText,                         TEXT_VIRIDIANCITY_FISHER
-	dw_const ViridianCityOldManText,                         TEXT_VIRIDIANCITY_OLD_MAN
-	dw_const ViridianCitySignText,                           TEXT_VIRIDIANCITY_SIGN
-	dw_const ViridianCityTrainerTips1Text,                   TEXT_VIRIDIANCITY_TRAINER_TIPS1
-	dw_const ViridianCityTrainerTips2Text,                   TEXT_VIRIDIANCITY_TRAINER_TIPS2
-	dw_const MartSignText,                                   TEXT_VIRIDIANCITY_MART_SIGN
-	dw_const PokeCenterSignText,                             TEXT_VIRIDIANCITY_POKECENTER_SIGN
-	dw_const ViridianCityGymSignText,                        TEXT_VIRIDIANCITY_GYM_SIGN
-	dw_const ViridianCityGymLockedText,                      TEXT_VIRIDIANCITY_GYM_LOCKED
-	dw_const ViridianCityOldManYouNeedToWeakenTheTargetText, TEXT_VIRIDIANCITY_OLD_MAN_YOU_NEED_TO_WEAKEN_THE_TARGET
+	dw ViridianCityText1
+	dw ViridianCityText2
+	dw ViridianCityText3
+	dw ViridianCityText4
+	dw ViridianCityText5
+	dw ViridianCityText6
+	dw ViridianCityText7
+	dw ViridianCityText8
+	dw ViridianCityText9
+	dw ViridianCityText10
+	dw MartSignText
+	dw PokeCenterSignText
+	dw ViridianCityText13
+	dw ViridianCityText14
+	dw ViridianCityText15
 
-ViridianCityYoungster1Text:
-	text_far _ViridianCityYoungster1Text
+ViridianCityText1:
+	text_far _ViridianCityText1
 	text_end
 
-ViridianCityGambler1Text:
+ViridianCityText2:
 	text_asm
 	ld a, [wObtainedBadges]
 	cp ~(1 << BIT_EARTHBADGE)
-	ld hl, .GymLeaderReturnedText
-	jr z, .print_text
+	ld hl, ViridianCityText_19127
+	jr z, .done
 	CheckEvent EVENT_BEAT_VIRIDIAN_GYM_GIOVANNI
-	jr nz, .print_text
-	ld hl, .GymAlwaysClosedText
-.print_text
+	jr nz, .done
+	ld hl, ViridianCityText_19122
+.done
 	call PrintText
 	jp TextScriptEnd
 
-.GymAlwaysClosedText:
-	text_far _ViridianCityGambler1GymAlwaysClosedText
+ViridianCityText_19122:
+	text_far _ViridianCityText_19122
 	text_end
 
-.GymLeaderReturnedText:
-	text_far _ViridianCityGambler1GymLeaderReturnedText
+ViridianCityText_19127:
+	text_far _ViridianCityText_19127
 	text_end
 
-ViridianCityYoungster2Text:
+ViridianCityText3:
 	text_asm
-	ld hl, .YouWantToKnowAboutText
+	ld hl, ViridianCityText_1914d
 	call PrintText
 	call YesNoChoice
 	ld a, [wCurrentMenuItem]
 	and a
 	jr nz, .no
-	ld hl, .CaterpieAndWeedleDescriptionText
+	ld hl, ViridianCityText_19157
 	call PrintText
-	jr .text_script_end
+	jr .done
 .no
-	ld hl, .OkThenText
-	call PrintText
-.text_script_end
-	jp TextScriptEnd
-
-.YouWantToKnowAboutText:
-	text_far _ViridianCityYoungster2YouWantToKnowAboutText
-	text_end
-
-.OkThenText:
-	text_far ViridianCityYoungster2OkThenText
-	text_end
-
-.CaterpieAndWeedleDescriptionText:
-	text_far ViridianCityYoungster2CaterpieAndWeedleDescriptionText
-	text_end
-
-ViridianCityGirlText:
-	text_asm
-	CheckEvent EVENT_GOT_POKEDEX
-	jr nz, .got_pokedex
-	ld hl, .HasntHadHisCoffeeYetText
-	call PrintText
-	jr .text_script_end
-.got_pokedex
-	ld hl, .WhenIGoShopText
-	call PrintText
-.text_script_end
-	jp TextScriptEnd
-
-.HasntHadHisCoffeeYetText:
-	text_far _ViridianCityGirlHasntHadHisCoffeeYetText
-	text_end
-
-.WhenIGoShopText:
-	text_far _ViridianCityGirlWhenIGoShopText
-	text_end
-
-ViridianCityOldManSleepyText:
-	text_asm
-	ld hl, .PrivatePropertyText
-	call PrintText
-	call ViridianCityMovePlayerDownScript
-	ld a, SCRIPT_VIRIDIANCITY_PLAYER_MOVING_DOWN
-	ld [wViridianCityCurScript], a
-	jp TextScriptEnd
-
-.PrivatePropertyText:
-	text_far _ViridianCityOldManSleepyPrivatePropertyText
-	text_end
-
-ViridianCityFisherText:
-	text_asm
-	CheckEvent EVENT_GOT_TM42
-	jr nz, .got_item
-	ld hl, .YouCanHaveThisText
-	call PrintText
-	lb bc, TM_DREAM_EATER, 1
-	call GiveItem
-	jr nc, .bag_full
-	ld hl, .ReceivedTM42Text
-	call PrintText
-	SetEvent EVENT_GOT_TM42
-	jr .done
-.bag_full
-	ld hl, .TM42NoRoomText
-	call PrintText
-	jr .done
-.got_item
-	ld hl, .TM42ExplanationText
+	ld hl, ViridianCityText_19152
 	call PrintText
 .done
 	jp TextScriptEnd
 
-.YouCanHaveThisText:
-	text_far ViridianCityFisherYouCanHaveThisText
+ViridianCityText_1914d:
+	text_far _ViridianCityText_1914d
 	text_end
 
-.ReceivedTM42Text:
-	text_far _ViridianCityFisherReceivedTM42Text
+ViridianCityText_19152:
+	text_far _ViridianCityText_19152
+	text_end
+
+ViridianCityText_19157:
+	text_far _ViridianCityText_19157
+	text_end
+
+ViridianCityText4:
+	text_asm
+	CheckEvent EVENT_GOT_POKEDEX
+	jr nz, .gotPokedex
+	ld hl, ViridianCityText_19175
+	call PrintText
+	jr .done
+.gotPokedex
+	ld hl, ViridianCityText_1917a
+	call PrintText
+.done
+	jp TextScriptEnd
+
+ViridianCityText_19175:
+	text_far _ViridianCityText_19175
+	text_end
+
+ViridianCityText_1917a:
+	text_far _ViridianCityText_1917a
+	text_end
+
+ViridianCityText5:
+	text_asm
+	ld hl, ViridianCityText_19191
+	call PrintText
+	call ViridianCityScript_190cf
+	ld a, $3
+	ld [wViridianCityCurScript], a
+	jp TextScriptEnd
+
+ViridianCityText_19191:
+	text_far _ViridianCityText_19191
+	text_end
+
+ViridianCityText6:
+	text_asm
+	CheckEvent EVENT_GOT_TM42
+	jr nz, .got_item
+	ld hl, ViridianCityText_191ca
+	call PrintText
+	lb bc, TM_DREAM_EATER, 1
+	call GiveItem
+	jr nc, .bag_full
+	ld hl, ReceivedTM42Text
+	call PrintText
+	SetEvent EVENT_GOT_TM42
+	jr .done
+.bag_full
+	ld hl, TM42NoRoomText
+	call PrintText
+	jr .done
+.got_item
+	ld hl, TM42Explanation
+	call PrintText
+.done
+	jp TextScriptEnd
+
+ViridianCityText_191ca:
+	text_far _ViridianCityText_191ca
+	text_end
+
+ReceivedTM42Text:
+	text_far _ReceivedTM42Text
 	sound_get_item_2
 	text_end
 
-.TM42ExplanationText:
-	text_far _ViridianCityFisherTM42ExplanationText
+TM42Explanation:
+	text_far _TM42Explanation
 	text_end
 
-.TM42NoRoomText:
-	text_far _ViridianCityFisherTM42NoRoomText
+TM42NoRoomText:
+	text_far _TM42NoRoomText
 	text_end
 
-ViridianCityOldManText:
+ViridianCityText7:
 	text_asm
-	ld hl, .HadMyCoffeeNowText
+	ld hl, ViridianCityText_1920a
 	call PrintText
 	ld c, 2
 	call DelayFrames
@@ -281,49 +279,49 @@ ViridianCityOldManText:
 	ld a, [wCurrentMenuItem]
 	and a
 	jr z, .refused
-	ld hl, .KnowHowToCatchPokemonText
+	ld hl, ViridianCityText_1920f
 	call PrintText
-	ld a, SCRIPT_VIRIDIANCITY_OLD_MAN_START_CATCH_TRAINING
+	ld a, $1
 	ld [wViridianCityCurScript], a
 	jr .done
 .refused
-	ld hl, .TimeIsMoneyText
+	ld hl, ViridianCityText_19214
 	call PrintText
 .done
 	jp TextScriptEnd
 
-.HadMyCoffeeNowText:
-	text_far _ViridianCityOldManHadMyCoffeeNowText
+ViridianCityText_1920a:
+	text_far _ViridianCityText_1920a
 	text_end
 
-.KnowHowToCatchPokemonText:
-	text_far _ViridianCityOldManKnowHowToCatchPokemonText
+ViridianCityText_1920f:
+	text_far _ViridianCityText_1920f
 	text_end
 
-.TimeIsMoneyText:
-	text_far _ViridianCityOldManTimeIsMoneyText
+ViridianCityText_19214:
+	text_far _ViridianCityText_19214
 	text_end
 
-ViridianCityOldManYouNeedToWeakenTheTargetText:
-	text_far _ViridianCityOldManYouNeedToWeakenTheTargetText
+ViridianCityText15:
+	text_far _ViridianCityText_19219
 	text_end
 
-ViridianCitySignText:
-	text_far _ViridianCitySignText
+ViridianCityText8:
+	text_far _ViridianCityText8
 	text_end
 
-ViridianCityTrainerTips1Text:
-	text_far _ViridianCityTrainerTips1Text
+ViridianCityText9:
+	text_far _ViridianCityText9
 	text_end
 
-ViridianCityTrainerTips2Text:
-	text_far _ViridianCityTrainerTips2Text
+ViridianCityText10:
+	text_far _ViridianCityText10
 	text_end
 
-ViridianCityGymSignText:
-	text_far _ViridianCityGymSignText
+ViridianCityText13:
+	text_far _ViridianCityText13
 	text_end
 
-ViridianCityGymLockedText:
-	text_far _ViridianCityGymLockedText
+ViridianCityText14:
+	text_far _ViridianCityText14
 	text_end

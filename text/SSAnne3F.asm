@@ -1,4 +1,4 @@
-_SSAnne3FSailorText::
+_SSAnne3Text1::
 	text "Our CAPTAIN is a"
 	line "sword master!"
 

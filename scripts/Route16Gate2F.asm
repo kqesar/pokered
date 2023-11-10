@@ -2,46 +2,45 @@ Route16Gate2F_Script:
 	jp DisableAutoTextBoxDrawing
 
 Route16Gate2F_TextPointers:
-	def_text_pointers
-	dw_const Route16Gate2FLittleBoyText,       TEXT_ROUTE16GATE2F_LITTLE_BOY
-	dw_const Route16Gate2FLittleGirlText,      TEXT_ROUTE16GATE2F_LITTLE_GIRL
-	dw_const Route16Gate2FLeftBinocularsText,  TEXT_ROUTE16GATE2F_LEFT_BINOCULARS
-	dw_const Route16Gate2FRightBinocularsText, TEXT_ROUTE16GATE2F_RIGHT_BINOCULARS
+	dw Route16GateUpstairsText1
+	dw Route16GateUpstairsText2
+	dw Route16GateUpstairsText3
+	dw Route16GateUpstairsText4
 
-Route16Gate2FLittleBoyText:
+Route16GateUpstairsText1:
 	text_asm
-	ld hl, .Text
+	ld hl, Route16GateUpstairsText_49820
 	call PrintText
 	jp TextScriptEnd
 
-.Text:
-	text_far _Route16Gate2FLittleBoyText
+Route16GateUpstairsText_49820:
+	text_far _Route16GateUpstairsText_49820
 	text_end
 
-Route16Gate2FLittleGirlText:
+Route16GateUpstairsText2:
 	text_asm
-	ld hl, .Text
+	ld hl, Route16GateUpstairsText_4982f
 	call PrintText
 	jp TextScriptEnd
 
-.Text:
-	text_far _Route16Gate2FLittleGirlText
+Route16GateUpstairsText_4982f:
+	text_far _Route16GateUpstairsText_4982f
 	text_end
 
-Route16Gate2FLeftBinocularsText:
+Route16GateUpstairsText3:
 	text_asm
-	ld hl, .Text
+	ld hl, Route16GateUpstairsText_4983b
 	jp GateUpstairsScript_PrintIfFacingUp
 
-.Text:
-	text_far _Route16Gate2FLeftBinocularsText
+Route16GateUpstairsText_4983b:
+	text_far _Route16GateUpstairsText_4983b
 	text_end
 
-Route16Gate2FRightBinocularsText:
+Route16GateUpstairsText4:
 	text_asm
-	ld hl, .Text
+	ld hl, Route16GateUpstairsText_49847
 	jp GateUpstairsScript_PrintIfFacingUp
 
-.Text:
-	text_far _Route16Gate2FRightBinocularsText
+Route16GateUpstairsText_49847:
+	text_far _Route16GateUpstairsText_49847
 	text_end

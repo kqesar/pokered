@@ -1,4 +1,4 @@
-_CeruleanCityRivalPreBattleText::
+_CeruleanCityText_19668::
 	text "<RIVAL>: Yo!"
 	line "<PLAYER>!"
 
@@ -16,19 +16,19 @@ _CeruleanCityRivalPreBattleText::
 	cont "<PLAYER>!"
 	done
 
-_CeruleanCityRivalDefeatedText::
+_CeruleanCityText_1966d::
 	text "Hey!"
 	line "Take it easy!"
 	cont "You won already!"
 	prompt
 
-_CeruleanCityRivalVictoryText::
+_CeruleanCityText_19672::
 	text "Heh!"
 	line "You're no match"
 	cont "for my genius!"
 	prompt
 
-_CeruleanCityRivalIWentToBillsText::
+_CeruleanCityText_19677::
 	text "<RIVAL>: Hey,"
 	line "guess what?"
 
@@ -58,7 +58,7 @@ _CeruleanCityRivalIWentToBillsText::
 	cont "Smell ya later!"
 	done
 
-_CeruleanCityRocketText::
+_CeruleanCityText_196d9::
 	text "Hey! Stay out!"
 	line "It's not your"
 	cont "yard! Huh? Me?"
@@ -68,19 +68,19 @@ _CeruleanCityRocketText::
 	cont "you believe me?"
 	done
 
-_CeruleanCityRocketReceivedTM28Text::
+_ReceivedTM28Text::
 	text "<PLAYER> recovered"
 	line "TM28!@"
 	text_end
 
-_CeruleanCityRocketIBetterGetMovingText::
+_ReceivedTM28Text2::
 	text_start
 
 	para "I better get"
 	line "moving! Bye!@"
 	text_end
 
-_CeruleanCityRocketTM28NoRoomText::
+_TM28NoRoomText::
 	text "Make room for"
 	line "this!"
 
@@ -88,25 +88,25 @@ _CeruleanCityRocketTM28NoRoomText::
 	line "I give it to you!"
 	done
 
-_CeruleanCityRocketIGiveUpText::
+_CeruleanCityText_196ee::
 	text "Stop!"
 	line "I give up! I'll"
 	cont "leave quietly!"
 	prompt
 
-_CeruleanCityRocketIllReturnTheTMText::
+_CeruleanCityText_196f3::
 	text "OK! I'll return"
 	line "the TM I stole!"
 	prompt
 
-_CeruleanCityCooltrainerMText::
+_CeruleanCityText3::
 	text "You're a trainer"
 	line "too? Collecting,"
 	cont "fighting, it's a"
 	cont "tough life."
 	done
 
-_CeruleanCitySuperNerd1Text::
+_CeruleanCityText4::
 	text "That bush in"
 	line "front of the shop"
 	cont "is in the way."
@@ -115,14 +115,14 @@ _CeruleanCitySuperNerd1Text::
 	line "way around."
 	done
 
-_CeruleanCitySuperNerd2Text::
+_CeruleanCityText5::
 	text "You're making an"
 	line "encyclopedia on"
 	cont "#MON? That"
 	cont "sounds amusing."
 	done
 
-_CeruleanCityGuardText::
+_CeruleanCityText6::
 	text "The people here"
 	line "were robbed."
 
@@ -136,20 +136,20 @@ _CeruleanCityGuardText::
 	cont "with the ROCKETs!"
 	done
 
-_CeruleanCityCooltrainerF1SlowbroUseSonicboomText::
+_CeruleanCityText_19730::
 	text "OK! SLOWBRO!"
 	line "Use SONICBOOM!"
 	cont "Come on, SLOWBRO"
 	cont "pay attention!"
 	done
 
-_CeruleanCityCooltrainerF1SlowbroPunchText::
+_CeruleanCityText_19735::
 	text "SLOWBRO punch!"
 	line "No! You blew it"
 	cont "again!"
 	done
 
-_CeruleanCityCooltrainerF1SlowbroWithdrawText::
+_CeruleanCityText_1973a::
 	text "SLOWBRO, WITHDRAW!"
 	line "No! That's wrong!"
 
@@ -162,27 +162,27 @@ _CeruleanCityCooltrainerF1SlowbroWithdrawText::
 	cont "as a trainer!"
 	done
 
-_CeruleanCitySlowbroTookASnoozeText::
+_CeruleanCityText_1976f::
 	text "SLOWBRO took a"
 	line "snooze..."
 	done
 
-_CeruleanCitySlowbroIsLoafingAroundText::
+_CeruleanCityText_19774::
 	text "SLOWBRO is"
 	line "loafing around..."
 	done
 
-_CeruleanCitySlowbroTurnedAwayText::
+_CeruleanCityText_19779::
 	text "SLOWBRO turned"
 	line "away..."
 	done
 
-_CeruleanCitySlowbroIgnoredOrdersText::
+_CeruleanCityText_1977e::
 	text "SLOWBRO"
 	line "ignored orders..."
 	done
 
-_CeruleanCityCooltrainerF2Text::
+_CeruleanCityText9::
 	text "I want a bright"
 	line "red BICYCLE!"
 
@@ -191,7 +191,7 @@ _CeruleanCityCooltrainerF2Text::
 	cont "get dirty!"
 	done
 
-_CeruleanCitySuperNerd3Text::
+_CeruleanCityText10::
 	text "This is CERULEAN"
 	line "CAVE! Horribly"
 	cont "strong #MON"
@@ -203,14 +203,14 @@ _CeruleanCitySuperNerd3Text::
 	cont "is allowed in!"
 	done
 
-_CeruleanCitySignText::
+_CeruleanCityText12::
 	text "CERULEAN CITY"
 	line "A Mysterious,"
 	cont "Blue Aura"
 	cont "Surrounds It"
 	done
 
-_CeruleanCityTrainerTipsText::
+_CeruleanCityText13::
 	text "TRAINER TIPS"
 
 	para "Pressing B Button"
@@ -219,13 +219,13 @@ _CeruleanCityTrainerTipsText::
 	cont "process."
 	done
 
-_CeruleanCityBikeShopSign::
+_CeruleanCityText16::
 	text "Grass and caves"
 	line "handled easily!"
 	cont "BIKE SHOP"
 	done
 
-_CeruleanCityGymSign::
+_CeruleanCityText17::
 	text "CERULEAN CITY"
 	line "#MON GYM"
 	cont "LEADER: MISTY"

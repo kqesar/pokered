@@ -2,23 +2,22 @@ PewterNidoranHouse_Script:
 	jp EnableAutoTextBoxDrawing
 
 PewterNidoranHouse_TextPointers:
-	def_text_pointers
-	dw_const PewterNidoranHouseNidoranText,       TEXT_PEWTERNIDORANHOUSE_NIDORAN
-	dw_const PewterNidoranHouseLittleBoyText,     TEXT_PEWTERNIDORANHOUSE_LITTLE_BOY
-	dw_const PewterNidoranHouseMiddleAgedManText, TEXT_PEWTERNIDORANHOUSE_MIDDLE_AGED_MAN
+	dw PewterHouse1Text1
+	dw PewterHouse1Text2
+	dw PewterHouse1Text3
 
-PewterNidoranHouseNidoranText:
-	text_far _PewterNidoranHouseNidoranText
+PewterHouse1Text1:
+	text_far _PewterHouse1Text1
 	text_asm
 	ld a, NIDORAN_M
 	call PlayCry
 	call WaitForSoundToFinish
 	jp TextScriptEnd
 
-PewterNidoranHouseLittleBoyText:
-	text_far _PewterNidoranHouseLittleBoyText
+PewterHouse1Text2:
+	text_far _PewterHouse1Text2
 	text_end
 
-PewterNidoranHouseMiddleAgedManText:
-	text_far _PewterNidoranHouseMiddleAgedManText
+PewterHouse1Text3:
+	text_far _PewterHouse1Text3
 	text_end

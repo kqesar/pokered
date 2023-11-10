@@ -118,17 +118,17 @@ PoisonEffect:
 	ret nc
 .inflictPoison
 	dec hl
-	set PSN, [hl]
+	set 3, [hl] ; mon is now poisoned
 	push de
 	dec de
 	ldh a, [hWhoseTurn]
 	and a
-	ld b, SHAKE_SCREEN_ANIM
+	ld b, ANIM_C7
 	ld hl, wPlayerBattleStatus3
 	ld a, [de]
 	ld de, wPlayerToxicCounter
 	jr nz, .ok
-	ld b, ENEMY_HUD_SHAKE_ANIM
+	ld b, ANIM_A9
 	ld hl, wEnemyBattleStatus3
 	ld de, wEnemyToxicCounter
 .ok
@@ -232,14 +232,14 @@ FreezeBurnParalyzeEffect:
 	ld a, 1 << PAR
 	ld [wEnemyMonStatus], a
 	call QuarterSpeedDueToParalysis ; quarter speed of affected mon
-	ld a, ENEMY_HUD_SHAKE_ANIM
+	ld a, ANIM_A9
 	call PlayBattleAnimation
 	jp PrintMayNotAttackText ; print paralysis text
 .burn1
 	ld a, 1 << BRN
 	ld [wEnemyMonStatus], a
 	call HalveAttackDueToBurn ; halve attack of affected mon
-	ld a, ENEMY_HUD_SHAKE_ANIM
+	ld a, ANIM_A9
 	call PlayBattleAnimation
 	ld hl, BurnedText
 	jp PrintText
@@ -247,7 +247,7 @@ FreezeBurnParalyzeEffect:
 	call ClearHyperBeam ; resets hyper beam (recharge) condition from target
 	ld a, 1 << FRZ
 	ld [wEnemyMonStatus], a
-	ld a, ENEMY_HUD_SHAKE_ANIM
+	ld a, ANIM_A9
 	call PlayBattleAnimation
 	ld hl, FrozenText
 	jp PrintText
@@ -802,7 +802,7 @@ ThrashPetalDanceEffect:
 	inc a
 	ld [de], a ; set thrash/petal dance counter to 2 or 3 at random
 	ldh a, [hWhoseTurn]
-	add SHRINKING_SQUARE_ANIM
+	add ANIM_B0
 	jp PlayBattleAnimation2
 
 SwitchAndTeleportEffect:
@@ -1002,7 +1002,7 @@ ChargeEffect:
 	jr z, .chargeEffect
 	ld hl, wEnemyBattleStatus1
 	ld de, wEnemyMoveEffect
-	ld b, XSTATITEM_DUPLICATE_ANIM
+	ld b, ANIM_AF
 .chargeEffect
 	set CHARGING_UP, [hl]
 	ld a, [de]
@@ -1016,7 +1016,7 @@ ChargeEffect:
 	cp DIG
 	jr nz, .notDigOrFly
 	set INVULNERABLE, [hl] ; mon is now invulnerable to typical attacks (fly/dig)
-	ld b, SLIDE_DOWN_ANIM
+	ld b, ANIM_C0
 .notDigOrFly
 	xor a
 	ld [wAnimationType], a

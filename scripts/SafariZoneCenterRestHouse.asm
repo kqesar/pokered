@@ -2,14 +2,13 @@ SafariZoneCenterRestHouse_Script:
 	jp EnableAutoTextBoxDrawing
 
 SafariZoneCenterRestHouse_TextPointers:
-	def_text_pointers
-	dw_const SafariZoneCenterRestHouseGirlText,      TEXT_SAFARIZONECENTERRESTHOUSE_GIRL
-	dw_const SafariZoneCenterRestHouseScientistText, TEXT_SAFARIZONECENTERRESTHOUSE_SCIENTIST
+	dw SafariZoneRestHouse1Text1
+	dw SafariZoneRestHouse1Text2
 
-SafariZoneCenterRestHouseGirlText:
-	text_far _SafariZoneCenterRestHouseGirlText
+SafariZoneRestHouse1Text1:
+	text_far _SafariZoneRestHouse1Text1
 	text_end
 
-SafariZoneCenterRestHouseScientistText:
-	text_far _SafariZoneCenterRestHouseScientistText
+SafariZoneRestHouse1Text2:
+	text_far _SafariZoneRestHouse1Text2
 	text_end

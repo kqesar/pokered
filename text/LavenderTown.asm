@@ -1,14 +1,14 @@
-_LavenderTownLittleGirlDoYouBelieveInGhostsText::
+_LavenderTownText_4413c::
 	text "Do you believe in"
 	line "GHOSTs?"
 	done
 
-_LavenderTownLittleGirlSoThereAreBelieversText::
+_LavenderTownText_44141::
 	text "Really? So there"
 	line "are believers..."
 	done
 
-_LavenderTownLittleGirlHaHaGuessNotText::
+_LavenderTownText_44146::
 	text "Hahaha, I guess"
 	line "not."
 
@@ -17,7 +17,7 @@ _LavenderTownLittleGirlHaHaGuessNotText::
 	cont "it's not real."
 	done
 
-_LavenderTownCooltrainerMText::
+_LavenderTownText2::
 	text "This town is known"
 	line "as the grave site"
 	cont "of #MON."
@@ -27,7 +27,7 @@ _LavenderTownCooltrainerMText::
 	cont "#MON TOWER."
 	done
 
-_LavenderTownSuperNerdText::
+_LavenderTownText3::
 	text "GHOSTs appeared"
 	line "in #MON TOWER."
 
@@ -37,13 +37,13 @@ _LavenderTownSuperNerdText::
 	cont "ROCKETs killed."
 	done
 
-_LavenderTownSignText::
+_LavenderTownText4::
 	text "LAVENDER TOWN"
 	line "The Noble Purple"
 	cont "Town"
 	done
 
-_LavenderTownSilphScopeSignText::
+_LavenderTownText5::
 	text "New SILPH SCOPE!"
 
 	para "Make the Invisible"
@@ -52,12 +52,12 @@ _LavenderTownSilphScopeSignText::
 	para "SILPH CO."
 	done
 
-_LavenderTownPokemonHouseSignText::
+_LavenderTownText8::
 	text "LAVENDER VOLUNTEER"
 	line "#MON HOUSE"
 	done
 
-_LavenderTownPokemonTowerSignText::
+_LavenderTownText9::
 	text "May the Souls of"
 	line "#MON Rest Easy"
 	cont "#MON TOWER"

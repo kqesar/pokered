@@ -3,19 +3,18 @@ SafariZoneNorthRestHouse_Script:
 	ret
 
 SafariZoneNorthRestHouse_TextPointers:
-	def_text_pointers
-	dw_const SafariZoneNorthRestHouseScientistText,        TEXT_SAFARIZONENORTHRESTHOUSE_SCIENTIST
-	dw_const SafariZoneNorthRestHouseSafariZoneWorkerText, TEXT_SAFARIZONENORTHRESTHOUSE_SAFARI_ZONE_WORKER
-	dw_const SafariZoneNorthRestHouseGentlemanText,        TEXT_SAFARIZONENORTHRESTHOUSE_GENTLEMAN
+	dw SafariZoneRestHouse4Text1
+	dw SafariZoneRestHouse4Text2
+	dw SafariZoneRestHouse4Text3
 
-SafariZoneNorthRestHouseScientistText:
-	text_far _SafariZoneNorthRestHouseScientistText
+SafariZoneRestHouse4Text1:
+	text_far _SafariZoneRestHouse4Text1
 	text_end
 
-SafariZoneNorthRestHouseSafariZoneWorkerText:
-	text_far _SafariZoneNorthRestHouseSafariZoneWorkerText
+SafariZoneRestHouse4Text2:
+	text_far _SafariZoneRestHouse4Text2
 	text_end
 
-SafariZoneNorthRestHouseGentlemanText:
-	text_far _SafariZoneNorthRestHouseGentlemanText
+SafariZoneRestHouse4Text3:
+	text_far _SafariZoneRestHouse4Text3
 	text_end

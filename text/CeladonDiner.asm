@@ -1,24 +1,24 @@
-_CeladonDinerCookText::
+_CeladonDinerText1::
 	text "Hi!"
 
 	para "We're taking a"
 	line "break now."
 	done
 
-_CeladonDinerMiddleAgedWomanText::
+_CeladonDinerText2::
 	text "My #MON are"
 	line "weak, so I often"
 	cont "have to go to the"
 	cont "DRUG STORE."
 	done
 
-_CeladonDinerMiddleAgedManText::
+_CeladonDinerText3::
 	text "Psst! There's a"
 	line "basement under"
 	cont "the GAME CORNER."
 	done
 
-_CeladonDinerFisherText::
+_CeladonDinerText4::
 	text "Munch..."
 
 	para "The man at that"
@@ -26,7 +26,7 @@ _CeladonDinerFisherText::
 	cont "at the slots."
 	done
 
-_CeladonDinerGymGuideImFlatOutBustedText::
+_CeladonDinerText_491a7::
 	text "Go ahead! Laugh!"
 
 	para "I'm flat out"
@@ -41,19 +41,19 @@ _CeladonDinerGymGuideImFlatOutBustedText::
 	cont "more!"
 	prompt
 
-_CeladonDinerGymGuideReceivedCoinCaseText::
+_ReceivedCoinCaseText::
 	text "<PLAYER> received"
 	line "a @"
 	text_ram wStringBuffer
 	text "!@"
 	text_end
 
-_CeladonDinerGymGuideCoinCaseNoRoomText::
+_CoinCaseNoRoomText::
 	text "Make room for"
 	line "this!"
 	done
 
-_CeladonDinerGymGuideWinItBackText::
+_CeladonDinerText_491b7::
 	text "I always thought"
 	line "I was going to"
 	cont "win it back..."

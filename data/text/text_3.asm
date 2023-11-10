@@ -321,10 +321,10 @@ _DreamWasEatenText::
 	line "dream was eaten!"
 	prompt
 
-_TradeCenterOpponentText::
+_TradeCenterText1::
 	text "!"
 	done
 
-_ColosseumOpponentText::
+_ColosseumText1::
 	text "!"
 	done

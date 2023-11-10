@@ -1,4 +1,4 @@
-_ViridianForestNorthGateSuperNerdText::
+_ViridianForestExitText1::
 	text "Many #MON live"
 	line "only in forests "
 	cont "and caves."
@@ -8,7 +8,7 @@ _ViridianForestNorthGateSuperNerdText::
 	cont "different kinds!"
 	done
 
-_ViridianForestNorthGateGrampsText::
+_ViridianForestExitText2::
 	text "Have you noticed"
 	line "the bushes on the"
 	cont "roadside?"

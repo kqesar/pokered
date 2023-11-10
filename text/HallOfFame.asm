@@ -1,4 +1,4 @@
-_HallOfFameOakText::
+_HallofFameRoomText1::
 	text "OAK: Er-hem!"
 	line "Congratulations"
 	cont "<PLAYER>!"

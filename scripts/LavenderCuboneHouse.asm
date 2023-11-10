@@ -3,34 +3,33 @@ LavenderCuboneHouse_Script:
 	ret
 
 LavenderCuboneHouse_TextPointers:
-	def_text_pointers
-	dw_const LavenderCuboneHouseCuboneText,       TEXT_LAVENDERCUBONEHOUSE_CUBONE
-	dw_const LavenderCuboneHouseBrunetteGirlText, TEXT_LAVENDERCUBONEHOUSE_BRUNETTE_GIRL
+	dw LavenderHouse2Text1
+	dw LavenderHouse2Text2
 
-LavenderCuboneHouseCuboneText:
-	text_far _LavenderCuboneHouseCuboneText
+LavenderHouse2Text1:
+	text_far _LavenderHouse2Text1
 	text_asm
 	ld a, CUBONE
 	call PlayCry
 	jp TextScriptEnd
 
-LavenderCuboneHouseBrunetteGirlText:
+LavenderHouse2Text2:
 	text_asm
 	CheckEvent EVENT_RESCUED_MR_FUJI
 	jr nz, .rescued_mr_fuji
-	ld hl, .PoorCubonesMotherText
+	ld hl, LavenderHouse2Text_1d9dc
 	call PrintText
 	jr .done
 .rescued_mr_fuji
-	ld hl, .TheGhostIsGoneText
+	ld hl, LavenderHouse2Text_1d9e1
 	call PrintText
 .done
 	jp TextScriptEnd
 
-.PoorCubonesMotherText:
-	text_far _LavenderCuboneHouseBrunetteGirlPoorCubonesMotherText
+LavenderHouse2Text_1d9dc:
+	text_far _LavenderHouse2Text_1d9dc
 	text_end
 
-.TheGhostIsGoneText:
-	text_far _LavenderCuboneHouseBrunetteGirlGhostIsGoneText
+LavenderHouse2Text_1d9e1:
+	text_far _LavenderHouse2Text_1d9e1
 	text_end

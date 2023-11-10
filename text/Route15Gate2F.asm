@@ -1,4 +1,4 @@
-_Route15Gate2FOaksAideExpAllText::
+_Route15GateUpstairsText_4968c::
 	text "EXP.ALL gives"
 	line "EXP points to all"
 	cont "the #MON with"
@@ -15,7 +15,7 @@ _Route15Gate2FOaksAideExpAllText::
 	cont "store it via PC."
 	done
 
-_Route15Gate2FBinocularsText::
+_Route15GateUpstairsText_49698::
 	text "Looked into the"
 	line "binoculars."
 

@@ -1,4 +1,4 @@
-_Route23YouDontHaveTheBadgeYetText::
+_VictoryRoadGuardText1::
 	text "You can pass here"
 	line "only if you have"
 	cont "the @"
@@ -15,7 +15,7 @@ _Route23YouDontHaveTheBadgeYetText::
 	cont "#MON LEAGUE!@"
 	text_end
 
-_Route23OhThatIsTheBadgeText::
+_VictoryRoadGuardText2::
 	text "You can pass here"
 	line "only if you have"
 	cont "the @"
@@ -28,14 +28,14 @@ _Route23OhThatIsTheBadgeText::
 	text "!@"
 	text_end
 
-_Route23GoRightAheadText::
+_VictoryRoadGuardText_513a3::
 	text_start
 
 	para "OK then! Please,"
 	line "go right ahead!"
 	done
 
-_Route23VictoryRoadGateSignText::
+_Route23Text8::
 	text "VICTORY ROAD GATE"
 	line "- #MON LEAGUE"
 	done

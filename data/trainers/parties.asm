@@ -1,5 +1,4 @@
 TrainerDataPointers:
-	table_width 2, TrainerDataPointers
 	dw YoungsterData
 	dw BugCatcherData
 	dw LassData
@@ -47,7 +46,6 @@ TrainerDataPointers:
 	dw ChannelerData
 	dw AgathaData
 	dw LanceData
-	assert_table_length NUM_TRAINERS
 
 ; if first byte != $FF, then
 	; first byte is level (of all pokemon on this team)
@@ -540,8 +538,6 @@ GiovanniData:
 	db $FF, 37, NIDORINO, 35, KANGASKHAN, 37, RHYHORN, 41, NIDOQUEEN, 0
 ; Viridian Gym
 	db $FF, 45, RHYHORN, 42, DUGTRIO, 44, NIDOQUEEN, 45, NIDOKING, 50, RHYDON, 0
-; Rematch after beat the first time the elite four league
-	db $FF, 78, NIDOQUEEN, 80, NIDOKING, 80, RHYDON, 82, MAROWAK, 82, DUGTRIO, 84, SANDSLASH, 0
 
 RocketData:
 ; Mt. Moon B2F
@@ -644,38 +640,24 @@ BrunoData:
 
 BrockData:
 	db $FF, 12, GEODUDE, 14, ONIX, 0
-; Rematch after beat the first time the elite four league
-	db $FF, 64, GRAVELER, 66, GOLEM, 68, RHYDON, 68, KABUTOPS, 68, OMASTAR, 70, AERODACTYL, 0
 
 MistyData:
 	db $FF, 18, STARYU, 21, STARMIE, 0
-; Rematch after beat the first time the elite four league
-	db $FF, 68, LAPRAS, 68, SEADRA, 68, VAPOREON, 70, STARMIE, 70, GYARADOS, 72, BLASTOISE, 0
 
 LtSurgeData:
 	db $FF, 21, VOLTORB, 18, PIKACHU, 24, RAICHU, 0
-; Rematch after beat the first time the elite four league
-	db $FF, 68, RAICHU, 68, JOLTEON, 70, ELECTABUZZ, 70, ELECTRODE, 72, MAGNETON, 74, ZAPDOS, 0
 
 ErikaData:
 	db $FF, 29, VICTREEBEL, 24, TANGELA, 29, VILEPLUME, 0
-; Rematch after beat the first time the elite four league
-	db $FF, 70, SCYTHER, 72, EXEGGUTOR, 72, VICTREEBEL, 74, VILEPLUME, 74, TANGELA, 76, VENUSAUR, 0
 
 KogaData:
 	db $FF, 37, KOFFING, 39, MUK, 37, KOFFING, 43, WEEZING, 0
-; Rematch after beat the first time the elite four league
-	db $FF, 72, VENUSAUR, 74, WEEZING, 74, MUK, 76, GENGAR, 76, TENTACRUEL, 78, VENOMOTH, 0
 
 BlaineData:
 	db $FF, 42, GROWLITHE, 40, PONYTA, 42, RAPIDASH, 47, ARCANINE, 0
-; Rematch after beat the first time the elite four league
-	db $FF, 76, FLAREON, 78, MAGMAR, 78, RAPIDASH, 78, NINETALES, 80, NINETALES, 82, CHARIZARD, 0
 
 SabrinaData:
 	db $FF, 38, KADABRA, 37, MR_MIME, 38, VENOMOTH, 43, ALAKAZAM, 0
-; Rematch after beat the first time the elite four league
-	db $FF, 74, MR_MIME, 76, HYPNO, 76, SLOWBRO, 78, EXEGGUTOR, 78, KADABRA, 80, ALAKAZAM, 0
 
 GentlemanData:
 ; SS Anne 1F Rooms

@@ -1,19 +1,19 @@
-_SafariZoneNorthRestHouseSignText::
+_SafariZoneNorthText3::
 	text "REST HOUSE"
 	done
 
-_SafariZoneNorthTrainerTips1Text::
+_SafariZoneNorthText4::
 	text "TRAINER TIPS"
 
 	para "The SECRET HOUSE"
 	line "is still ahead!"
 	done
 
-_SafariZoneNorthSignText::
+_SafariZoneNorthText5::
 	text "AREA 2"
 	done
 
-_SafariZoneNorthTrainerTips2Text::
+_SafariZoneNorthText6::
 	text "TRAINER TIPS"
 
 	para "#MON hide in"
@@ -24,7 +24,7 @@ _SafariZoneNorthTrainerTips2Text::
 	cont "flush them out."
 	done
 
-_SafariZoneNorthTrainerTips3Text::
+_SafariZoneNorthText7::
 	text "TRAINER TIPS"
 
 	para "Win a free HM for"

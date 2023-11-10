@@ -1,29 +1,29 @@
-_Route24CooltrainerM1YouBeatOurContestText::
+_Route24Text_51510::
 	text "Congratulations!"
 	line "You beat our 5"
 	cont "contest trainers!@"
 	text_end
 
-_Route24CooltrainerM1YouJustEarnedAPrizeText::
+_Route24Text_51515::
 	text_start
 
 	para "You just earned a"
 	line "fabulous prize!"
 	prompt
 
-_Route24CooltrainerM1ReceivedNuggetText::
+_Route24Text_5151a::
 	text "<PLAYER> received"
 	line "a @"
 	text_ram wStringBuffer
 	text "!@"
 	text_end
 
-_Route24CooltrainerM1NoRoomText::
+_Route24Text_51521::
 	text "You don't have"
 	line "any room!"
 	done
 
-_Route24CooltrainerM1JoinTeamRocketText::
+_Route24Text_51526::
 	text "By the way, would"
 	line "you like to join"
 	cont "TEAM ROCKET?"
@@ -49,19 +49,19 @@ _Route24CooltrainerM1JoinTeamRocketText::
 	cont "refuse!"
 	done
 
-_Route24CooltrainerM1DefeatedText::
+_Route24Text_5152b::
 	text "Arrgh!"
 	line "You are good!"
 	prompt
 
-_Route24CooltrainerM1YouCouldBecomeATopLeaderText::
+_Route24Text_51530::
 	text "With your ability,"
 	line "you could become"
 	cont "a top leader in"
 	cont "TEAM ROCKET!"
 	done
 
-_Route24CooltrainerM2BattleText::
+_Route24BattleText1::
 	text "I saw your feat"
 	line "from the grass!"
 	done

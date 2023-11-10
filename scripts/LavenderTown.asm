@@ -2,63 +2,62 @@ LavenderTown_Script:
 	jp EnableAutoTextBoxDrawing
 
 LavenderTown_TextPointers:
-	def_text_pointers
-	dw_const LavenderTownLittleGirlText,       TEXT_LAVENDERTOWN_LITTLE_GIRL
-	dw_const LavenderTownCooltrainerMText,     TEXT_LAVENDERTOWN_COOLTRAINER_M
-	dw_const LavenderTownSuperNerdText,        TEXT_LAVENDERTOWN_SUPER_NERD
-	dw_const LavenderTownSignText,             TEXT_LAVENDERTOWN_SIGN
-	dw_const LavenderTownSilphScopeSignText,   TEXT_LAVENDERTOWN_SILPH_SCOPE_SIGN
-	dw_const MartSignText,                     TEXT_LAVENDERTOWN_MART_SIGN
-	dw_const PokeCenterSignText,               TEXT_LAVENDERTOWN_POKECENTER_SIGN
-	dw_const LavenderTownPokemonHouseSignText, TEXT_LAVENDERTOWN_POKEMON_HOUSE_SIGN
-	dw_const LavenderTownPokemonTowerSignText, TEXT_LAVENDERTOWN_POKEMON_TOWER_SIGN
+	dw LavenderTownText1
+	dw LavenderTownText2
+	dw LavenderTownText3
+	dw LavenderTownText4
+	dw LavenderTownText5
+	dw MartSignText
+	dw PokeCenterSignText
+	dw LavenderTownText8
+	dw LavenderTownText9
 
-LavenderTownLittleGirlText:
+LavenderTownText1:
 	text_asm
-	ld hl, .DoYouBelieveInGhostsText
+	ld hl, LavenderTownText_4413c
 	call PrintText
 	call YesNoChoice
 	ld a, [wCurrentMenuItem]
 	and a
-	ld hl, .HaHaGuessNotText
+	ld hl, LavenderTownText_44146
 	jr nz, .got_text
-	ld hl, .SoThereAreBelieversText
+	ld hl, LavenderTownText_44141
 .got_text
 	call PrintText
 	jp TextScriptEnd
 
-.DoYouBelieveInGhostsText:
-	text_far _LavenderTownLittleGirlDoYouBelieveInGhostsText
+LavenderTownText_4413c:
+	text_far _LavenderTownText_4413c
 	text_end
 
-.SoThereAreBelieversText:
-	text_far _LavenderTownLittleGirlSoThereAreBelieversText
+LavenderTownText_44141:
+	text_far _LavenderTownText_44141
 	text_end
 
-.HaHaGuessNotText:
-	text_far _LavenderTownLittleGirlHaHaGuessNotText
+LavenderTownText_44146:
+	text_far _LavenderTownText_44146
 	text_end
 
-LavenderTownCooltrainerMText:
-	text_far _LavenderTownCooltrainerMText
+LavenderTownText2:
+	text_far _LavenderTownText2
 	text_end
 
-LavenderTownSuperNerdText:
-	text_far _LavenderTownSuperNerdText
+LavenderTownText3:
+	text_far _LavenderTownText3
 	text_end
 
-LavenderTownSignText:
-	text_far _LavenderTownSignText
+LavenderTownText4:
+	text_far _LavenderTownText4
 	text_end
 
-LavenderTownSilphScopeSignText:
-	text_far _LavenderTownSilphScopeSignText
+LavenderTownText5:
+	text_far _LavenderTownText5
 	text_end
 
-LavenderTownPokemonHouseSignText:
-	text_far _LavenderTownPokemonHouseSignText
+LavenderTownText8:
+	text_far _LavenderTownText8
 	text_end
 
-LavenderTownPokemonTowerSignText:
-	text_far _LavenderTownPokemonTowerSignText
+LavenderTownText9:
+	text_far _LavenderTownText9
 	text_end

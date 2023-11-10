@@ -1,4 +1,4 @@
-_CinnabarLabFishingGuruText::
+_Lab1Text1::
 	text "We study #MON"
 	line "extensively here."
 
@@ -7,23 +7,23 @@ _CinnabarLabFishingGuruText::
 	cont "for examination."
 	done
 
-_CinnabarLabPhotoText::
+_Lab1Text2::
 	text "A photo of the"
 	line "LAB's founder,"
 	cont "DR.FUJI!"
 	done
 
-_CinnabarLabMeetingRoomSignText::
+_Lab1Text3::
 	text "#MON LAB"
 	line "Meeting Room"
 	done
 
-_CinnabarLabRAndDSignText::
+_Lab1Text4::
 	text "#MON LAB"
 	line "R-and-D Room"
 	done
 
-_CinnabarLabTestingRoomSignText::
+_Lab1Text5::
 	text "#MON LAB"
 	line "Testing Room"
 	done

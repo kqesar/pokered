@@ -11,24 +11,22 @@ SeafoamIslands5Script_467a5:
 	ret
 
 SeafoamIslandsB4F_ScriptPointers:
-	def_script_pointers
-	dw_const SeafoamIslandsB4FDefaultScript,       SCRIPT_SEAFOAMISLANDSB4F_DEFAULT
-	dw_const SeafoamIslandsB4FObjectMoving1Script, SCRIPT_SEAFOAMISLANDSB4F_OBJECT_MOVING1
-	dw_const SeafoamIslandsB4FMoveObjectScript,    SCRIPT_SEAFOAMISLANDSB4F_MOVE_OBJECT
-	dw_const SeafoamIslandsB4FObjectMoving2Script, SCRIPT_SEAFOAMISLANDSB4F_OBJECT_MOVING2
-	dw_const SeafoamIslandsB4FObjectMoving3Script, SCRIPT_SEAFOAMISLANDSB4F_OBJECT_MOVING3
-	EXPORT SCRIPT_SEAFOAMISLANDSB4F_MOVE_OBJECT ; used by engine/overworld/player_state.asm
+	dw SeafoamIslands5Script0
+	dw SeafoamIslands5Script1
+	dw SeafoamIslands5Script2
+	dw SeafoamIslands5Script3
+	dw SeafoamIslands5Script4
 
-SeafoamIslandsB4FObjectMoving3Script:
+SeafoamIslands5Script4:
 	ld a, [wIsInBattle]
 	cp $ff
 	jr z, SeafoamIslands5Script_467a5
 	call EndTrainerBattle
-	ld a, SCRIPT_SEAFOAMISLANDSB4F_DEFAULT
+	ld a, $0
 	ld [wSeafoamIslandsB4FCurScript], a
 	ret
 
-SeafoamIslandsB4FDefaultScript:
+SeafoamIslands5Script0:
 	CheckBothEventsSet EVENT_SEAFOAM3_BOULDER1_DOWN_HOLE, EVENT_SEAFOAM3_BOULDER2_DOWN_HOLE
 	ret z
 	ld hl, .Coords
@@ -50,7 +48,7 @@ SeafoamIslandsB4FDefaultScript:
 	call StartSimulatingJoypadStates
 	ld hl, wFlags_D733
 	res 2, [hl]
-	ld a, SCRIPT_SEAFOAMISLANDSB4F_OBJECT_MOVING1
+	ld a, $1
 	ld [wSeafoamIslandsB4FCurScript], a
 	ret
 
@@ -61,23 +59,23 @@ SeafoamIslandsB4FDefaultScript:
 	dbmapcoord 21, 16
 	db -1 ; end
 
-SeafoamIslandsB4FObjectMoving1Script:
+SeafoamIslands5Script1:
 	ld a, [wSimulatedJoypadStatesIndex]
 	and a
 	ret nz
 	xor a
 	ld [wJoyIgnore], a
-	ld a, SCRIPT_SEAFOAMISLANDSB4F_DEFAULT
+	ld a, $0
 	ld [wSeafoamIslandsB4FCurScript], a
 	ret
 
-SeafoamIslandsB4FMoveObjectScript:
+SeafoamIslands5Script2:
 	CheckBothEventsSet EVENT_SEAFOAM4_BOULDER1_DOWN_HOLE, EVENT_SEAFOAM4_BOULDER2_DOWN_HOLE
-	ld a, SCRIPT_SEAFOAMISLANDSB4F_DEFAULT
+	ld a, $0
 	jr z, .asm_46849
 	ld hl, .Coords
 	call ArePlayerCoordsInArray
-	ld a, SCRIPT_SEAFOAMISLANDSB4F_DEFAULT
+	ld a, $0
 	jr nc, .asm_46849
 	ld a, [wCoordIndex]
 	cp $1
@@ -92,7 +90,7 @@ SeafoamIslandsB4FMoveObjectScript:
 	dec a
 	ld [wSimulatedJoypadStatesIndex], a
 	call StartSimulatingJoypadStates
-	ld a, SCRIPT_SEAFOAMISLANDSB4F_OBJECT_MOVING2
+	ld a, $3
 .asm_46849
 	ld [wSeafoamIslandsB4FCurScript], a
 	ret
@@ -114,7 +112,7 @@ RLEMovementData_46859:
 	db D_UP, 1
 	db -1 ; end
 
-SeafoamIslandsB4FObjectMoving2Script:
+SeafoamIslands5Script3:
 	ld a, [wSimulatedJoypadStatesIndex]
 	ld b, a
 	cp $1
@@ -122,7 +120,7 @@ SeafoamIslandsB4FObjectMoving2Script:
 	ld a, b
 	and a
 	ret nz
-	ld a, SCRIPT_SEAFOAMISLANDSB4F_DEFAULT
+	ld a, $0
 	ld [wSeafoamIslandsB4FCurScript], a
 	ret
 
@@ -133,41 +131,40 @@ SeaFoamIslands5Script_46872:
 	jp ForceBikeOrSurf
 
 SeafoamIslandsB4F_TextPointers:
-	def_text_pointers
-	dw_const BoulderText,                       TEXT_SEAFOAMISLANDSB4F_BOULDER1
-	dw_const BoulderText,                       TEXT_SEAFOAMISLANDSB4F_BOULDER2
-	dw_const SeafoamIslandsB4FArticunoText,     TEXT_SEAFOAMISLANDSB4F_ARTICUNO
-	dw_const SeafoamIslandsB4FBouldersSignText, TEXT_SEAFOAMISLANDSB4F_BOULDERS_SIGN
-	dw_const SeafoamIslandsB4FDangerSignText,   TEXT_SEAFOAMISLANDSB4F_DANGER_SIGN
+	dw BoulderText
+	dw BoulderText
+	dw ArticunoText
+	dw SeafoamIslands5Text4
+	dw SeafoamIslands5Text5
 
 ; Articuno is object 3, but its event flag is bit 2.
 ; This is not a problem because its sight range is 0, and
 ; trainer headers were not stored by ExecuteCurMapScriptInTable.
 	def_trainers 2
 ArticunoTrainerHeader:
-	trainer EVENT_BEAT_ARTICUNO, 0, SeafoamIslandsB4FArticunoBattleText, SeafoamIslandsB4FArticunoBattleText, SeafoamIslandsB4FArticunoBattleText
+	trainer EVENT_BEAT_ARTICUNO, 0, ArticunoBattleText, ArticunoBattleText, ArticunoBattleText
 	db -1 ; end
 
-SeafoamIslandsB4FArticunoText:
+ArticunoText:
 	text_asm
 	ld hl, ArticunoTrainerHeader
 	call TalkToTrainer
-	ld a, SCRIPT_SEAFOAMISLANDSB4F_OBJECT_MOVING3
+	ld a, $4
 	ld [wSeafoamIslandsB4FCurScript], a
 	jp TextScriptEnd
 
-SeafoamIslandsB4FArticunoBattleText:
-	text_far _SeafoamIslandsB4FArticunoBattleText
+ArticunoBattleText:
+	text_far _ArticunoBattleText
 	text_asm
 	ld a, ARTICUNO
 	call PlayCry
 	call WaitForSoundToFinish
 	jp TextScriptEnd
 
-SeafoamIslandsB4FBouldersSignText:
-	text_far _SeafoamIslandsB4FBouldersSignText
+SeafoamIslands5Text4:
+	text_far _SeafoamIslands5Text4
 	text_end
 
-SeafoamIslandsB4FDangerSignText:
-	text_far _SeafoamIslandsB4FDangerSignText
+SeafoamIslands5Text5:
+	text_far _SeafoamIslands5Text5
 	text_end

@@ -2,11 +2,10 @@ Route2Gate_Script:
 	jp EnableAutoTextBoxDrawing
 
 Route2Gate_TextPointers:
-	def_text_pointers
-	dw_const Route2GateOaksAideText,  TEXT_ROUTE2GATE_OAKS_AIDE
-	dw_const Route2GateYoungsterText, TEXT_ROUTE2GATE_YOUNGSTER
+	dw Route2GateText1
+	dw Route2GateText2
 
-Route2GateOaksAideText:
+Route2GateText1:
 	text_asm
 	CheckEvent EVENT_GOT_HM05
 	jr nz, .got_item
@@ -26,15 +25,15 @@ Route2GateOaksAideText:
 	jr nz, .no_item
 	SetEvent EVENT_GOT_HM05
 .got_item
-	ld hl, .FlashExplanationText
+	ld hl, Route2GateText_5d616
 	call PrintText
 .no_item
 	jp TextScriptEnd
 
-.FlashExplanationText:
-	text_far _Route2GateOaksAideFlashExplanationText
+Route2GateText_5d616:
+	text_far _Route2GateText_5d616
 	text_end
 
-Route2GateYoungsterText:
-	text_far _Route2GateYoungsterText
+Route2GateText2:
+	text_far _Route2GateText2
 	text_end

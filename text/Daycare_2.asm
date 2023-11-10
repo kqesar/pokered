@@ -1,34 +1,34 @@
-_DaycareGentlemanAllRightThenText::
+_DayCareAllRightThenText::
 	text "All right then,"
 	line "@"
 	text_end
 
-_DaycareGentlemanComeAgainText::
+_DayCareComeAgainText::
 	text "come again."
 	done
 
-_DaycareGentlemanNoRoomForMonText::
+_DayCareNoRoomForMonText::
 	text "You have no room"
 	line "for this #MON!"
 	done
 
-_DaycareGentlemanOnlyHaveOneMonText::
+_DayCareOnlyHaveOneMonText::
 	text "You only have one"
 	line "#MON with you."
 	done
 
-_DaycareGentlemanCantAcceptMonWithHMText::
+_DayCareCantAcceptMonWithHMText::
 	text "I can't accept a"
 	line "#MON that"
 	cont "knows an HM move."
 	done
 
-_DaycareGentlemanHeresYourMonText::
+_DayCareHeresYourMonText::
 	text "Thank you! Here's"
 	line "your #MON!"
 	prompt
 
-_DaycareGentlemanNotEnoughMoneyText::
+_DayCareNotEnoughMoneyText::
 	text "Hey, you don't"
 	line "have enough ¥!"
 	done

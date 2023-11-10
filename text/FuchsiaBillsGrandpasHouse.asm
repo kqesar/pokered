@@ -1,4 +1,4 @@
-_FuchsiaBillsGrandpasHouseMiddleAgedWomanText::
+_FuchsiaHouse1Text1::
 	text "SAFARI ZONE's"
 	line "WARDEN is old,"
 	cont "but still active!"
@@ -7,7 +7,7 @@ _FuchsiaBillsGrandpasHouseMiddleAgedWomanText::
 	line "false, though."
 	done
 
-_FuchsiaBillsGrandpasHouseBillsGrandpaText::
+_FuchsiaHouse1Text2::
 	text "Hmm? You've met"
 	line "BILL?"
 
@@ -18,7 +18,7 @@ _FuchsiaBillsGrandpasHouseBillsGrandpaText::
 	cont "even as a child!"
 	done
 
-_FuchsiaBillsGrandpasHouseYoungsterText::
+_FuchsiaHouse1Text3::
 	text "BILL files his"
 	line "own #MON data"
 	cont "on his PC!"

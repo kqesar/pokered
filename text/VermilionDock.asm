@@ -1,3 +1,3 @@
-_VermilionDockUnusedText::
+_VermilionDockText1::
 	text_start
 	done

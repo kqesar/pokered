@@ -32,12 +32,11 @@ Mansion3Script_52204:
 	ret
 
 PokemonMansion3F_ScriptPointers:
-	def_script_pointers
-	dw_const PokemonMansion3FDefaultScript,         SCRIPT_POKEMONMANSION3F_DEFAULT
-	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_POKEMONMANSION3F_START_BATTLE
-	dw_const EndTrainerBattle,                      SCRIPT_POKEMONMANSION3F_END_BATTLE
+	dw Mansion3Script0
+	dw DisplayEnemyTrainerTextAndStartBattle
+	dw EndTrainerBattle
 
-PokemonMansion3FDefaultScript:
+Mansion3Script0:
 	ld hl, CoordsData_52254
 	call Mansion3Script_5225b
 	ld a, [wWhichDungeonWarp]
@@ -79,63 +78,62 @@ Mansion3Script_Switches::
 	ret nz
 	xor a
 	ldh [hJoyHeld], a
-	ld a, TEXT_POKEMONMANSION3F_SWITCH
+	ld a, $6
 	ldh [hSpriteIndexOrTextID], a
 	jp DisplayTextID
 
 PokemonMansion3F_TextPointers:
-	def_text_pointers
-	dw_const PokemonMansion3FSuperNerdText, TEXT_POKEMONMANSION3F_SUPER_NERD
-	dw_const PokemonMansion3FScientistText, TEXT_POKEMONMANSION3F_SCIENTIST
-	dw_const PickUpItemText,                TEXT_POKEMONMANSION3F_MAX_POTION
-	dw_const PickUpItemText,                TEXT_POKEMONMANSION3F_IRON
-	dw_const PokemonMansion3FDiaryText,     TEXT_POKEMONMANSION3F_DIARY
-	dw_const PokemonMansion2FSwitchText,    TEXT_POKEMONMANSION3F_SWITCH ; This switch uses the text script from the 2F.
+	dw Mansion3Text1
+	dw Mansion3Text2
+	dw PickUpItemText
+	dw PickUpItemText
+	dw Mansion3Text5
+	dw Mansion3Text6
 
 Mansion3TrainerHeaders:
 	def_trainers
 Mansion3TrainerHeader0:
-	trainer EVENT_BEAT_MANSION_3_TRAINER_0, 0, PokemonMansion3FSuperNerdBattleText, PokemonMansion3FSuperNerdEndBattleText, PokemonMansion3FSuperNerdAfterBattleText
+	trainer EVENT_BEAT_MANSION_3_TRAINER_0, 0, Mansion3BattleText1, Mansion3EndBattleText1, Mansion3AfterBattleText1
 Mansion3TrainerHeader1:
-	trainer EVENT_BEAT_MANSION_3_TRAINER_1, 2, PokemonMansion3FScientistBattleText, PokemonMansion3FScientistEndBattleText, PokemonMansion3FScientistAfterBattleText
+	trainer EVENT_BEAT_MANSION_3_TRAINER_1, 2, Mansion3BattleText2, Mansion3EndBattleText2, Mansion3AfterBattleText2
 	db -1 ; end
 
-PokemonMansion3FSuperNerdText:
+Mansion3Text1:
 	text_asm
 	ld hl, Mansion3TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
-PokemonMansion3FScientistText:
+Mansion3Text2:
 	text_asm
 	ld hl, Mansion3TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
-PokemonMansion3FSuperNerdBattleText:
-	text_far _PokemonMansion3FSuperNerdBattleText
+Mansion3BattleText1:
+	text_far _Mansion3BattleText1
 	text_end
 
-PokemonMansion3FSuperNerdEndBattleText:
-	text_far _PokemonMansion3FSuperNerdEndBattleText
+Mansion3EndBattleText1:
+	text_far _Mansion3EndBattleText1
 	text_end
 
-PokemonMansion3FSuperNerdAfterBattleText:
-	text_far _PokemonMansion3FSuperNerdAfterBattleText
+Mansion3AfterBattleText1:
+	text_far _Mansion3AfterBattleText1
 	text_end
 
-PokemonMansion3FScientistBattleText:
-	text_far _PokemonMansion3FScientistBattleText
+Mansion3BattleText2:
+	text_far _Mansion3BattleText2
 	text_end
 
-PokemonMansion3FScientistEndBattleText:
-	text_far _PokemonMansion3FScientistEndBattleText
+Mansion3EndBattleText2:
+	text_far _Mansion3EndBattleText2
 	text_end
 
-PokemonMansion3FScientistAfterBattleText:
-	text_far _PokemonMansion3FScientistAfterBattleText
+Mansion3AfterBattleText2:
+	text_far _Mansion3AfterBattleText2
 	text_end
 
-PokemonMansion3FDiaryText:
-	text_far _PokemonMansion3FDiaryText
+Mansion3Text5:
+	text_far _Mansion3Text5
 	text_end

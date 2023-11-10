@@ -9,9 +9,8 @@ SilphCo1F_Script:
 	predef_jump ShowObject
 
 SilphCo1F_TextPointers:
-	def_text_pointers
-	dw_const SilphCo1FLinkReceptionistText, TEXT_SILPHCO1F_LINK_RECEPTIONIST
+	dw SilphCo1Text1
 
-SilphCo1FLinkReceptionistText:
-	text_far _SilphCo1FLinkReceptionistText
+SilphCo1Text1:
+	text_far _SilphCo1Text1
 	text_end

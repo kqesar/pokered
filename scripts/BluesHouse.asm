@@ -5,24 +5,22 @@ BluesHouse_Script:
 	jp CallFunctionInTable
 
 BluesHouse_ScriptPointers:
-	def_script_pointers
-	dw_const BluesHouseDefaultScript, SCRIPT_BLUESHOUSE_DEFAULT
-	dw_const BluesHouseNoopScript,    SCRIPT_BLUESHOUSE_NOOP
+	dw BluesHouseScript0
+	dw BluesHouseScript1
 
-BluesHouseDefaultScript:
+BluesHouseScript0:
 	SetEvent EVENT_ENTERED_BLUES_HOUSE
-	ld a, SCRIPT_BLUESHOUSE_NOOP
+	ld a, $1
 	ld [wBluesHouseCurScript], a
 	ret
 
-BluesHouseNoopScript:
+BluesHouseScript1:
 	ret
 
 BluesHouse_TextPointers:
-	def_text_pointers
-	dw_const BluesHouseDaisySittingText, TEXT_BLUESHOUSE_DAISY_SITTING
-	dw_const BluesHouseDaisyWalkingText, TEXT_BLUESHOUSE_DAISY_WALKING
-	dw_const BluesHouseTownMapText,      TEXT_BLUESHOUSE_TOWN_MAP
+	dw BluesHouseDaisySittingText
+	dw BluesHouseDaisyWalkingText
+	dw BluesHouseTownMapText
 
 BluesHouseDaisySittingText:
 	text_asm
@@ -30,12 +28,12 @@ BluesHouseDaisySittingText:
 	jr nz, .got_town_map
 	CheckEvent EVENT_GOT_POKEDEX
 	jr nz, .give_town_map
-	ld hl, BluesHouseDaisyRivalAtLabText
+	ld hl, DaisyInitialText
 	call PrintText
 	jr .done
 
 .give_town_map
-	ld hl, BluesHouseDaisyOfferMapText
+	ld hl, DaisyOfferMapText
 	call PrintText
 	lb bc, TOWN_MAP, 1
 	call GiveItem
@@ -49,22 +47,22 @@ BluesHouseDaisySittingText:
 	jr .done
 
 .got_town_map
-	ld hl, BluesHouseDaisyUseMapText
+	ld hl, DaisyUseMapText
 	call PrintText
 	jr .done
 
 .bag_full
-	ld hl, BluesHouseDaisyBagFullText
+	ld hl, DaisyBagFullText
 	call PrintText
 .done
 	jp TextScriptEnd
 
-BluesHouseDaisyRivalAtLabText:
-	text_far _BluesHouseDaisyRivalAtLabText
+DaisyInitialText:
+	text_far _DaisyInitialText
 	text_end
 
-BluesHouseDaisyOfferMapText:
-	text_far _BluesHouseDaisyOfferMapText
+DaisyOfferMapText:
+	text_far _DaisyOfferMapText
 	text_end
 
 GotMapText:
@@ -72,12 +70,12 @@ GotMapText:
 	sound_get_key_item
 	text_end
 
-BluesHouseDaisyBagFullText:
-	text_far _BluesHouseDaisyBagFullText
+DaisyBagFullText:
+	text_far _DaisyBagFullText
 	text_end
 
-BluesHouseDaisyUseMapText:
-	text_far _BluesHouseDaisyUseMapText
+DaisyUseMapText:
+	text_far _DaisyUseMapText
 	text_end
 
 BluesHouseDaisyWalkingText:

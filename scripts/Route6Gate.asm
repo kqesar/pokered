@@ -6,15 +6,14 @@ Route6Gate_Script:
 	ret
 
 Route6Gate_ScriptPointers:
-	def_script_pointers
-	dw_const Route6GateDefaultScript,      SCRIPT_ROUTE6GATE_DEFAULT
-	dw_const Route6GatePlayerMovingScript, SCRIPT_ROUTE6GATE_PLAYER_MOVING
+	dw Route6GateScript0
+	dw Route6GateScript1
 
-Route6GateDefaultScript:
+Route6GateScript0:
 	ld a, [wd728]
 	bit 6, a
 	ret nz
-	ld hl, .PlayerInCoordsArray
+	ld hl, CoordsData_1e08c
 	call ArePlayerCoordsInArray
 	ret nc
 	ld a, PLAYER_DIR_RIGHT
@@ -24,27 +23,27 @@ Route6GateDefaultScript:
 	farcall RemoveGuardDrink
 	ldh a, [hItemToRemoveID]
 	and a
-	jr nz, .have_drink
-	ld a, TEXT_ROUTE6GATE_GUARD_GEE_IM_THIRSTY
+	jr nz, .asm_1e080
+	ld a, $2
 	ldh [hSpriteIndexOrTextID], a
 	call DisplayTextID
-	call Route6GateMovePlayerDownScript
-	ld a, SCRIPT_ROUTE6GATE_PLAYER_MOVING
+	call Route6GateScript_1e0a1
+	ld a, $1
 	ld [wRoute6GateCurScript], a
 	ret
-.have_drink
+.asm_1e080
 	ld hl, wd728
 	set 6, [hl]
-	ld a, TEXT_ROUTE6GATE_GUARD_GIVE_DRINK
+	ld a, $3
 	ldh [hSpriteIndexOrTextID], a
 	jp DisplayTextID
 
-.PlayerInCoordsArray:
+CoordsData_1e08c:
 	dbmapcoord  3,  2
 	dbmapcoord  4,  2
 	db -1 ; end
 
-Route6GatePlayerMovingScript:
+Route6GateScript1:
 	ld a, [wSimulatedJoypadStatesIndex]
 	and a
 	ret nz
@@ -54,10 +53,10 @@ Route6GatePlayerMovingScript:
 	ld [wRoute6GateCurScript], a
 	ret
 
-Route6GateMovePlayerDownScript:
+Route6GateScript_1e0a1:
 	ld hl, wd730
 	set 7, [hl]
-	ld a, D_DOWN
+	ld a, $80
 	ld [wSimulatedJoypadStatesEnd], a
 	ld a, $1
 	ld [wSimulatedJoypadStatesIndex], a
@@ -67,7 +66,6 @@ Route6GateMovePlayerDownScript:
 	ret
 
 Route6Gate_TextPointers:
-	def_text_pointers
-	dw_const SaffronGateGuardText,             TEXT_ROUTE6GATE_GUARD
-	dw_const SaffronGateGuardGeeImThirstyText, TEXT_ROUTE6GATE_GUARD_GEE_IM_THIRSTY
-	dw_const SaffronGateGuardGiveDrinkText,    TEXT_ROUTE6GATE_GUARD_GIVE_DRINK
+	dw Route6GateText1
+	dw Route6GateText2
+	dw Route6GateText3

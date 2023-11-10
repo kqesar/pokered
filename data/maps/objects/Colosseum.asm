@@ -1,6 +1,3 @@
-	object_const_def
-	const COLOSSEUM_OPPONENT
-
 Colosseum_Object:
 	db $e ; border block
 
@@ -9,6 +6,6 @@ Colosseum_Object:
 	def_bg_events
 
 	def_object_events
-	object_event  2,  2, SPRITE_RED, STAY, ANY_DIR, TEXT_COLOSSEUM_OPPONENT
+	object_event  2,  2, SPRITE_RED, STAY, 0, 1 ; person
 
 	def_warps_to COLOSSEUM

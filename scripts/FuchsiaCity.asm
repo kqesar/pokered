@@ -2,163 +2,168 @@ FuchsiaCity_Script:
 	jp EnableAutoTextBoxDrawing
 
 FuchsiaCity_TextPointers:
-	def_text_pointers
-	dw_const FuchsiaCityYoungster1Text,      TEXT_FUCHSIACITY_YOUNGSTER1
-	dw_const FuchsiaCityGamblerText,         TEXT_FUCHSIACITY_GAMBLER
-	dw_const FuchsiaCityErikText,            TEXT_FUCHSIACITY_ERIK
-	dw_const FuchsiaCityYoungster2Text,      TEXT_FUCHSIACITY_YOUNGSTER2
-	dw_const FuchsiaCityPokemonText,         TEXT_FUCHSIACITY_CHANSEY
-	dw_const FuchsiaCityPokemonText,         TEXT_FUCHSIACITY_VOLTORB
-	dw_const FuchsiaCityPokemonText,         TEXT_FUCHSIACITY_KANGASKHAN
-	dw_const FuchsiaCityPokemonText,         TEXT_FUCHSIACITY_SLOWPOKE
-	dw_const FuchsiaCityPokemonText,         TEXT_FUCHSIACITY_LAPRAS
-	dw_const FuchsiaCityPokemonText,         TEXT_FUCHSIACITY_FOSSIL
-	dw_const FuchsiaCitySignText,            TEXT_FUCHSIACITY_SIGN1
-	dw_const FuchsiaCitySignText,            TEXT_FUCHSIACITY_SIGN2
-	dw_const FuchsiaCitySafariGameSignText,  TEXT_FUCHSIACITY_SAFARI_GAME_SIGN
-	dw_const MartSignText,                   TEXT_FUCHSIACITY_MART_SIGN
-	dw_const PokeCenterSignText,             TEXT_FUCHSIACITY_POKECENTER_SIGN
-	dw_const FuchsiaCityWardensHomeSignText, TEXT_FUCHSIACITY_WARDENS_HOME_SIGN
-	dw_const FuchsiaCitySafariZoneSignText,  TEXT_FUCHSIACITY_SAFARI_ZONE_SIGN
-	dw_const FuchsiaCityGymSignText,         TEXT_FUCHSIACITY_GYM_SIGN
-	dw_const FuchsiaCityChanseySignText,     TEXT_FUCHSIACITY_CHANSEY_SIGN
-	dw_const FuchsiaCityVoltorbSignText,     TEXT_FUCHSIACITY_VOLTORB_SIGN
-	dw_const FuchsiaCityKangaskhanSignText,  TEXT_FUCHSIACITY_KANGASKHAN_SIGN
-	dw_const FuchsiaCitySlowpokeSignText,    TEXT_FUCHSIACITY_SLOWPOKE_SIGN
-	dw_const FuchsiaCityLaprasSignText,      TEXT_FUCHSIACITY_LAPRAS_SIGN
-	dw_const FuchsiaCityFossilSignText,      TEXT_FUCHSIACITY_FOSSIL_SIGN
+	dw FuchsiaCityText1
+	dw FuchsiaCityText2
+	dw FuchsiaCityText3
+	dw FuchsiaCityText4
+	dw FuchsiaCityText5
+	dw FuchsiaCityText6
+	dw FuchsiaCityText7
+	dw FuchsiaCityText8
+	dw FuchsiaCityText9
+	dw FuchsiaCityText10
+	dw FuchsiaCityText11
+	dw FuchsiaCityText12
+	dw FuchsiaCityText13
+	dw MartSignText
+	dw PokeCenterSignText
+	dw FuchsiaCityText16
+	dw FuchsiaCityText17
+	dw FuchsiaCityText18
+	dw FuchsiaCityText19
+	dw FuchsiaCityText20
+	dw FuchsiaCityText21
+	dw FuchsiaCityText22
+	dw FuchsiaCityText23
+	dw FuchsiaCityText24
 
-FuchsiaCityYoungster1Text:
-	text_far _FuchsiaCityYoungster1Text
+FuchsiaCityText1:
+	text_far _FuchsiaCityText1
 	text_end
 
-FuchsiaCityGamblerText:
-	text_far _FuchsiaCityGamblerText
+FuchsiaCityText2:
+	text_far _FuchsiaCityText2
 	text_end
 
-FuchsiaCityErikText:
-	text_far _FuchsiaCityErikText
+FuchsiaCityText3:
+	text_far _FuchsiaCityText3
 	text_end
 
-FuchsiaCityYoungster2Text:
-	text_far _FuchsiaCityYoungster2Text
+FuchsiaCityText4:
+	text_far _FuchsiaCityText4
 	text_end
 
-FuchsiaCityPokemonText:
-	text_far _FuchsiaCityPokemonText
+FuchsiaCityText5:
+FuchsiaCityText6:
+FuchsiaCityText7:
+FuchsiaCityText8:
+FuchsiaCityText9:
+FuchsiaCityText10:
+	text_far _FuchsiaCityText5
 	text_end
 
-FuchsiaCitySignText:
-	text_far _FuchsiaCitySignText
+FuchsiaCityText12:
+FuchsiaCityText11:
+	text_far _FuchsiaCityText11
 	text_end
 
-FuchsiaCitySafariGameSignText:
-	text_far _FuchsiaCitySafariGameSignText
+FuchsiaCityText13:
+	text_far _FuchsiaCityText13
 	text_end
 
-FuchsiaCityWardensHomeSignText:
-	text_far _FuchsiaCityWardensHomeSignText
+FuchsiaCityText16:
+	text_far _FuchsiaCityText16
 	text_end
 
-FuchsiaCitySafariZoneSignText:
-	text_far _FuchsiaCitySafariZoneSignText
+FuchsiaCityText17:
+	text_far _FuchsiaCityText17
 	text_end
 
-FuchsiaCityGymSignText:
-	text_far _FuchsiaCityGymSignText
+FuchsiaCityText18:
+	text_far _FuchsiaCityText18
 	text_end
 
-FuchsiaCityChanseySignText:
+FuchsiaCityText19:
 	text_asm
-	ld hl, .Text
+	ld hl, FuchsiaCityChanseyText
 	call PrintText
 	ld a, CHANSEY
 	call DisplayPokedex
 	jp TextScriptEnd
 
-.Text:
-	text_far _FuchsiaCityChanseySignText
+FuchsiaCityChanseyText:
+	text_far _FuchsiaCityChanseyText
 	text_end
 
-FuchsiaCityVoltorbSignText:
+FuchsiaCityText20:
 	text_asm
-	ld hl, .Text
+	ld hl, FuchsiaCityVoltorbText
 	call PrintText
 	ld a, VOLTORB
 	call DisplayPokedex
 	jp TextScriptEnd
 
-.Text:
-	text_far _FuchsiaCityVoltorbSignText
+FuchsiaCityVoltorbText:
+	text_far _FuchsiaCityVoltorbText
 	text_end
 
-FuchsiaCityKangaskhanSignText:
+FuchsiaCityText21:
 	text_asm
-	ld hl, .Text
+	ld hl, FuchsiaCityKangaskhanText
 	call PrintText
 	ld a, KANGASKHAN
 	call DisplayPokedex
 	jp TextScriptEnd
 
-.Text:
-	text_far _FuchsiaCityKangaskhanSignText
+FuchsiaCityKangaskhanText:
+	text_far _FuchsiaCityKangaskhanText
 	text_end
 
-FuchsiaCitySlowpokeSignText:
+FuchsiaCityText22:
 	text_asm
-	ld hl, .Text
+	ld hl, FuchsiaCitySlowpokeText
 	call PrintText
 	ld a, SLOWPOKE
 	call DisplayPokedex
 	jp TextScriptEnd
 
-.Text:
-	text_far _FuchsiaCitySlowpokeSignText
+FuchsiaCitySlowpokeText:
+	text_far _FuchsiaCitySlowpokeText
 	text_end
 
-FuchsiaCityLaprasSignText:
+FuchsiaCityText23:
 	text_asm
-	ld hl, .Text
+	ld hl, FuchsiaCityLaprasText
 	call PrintText
 	ld a, LAPRAS
 	call DisplayPokedex
 	jp TextScriptEnd
 
-.Text:
-	text_far _FuchsiaCityLaprasSignText
+FuchsiaCityLaprasText:
+	text_far _FuchsiaCityLaprasText
 	text_end
 
-FuchsiaCityFossilSignText:
+FuchsiaCityText24:
 	text_asm
 	CheckEvent EVENT_GOT_DOME_FOSSIL
-	jr nz, .got_dome_fossil
+	jr nz, .asm_3b4e8
 	CheckEventReuseA EVENT_GOT_HELIX_FOSSIL
-	jr nz, .got_helix_fossil
-	ld hl, .UndeterminedText
+	jr nz, .asm_667d5
+	ld hl, FuchsiaCityText_19b2a
 	call PrintText
-	jr .done
-.got_dome_fossil
-	ld hl, .OmanyteText
+	jr .asm_4343f
+.asm_3b4e8
+	ld hl, FuchsiaCityOmanyteText
 	call PrintText
 	ld a, OMANYTE
-	jr .display
-.got_helix_fossil
-	ld hl, .KabutoText
+	jr .asm_81556
+.asm_667d5
+	ld hl, FuchsiaCityKabutoText
 	call PrintText
 	ld a, KABUTO
-.display
+.asm_81556
 	call DisplayPokedex
-.done
+.asm_4343f
 	jp TextScriptEnd
 
-.OmanyteText:
-	text_far _FuchsiaCityFossilSignOmanyteText
+FuchsiaCityOmanyteText:
+	text_far _FuchsiaCityOmanyteText
 	text_end
 
-.KabutoText:
-	text_far _FuchsiaCityFossilSignKabutoText
+FuchsiaCityKabutoText:
+	text_far _FuchsiaCityKabutoText
 	text_end
 
-.UndeterminedText:
-	text_far _FuchsiaCityFossilSignUndeterminedText
+FuchsiaCityText_19b2a:
+	text_far _FuchsiaCityText_19b2a
 	text_end

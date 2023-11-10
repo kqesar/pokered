@@ -1,4 +1,4 @@
-_SSAnne2FWaiterText::
+_SSAnne2Text1::
 	text "This ship, she is"
 	line "a luxury liner"
 	cont "for trainers!"
@@ -8,7 +8,7 @@ _SSAnne2FWaiterText::
 	cont "invited trainers!"
 	done
 
-_SSAnne2FRivalText::
+_SSAnneRivalBeforeBattleText::
 	text "<RIVAL>: Bonjour!"
 	line "<PLAYER>!"
 
@@ -31,7 +31,7 @@ _SSAnne2FRivalText::
 	line "grassy areas!"
 	done
 
-_SSAnne2FRivalDefeatedText::
+_SSAnneRivalDefeatedText::
 	text "Humph!"
 
 	para "At least you're"
@@ -39,7 +39,7 @@ _SSAnne2FRivalDefeatedText::
 	cont "#MON!"
 	prompt
 
-_SSAnne2FRivalVictoryText::
+_SSAnneRivalWonText::
 	text "<PLAYER>! What are"
 	line "you, seasick?"
 
@@ -47,7 +47,7 @@ _SSAnne2FRivalVictoryText::
 	line "up, pal!"
 	prompt
 
-_SSAnne2FRivalCutMasterText::
+_SSAnneRivalCaptainText::
 	text "<RIVAL>: I heard"
 	line "there was a CUT"
 	cont "master on board."

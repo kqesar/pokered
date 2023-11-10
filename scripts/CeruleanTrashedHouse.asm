@@ -3,38 +3,37 @@ CeruleanTrashedHouse_Script:
 	ret
 
 CeruleanTrashedHouse_TextPointers:
-	def_text_pointers
-	dw_const CeruleanTrashedHouseFishingGuruText, TEXT_CERULEANTRASHEDHOUSE_FISHING_GURU
-	dw_const CeruleanTrashedHouseGirlText,        TEXT_CERULEANTRASHEDHOUSE_GIRL
-	dw_const CeruleanTrashedHouseWallHoleText,    TEXT_CERULEANTRASHEDHOUSE_WALL_HOLE
+	dw CeruleanHouseTrashedText1
+	dw CeruleanHouseTrashedText2
+	dw CeruleanHouseTrashedText3
 
-CeruleanTrashedHouseFishingGuruText:
+CeruleanHouseTrashedText1:
 	text_asm
 	ld b, TM_DIG
 	predef GetQuantityOfItemInBag
 	and b
 	jr z, .no_dig_tm
-	ld hl, .WhatsLostIsLostText
+	ld hl, CeruleanHouseTrashedText_1d6b0
 	call PrintText
 	jr .done
 .no_dig_tm
-	ld hl, .TheyStoleATMText
+	ld hl, CeruleanHouseTrashedText_1d6ab
 	call PrintText
 .done
 	jp TextScriptEnd
 
-.TheyStoleATMText:
-	text_far _CeruleanTrashedHouseFishingGuruTheyStoleATMText
+CeruleanHouseTrashedText_1d6ab:
+	text_far _CeruleanTrashedText_1d6ab
 	text_end
 
-.WhatsLostIsLostText:
-	text_far _CeruleanTrashedHouseFishingGuruWhatsLostIsLostText
+CeruleanHouseTrashedText_1d6b0:
+	text_far _CeruleanTrashedText_1d6b0
 	text_end
 
-CeruleanTrashedHouseGirlText:
-	text_far _CeruleanTrashedHouseGirlText
+CeruleanHouseTrashedText2:
+	text_far _CeruleanHouseTrashedText2
 	text_end
 
-CeruleanTrashedHouseWallHoleText:
-	text_far _CeruleanTrashedHouseWallHoleText
+CeruleanHouseTrashedText3:
+	text_far _CeruleanHouseTrashedText3
 	text_end

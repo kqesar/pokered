@@ -1,6 +1,6 @@
 Route20_Script:
 	CheckAndResetEvent EVENT_IN_SEAFOAM_ISLANDS
-	call nz, Route20BoulderScript
+	call nz, Route20Script_50cc6
 	call EnableAutoTextBoxDrawing
 	ld hl, Route20TrainerHeaders
 	ld de, Route20_ScriptPointers
@@ -9,22 +9,22 @@ Route20_Script:
 	ld [wRoute20CurScript], a
 	ret
 
-Route20BoulderScript:
+Route20Script_50cc6:
 	CheckBothEventsSet EVENT_SEAFOAM3_BOULDER1_DOWN_HOLE, EVENT_SEAFOAM3_BOULDER2_DOWN_HOLE
-	jr z, .next_boulder_check
+	jr z, .asm_50cef
 	ld a, HS_SEAFOAM_ISLANDS_1F_BOULDER_1
-	call Route20ShowObjectScript
+	call Route20Script_50d0c
 	ld a, HS_SEAFOAM_ISLANDS_1F_BOULDER_2
-	call Route20ShowObjectScript
+	call Route20Script_50d0c
 	ld hl, .MissableObjectIDs
-.hide_missable_objects
+.asm_50cdc
 	ld a, [hli]
 	cp $ff
-	jr z, .next_boulder_check
+	jr z, .asm_50cef
 	push hl
-	call Route20HideObjectScript
+	call Route20Script_50d14
 	pop hl
-	jr .hide_missable_objects
+	jr .asm_50cdc
 
 .MissableObjectIDs:
 	db HS_SEAFOAM_ISLANDS_B1F_BOULDER_1
@@ -35,252 +35,251 @@ Route20BoulderScript:
 	db HS_SEAFOAM_ISLANDS_B3F_BOULDER_4
 	db -1 ; end
 
-.next_boulder_check
+.asm_50cef
 	CheckBothEventsSet EVENT_SEAFOAM4_BOULDER1_DOWN_HOLE, EVENT_SEAFOAM4_BOULDER2_DOWN_HOLE
 	ret z
 	ld a, HS_SEAFOAM_ISLANDS_B3F_BOULDER_1
-	call Route20ShowObjectScript
+	call Route20Script_50d0c
 	ld a, HS_SEAFOAM_ISLANDS_B3F_BOULDER_2
-	call Route20ShowObjectScript
+	call Route20Script_50d0c
 	ld a, HS_SEAFOAM_ISLANDS_B4F_BOULDER_1
-	call Route20HideObjectScript
+	call Route20Script_50d14
 	ld a, HS_SEAFOAM_ISLANDS_B4F_BOULDER_2
-	call Route20HideObjectScript
+	call Route20Script_50d14
 	ret
 
-Route20ShowObjectScript:
+Route20Script_50d0c:
 	ld [wMissableObjectIndex], a
 	predef_jump ShowObject
 
-Route20HideObjectScript:
+Route20Script_50d14:
 	ld [wMissableObjectIndex], a
 	predef_jump HideObject
 
 Route20_ScriptPointers:
-	def_script_pointers
-	dw_const CheckFightingMapTrainers,              SCRIPT_ROUTE20_DEFAULT
-	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_ROUTE20_START_BATTLE
-	dw_const EndTrainerBattle,                      SCRIPT_ROUTE20_END_BATTLE
+	dw CheckFightingMapTrainers
+	dw DisplayEnemyTrainerTextAndStartBattle
+	dw EndTrainerBattle
 
 Route20_TextPointers:
-	def_text_pointers
-	dw_const Route20Swimmer1Text,           TEXT_ROUTE20_SWIMMER1
-	dw_const Route20Swimmer2Text,           TEXT_ROUTE20_SWIMMER2
-	dw_const Route20Swimmer3Text,           TEXT_ROUTE20_SWIMMER3
-	dw_const Route20Swimmer4Text,           TEXT_ROUTE20_SWIMMER4
-	dw_const Route20Swimmer5Text,           TEXT_ROUTE20_SWIMMER5
-	dw_const Route20Swimmer6Text,           TEXT_ROUTE20_SWIMMER6
-	dw_const Route20CooltrainerMText,       TEXT_ROUTE20_COOLTRAINER_M
-	dw_const Route20Swimmer7Text,           TEXT_ROUTE20_SWIMMER7
-	dw_const Route20Swimmer8Text,           TEXT_ROUTE20_SWIMMER8
-	dw_const Route20Swimmer9Text,           TEXT_ROUTE20_SWIMMER9
-	dw_const Route20SeafoamIslandsSignText, TEXT_ROUTE20_SEAFOAM_ISLANDS_WEST_SIGN
-	dw_const Route20SeafoamIslandsSignText, TEXT_ROUTE20_SEAFOAM_ISLANDS_EAST_SIGN
+	dw Route20Text1
+	dw Route20Text2
+	dw Route20Text3
+	dw Route20Text4
+	dw Route20Text5
+	dw Route20Text6
+	dw Route20Text7
+	dw Route20Text8
+	dw Route20Text9
+	dw Route20Text10
+	dw Route20Text11
+	dw Route20Text12
 
 Route20TrainerHeaders:
 	def_trainers
 Route20TrainerHeader0:
-	trainer EVENT_BEAT_ROUTE_20_TRAINER_0, 4, Route20Swimmer1BattleText, Route20Swimmer1EndBattleText, Route20Swimmer1AfterBattleText
+	trainer EVENT_BEAT_ROUTE_20_TRAINER_0, 4, Route20BattleText1, Route20EndBattleText1, Route20AfterBattleText1
 Route20TrainerHeader1:
-	trainer EVENT_BEAT_ROUTE_20_TRAINER_1, 4, Route20Swimmer2BattleText, Route20Swimmer2EndBattleText, Route20Swimmer2AfterBattleText
+	trainer EVENT_BEAT_ROUTE_20_TRAINER_1, 4, Route20BattleText2, Route20EndBattleText2, Route20AfterBattleText2
 Route20TrainerHeader2:
-	trainer EVENT_BEAT_ROUTE_20_TRAINER_2, 2, Route20Swimmer3BattleText, Route20Swimmer3EndBattleText, Route20Swimmer3AfterBattleText
+	trainer EVENT_BEAT_ROUTE_20_TRAINER_2, 2, Route20BattleText3, Route20EndBattleText3, Route20AfterBattleText3
 Route20TrainerHeader3:
-	trainer EVENT_BEAT_ROUTE_20_TRAINER_3, 4, Route20Swimmer4BattleText, Route20Swimmer4EndBattleText, Route20Swimmer4AfterBattleText
+	trainer EVENT_BEAT_ROUTE_20_TRAINER_3, 4, Route20BattleText4, Route20EndBattleText4, Route20AfterBattleText4
 Route20TrainerHeader4:
-	trainer EVENT_BEAT_ROUTE_20_TRAINER_4, 3, Route20Swimmer5BattleText, Route20Swimmer5EndBattleText, Route20Swimmer5AfterBattleText
+	trainer EVENT_BEAT_ROUTE_20_TRAINER_4, 3, Route20BattleText5, Route20EndBattleText5, Route20AfterBattleText5
 Route20TrainerHeader5:
-	trainer EVENT_BEAT_ROUTE_20_TRAINER_5, 4, Route20Swimmer6BattleText, Route20Swimmer6EndBattleText, Route20Swimmer6AfterBattleText
+	trainer EVENT_BEAT_ROUTE_20_TRAINER_5, 4, Route20BattleText6, Route20EndBattleText6, Route20AfterBattleText6
 Route20TrainerHeader6:
-	trainer EVENT_BEAT_ROUTE_20_TRAINER_6, 2, Route20CooltrainerMBattleText, Route20CooltrainerMEndBattleText, Route20CooltrainerMAfterBattleText
+	trainer EVENT_BEAT_ROUTE_20_TRAINER_6, 2, Route20BattleText7, Route20EndBattleText7, Route20AfterBattleText7
 Route20TrainerHeader7:
-	trainer EVENT_BEAT_ROUTE_20_TRAINER_7, 4, Route20Swimmer7BattleText, Route20Swimmer7EndBattleText, Route20Swimmer7AfterBattleText
+	trainer EVENT_BEAT_ROUTE_20_TRAINER_7, 4, Route20BattleText8, Route20EndBattleText8, Route20AfterBattleText8
 Route20TrainerHeader8:
-	trainer EVENT_BEAT_ROUTE_20_TRAINER_8, 3, Route20Swimmer8BattleText, Route20Swimmer8EndBattleText, Route20Swimmer8AfterBattleText
+	trainer EVENT_BEAT_ROUTE_20_TRAINER_8, 3, Route20BattleText9, Route20EndBattleText9, Route20AfterBattleText9
 Route20TrainerHeader9:
-	trainer EVENT_BEAT_ROUTE_20_TRAINER_9, 4, Route20Swimmer9BattleText, Route20Swimmer9EndBattleText, Route20Swimmer9AfterBattleText
+	trainer EVENT_BEAT_ROUTE_20_TRAINER_9, 4, Route20BattleText10, Route20EndBattleText10, Route20AfterBattleText10
 	db -1 ; end
 
-Route20Swimmer1Text:
+Route20Text1:
 	text_asm
 	ld hl, Route20TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
-Route20Swimmer2Text:
+Route20Text2:
 	text_asm
 	ld hl, Route20TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
-Route20Swimmer3Text:
+Route20Text3:
 	text_asm
 	ld hl, Route20TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
-Route20Swimmer4Text:
+Route20Text4:
 	text_asm
 	ld hl, Route20TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
-Route20Swimmer5Text:
+Route20Text5:
 	text_asm
 	ld hl, Route20TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
-Route20Swimmer6Text:
+Route20Text6:
 	text_asm
 	ld hl, Route20TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
-Route20CooltrainerMText:
+Route20Text7:
 	text_asm
 	ld hl, Route20TrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
 
-Route20Swimmer7Text:
+Route20Text8:
 	text_asm
 	ld hl, Route20TrainerHeader7
 	call TalkToTrainer
 	jp TextScriptEnd
 
-Route20Swimmer8Text:
+Route20Text9:
 	text_asm
 	ld hl, Route20TrainerHeader8
 	call TalkToTrainer
 	jp TextScriptEnd
 
-Route20Swimmer9Text:
+Route20Text10:
 	text_asm
 	ld hl, Route20TrainerHeader9
 	call TalkToTrainer
 	jp TextScriptEnd
 
-Route20Swimmer1BattleText:
-	text_far _Route20Swimmer1BattleText
+Route20BattleText1:
+	text_far _Route20BattleText1
 	text_end
 
-Route20Swimmer1EndBattleText:
-	text_far _Route20Swimmer1EndBattleText
+Route20EndBattleText1:
+	text_far _Route20EndBattleText1
 	text_end
 
-Route20Swimmer1AfterBattleText:
-	text_far _Route20Swimmer1AfterBattleText
+Route20AfterBattleText1:
+	text_far _Route20AfterBattleText1
 	text_end
 
-Route20Swimmer2BattleText:
-	text_far _Route20Swimmer2BattleText
+Route20BattleText2:
+	text_far _Route20BattleText2
 	text_end
 
-Route20Swimmer2EndBattleText:
-	text_far _Route20Swimmer2EndBattleText
+Route20EndBattleText2:
+	text_far _Route20EndBattleText2
 	text_end
 
-Route20Swimmer2AfterBattleText:
-	text_far _Route20Swimmer2AfterBattleText
+Route20AfterBattleText2:
+	text_far _Route20AfterBattleText2
 	text_end
 
-Route20Swimmer3BattleText:
-	text_far _Route20Swimmer3BattleText
+Route20BattleText3:
+	text_far _Route20BattleText3
 	text_end
 
-Route20Swimmer3EndBattleText:
-	text_far _Route20Swimmer3EndBattleText
+Route20EndBattleText3:
+	text_far _Route20EndBattleText3
 	text_end
 
-Route20Swimmer3AfterBattleText:
-	text_far _Route20Swimmer3AfterBattleText
+Route20AfterBattleText3:
+	text_far _Route20AfterBattleText3
 	text_end
 
-Route20Swimmer4BattleText:
-	text_far _Route20Swimmer4BattleText
+Route20BattleText4:
+	text_far _Route20BattleText4
 	text_end
 
-Route20Swimmer4EndBattleText:
-	text_far _Route20Swimmer4EndBattleText
+Route20EndBattleText4:
+	text_far _Route20EndBattleText4
 	text_end
 
-Route20Swimmer4AfterBattleText:
-	text_far _Route20Swimmer4AfterBattleText
+Route20AfterBattleText4:
+	text_far _Route20AfterBattleText4
 	text_end
 
-Route20Swimmer5BattleText:
-	text_far _Route20Swimmer5BattleText
+Route20BattleText5:
+	text_far _Route20BattleText5
 	text_end
 
-Route20Swimmer5EndBattleText:
-	text_far _Route20Swimmer5EndBattleText
+Route20EndBattleText5:
+	text_far _Route20EndBattleText5
 	text_end
 
-Route20Swimmer5AfterBattleText:
-	text_far _Route20Swimmer5AfterBattleText
+Route20AfterBattleText5:
+	text_far _Route20AfterBattleText5
 	text_end
 
-Route20Swimmer6BattleText:
-	text_far _Route20Swimmer6BattleText
+Route20BattleText6:
+	text_far _Route20BattleText6
 	text_end
 
-Route20Swimmer6EndBattleText:
-	text_far _Route20Swimmer6EndBattleText
+Route20EndBattleText6:
+	text_far _Route20EndBattleText6
 	text_end
 
-Route20Swimmer6AfterBattleText:
-	text_far _Route20Swimmer6AfterBattleText
+Route20AfterBattleText6:
+	text_far _Route20AfterBattleText6
 	text_end
 
-Route20CooltrainerMBattleText:
-	text_far _Route20CooltrainerMBattleText
+Route20BattleText7:
+	text_far _Route20BattleText7
 	text_end
 
-Route20CooltrainerMEndBattleText:
-	text_far _Route20CooltrainerMEndBattleText
+Route20EndBattleText7:
+	text_far _Route20EndBattleText7
 	text_end
 
-Route20CooltrainerMAfterBattleText:
-	text_far _Route20CooltrainerMAfterBattleText
+Route20AfterBattleText7:
+	text_far _Route20AfterBattleText7
 	text_end
 
-Route20Swimmer7BattleText:
-	text_far _Route20Swimmer7BattleText
+Route20BattleText8:
+	text_far _Route20BattleText8
 	text_end
 
-Route20Swimmer7EndBattleText:
-	text_far _Route20Swimmer7EndBattleText
+Route20EndBattleText8:
+	text_far _Route20EndBattleText8
 	text_end
 
-Route20Swimmer7AfterBattleText:
-	text_far _Route20Swimmer7AfterBattleText
+Route20AfterBattleText8:
+	text_far _Route20AfterBattleText8
 	text_end
 
-Route20Swimmer8BattleText:
-	text_far _Route20Swimmer8BattleText
+Route20BattleText9:
+	text_far _Route20BattleText9
 	text_end
 
-Route20Swimmer8EndBattleText:
-	text_far _Route20Swimmer8EndBattleText
+Route20EndBattleText9:
+	text_far _Route20EndBattleText9
 	text_end
 
-Route20Swimmer8AfterBattleText:
-	text_far _Route20Swimmer8AfterBattleText
+Route20AfterBattleText9:
+	text_far _Route20AfterBattleText9
 	text_end
 
-Route20Swimmer9BattleText:
-	text_far _Route20Swimmer9BattleText
+Route20BattleText10:
+	text_far _Route20BattleText10
 	text_end
 
-Route20Swimmer9EndBattleText:
-	text_far _Route20Swimmer9EndBattleText
+Route20EndBattleText10:
+	text_far _Route20EndBattleText10
 	text_end
 
-Route20Swimmer9AfterBattleText:
-	text_far _Route20Swimmer9AfterBattleText
+Route20AfterBattleText10:
+	text_far _Route20AfterBattleText10
 	text_end
 
-Route20SeafoamIslandsSignText:
-	text_far _Route20SeafoamIslandsSignText
+Route20Text12:
+Route20Text11:
+	text_far _Route20Text11
 	text_end

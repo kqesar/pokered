@@ -2,15 +2,14 @@ Route12SuperRodHouse_Script:
 	jp EnableAutoTextBoxDrawing
 
 Route12SuperRodHouse_TextPointers:
-	def_text_pointers
-	dw_const Route12SuperRodHouseFishingGuruText, TEXT_ROUTE12SUPERRODHOUSE_FISHING_GURU
+	dw Route12HouseText1
 
-Route12SuperRodHouseFishingGuruText:
+Route12HouseText1:
 	text_asm
 	ld a, [wd728]
 	bit 5, a ; received super rod?
 	jr nz, .got_item
-	ld hl, .DoYouLikeToFishText
+	ld hl, Route12HouseText_564c0
 	call PrintText
 	call YesNoChoice
 	ld a, [wCurrentMenuItem]
@@ -21,38 +20,38 @@ Route12SuperRodHouseFishingGuruText:
 	jr nc, .bag_full
 	ld hl, wd728
 	set 5, [hl] ; received super rod
-	ld hl, .ReceivedSuperRodText
+	ld hl, Route12HouseText_564c5
 	jr .done
 .bag_full
-	ld hl, .NoRoomText
+	ld hl, Route12HouseText_564d9
 	jr .done
 .refused
-	ld hl, .ThatsDisappointingText
+	ld hl, Route12HouseText_564cf
 	jr .done
 .got_item
-	ld hl, .TryFishingText
+	ld hl, Route12HouseText_564d4
 .done
 	call PrintText
 	jp TextScriptEnd
 
-.DoYouLikeToFishText:
-	text_far _Route12SuperRodHouseFishingGuruDoYouLikeToFishText
+Route12HouseText_564c0:
+	text_far _Route12HouseText_564c0
 	text_end
 
-.ReceivedSuperRodText:
-	text_far _Route12SuperRodHouseFishingGuruReceivedSuperRodText
+Route12HouseText_564c5:
+	text_far _Route12HouseText_564c5
 	sound_get_item_1
-	text_far _Route12SuperRodHouseFishingGuruFishingWayOfLifeText
+	text_far _Route12HouseText_564ca
 	text_end
 
-.ThatsDisappointingText:
-	text_far _Route12SuperRodHouseFishingGuruThatsDisappointingText
+Route12HouseText_564cf:
+	text_far _Route12HouseText_564cf
 	text_end
 
-.TryFishingText:
-	text_far _Route12SuperRodHouseFishingGuruTryFishingText
+Route12HouseText_564d4:
+	text_far _Route12HouseText_564d4
 	text_end
 
-.NoRoomText:
-	text_far _Route12SuperRodHouseFishingGuruNoRoomText
+Route12HouseText_564d9:
+	text_far _Route12HouseText_564d9
 	text_end
