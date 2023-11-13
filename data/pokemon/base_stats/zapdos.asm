@@ -7,7 +7,7 @@
 	db 3 ; catch rate
 	db 216 ; base exp
 
-	INCBIN "gfx/pokemon/front/zapdos.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/zapdos.pic", 0, 1 ; sprite dimensions
 	dw ZapdosPicFront, ZapdosPicBack
 
 	db THUNDERSHOCK, DRILL_PECK, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -20,4 +20,5 @@
 	     REST,         THUNDER_WAVE, SUBSTITUTE,   FLY,          FLASH
 	; end
 
-	db 0 ; padding
+	db BANK(ZapdosPicFront)
+	assert BANK(ZapdosPicFront) == BANK(ZapdosPicBack)

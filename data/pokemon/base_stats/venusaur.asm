@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 208 ; base exp
 
-	INCBIN "gfx/pokemon/front/venusaur.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/venusaur.pic", 0, 1 ; sprite dimensions
 	dw VenusaurPicFront, VenusaurPicBack
 
 	db TACKLE, GROWL, LEECH_SEED, VINE_WHIP ; level 1 learnset
@@ -20,4 +20,5 @@
 	     CUT
 	; end
 
-	db 0 ; padding
+	db BANK(VenusaurPicFront)
+	assert BANK(VenusaurPicFront) == BANK(VenusaurPicBack)

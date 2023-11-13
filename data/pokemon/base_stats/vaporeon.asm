@@ -7,11 +7,11 @@
 	db 45 ; catch rate
 	db 196 ; base exp
 
-	INCBIN "gfx/pokemon/front/vaporeon.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/vaporeon.pic", 0, 1 ; sprite dimensions
 	dw VaporeonPicFront, VaporeonPicBack
 
 	db TACKLE, SAND_ATTACK, QUICK_ATTACK, WATER_GUN ; level 1 learnset
-	db GROWTH_MEDIUM_FAST ; growth rate
+	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset
 	tmhm TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  BUBBLEBEAM,   \
@@ -20,4 +20,5 @@
 	     SKULL_BASH,   REST,         SUBSTITUTE,   SURF
 	; end
 
-	db 0 ; padding
+	db BANK(VaporeonPicFront)
+	assert BANK(VaporeonPicFront) == BANK(VaporeonPicBack)

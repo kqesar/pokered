@@ -7,7 +7,7 @@
 	db 75 ; catch rate
 	db 157 ; base exp
 
-	INCBIN "gfx/pokemon/front/muk.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/muk.pic", 0, 1 ; sprite dimensions
 	dw MukPicFront, MukPicBack
 
 	db POUND, DISABLE, POISON_GAS, NO_MOVE ; level 1 learnset
@@ -19,4 +19,5 @@
 	     SELFDESTRUCT, FIRE_BLAST,   REST,         EXPLOSION,    SUBSTITUTE
 	; end
 
-	db 0 ; padding
+	db BANK(MukPicFront)
+	assert BANK(MukPicFront) == BANK(MukPicBack)

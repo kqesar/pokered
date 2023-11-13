@@ -7,10 +7,10 @@
 	db 45 ; catch rate
 	db 214 ; base exp
 
-	INCBIN "gfx/pokemon/front/gyarados.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/gyarados.pic", 0, 1 ; sprite dimensions
 	dw GyaradosPicFront, GyaradosPicBack
 
-	db BITE, DRAGON_RAGE, LEER, HYDRO_PUMP ; level 1 learnset
+	db TACKLE, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset
@@ -21,4 +21,5 @@
 	     SUBSTITUTE,   SURF,         STRENGTH
 	; end
 
-	db 0 ; padding
+	db BANK(GyaradosPicFront)
+	assert BANK(GyaradosPicFront) == BANK(GyaradosPicBack)

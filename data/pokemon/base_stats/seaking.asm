@@ -7,7 +7,7 @@
 	db 60 ; catch rate
 	db 170 ; base exp
 
-	INCBIN "gfx/pokemon/front/seaking.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/seaking.pic", 0, 1 ; sprite dimensions
 	dw SeakingPicFront, SeakingPicBack
 
 	db PECK, TAIL_WHIP, SUPERSONIC, NO_MOVE ; level 1 learnset
@@ -20,4 +20,5 @@
 	     REST,         SUBSTITUTE,   SURF
 	; end
 
-	db 0 ; padding
+	db BANK(SeakingPicFront)
+	assert BANK(SeakingPicFront) == BANK(SeakingPicBack)

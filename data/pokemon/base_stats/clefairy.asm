@@ -7,7 +7,7 @@
 	db 150 ; catch rate
 	db 68 ; base exp
 
-	INCBIN "gfx/pokemon/front/clefairy.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/clefairy.pic", 0, 1 ; sprite dimensions
 	dw ClefairyPicFront, ClefairyPicBack
 
 	db POUND, GROWL, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -23,4 +23,5 @@
 	     SUBSTITUTE,   STRENGTH,     FLASH
 	; end
 
-	db 0 ; padding
+	db BANK(ClefairyPicFront)
+	assert BANK(ClefairyPicFront) == BANK(ClefairyPicBack)

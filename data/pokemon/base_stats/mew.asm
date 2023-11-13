@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 64 ; base exp
 
-	INCBIN "gfx/pokemon/front/mew.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/mew.pic", 0, 1 ; sprite dimensions
 	dw MewPicFront, MewPicBack
 
 	db POUND, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -28,4 +28,5 @@
 	     UNUSED
 	; end
 
-	db %11111111 ; padding
+	db BANK(MewPicFront)
+	assert BANK(MewPicFront) == BANK(MewPicBack)

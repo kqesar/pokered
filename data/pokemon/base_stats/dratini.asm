@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 67 ; base exp
 
-	INCBIN "gfx/pokemon/front/dratini.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/dratini.pic", 0, 1 ; sprite dimensions
 	dw DratiniPicFront, DratiniPicBack
 
 	db WRAP, LEER, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -21,4 +21,5 @@
 	     THUNDER_WAVE, SUBSTITUTE,   SURF
 	; end
 
-	db 0 ; padding
+	db BANK(DratiniPicFront)
+	assert BANK(DratiniPicFront) == BANK(DratiniPicBack)

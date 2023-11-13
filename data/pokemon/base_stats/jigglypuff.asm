@@ -7,7 +7,7 @@
 	db 170 ; catch rate
 	db 76 ; base exp
 
-	INCBIN "gfx/pokemon/front/jigglypuff.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/jigglypuff.pic", 0, 1 ; sprite dimensions
 	dw JigglypuffPicFront, JigglypuffPicBack
 
 	db SING, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -23,4 +23,5 @@
 	     STRENGTH,     FLASH
 	; end
 
-	db 0 ; padding
+	db BANK(JigglypuffPicFront)
+	assert BANK(JigglypuffPicFront) == BANK(JigglypuffPicBack)

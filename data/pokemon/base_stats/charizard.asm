@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 209 ; base exp
 
-	INCBIN "gfx/pokemon/front/charizard.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/charizard.pic", 0, 1 ; sprite dimensions
 	dw CharizardPicFront, CharizardPicBack
 
 	db SCRATCH, GROWL, EMBER, LEER ; level 1 learnset
@@ -19,7 +19,8 @@
 	     SEISMIC_TOSS, RAGE,         DRAGON_RAGE,  EARTHQUAKE,   FISSURE,      \
 	     DIG,          MIMIC,        DOUBLE_TEAM,  REFLECT,      BIDE,         \
 	     FIRE_BLAST,   SWIFT,        SKULL_BASH,   REST,         SUBSTITUTE,   \
-	     CUT,          STRENGTH
+	     CUT,          FLY,          STRENGTH
 	; end
 
-	db 0 ; padding
+	db BANK(CharizardPicFront)
+	assert BANK(CharizardPicFront) == BANK(CharizardPicBack)

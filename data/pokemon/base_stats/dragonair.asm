@@ -4,10 +4,10 @@
 	;   hp  atk  def  spd  spc
 
 	db DRAGON, DRAGON ; type
-	db 45 ; catch rate
+	db 27 ; catch rate
 	db 144 ; base exp
 
-	INCBIN "gfx/pokemon/front/dragonair.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/dragonair.pic", 0, 1 ; sprite dimensions
 	dw DragonairPicFront, DragonairPicBack
 
 	db WRAP, LEER, THUNDER_WAVE, NO_MOVE ; level 1 learnset
@@ -21,4 +21,5 @@
 	     REST,         THUNDER_WAVE, SUBSTITUTE,   SURF
 	; end
 
-	db 0 ; padding
+	db BANK(DragonairPicFront)
+	assert BANK(DragonairPicFront) == BANK(DragonairPicBack)

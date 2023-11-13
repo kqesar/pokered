@@ -7,7 +7,7 @@
 	db 190 ; catch rate
 	db 105 ; base exp
 
-	INCBIN "gfx/pokemon/front/tentacool.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/tentacool.pic", 0, 1 ; sprite dimensions
 	dw TentacoolPicFront, TentacoolPicBack
 
 	db ACID, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -20,4 +20,5 @@
 	     REST,         SUBSTITUTE,   CUT,          SURF
 	; end
 
-	db 0 ; padding
+	db BANK(TentacoolPicFront)
+	assert BANK(TentacoolPicFront) == BANK(TentacoolPicBack)

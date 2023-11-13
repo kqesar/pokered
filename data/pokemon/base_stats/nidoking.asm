@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 195 ; base exp
 
-	INCBIN "gfx/pokemon/front/nidoking.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/nidoking.pic", 0, 1 ; sprite dimensions
 	dw NidokingPicFront, NidokingPicBack
 
 	db TACKLE, HORN_ATTACK, POISON_STING, THRASH ; level 1 learnset
@@ -23,4 +23,5 @@
 	     SURF,         STRENGTH
 	; end
 
-	db 0 ; padding
+	db BANK(NidokingPicFront)
+	assert BANK(NidokingPicFront) == BANK(NidokingPicBack)

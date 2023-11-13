@@ -7,7 +7,7 @@
 	db 120 ; catch rate
 	db 131 ; base exp
 
-	INCBIN "gfx/pokemon/front/poliwhirl.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/poliwhirl.pic", 0, 1 ; sprite dimensions
 	dw PoliwhirlPicFront, PoliwhirlPicBack
 
 	db BUBBLE, HYPNOSIS, WATER_GUN, NO_MOVE ; level 1 learnset
@@ -22,4 +22,5 @@
 	     SURF,         STRENGTH
 	; end
 
-	db 0 ; padding
+	db BANK(PoliwhirlPicFront)
+	assert BANK(PoliwhirlPicFront) == BANK(PoliwhirlPicBack)

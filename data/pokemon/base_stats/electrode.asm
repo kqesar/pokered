@@ -7,7 +7,7 @@
 	db 60 ; catch rate
 	db 150 ; base exp
 
-	INCBIN "gfx/pokemon/front/electrode.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/electrode.pic", 0, 1 ; sprite dimensions
 	dw ElectrodePicFront, ElectrodePicBack
 
 	db TACKLE, SCREECH, SONICBOOM, NO_MOVE ; level 1 learnset
@@ -20,4 +20,5 @@
 	     THUNDER_WAVE, EXPLOSION,    SUBSTITUTE,   FLASH
 	; end
 
-	db 0 ; padding
+	db BANK(ElectrodePicFront)
+	assert BANK(ElectrodePicFront) == BANK(ElectrodePicBack)

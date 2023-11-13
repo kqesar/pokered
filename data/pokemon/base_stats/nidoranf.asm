@@ -7,7 +7,7 @@
 	db 235 ; catch rate
 	db 59 ; base exp
 
-	INCBIN "gfx/pokemon/front/nidoranf.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/nidoranf.pic", 0, 1 ; sprite dimensions
 	dw NidoranFPicFront, NidoranFPicBack
 
 	db GROWL, TACKLE, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -19,4 +19,5 @@
 	     REFLECT,      BIDE,         SKULL_BASH,   REST,         SUBSTITUTE
 	; end
 
-	db 0 ; padding
+	db BANK(NidoranFPicFront)
+	assert BANK(NidoranFPicFront) == BANK(NidoranFPicBack)

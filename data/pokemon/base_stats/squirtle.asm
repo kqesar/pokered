@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 66 ; base exp
 
-	INCBIN "gfx/pokemon/front/squirtle.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/squirtle.pic", 0, 1 ; sprite dimensions
 	dw SquirtlePicFront, SquirtlePicBack
 
 	db TACKLE, TAIL_WHIP, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -21,4 +21,5 @@
 	     REST,         SUBSTITUTE,   SURF,         STRENGTH
 	; end
 
-	db 0 ; padding
+	db BANK(SquirtlePicFront)
+	assert BANK(SquirtlePicFront) == BANK(SquirtlePicBack)

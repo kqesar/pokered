@@ -7,7 +7,7 @@
 	db 60 ; catch rate
 	db 204 ; base exp
 
-	INCBIN "gfx/pokemon/front/rhydon.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/rhydon.pic", 0, 1 ; sprite dimensions
 	dw RhydonPicFront, RhydonPicBack
 
 	db HORN_ATTACK, STOMP, TAIL_WHIP, FURY_ATTACK ; level 1 learnset
@@ -23,4 +23,5 @@
 	     SURF,         STRENGTH
 	; end
 
-	db 0 ; padding
+	db BANK(RhydonPicFront)
+	assert BANK(RhydonPicFront) == BANK(RhydonPicBack)

@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 108 ; base exp
 
-	INCBIN "gfx/pokemon/front/onix.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/onix.pic", 0, 1 ; sprite dimensions
 	dw OnixPicFront, OnixPicBack
 
 	db TACKLE, SCREECH, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -20,4 +20,5 @@
 	     ROCK_SLIDE,   SUBSTITUTE,   STRENGTH
 	; end
 
-	db 0 ; padding
+	db BANK(OnixPicFront)
+	assert BANK(OnixPicFront) == BANK(OnixPicBack)

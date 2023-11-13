@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 65 ; base exp
 
-	INCBIN "gfx/pokemon/front/charmander.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/charmander.pic", 0, 1 ; sprite dimensions
 	dw CharmanderPicFront, CharmanderPicBack
 
 	db SCRATCH, GROWL, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -21,4 +21,5 @@
 	     REST,         SUBSTITUTE,   CUT,          STRENGTH
 	; end
 
-	db 0 ; padding
+	db BANK(CharmanderPicFront)
+	assert BANK(CharmanderPicFront) == BANK(CharmanderPicBack)

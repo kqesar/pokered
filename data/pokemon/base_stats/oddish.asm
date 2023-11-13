@@ -7,7 +7,7 @@
 	db 255 ; catch rate
 	db 78 ; base exp
 
-	INCBIN "gfx/pokemon/front/oddish.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/oddish.pic", 0, 1 ; sprite dimensions
 	dw OddishPicFront, OddishPicBack
 
 	db ABSORB, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -19,4 +19,5 @@
 	     BIDE,         REST,         SUBSTITUTE,   CUT
 	; end
 
-	db 0 ; padding
+	db BANK(OddishPicFront)
+	assert BANK(OddishPicFront) == BANK(OddishPicBack)

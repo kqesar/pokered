@@ -7,7 +7,7 @@
 	db 190 ; catch rate
 	db 63 ; base exp
 
-	INCBIN "gfx/pokemon/front/vulpix.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/vulpix.pic", 0, 1 ; sprite dimensions
 	dw VulpixPicFront, VulpixPicBack
 
 	db EMBER, TAIL_WHIP, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -19,4 +19,5 @@
 	     FIRE_BLAST,   SWIFT,        SKULL_BASH,   REST,         SUBSTITUTE
 	; end
 
-	db 0 ; padding
+	db BANK(VulpixPicFront)
+	assert BANK(VulpixPicFront) == BANK(VulpixPicBack)

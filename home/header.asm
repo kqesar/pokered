@@ -79,3 +79,10 @@ Start::
 ; This makes sure it doesn't get used for anything else.
 
 	ds $0150 - @
+
+SECTION "Set Rom Bank", ROMX
+
+SetRomBank::
+	ldh [hLoadedROMBank], a
+	ld [MBC1RomBank], a
+	ret

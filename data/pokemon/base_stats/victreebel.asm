@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 191 ; base exp
 
-	INCBIN "gfx/pokemon/front/victreebel.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/victreebel.pic", 0, 1 ; sprite dimensions
 	dw VictreebelPicFront, VictreebelPicBack
 
 	db SLEEP_POWDER, STUN_SPORE, ACID, RAZOR_LEAF ; level 1 learnset
@@ -20,4 +20,5 @@
 	     CUT
 	; end
 
-	db 0 ; padding
+	db BANK(VictreebelPicFront)
+	assert BANK(VictreebelPicFront) == BANK(VictreebelPicBack)

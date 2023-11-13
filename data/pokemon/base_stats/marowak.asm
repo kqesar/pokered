@@ -7,10 +7,10 @@
 	db 75 ; catch rate
 	db 124 ; base exp
 
-	INCBIN "gfx/pokemon/front/marowak.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/marowak.pic", 0, 1 ; sprite dimensions
 	dw MarowakPicFront, MarowakPicBack
 
-	db BONE_CLUB, GROWL, LEER, FOCUS_ENERGY ; level 1 learnset
+	db BONE_CLUB, GROWL, LEER, TAIL_WHIP ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
@@ -22,4 +22,5 @@
 	     STRENGTH
 	; end
 
-	db 0 ; padding
+	db BANK(MarowakPicFront)
+	assert BANK(MarowakPicFront) == BANK(MarowakPicBack)

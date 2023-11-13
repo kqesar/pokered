@@ -7,7 +7,7 @@
 	db 75 ; catch rate
 	db 128 ; base exp
 
-	INCBIN "gfx/pokemon/front/parasect.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/parasect.pic", 0, 1 ; sprite dimensions
 	dw ParasectPicFront, ParasectPicBack
 
 	db SCRATCH, STUN_SPORE, LEECH_LIFE, NO_MOVE ; level 1 learnset
@@ -20,4 +20,5 @@
 	     REST,         SUBSTITUTE,   CUT
 	; end
 
-	db 0 ; padding
+	db BANK(ParasectPicFront)
+	assert BANK(ParasectPicFront) == BANK(ParasectPicBack)

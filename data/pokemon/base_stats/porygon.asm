@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 130 ; base exp
 
-	INCBIN "gfx/pokemon/front/porygon.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/porygon.pic", 0, 1 ; sprite dimensions
 	dw PorygonPicFront, PorygonPicBack
 
 	db TACKLE, SHARPEN, CONVERSION, NO_MOVE ; level 1 learnset
@@ -21,4 +21,5 @@
 	     TRI_ATTACK,   SUBSTITUTE,   FLASH
 	; end
 
-	db 0 ; padding
+	db BANK(PorygonPicFront)
+	assert BANK(PorygonPicFront) == BANK(PorygonPicBack)

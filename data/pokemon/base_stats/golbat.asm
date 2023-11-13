@@ -7,7 +7,7 @@
 	db 90 ; catch rate
 	db 171 ; base exp
 
-	INCBIN "gfx/pokemon/front/golbat.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/golbat.pic", 0, 1 ; sprite dimensions
 	dw GolbatPicFront, GolbatPicBack
 
 	db LEECH_LIFE, SCREECH, BITE, NO_MOVE ; level 1 learnset
@@ -19,4 +19,5 @@
 	     BIDE,         SWIFT,        REST,         SUBSTITUTE
 	; end
 
-	db 0 ; padding
+	db BANK(GolbatPicFront)
+	assert BANK(GolbatPicFront) == BANK(GolbatPicBack)

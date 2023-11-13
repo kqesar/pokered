@@ -7,7 +7,7 @@
 	db 255 ; catch rate
 	db 58 ; base exp
 
-	INCBIN "gfx/pokemon/front/spearow.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/spearow.pic", 0, 1 ; sprite dimensions
 	dw SpearowPicFront, SpearowPicBack
 
 	db PECK, GROWL, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -19,4 +19,5 @@
 	     SKY_ATTACK,   REST,         SUBSTITUTE,   FLY
 	; end
 
-	db 0 ; padding
+	db BANK(SpearowPicFront)
+	assert BANK(SpearowPicFront) == BANK(SpearowPicBack)

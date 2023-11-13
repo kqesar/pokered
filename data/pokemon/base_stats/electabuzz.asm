@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 156 ; base exp
 
-	INCBIN "gfx/pokemon/front/electabuzz.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/electabuzz.pic", 0, 1 ; sprite dimensions
 	dw ElectabuzzPicFront, ElectabuzzPicBack
 
 	db QUICK_ATTACK, LEER, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -22,4 +22,5 @@
 	     SUBSTITUTE,   STRENGTH,     FLASH
 	; end
 
-	db 0 ; padding
+	db BANK(ElectabuzzPicFront)
+	assert BANK(ElectabuzzPicFront) == BANK(ElectabuzzPicBack)

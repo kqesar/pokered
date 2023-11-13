@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 127 ; base exp
 
-	INCBIN "gfx/pokemon/front/lickitung.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/lickitung.pic", 0, 1 ; sprite dimensions
 	dw LickitungPicFront, LickitungPicBack
 
 	db WRAP, SUPERSONIC, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -22,4 +22,5 @@
 	     REST,         SUBSTITUTE,   CUT,          SURF,         STRENGTH
 	; end
 
-	db 0 ; padding
+	db BANK(LickitungPicFront)
+	assert BANK(LickitungPicFront) == BANK(LickitungPicBack)

@@ -7,7 +7,7 @@
 	db 190 ; catch rate
 	db 74 ; base exp
 
-	INCBIN "gfx/pokemon/front/mankey.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/mankey.pic", 0, 1 ; sprite dimensions
 	dw MankeyPicFront, MankeyPicBack
 
 	db SCRATCH, LEER, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -21,4 +21,5 @@
 	     REST,         ROCK_SLIDE,   SUBSTITUTE,   STRENGTH
 	; end
 
-	db 0 ; padding
+	db BANK(MankeyPicFront)
+	assert BANK(MankeyPicFront) == BANK(MankeyPicBack)

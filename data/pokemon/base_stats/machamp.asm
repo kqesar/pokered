@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 193 ; base exp
 
-	INCBIN "gfx/pokemon/front/machamp.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/machamp.pic", 0, 1 ; sprite dimensions
 	dw MachampPicFront, MachampPicBack
 
 	db KARATE_CHOP, LOW_KICK, LEER, NO_MOVE ; level 1 learnset
@@ -21,4 +21,5 @@
 	     REST,         ROCK_SLIDE,   SUBSTITUTE,   STRENGTH
 	; end
 
-	db 0 ; padding
+	db BANK(MachampPicFront)
+	assert BANK(MachampPicFront) == BANK(MachampPicBack)

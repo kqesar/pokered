@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 199 ; base exp
 
-	INCBIN "gfx/pokemon/front/omastar.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/omastar.pic", 0, 1 ; sprite dimensions
 	dw OmastarPicFront, OmastarPicBack
 
 	db WATER_GUN, WITHDRAW, HORN_ATTACK, NO_MOVE ; level 1 learnset
@@ -21,4 +21,5 @@
 	     SURF
 	; end
 
-	db 0 ; padding
+	db BANK(OmastarPicFront)
+	assert BANK(OmastarPicFront) == BANK(OmastarPicBack)

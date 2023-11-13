@@ -7,10 +7,10 @@
 	db 30 ; catch rate
 	db 255 ; base exp
 
-	INCBIN "gfx/pokemon/front/chansey.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/chansey.pic", 0, 1 ; sprite dimensions
 	dw ChanseyPicFront, ChanseyPicBack
 
-	db POUND, DOUBLESLAP, NO_MOVE, NO_MOVE ; level 1 learnset
+	db POUND, TAIL_WHIP, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_FAST ; growth rate
 
 	; tm/hm learnset
@@ -24,4 +24,5 @@
 	     FLASH
 	; end
 
-	db 0 ; padding
+	db BANK(ChanseyPicFront)
+	assert BANK(ChanseyPicFront) == BANK(ChanseyPicBack)

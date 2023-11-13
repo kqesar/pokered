@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 159 ; base exp
 
-	INCBIN "gfx/pokemon/front/beedrill.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/beedrill.pic", 0, 1 ; sprite dimensions
 	dw BeedrillPicFront, BeedrillPicBack
 
 	db FURY_ATTACK, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -20,4 +20,5 @@
 	     CUT
 	; end
 
-	db 0 ; padding
+	db BANK(BeedrillPicFront)
+	assert BANK(BeedrillPicFront) == BANK(BeedrillPicBack)

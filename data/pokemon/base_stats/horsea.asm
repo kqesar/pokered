@@ -7,7 +7,7 @@
 	db 225 ; catch rate
 	db 83 ; base exp
 
-	INCBIN "gfx/pokemon/front/horsea.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/horsea.pic", 0, 1 ; sprite dimensions
 	dw HorseaPicFront, HorseaPicBack
 
 	db BUBBLE, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -20,4 +20,5 @@
 	     SURF
 	; end
 
-	db 0 ; padding
+	db BANK(HorseaPicFront)
+	assert BANK(HorseaPicFront) == BANK(HorseaPicBack)

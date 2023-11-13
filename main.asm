@@ -321,6 +321,9 @@ INCLUDE "engine/items/town_map.asm"
 INCLUDE "engine/gfx/mon_icons.asm"
 INCLUDE "engine/events/in_game_trades.asm"
 INCLUDE "engine/gfx/palettes.asm"
+
+SECTION "Engine Menu Save", ROMX
+
 INCLUDE "engine/menus/save.asm"
 
 

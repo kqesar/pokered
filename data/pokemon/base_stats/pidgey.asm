@@ -7,7 +7,7 @@
 	db 255 ; catch rate
 	db 55 ; base exp
 
-	INCBIN "gfx/pokemon/front/pidgey.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/gsfront/pidgey.pic", 0, 1 ; sprite dimensions
 	dw PidgeyPicFront, PidgeyPicBack
 
 	db GUST, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -19,4 +19,5 @@
 	     SWIFT,        SKY_ATTACK,   REST,         SUBSTITUTE,   FLY
 	; end
 
-	db 0 ; padding
+	db BANK(PidgeyPicFront)
+	assert BANK(PidgeyPicFront) == BANK(PidgeyPicBack)
