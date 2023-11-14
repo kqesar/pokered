@@ -32,11 +32,13 @@ SetPal_Battle:
 	call CopyData
 	ld a, [wPlayerBattleStatus3]
 	ld hl, wBattleMonSpecies
-	call DeterminePaletteID
+	;call DeterminePaletteID
+	call DeterminePaletteIDBack
 	ld b, a
 	ld a, [wEnemyBattleStatus3]
 	ld hl, wEnemyMonSpecies2
-	call DeterminePaletteID
+	;call DeterminePaletteID
+	call DeterminePaletteIDFront
 	ld c, a
 	ld hl, wPalPacket + 1
 	ld a, [wPlayerHPBarColor]
@@ -269,23 +271,58 @@ BadgeBlkDataLengths:
 	db 6     ; Volcano Badge
 	db 6     ; Earth Badge
 
-DeterminePaletteID:
-	bit TRANSFORMED, a ; a is battle status 3
-	ld a, PAL_GREYMON  ; if the mon has used Transform, use Ditto's palette
-	ret nz
+;DeterminePaletteID:
+;	bit TRANSFORMED, a ; a is battle status 3
+;	ld a, PAL_GREYMON  ; if the mon has used Transform, use Ditto's palette
+;	ret nz
+;	ld a, [hl]
+;DeterminePaletteIDOutOfBattle:
+;	ld [wd11e], a
+;	and a ; is the mon index 0?
+;	jr z, .skipDexNumConversion
+;	push bc
+;	predef IndexToPokedex
+;	pop bc
+;	ld a, [wd11e]
+;.skipDexNumConversion
+;	ld e, a
+;	ld d, 0
+;	ld hl, MonsterPalettes ; not just for Pokemon, Trainers use it too
+;	add hl, de
+;	ld a, [hl]
+;	ret
+DeterminePaletteIDFront:
 	ld a, [hl]
 DeterminePaletteIDOutOfBattle:
 	ld [wd11e], a
-	and a ; is the mon index 0?
-	jr z, .skipDexNumConversion
+	and a
+	ld a, [wTrainerClass]
+	ld hl, TrainerPalettes
+	jr z, GetTrainerPalID
+	jr GetMonPalID
+
+DeterminePaletteIDBack:
+	bit TRANSFORMED, a
+	jr z, .skip
+	ld hl, wPartyMon1
+	ld a, [wPlayerMonNumber]
+	ld bc, wPartyMon2 - wPartyMon1
+	call AddNTimes
+.skip
+	ld a, [hl]
+	ld [wd11e], a
+	and a
+	ld a, PAL_HERO
+	ret z
+GetMonPalID:
 	push bc
 	predef IndexToPokedex
 	pop bc
 	ld a, [wd11e]
-.skipDexNumConversion
+	ld hl, MonsterPalettes
+GetTrainerPalID:
 	ld e, a
-	ld d, 0
-	ld hl, MonsterPalettes ; not just for Pokemon, Trainers use it too
+	ld d, $00
 	add hl, de
 	ld a, [hl]
 	ret
