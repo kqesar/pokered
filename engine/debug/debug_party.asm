@@ -19,10 +19,10 @@ DebugNewGameParty: ; unreferenced except in _DEBUG
 	; From https://web.archive.org/web/20000607152840/http://pocket.ign.com/news/14973.html
     db MEWTWO, 100
 	db EXEGGUTOR, 100
-	db JOLTEON, 100
-	db DUGTRIO, 100
-	db ARTICUNO, 100
-	db PIKACHU, 100
+	db HAUNTER, 100
+	db KADABRA, 100
+	db GRAVELER, 100
+	db MACHOKE, 100
 	db -1 ; end
 
 PrepareNewGameDebug: ; dummy except in _DEBUG
@@ -150,6 +150,7 @@ DebugSetPokedexEntries:
 
 DebugItemsList:
 	db BICYCLE, 1
+	db CABLE_LINK, 4
 	db FULL_RESTORE, 99
 	db FULL_HEAL, 99
 	db ESCAPE_ROPE, 99
