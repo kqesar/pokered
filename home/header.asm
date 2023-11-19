@@ -21,9 +21,8 @@ SECTION "rst18", ROM0[$0018]
 	ds $20 - @, 0 ; unused
 
 SECTION "rst20", ROM0[$0020]
-	rst $38
-
-	ds $28 - @, 0 ; unused
+_CopyData::
+	jp CopyData
 
 SECTION "rst28", ROM0[$0028]
 	rst $38

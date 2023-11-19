@@ -5,6 +5,8 @@ SetDebugNewGameParty: ; unreferenced except in _DEBUG
 	cp -1
 	ret z
 	ld [wcf91], a
+	ld a, %01000000 ; PureRGBnote: ADDED: 1 in higher nybble to skip nicknaming in debug mode
+	ld [wMonDataLocation], a
 	inc de
 	ld a, [de]
 	ld [wCurEnemyLVL], a
