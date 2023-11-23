@@ -2,7 +2,6 @@ SECTION "bank1", ROMX
 
 INCLUDE "data/sprites/facings.asm"
 INCLUDE "engine/events/black_out.asm"
-INCLUDE "data/pokemon/mew.asm"
 INCLUDE "engine/battle/safari_zone.asm"
 INCLUDE "engine/movie/title.asm"
 INCLUDE "engine/pokemon/load_mon_data.asm"
@@ -682,6 +681,8 @@ JynxPicFront::        INCBIN "gfx/pokemon/gsfront/jynx.pic"
 JynxPicBack::         INCBIN "gfx/pokemon/gsback/jynxb.pic"
 MarowakPicFront::     INCBIN "gfx/pokemon/gsfront/marowak.pic"
 MarowakPicBack::      INCBIN "gfx/pokemon/gsback/marowakb.pic"
+SteelixPicFront::     INCBIN "gfx/pokemon/gsfront/steelix.pic"
+SteelixPicBack::      INCBIN "gfx/pokemon/gsback/steelixb.pic"
 ENDC
 
 IF !GEN_2_GRAPHICS
@@ -968,4 +969,6 @@ JynxPicFront::        INCBIN "gfx/pokemon/front/jynx.pic"
 JynxPicBack::         INCBIN "gfx/pokemon/back/jynxb.pic"
 MarowakPicFront::     INCBIN "gfx/pokemon/front/marowak.pic"
 MarowakPicBack::      INCBIN "gfx/pokemon/back/marowakb.pic"
+SteelixPicFront::     INCBIN "gfx/pokemon/front/steelix.pic"
+SteelixPicBack::      INCBIN "gfx/pokemon/back/steelixb.pic"
 ENDC

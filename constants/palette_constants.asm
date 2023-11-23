@@ -272,4 +272,5 @@ DEF SET_PAL_DEFAULT EQU $ff
     	const PAL_AGATHA        ; $E9
     	const PAL_LANCE         ; $EA
     	const PAL_HERO          ; $EB
+    	const PAL_STEELIX       ; $EC
 DEF NUM_SGB_PALS EQU const_value

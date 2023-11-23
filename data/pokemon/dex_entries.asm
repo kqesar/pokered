@@ -30,7 +30,7 @@ PokedexEntryPointers:
 	dw BlastoiseDexEntry
 	dw PinsirDexEntry
 	dw TangelaDexEntry
-	dw MissingNoDexEntry
+	dw SteelixDexEntry
 	dw MissingNoDexEntry
 	dw GrowlitheDexEntry
 	dw OnixDexEntry
@@ -1253,6 +1253,14 @@ VictreebelDexEntry:
 	dw 340
 	text_far _VictreebelDexEntry
 	text_end
+
+SteelixDexEntry:
+	db "IRON SNAKE@" ; species name
+	dw 30,02
+	dw 8820
+	text_far _SteelixDexEntry
+    text_end
+
 
 MissingNoDexEntry:
 	db "???@"

@@ -24,7 +24,7 @@ DebugNewGameParty: ; unreferenced except in _DEBUG
 	db HAUNTER, 100
 	db KADABRA, 100
 	db GRAVELER, 100
-	db MACHOKE, 100
+	db STEELIX, 100
 	db -1 ; end
 
 PrepareNewGameDebug: ; dummy except in _DEBUG
@@ -153,6 +153,7 @@ DebugSetPokedexEntries:
 DebugItemsList:
 	db BICYCLE, 1
 	db CABLE_LINK, 4
+	db METAL_COAT, 4
 	db FULL_RESTORE, 99
 	db FULL_HEAL, 99
 	db ESCAPE_ROPE, 99
