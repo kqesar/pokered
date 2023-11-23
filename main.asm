@@ -362,6 +362,7 @@ INCLUDE "color/ghost_marowak_anim.asm"
 INCLUDE "color/color.asm"
 
 
+
 SECTION "Itemfinder 1", ROMX
 
 INCLUDE "engine/movie/credits.asm"
