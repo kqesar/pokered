@@ -99,6 +99,12 @@ PewterGymBrockText:
 	text_asm
 	CheckEvent EVENT_BEAT_BROCK
 	jr z, .beforeBeat
+
+	; If we beat the elite four we can rematch gym leader
+    CheckEvent EVENT_BEAT_ELITE_FOUR
+    call nz, .beforeBeat
+    ;end
+
 	CheckEventReuseA EVENT_GOT_TM34
 	jr nz, .afterBeat
 	call z, PewterGymScriptReceiveTM34
@@ -121,6 +127,12 @@ PewterGymBrockText:
 	ld [wSpriteIndex], a
 	call EngageMapTrainer
 	call InitBattleEnemyParameters
+
+	; If we beat the elite four we set the new team for gym leader
+    CheckEvent EVENT_BEAT_ELITE_FOUR
+    call nz, RematchTeam
+    ;end
+
 	ld a, $1
 	ld [wGymLeaderNo], a
 	xor a

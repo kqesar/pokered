@@ -176,12 +176,8 @@ PlayAnimation:
 	ld h, [hl]
 	ld l, a
 .animationLoop
-	vc_hook Stop_reducing_move_anim_flashing_Thunderbolt
 	ld a, [hli]
-	vc_hook_red Stop_reducing_move_anim_flashing_Reflect
-	vc_hook_blue Stop_reducing_move_anim_flashing_Self_Destruct
 	cp -1
-	vc_hook_blue Stop_reducing_move_anim_flashing_Reflect
 	jr z, .AnimationOver
 	cp FIRST_SE_ID ; is this subanimation or a special effect?
 	jr c, .playSubanimation
@@ -248,59 +244,41 @@ PlayAnimation:
 	ldh a, [rOBP0]
 	push af
 	ld a, [wAnimPalette]
-	ldh [rOBP0], a
+;	ldh [rOBP0], a	; HAX
+	nop
+	nop
 	call LoadMoveAnimationTiles
-	vc_hook Reduce_move_anim_flashing_Mega_Punch_Self_Destruct_Explosion
 	call LoadSubanimation
 	call PlaySubanimation
-	vc_hook_red Stop_reducing_move_anim_flashing_Mega_Punch
-	vc_hook_blue Stop_reducing_move_anim_flashing_Mega_Punch_Explosion
 	pop af
-	vc_hook_red Stop_reducing_move_anim_flashing_Blizzard
 	ldh [rOBP0], a
 .nextAnimationCommand
-	vc_hook_red Stop_reducing_move_anim_flashing_Hyper_Beam
-	vc_hook_blue Stop_reducing_move_anim_flashing_Bubblebeam_Hyper_Beam_Blizzard
 	pop hl
-	vc_hook Stop_reducing_move_anim_flashing_Guillotine
 	jr .animationLoop
 .AnimationOver
 	ret
 
 LoadSubanimation:
-	vc_hook Reduce_move_anim_flashing_Guillotine
 	ld a, [wSubAnimAddrPtr + 1]
-	vc_hook Reduce_move_anim_flashing_Mega_Kick
 	ld h, a
-	vc_hook_red Reduce_move_anim_flashing_Blizzard
 	ld a, [wSubAnimAddrPtr]
-	vc_hook_red Reduce_move_anim_flashing_Self_Destruct
 	ld l, a
 	ld a, [hli]
 	ld e, a
-	vc_hook Reduce_move_anim_flashing_Explosion
 	ld a, [hl]
-	vc_hook Reduce_move_anim_flashing_Thunderbolt
 	ld d, a ; de = address of subanimation
 	ld a, [de]
-	vc_hook_blue Reduce_move_anim_flashing_Rock_Slide
 	ld b, a
-	vc_hook Reduce_move_anim_flashing_Spore
 	and %00011111
-	vc_hook Reduce_move_anim_flashing_Bubblebeam
 	ld [wSubAnimCounter], a ; number of frame blocks
-	vc_hook_red Reduce_move_anim_flashing_Rock_Slide
-	vc_hook_blue Reduce_move_anim_flashing_Self_Destruct
 	ld a, b
 	and %11100000
 	cp SUBANIMTYPE_ENEMY << 5
-	vc_hook_blue Reduce_move_anim_flashing_Blizzard
 	jr nz, .isNotType5
 .isType5
 	call GetSubanimationTransform2
 	jr .saveTransformation
 .isNotType5
-	vc_hook Reduce_move_anim_flashing_Hyper_Beam
 	call GetSubanimationTransform1
 .saveTransformation
 ; place the upper 3 bits of a into bits 0-2 of a before storing
@@ -331,7 +309,6 @@ LoadSubanimation:
 ; sets the transform to SUBANIMTYPE_NORMAL if it's the player's turn
 ; sets the transform to the subanimation type if it's the enemy's turn
 GetSubanimationTransform1:
-	vc_hook Reduce_move_anim_flashing_Reflect
 	ld b, a
 	ldh a, [hWhoseTurn]
 	and a
@@ -352,25 +329,32 @@ GetSubanimationTransform2:
 	ret
 
 ; loads tile patterns for battle animations
+; I HAXed with this function by shaving off a few bytes in order to
+; call a function to load sprite palettes.
 LoadMoveAnimationTiles:
 	ld a, [wWhichBattleAnimTileset]
 	add a
 	add a
-	ld hl, MoveAnimationTilesPointers
 	ld e, a
 	ld d, 0
+
+	; HAX: Load corresponding palettes as well
+	call _LoadAnimationTilesetPalettes
+
+	ld hl, MoveAnimationTilesPointers
 	add hl, de
 	ld a, [hli]
 	ld [wTempTilesetNumTiles], a ; number of tiles
+	ld c, a
 	ld a, [hli]
 	ld e, a
-	ld a, [hl]
-	ld d, a ; de = address of tileset
+	ld d, [hl] ; de = address of tileset
 	ld hl, vSprites tile $31
 	ld b, BANK(MoveAnimationTiles0) ; ROM bank
-	ld a, [wTempTilesetNumTiles]
-	ld c, a ; number of tiles
 	jp CopyVideoData ; load tileset
+
+	; Padding to prevent data shifting
+	nop
 
 MACRO anim_tileset
 	db \1
@@ -392,12 +376,7 @@ MoveAnimationTiles1:
 	INCBIN "gfx/battle/move_anim_1.2bpp"
 
 SlotMachineTiles2:
-IF DEF(_RED)
 	INCBIN "gfx/slots/red_slots_2.2bpp"
-ENDC
-IF DEF(_BLUE)
-	INCBIN "gfx/slots/blue_slots_2.2bpp"
-ENDC
 SlotMachineTiles2End:
 
 MoveAnimation:
@@ -425,15 +404,11 @@ MoveAnimation:
 	jr nz, .animationsDisabled
 	call ShareMoveAnimations
 	call PlayAnimation
-	vc_hook_red Stop_reducing_move_anim_flashing_Bubblebeam_Mega_Kick
-	vc_hook_blue Stop_reducing_move_anim_flashing_Spore
 	jr .next4
 .animationsDisabled
 	ld c, 30
 	call DelayFrames
 .next4
-	vc_hook_red Stop_reducing_move_anim_flashing
-	vc_hook_blue Stop_reducing_move_anim_flashing_Rock_Slide_Dream_Eater
 	call PlayApplyingAttackAnimation ; shake the screen or flash the pic in and out (to show damage)
 .animationFinished
 	call WaitForSoundToFinish
@@ -564,14 +539,17 @@ SetAnimationPalette:
 	ld b, $f0
 .next
 	ld a, b
-	ldh [rOBP0], a
+	;ldh [rOBP0], a ; HAX: don't mess with these palettes in-battle
+	nop
+	nop
 	ld a, $6c
-	ldh [rOBP1], a
+	;ldh [rOBP1], a ; HAX
+	nop
+	nop
 	ret
 .notSGB
 	ld a, $e4
 	ld [wAnimPalette], a
-	vc_hook Reduce_move_anim_flashing_Dream_Eater
 	ldh [rOBP0], a
 	ld a, $6c
 	ldh [rOBP1], a
@@ -987,7 +965,6 @@ AnimationFlashScreenLong:
 	ld [wFlashScreenLongCounter], a
 	pop hl
 	jr nz, .loop
-	vc_hook_red Stop_reducing_move_anim_flashing_Psychic
 	ret
 
 ; BG palettes
@@ -2313,7 +2290,9 @@ AnimationLeavesFalling:
 	ldh a, [rOBP0]
 	push af
 	ld a, [wAnimPalette]
-	ldh [rOBP0], a
+;	ldh [rOBP0], a ; HAX
+	nop
+	nop
 	ld d, $37 ; leaf tile
 	ld a, 3 ; number of leaves
 	ld [wNumFallingObjects], a
@@ -2470,12 +2449,10 @@ FallingObjects_InitialMovementData:
 
 AnimationShakeEnemyHUD:
 ; Shakes the enemy HUD.
-
-; Make a copy of the back pic's tile patterns in sprite tile pattern VRAM.
-	ld de, vBackPic
-	ld hl, vSprites
-	ld bc, 7 * 7
-	call CopyVideoData
+	call SpriteifyPlayerPokemon
+	REPT 9
+	nop
+	ENDR
 
 	xor a
 	ldh [hSCX], a

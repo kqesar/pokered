@@ -42,10 +42,16 @@ PrepareOakSpeech:
 OakSpeech:
 	ld a, SFX_STOP_ALL_MUSIC
 	call PlaySound
+	IF DEF(_DEBUG)
+        ld a, [wd732]
+        bit 1, a
+        jr nz, .skipMusic
+    ENDC
 	ld a, BANK(Music_Routes2)
 	ld c, a
 	ld a, MUSIC_ROUTES2
 	call PlayMusic
+.skipMusic
 	call ClearScreen
 	call LoadTextBoxTilePatterns
 	call PrepareOakSpeech
@@ -61,9 +67,18 @@ OakSpeech:
 	call PrepareForSpecialWarp
 	xor a
 	ldh [hTileAnimations], a
+IF GEN_2_GRAPHICS
+	ld a, PAL_OAK
+ELSE
+	ld a, PAL_BROWNMON
+ENDC
+	call GotPalID ; HAX
+	nop
+	nop
+	nop
 	ld a, [wd732]
-	bit BIT_DEBUG_MODE, a
-	jp nz, .skipSpeech
+    bit BIT_DEBUG_MODE, a
+    jp nz, .skipSpeech
 	ld de, ProfOakPic
 	lb bc, BANK(ProfOakPic), $00
 	call IntroDisplayPicCenteredOrUpperRight
@@ -71,7 +86,8 @@ OakSpeech:
 	ld hl, OakSpeechText1
 	call PrintText
 	call GBFadeOutToWhite
-	call ClearScreen
+	;call ClearScreen
+	call GetNidorinoPalID ; HAX
 	ld a, NIDORINO
 	ld [wd0b5], a
 	ld [wcf91], a
@@ -82,7 +98,7 @@ OakSpeech:
 	ld hl, OakSpeechText2
 	call PrintText
 	call GBFadeOutToWhite
-	call ClearScreen
+	call GetRedPalID ; HAX
 	ld de, RedPicFront
 	lb bc, BANK(RedPicFront), $00
 	call IntroDisplayPicCenteredOrUpperRight
@@ -91,7 +107,7 @@ OakSpeech:
 	call PrintText
 	call ChoosePlayerName
 	call GBFadeOutToWhite
-	call ClearScreen
+	call GetRivalPalID ; HAX
 	ld de, Rival1Pic
 	lb bc, BANK(Rival1Pic), $00
 	call IntroDisplayPicCenteredOrUpperRight
@@ -99,9 +115,9 @@ OakSpeech:
 	ld hl, IntroduceRivalText
 	call PrintText
 	call ChooseRivalName
-.skipSpeech
+;.skipSpeech
 	call GBFadeOutToWhite
-	call ClearScreen
+	call GetRedPalID ; HAX
 	ld de, RedPicFront
 	lb bc, BANK(RedPicFront), $00
 	call IntroDisplayPicCenteredOrUpperRight
@@ -134,6 +150,7 @@ OakSpeech:
 	lb bc, BANK(ShrinkPic2), $00
 	call IntroDisplayPicCenteredOrUpperRight
 	call ResetPlayerSpriteData
+.skipSpeech
 	ldh a, [hLoadedROMBank]
 	push af
 	ld a, BANK(Music_PalletTown)
@@ -147,6 +164,11 @@ OakSpeech:
 	pop af
 	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a
+IF DEF(_DEBUG)
+    ld a, [wd732]
+    bit 1, a
+    jr nz, .skipDelay
+ENDC
 	ld c, 20
 	call DelayFrames
 	hlcoord 6, 5
@@ -159,7 +181,8 @@ OakSpeech:
 	ld c, 50
 	call DelayFrames
 	call GBFadeOutToWhite
-	jp ClearScreen
+.skipDelay
+    jp ClearScreen
 OakSpeechText1:
 	text_far _OakSpeechText1
 	text_end
@@ -192,12 +215,12 @@ FadeInIntroPic:
 	ret
 
 IntroFadePalettes:
-	dc 1, 1, 1, 0
-	dc 2, 2, 2, 0
-	dc 3, 3, 3, 0
-	dc 3, 3, 2, 0
-	dc 3, 3, 1, 0
-	dc 3, 2, 1, 0
+	db %01010100
+	db %10101000
+	db %11111100
+	db %11111000
+	db %11110100
+	db %11100100
 
 MovePicLeft:
 	ld a, 119

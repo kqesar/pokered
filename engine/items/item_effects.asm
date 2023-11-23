@@ -60,7 +60,7 @@ ItemUsePtrTable:
 	dw UnusableItem      ; DOME_FOSSIL
 	dw UnusableItem      ; HELIX_FOSSIL
 	dw UnusableItem      ; SECRET_KEY
-	dw UnusableItem
+	dw ItemUseEvoStone   ; CABLE_LINK
 	dw UnusableItem      ; BIKE_VOUCHER
 	dw ItemUseXAccuracy  ; X_ACCURACY
 	dw ItemUseEvoStone   ; LEAF_STONE
@@ -1507,7 +1507,7 @@ ItemUseEscapeRope:
 	ResetEvent EVENT_IN_SAFARI_ZONE
 	xor a
 	ld [wNumSafariBalls], a
-	ld [wSafariZoneGateCurScript], a ; SCRIPT_SAFARIZONEGATE_DEFAULT
+	ld [wSafariZoneGateCurScript], a
 	inc a
 	ld [wEscapedFromBattle], a
 	ld [wActionResultOrTookBattleTurn], a ; item used

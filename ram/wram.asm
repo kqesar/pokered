@@ -1017,14 +1017,14 @@ wOnSGB:: db
 wDefaultPaletteCommand:: db
 
 UNION
-wPlayerHPBarColor:: db
+wPlayerHPBarColor:: dw
 
 NEXTU
 ; species of the mon whose palette is used for the whole screen
 wWholeScreenPaletteMonSpecies:: db
-ENDU
 
 wEnemyHPBarColor:: db
+ENDU
 
 ; 0: green
 ; 1: yellow
@@ -1532,7 +1532,7 @@ wMonHBackSprite:: dw
 wMonHMoves:: ds NUM_MOVES
 wMonHGrowthRate:: db
 wMonHLearnset:: flag_array NUM_TMS + NUM_HMS
-	ds 1
+wMonHPicBank:: db
 wMonHeaderEnd::
 
 ; saved at the start of a battle and then written back at the end of the battle
@@ -1895,9 +1895,7 @@ wBoxItems:: ds PC_ITEM_CAPACITY * 2 + 1
 
 ; bits 0-6: box number
 ; bit 7: whether the player has changed boxes before
-wCurrentBoxNum:: db
-
-	ds 1
+wCurrentBoxNum:: dw
 
 ; number of HOF teams
 wNumHoFTeams:: db
@@ -2313,6 +2311,14 @@ ENDR
 wBoxMonNicksEnd::
 
 wBoxDataEnd::
+
+IF GEN_2_GRAPHICS
+wEXPBarPixelLength::  ds 1
+wEXPBarBaseEXP::      ds 3
+wEXPBarCurEXP::       ds 3
+wEXPBarNeededEXP::    ds 3
+wEXPBarKeepFullFlag:: ds 1
+ENDC
 
 
 SECTION "Stack", WRAM0

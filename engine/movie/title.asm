@@ -120,12 +120,7 @@ DisplayTitleScreen:
 	call LoadScreenTilesFromBuffer2
 	call EnableLCD
 
-IF DEF(_RED)
 	ld a, STARTER1 ; which Pokemon to show first on the title screen
-ENDC
-IF DEF(_BLUE)
-	ld a, STARTER2 ; which Pokemon to show first on the title screen
-ENDC
 	ld [wTitleMonSpecies], a
 	call LoadTitleMonSprite
 
@@ -290,7 +285,8 @@ TitleScreenPickNewMon:
 	ld a, $90
 	ldh [hWY], a
 	ld d, 1 ; scroll out
-	farcall TitleScroll
+	; HAX; palette must be refreshed
+	farcall LoadTitleMonTilesAndPalettes
 	ret
 
 TitleScreenScrollInMon:
@@ -400,12 +396,7 @@ PrintGameVersionOnTitleScreen:
 
 ; these point to special tiles specifically loaded for that purpose and are not usual text
 VersionOnTitleScreenText:
-IF DEF(_RED)
 	db $60,$61,$7F,$65,$66,$67,$68,$69,"@" ; "Red Version"
-ENDC
-IF DEF(_BLUE)
-	db $61,$62,$63,$64,$65,$66,$67,$68,"@" ; "Blue Version"
-ENDC
 
 DebugNewGamePlayerName:
 	db "NINTEN@"

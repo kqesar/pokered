@@ -108,6 +108,12 @@ SaffronGymSabrinaText:
 	text_asm
 	CheckEvent EVENT_BEAT_SABRINA
 	jr z, .beforeBeat
+
+	; If we beat the elite four we can rematch gym leader
+    CheckEvent EVENT_BEAT_ELITE_FOUR
+    call nz, .beforeBeat
+    ;end
+
 	CheckEventReuseA EVENT_GOT_TM46
 	jr nz, .afterBeat
 	call z, SaffronGymSabrinaReceiveTM46Script
@@ -130,6 +136,12 @@ SaffronGymSabrinaText:
 	ld [wSpriteIndex], a
 	call EngageMapTrainer
 	call InitBattleEnemyParameters
+
+	; If we beat the elite four we set the new team for gym leader
+    CheckEvent EVENT_BEAT_ELITE_FOUR
+    call nz, RematchTeam
+    ;end
+
 	ld a, $6
 	ld [wGymLeaderNo], a
 	ld a, SCRIPT_SAFFRONGYM_SABRINA_POST_BATTLE

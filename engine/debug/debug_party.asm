@@ -5,6 +5,8 @@ SetDebugNewGameParty: ; unreferenced except in _DEBUG
 	cp -1
 	ret z
 	ld [wcf91], a
+	ld a, %01000000 ; PureRGBnote: ADDED: 1 in higher nybble to skip nicknaming in debug mode
+	ld [wMonDataLocation], a
 	inc de
 	ld a, [de]
 	ld [wCurEnemyLVL], a
@@ -17,18 +19,12 @@ DebugNewGameParty: ; unreferenced except in _DEBUG
 	; "Tsunekazu Ishihara: Exeggutor is my favorite. That's because I was
 	; always using this character while I was debugging the program."
 	; From https://web.archive.org/web/20000607152840/http://pocket.ign.com/news/14973.html
-	db EXEGGUTOR, 90
-IF DEF(_DEBUG)
-	db MEW, 5
-ELSE
-	db MEW, 20
-ENDC
-	db JOLTEON, 56
-	db DUGTRIO, 56
-	db ARTICUNO, 57
-IF DEF(_DEBUG)
-	db PIKACHU, 5
-ENDC
+    db MEWTWO, 100
+	db EXEGGUTOR, 100
+	db HAUNTER, 100
+	db KADABRA, 100
+	db GRAVELER, 100
+	db MACHOKE, 100
 	db -1 ; end
 
 PrepareNewGameDebug: ; dummy except in _DEBUG
@@ -47,8 +43,28 @@ IF DEF(_DEBUG)
 
 	call SetDebugNewGameParty
 
-	; Exeggutor gets four HM moves.
+	; Mewtwo
 	ld hl, wPartyMon1Moves
+	ld a, PSYWAVE
+	ld [hli], a
+	ld a, THUNDERBOLT
+	ld [hli], a
+	ld a, ICE_BEAM
+	ld [hli], a
+	ld a, FLAMETHROWER
+	ld [hl], a
+	ld hl, wPartyMon1PP
+	ld a, 15
+	ld [hli], a
+	ld a, 15
+	ld [hli], a
+	ld a, 10
+	ld [hli], a
+	ld a, 15
+	ld [hl], a
+
+	; Exeggutor gets four HM moves.
+	ld hl, wPartyMon2Moves
 	ld a, FLY
 	ld [hli], a
 	ld a, CUT
@@ -57,7 +73,7 @@ IF DEF(_DEBUG)
 	ld [hli], a
 	ld a, STRENGTH
 	ld [hl], a
-	ld hl, wPartyMon1PP
+	ld hl, wPartyMon2PP
 	ld a, 15
 	ld [hli], a
 	ld a, 30
@@ -136,6 +152,7 @@ DebugSetPokedexEntries:
 
 DebugItemsList:
 	db BICYCLE, 1
+	db CABLE_LINK, 4
 	db FULL_RESTORE, 99
 	db FULL_HEAL, 99
 	db ESCAPE_ROPE, 99
