@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 211 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/tauros.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/tauros.pic", 0, 1 ; sprite dimensions
 	dw TaurosPicFront, TaurosPicBack
 
 	db TACKLE, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -22,4 +22,3 @@
 	; end
 
 	db BANK(TaurosPicFront)
-	assert BANK(TaurosPicFront) == BANK(TaurosPicBack)

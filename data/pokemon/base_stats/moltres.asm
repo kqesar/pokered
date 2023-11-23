@@ -7,7 +7,7 @@
 	db 3 ; catch rate
 	db 217 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/moltres.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/moltres.pic", 0, 1 ; sprite dimensions
 	dw MoltresPicFront, MoltresPicBack
 
 	db PECK, FIRE_SPIN, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -21,4 +21,3 @@
 	; end
 
 	db BANK(MoltresPicFront)
-	assert BANK(MoltresPicFront) == BANK(MoltresPicBack)

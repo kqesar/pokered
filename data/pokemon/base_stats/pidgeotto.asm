@@ -7,7 +7,7 @@
 	db 120 ; catch rate
 	db 113 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/pidgeotto.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/pidgeotto.pic", 0, 1 ; sprite dimensions
 	dw PidgeottoPicFront, PidgeottoPicBack
 
 	db GUST, SAND_ATTACK, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -20,4 +20,3 @@
 	; end
 
 	db BANK(PidgeottoPicFront)
-	assert BANK(PidgeottoPicFront) == BANK(PidgeottoPicBack)

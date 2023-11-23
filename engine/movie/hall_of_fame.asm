@@ -195,12 +195,22 @@ HoFLoadPlayerPics:
 	ld de, RedPicBack
 	ld a, BANK(RedPicBack)
 	call UncompressSpriteFromDE
+
+IF GEN_2_GRAPHICS ; Use uncompressed red sprite
 	ld a, $66
+	ld c, a
 	ld de, vBackPic
-	push de
-    jp LoadUncompressedBackSprite
-    nop
+	call LoadUncompressedSpriteData
+	nop
+	nop
+	nop
+	nop
+ELSE
+	predef ScaleSpriteByTwo
+	ld de, vBackPic
+	call InterlaceMergeSpriteBuffers
 	ld c, $1
+ENDC
 
 HoFLoadMonPlayerPicTileIDs:
 ; c = base tile ID

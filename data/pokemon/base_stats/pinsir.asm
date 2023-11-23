@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 200 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/pinsir.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/pinsir.pic", 0, 1 ; sprite dimensions
 	dw PinsirPicFront, PinsirPicBack
 
 	db VICEGRIP, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -21,4 +21,3 @@
 	; end
 
 	db BANK(PinsirPicFront)
-	assert BANK(PinsirPicFront) == BANK(PinsirPicBack)

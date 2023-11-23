@@ -3,11 +3,11 @@
 	db  95,  70,  73,  60,  85
 	;   hp  atk  def  spd  spc
 
-	db FAIRY, FAIRY ; type
+	db NORMAL, NORMAL ; type
 	db 25 ; catch rate
 	db 129 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/clefable.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/clefable.pic", 0, 1 ; sprite dimensions
 	dw ClefablePicFront, ClefablePicBack
 
 	db SING, DOUBLESLAP, MINIMIZE, METRONOME ; level 1 learnset
@@ -24,4 +24,3 @@
 	; end
 
 	db BANK(ClefablePicFront)
-	assert BANK(ClefablePicFront) == BANK(ClefablePicBack)

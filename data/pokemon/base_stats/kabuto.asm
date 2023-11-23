@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 119 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/kabuto.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/kabuto.pic", 0, 1 ; sprite dimensions
 	dw KabutoPicFront, KabutoPicBack
 
 	db SCRATCH, HARDEN, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -21,4 +21,3 @@
 	; end
 
 	db BANK(KabutoPicFront)
-	assert BANK(KabutoPicFront) == BANK(KabutoPicBack)

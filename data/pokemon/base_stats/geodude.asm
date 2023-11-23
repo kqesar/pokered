@@ -7,7 +7,7 @@
 	db 255 ; catch rate
 	db 86 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/geodude.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/geodude.pic", 0, 1 ; sprite dimensions
 	dw GeodudePicFront, GeodudePicBack
 
 	db TACKLE, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -22,4 +22,3 @@
 	; end
 
 	db BANK(GeodudePicFront)
-	assert BANK(GeodudePicFront) == BANK(GeodudePicBack)

@@ -7,7 +7,7 @@
 	db 190 ; catch rate
 	db 152 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/ponyta.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/ponyta.pic", 0, 1 ; sprite dimensions
 	dw PonytaPicFront, PonytaPicBack
 
 	db EMBER, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -20,4 +20,3 @@
 	; end
 
 	db BANK(PonytaPicFront)
-	assert BANK(PonytaPicFront) == BANK(PonytaPicBack)

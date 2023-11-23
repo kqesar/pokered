@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 177 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/golem.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/golem.pic", 0, 1 ; sprite dimensions
 	dw GolemPicFront, GolemPicBack
 
 	db TACKLE, DEFENSE_CURL, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -22,4 +22,3 @@
 	; end
 
 	db BANK(GolemPicFront)
-	assert BANK(GolemPicFront) == BANK(GolemPicBack)

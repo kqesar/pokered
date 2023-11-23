@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 136 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/mr.mime.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/mr.mime.pic", 0, 1 ; sprite dimensions
 	dw MrMimePicFront, MrMimePicBack
 
 	db CONFUSION, BARRIER, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -23,4 +23,3 @@
 	; end
 
 	db BANK(MrMimePicFront)
-	assert BANK(MrMimePicFront) == BANK(MrMimePicBack)

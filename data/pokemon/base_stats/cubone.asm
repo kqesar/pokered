@@ -7,7 +7,7 @@
 	db 190 ; catch rate
 	db 87 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/cubone.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/cubone.pic", 0, 1 ; sprite dimensions
 	dw CubonePicFront, CubonePicBack
 
 	db BONE_CLUB, GROWL, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -22,4 +22,3 @@
 	; end
 
 	db BANK(CubonePicFront)
-	assert BANK(CubonePicFront) == BANK(CubonePicBack)

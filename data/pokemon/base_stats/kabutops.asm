@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 201 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/kabutops.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/kabutops.pic", 0, 1 ; sprite dimensions
 	dw KabutopsPicFront, KabutopsPicBack
 
 	db SCRATCH, HARDEN, ABSORB, NO_MOVE ; level 1 learnset
@@ -18,8 +18,7 @@
 	     TAKE_DOWN,    DOUBLE_EDGE,  BUBBLEBEAM,   WATER_GUN,    ICE_BEAM,     \
 	     BLIZZARD,     HYPER_BEAM,   SUBMISSION,   SEISMIC_TOSS, RAGE,         \
 	     MIMIC,        DOUBLE_TEAM,  REFLECT,      BIDE,         SKULL_BASH,   \
-	     REST,         SUBSTITUTE,   CUT,          SURF
+	     REST,         SUBSTITUTE,   SURF
 	; end
 
 	db BANK(KabutopsPicFront)
-	assert BANK(KabutopsPicFront) == BANK(KabutopsPicBack)

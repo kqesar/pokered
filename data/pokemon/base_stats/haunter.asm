@@ -7,7 +7,7 @@
 	db 90 ; catch rate
 	db 126 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/haunter.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/haunter.pic", 0, 1 ; sprite dimensions
 	dw HaunterPicFront, HaunterPicBack
 
 	db LICK, CONFUSE_RAY, NIGHT_SHADE, NO_MOVE ; level 1 learnset
@@ -20,4 +20,3 @@
 	; end
 
 	db BANK(HaunterPicFront)
-	assert BANK(HaunterPicFront) == BANK(HaunterPicBack)

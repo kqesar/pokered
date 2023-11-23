@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 194 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/nidoqueen.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/nidoqueen.pic", 0, 1 ; sprite dimensions
 	dw NidoqueenPicFront, NidoqueenPicBack
 
 	db TACKLE, SCRATCH, TAIL_WHIP, BODY_SLAM ; level 1 learnset
@@ -24,4 +24,3 @@
 	; end
 
 	db BANK(NidoqueenPicFront)
-	assert BANK(NidoqueenPicFront) == BANK(NidoqueenPicBack)

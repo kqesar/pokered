@@ -7,7 +7,7 @@
 	db 190 ; catch rate
 	db 91 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/growlithe.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/growlithe.pic", 0, 1 ; sprite dimensions
 	dw GrowlithePicFront, GrowlithePicBack
 
 	db BITE, ROAR, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -21,4 +21,3 @@
 	; end
 
 	db BANK(GrowlithePicFront)
-	assert BANK(GrowlithePicFront) == BANK(GrowlithePicBack)

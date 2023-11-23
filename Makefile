@@ -111,8 +111,8 @@ endif
 pokered_pad        = 0x00
 pokered_debug_pad = 0xff
 
-pokered_opt        = -jsv -n 0 -k 01 -l 0x33 -m 0x13 -r 03 -t "POKEMON RED"
-pokered_debug_opt = -jsv -n 0 -k 01 -l 0x33 -m 0x13 -r 03 -t "POKEMON RED"
+pokered_opt        = -Cjsv -n 0 -k 01 -l 0x33 -m 0x13 -r 03 -t "POKEMON RED"
+pokered_debug_opt = -Cjsv -n 0 -k 01 -l 0x33 -m 0x13 -r 03 -t "POKEMON RED"
 
 %.gbc: $$(%_obj) layout.link
 	$(RGBLINK) -p $($*_pad) -d -m $*.map -n $*.sym -l layout.link -o $@ $(filter %.o,$^)

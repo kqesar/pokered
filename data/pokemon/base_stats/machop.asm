@@ -7,7 +7,7 @@
 	db 180 ; catch rate
 	db 88 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/machop.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/machop.pic", 0, 1 ; sprite dimensions
 	dw MachopPicFront, MachopPicBack
 
 	db KARATE_CHOP, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -22,4 +22,3 @@
 	; end
 
 	db BANK(MachopPicFront)
-	assert BANK(MachopPicFront) == BANK(MachopPicBack)

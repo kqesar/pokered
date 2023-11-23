@@ -7,7 +7,7 @@
 	db 90 ; catch rate
 	db 148 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/persian.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/persian.pic", 0, 1 ; sprite dimensions
 	dw PersianPicFront, PersianPicBack
 
 	db SCRATCH, GROWL, BITE, SCREECH ; level 1 learnset
@@ -21,4 +21,3 @@
 	; end
 
 	db BANK(PersianPicFront)
-	assert BANK(PersianPicFront) == BANK(PersianPicBack)

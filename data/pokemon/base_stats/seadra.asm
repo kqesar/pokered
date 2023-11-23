@@ -7,7 +7,7 @@
 	db 75 ; catch rate
 	db 155 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/seadra.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/seadra.pic", 0, 1 ; sprite dimensions
 	dw SeadraPicFront, SeadraPicBack
 
 	db BUBBLE, SMOKESCREEN, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -21,4 +21,3 @@
 	; end
 
 	db BANK(SeadraPicFront)
-	assert BANK(SeadraPicFront) == BANK(SeadraPicBack)

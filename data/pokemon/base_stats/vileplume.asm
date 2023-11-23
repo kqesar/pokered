@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 184 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/vileplume.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/vileplume.pic", 0, 1 ; sprite dimensions
 	dw VileplumePicFront, VileplumePicBack
 
 	db STUN_SPORE, SLEEP_POWDER, ACID, PETAL_DANCE ; level 1 learnset
@@ -21,4 +21,3 @@
 	; end
 
 	db BANK(VileplumePicFront)
-	assert BANK(VileplumePicFront) == BANK(VileplumePicBack)

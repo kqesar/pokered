@@ -7,7 +7,7 @@
 	db 255 ; catch rate
 	db 69 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/meowth.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/meowth.pic", 0, 1 ; sprite dimensions
 	dw MeowthPicFront, MeowthPicBack
 
 	db SCRATCH, GROWL, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -21,4 +21,3 @@
 	; end
 
 	db BANK(MeowthPicFront)
-	assert BANK(MeowthPicFront) == BANK(MeowthPicBack)

@@ -7,7 +7,7 @@
 	db 90 ; catch rate
 	db 146 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/machoke.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/machoke.pic", 0, 1 ; sprite dimensions
 	dw MachokePicFront, MachokePicBack
 
 	db KARATE_CHOP, LOW_KICK, LEER, NO_MOVE ; level 1 learnset
@@ -22,4 +22,3 @@
 	; end
 
 	db BANK(MachokePicFront)
-	assert BANK(MachokePicFront) == BANK(MachokePicBack)

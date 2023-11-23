@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 143 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/wartortle.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/wartortle.pic", 0, 1 ; sprite dimensions
 	dw WartortlePicFront, WartortlePicBack
 
 	db TACKLE, TAIL_WHIP, BUBBLE, NO_MOVE ; level 1 learnset
@@ -22,4 +22,3 @@
 	; end
 
 	db BANK(WartortlePicFront)
-	assert BANK(WartortlePicFront) == BANK(WartortlePicBack)

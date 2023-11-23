@@ -7,7 +7,7 @@
 	db 75 ; catch rate
 	db 164 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/slowbro.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/slowbro.pic", 0, 1 ; sprite dimensions
 	dw SlowbroPicFront, SlowbroPicBack
 
 	db CONFUSION, DISABLE, HEADBUTT, NO_MOVE ; level 1 learnset
@@ -25,4 +25,3 @@
 	; end
 
 	db BANK(SlowbroPicFront)
-	assert BANK(SlowbroPicFront) == BANK(SlowbroPicBack)

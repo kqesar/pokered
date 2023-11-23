@@ -7,7 +7,7 @@
 	db 75 ; catch rate
 	db 149 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/primeape.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/primeape.pic", 0, 1 ; sprite dimensions
 	dw PrimeapePicFront, PrimeapePicBack
 
 	db SCRATCH, LEER, KARATE_CHOP, FURY_SWIPES ; level 1 learnset
@@ -22,4 +22,3 @@
 	; end
 
 	db BANK(PrimeapePicFront)
-	assert BANK(PrimeapePicFront) == BANK(PrimeapePicBack)

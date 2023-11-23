@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 210 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/blastoise.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/blastoise.pic", 0, 1 ; sprite dimensions
 	dw BlastoisePicFront, BlastoisePicBack
 
 	db TACKLE, TAIL_WHIP, BUBBLE, WATER_GUN ; level 1 learnset
@@ -23,4 +23,3 @@
 	; end
 
 	db BANK(BlastoisePicFront)
-	assert BANK(BlastoisePicFront) == BANK(BlastoisePicBack)

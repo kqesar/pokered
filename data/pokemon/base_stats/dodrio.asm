@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 158 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/dodrio.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/dodrio.pic", 0, 1 ; sprite dimensions
 	dw DodrioPicFront, DodrioPicBack
 
 	db PECK, GROWL, FURY_ATTACK, NO_MOVE ; level 1 learnset
@@ -21,4 +21,3 @@
 	; end
 
 	db BANK(DodrioPicFront)
-	assert BANK(DodrioPicFront) == BANK(DodrioPicBack)

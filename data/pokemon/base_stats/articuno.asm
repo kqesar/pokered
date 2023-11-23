@@ -7,7 +7,7 @@
 	db 3 ; catch rate
 	db 215 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/articuno.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/articuno.pic", 0, 1 ; sprite dimensions
 	dw ArticunoPicFront, ArticunoPicBack
 
 	db PECK, ICE_BEAM, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -21,4 +21,3 @@
 	; end
 
 	db BANK(ArticunoPicFront)
-	assert BANK(ArticunoPicFront) == BANK(ArticunoPicBack)

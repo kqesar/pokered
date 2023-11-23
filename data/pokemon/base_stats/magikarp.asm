@@ -7,15 +7,14 @@
 	db 255 ; catch rate
 	db 20 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/magikarp.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/magikarp.pic", 0, 1 ; sprite dimensions
 	dw MagikarpPicFront, MagikarpPicBack
 
 	db SPLASH, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset
-	tmhm DRAGON_RAGE
+	tmhm
 	; end
 
 	db BANK(MagikarpPicFront)
-	assert BANK(MagikarpPicFront) == BANK(MagikarpPicBack)

@@ -7,7 +7,7 @@
 	db 90 ; catch rate
 	db 163 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/sandslash.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/sandslash.pic", 0, 1 ; sprite dimensions
 	dw SandslashPicFront, SandslashPicBack
 
 	db SCRATCH, SAND_ATTACK, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -22,4 +22,3 @@
 	; end
 
 	db BANK(SandslashPicFront)
-	assert BANK(SandslashPicFront) == BANK(SandslashPicBack)

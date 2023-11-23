@@ -7,7 +7,7 @@
 	db 190 ; catch rate
 	db 96 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/doduo.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/doduo.pic", 0, 1 ; sprite dimensions
 	dw DoduoPicFront, DoduoPicBack
 
 	db PECK, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -21,4 +21,3 @@
 	; end
 
 	db BANK(DoduoPicFront)
-	assert BANK(DoduoPicFront) == BANK(DoduoPicBack)

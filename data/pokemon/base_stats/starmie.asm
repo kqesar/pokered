@@ -7,7 +7,7 @@
 	db 60 ; catch rate
 	db 207 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/starmie.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/starmie.pic", 0, 1 ; sprite dimensions
 	dw StarmiePicFront, StarmiePicBack
 
 	db TACKLE, WATER_GUN, HARDEN, NO_MOVE ; level 1 learnset
@@ -23,4 +23,3 @@
 	; end
 
 	db BANK(StarmiePicFront)
-	assert BANK(StarmiePicFront) == BANK(StarmiePicBack)

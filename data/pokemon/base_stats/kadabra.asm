@@ -7,10 +7,10 @@
 	db 100 ; catch rate
 	db 145 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/kadabra.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/kadabra.pic", 0, 1 ; sprite dimensions
 	dw KadabraPicFront, KadabraPicBack
 
-	db TELEPORT, CONFUSION, DISABLE, KINESIS ; level 1 learnset
+	db TELEPORT, CONFUSION, DISABLE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset
@@ -22,4 +22,3 @@
 	; end
 
 	db BANK(KadabraPicFront)
-	assert BANK(KadabraPicFront) == BANK(KadabraPicBack)

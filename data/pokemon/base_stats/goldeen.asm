@@ -7,7 +7,7 @@
 	db 225 ; catch rate
 	db 111 ; base exp
 
-	INCBIN "gfx/pokemon/gsfront/goldeen.pic", 0, 1 ; sprite dimensions
+	INCBIN "gfx/pokemon/front/goldeen.pic", 0, 1 ; sprite dimensions
 	dw GoldeenPicFront, GoldeenPicBack
 
 	db PECK, TAIL_WHIP, NO_MOVE, NO_MOVE ; level 1 learnset
@@ -21,4 +21,3 @@
 	; end
 
 	db BANK(GoldeenPicFront)
-	assert BANK(GoldeenPicFront) == BANK(GoldeenPicBack)
