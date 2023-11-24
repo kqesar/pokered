@@ -579,6 +579,7 @@ GrowlitheEvosMoves:
 OnixEvosMoves:
 ; Evolutions
 	db EVOLVE_ITEM, METAL_COAT, 1, STEELIX
+	db 0
 ; Learnset
 	db 15, BIND
 	db 19, ROCK_THROW

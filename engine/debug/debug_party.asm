@@ -24,7 +24,7 @@ DebugNewGameParty: ; unreferenced except in _DEBUG
 	db HAUNTER, 100
 	db KADABRA, 100
 	db GRAVELER, 100
-	db STEELIX, 100
+	db ONIX, 100
 	db -1 ; end
 
 PrepareNewGameDebug: ; dummy except in _DEBUG
