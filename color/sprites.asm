@@ -524,6 +524,28 @@ SpritePaletteAssignments: ; Characters on the overworld
 	db SPR_PAL_BROWN
 
 
+	; 0x3d: SPRITE_BROCK
+    db SPR_PAL_BROWN
+
+	; 0x3e: SPRITE_MISTY
+    db SPR_PAL_ORANGE
+
+    ; 0x3f: SPRITE_LT_SURGE
+    db SPR_PAL_BROWN
+
+    ; 0x40: SPRITE_ERIKA
+    db SPR_PAL_GREEN
+
+    ; 0x41: SPRITE_KOGA
+    db SPR_PAL_BROWN
+
+    ; 0x42: SPRITE_SABRINA
+    db SPR_PAL_ORANGE
+
+    ; 0x43: SPRITE_BLAINE
+    db SPR_PAL_BROWN
+
+
 AnimationTileset1Palettes:
 	INCBIN "color/data/animtileset1palettes.bin"
 

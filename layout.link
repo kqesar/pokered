@@ -212,6 +212,8 @@ ROMX $36
 	"bank36"
 ROMX $37
 	"bank37"
+ROMX $38
+	"NPC Sprites 3"
 WRAM0
 	"Audio RAM"
 	org $c100
