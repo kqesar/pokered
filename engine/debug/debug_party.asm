@@ -45,7 +45,7 @@ IF DEF(_DEBUG)
 
 	; Mewtwo
 	ld hl, wPartyMon1Moves
-	ld a, PSYWAVE
+	ld a, PSYCHIC_M
 	ld [hli], a
 	ld a, THUNDERBOLT
 	ld [hli], a
@@ -54,7 +54,7 @@ IF DEF(_DEBUG)
 	ld a, FLAMETHROWER
 	ld [hl], a
 	ld hl, wPartyMon1PP
-	ld a, 15
+	ld a, 10
 	ld [hli], a
 	ld a, 15
 	ld [hli], a
@@ -137,8 +137,6 @@ IF DEF(_DEBUG)
 	inc hl ; hl = wPlayerStarter
 	ld a, STARTER1
 	ld [hl], a
-
-	ret
 
 DebugSetPokedexEntries:
 	ld b, wPokedexOwnedEnd - wPokedexOwned - 1
