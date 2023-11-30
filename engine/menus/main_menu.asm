@@ -364,8 +364,12 @@ DisplayContinueGameInfo:
 	call PlaceString
 	hlcoord 17, 11
 	call PrintNumBadges
-	hlcoord 16, 13
+	hlcoord 12, 13
 	call PrintNumOwnedMons
+	hlcoord 15, 13
+	ld [hl], "/"
+	hlcoord 16, 13
+	call PrintNumSeenMons
 	hlcoord 13, 15
 	call PrintPlayTime
 	ld a, 1
@@ -390,8 +394,12 @@ PrintSaveScreenText:
 	call PlaceString
 	hlcoord 17, 4
 	call PrintNumBadges
-	hlcoord 16, 6
+	hlcoord 12, 6
 	call PrintNumOwnedMons
+	hlcoord 15, 6
+	ld [hl], "/"
+	hlcoord 16, 6
+	call PrintNumSeenMons
 	hlcoord 13, 8
 	call PrintPlayTime
 	ld a, $1
@@ -413,6 +421,16 @@ PrintNumOwnedMons:
 	push hl
 	ld hl, wPokedexOwned
 	ld b, wPokedexOwnedEnd - wPokedexOwned
+	call CountSetBits
+	pop hl
+	ld de, wNumSetBits
+	lb bc, 1, 3
+	jp PrintNumber
+
+PrintNumSeenMons:
+	push hl
+	ld hl, wPokedexSeen
+	ld b, wPokedexSeenEnd - wPokedexSeen
 	call CountSetBits
 	pop hl
 	ld de, wNumSetBits

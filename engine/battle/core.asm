@@ -2876,7 +2876,7 @@ PrintMenuItem:
 	hlcoord 1, 10
 	ld de, DisabledText
 	call PlaceString
-	jr .moveDisabled
+	jp .moveDisabled
 .notDisabled
 	ld hl, wCurrentMenuItem
 	dec [hl]
@@ -2906,23 +2906,38 @@ PrintMenuItem:
 	ld [wcd6d], a
 ; print TYPE/<type> and <curPP>/<maxPP>
 	hlcoord 1, 9
-	ld de, TypeText
-	call PlaceString
+	;ld de, TypeText
+	;call PlaceString
+	hlcoord 1, 11
+	ld de, PPText
+    call PlaceString
 	hlcoord 7, 11
 	ld [hl], "/"
-	hlcoord 5, 9
-	ld [hl], "/"
+
+	hlcoord 8, 10
+	ld de, PercentText
+    call PlaceString
+
 	hlcoord 5, 11
 	ld de, wcd6d
 	lb bc, 1, 2
 	call PrintNumber
+
 	hlcoord 8, 11
 	ld de, wMaxPP
 	lb bc, 1, 2
 	call PrintNumber
+
 	call GetCurrentMove
-	hlcoord 2, 10
+
+	hlcoord 1, 9
 	predef PrintMoveType
+
+	hlcoord 1, 10
+    call PrintMovePower
+
+    hlcoord 5, 10
+    call PrintMoveAccuracy
 .moveDisabled
 	ld a, $1
 	ldh [hAutoBGTransferEnabled], a
@@ -2933,6 +2948,42 @@ DisabledText:
 
 TypeText:
 	db "TYPE@"
+
+PPText:
+	db "PP:@"
+
+PercentText:
+	db "%@"
+
+PrintMovePower:
+    ld de, wPlayerMovePower
+    lb bc, 1, 3
+    call PrintNumber
+    ret
+
+PrintMoveAccuracy:
+;;; We multiplicative by 100
+    xor a
+    ld [hMultiplicand+2], a
+    ld [hMultiplicand+1], a
+    ld a, [wPlayerMoveAccuracy]
+    ld [hMultiplicand], a
+    ld a, 100
+    ld [hMultiplier], a
+    call Multiply
+
+;;; We divide by 255
+    ld a, 255
+    ld [hDivisor], a
+    ld b, 2
+    call Divide
+
+;;; We get the result
+    ld a, [hQuotient+3]
+    ld [de], a
+    lb bc, 1, 3
+    call PrintNumber
+    ret
 
 SelectEnemyMove:
 	ld a, [wLinkState]
