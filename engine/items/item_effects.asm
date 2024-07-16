@@ -23,7 +23,7 @@ ItemUsePtrTable:
 	dw ItemUseBall       ; POKE_BALL
 	dw ItemUseTownMap    ; TOWN_MAP
 	dw ItemUseBicycle    ; BICYCLE
-	dw ItemUseSurfboard  ; out-of-battle Surf effect
+	dw ItemUseSurfboard  ; SURFBOARD
 	dw ItemUseBall       ; SAFARI_BALL
 	dw ItemUsePokedex    ; POKEDEX
 	dw ItemUseEvoStone   ; MOON_STONE
@@ -66,13 +66,13 @@ ItemUsePtrTable:
 	dw ItemUseEvoStone   ; LEAF_STONE
 	dw ItemUseCardKey    ; CARD_KEY
 	dw UnusableItem      ; NUGGET
-	dw UnusableItem      ; ??? PP_UP
-	dw ItemUsePokedoll   ; POKE_DOLL
+	dw UnusableItem      ; ITEM_32
+	dw ItemUsePokeDoll   ; POKE_DOLL
 	dw ItemUseMedicine   ; FULL_HEAL
 	dw ItemUseMedicine   ; REVIVE
 	dw ItemUseMedicine   ; MAX_REVIVE
 	dw ItemUseGuardSpec  ; GUARD_SPEC
-	dw ItemUseSuperRepel ; SUPER_REPL
+	dw ItemUseSuperRepel ; SUPER_REPEL
 	dw ItemUseMaxRepel   ; MAX_REPEL
 	dw ItemUseDireHit    ; DIRE_HIT
 	dw UnusableItem      ; COIN
@@ -89,13 +89,13 @@ ItemUsePtrTable:
 	dw ItemUseOaksParcel ; OAKS_PARCEL
 	dw ItemUseItemfinder ; ITEMFINDER
 	dw UnusableItem      ; SILPH_SCOPE
-	dw ItemUsePokeflute  ; POKE_FLUTE
+	dw ItemUsePokeFlute  ; POKE_FLUTE
 	dw UnusableItem      ; LIFT_KEY
 	dw UnusableItem      ; EXP_ALL
 	dw ItemUseOldRod     ; OLD_ROD
 	dw ItemUseGoodRod    ; GOOD_ROD
 	dw ItemUseSuperRod   ; SUPER_ROD
-	dw ItemUsePPUp       ; PP_UP (real one)
+	dw ItemUsePPUp       ; PP_UP
 	dw ItemUsePPRestore  ; ETHER
 	dw ItemUsePPRestore  ; MAX_ETHER
 	dw ItemUsePPRestore  ; ELIXER
@@ -666,7 +666,7 @@ ItemUseBicycle:
 .printText
 	jp PrintText
 
-; used for Surf out-of-battle effect
+; indirectly used by SURF in StartMenu_Pokemon.surf
 ItemUseSurfboard:
 	ld a, [wWalkBikeSurfState]
 	ld [wWalkBikeSurfStateCopy], a
@@ -1428,6 +1428,9 @@ VitaminNoEffectText:
 
 INCLUDE "data/battle/stat_names.asm"
 
+; for BOULDERBADGE when used from the
+; ITEM window, which corresponds to
+; SAFARI_BAIT during Safari Game encounters
 ItemUseBait:
 	ld hl, ThrewBaitText
 	call PrintText
@@ -1438,6 +1441,9 @@ ItemUseBait:
 	ld de, wSafariEscapeFactor ; escape factor
 	jr BaitRockCommon
 
+; for CASCADEBADGE when used from the
+; ITEM window, which corresponds to
+; SAFARI_ROCK during Safari Game encounters
 ItemUseRock:
 	ld hl, ThrewRockText
 	call PrintText
@@ -1483,7 +1489,7 @@ ThrewRockText:
 	text_far _ThrewRockText
 	text_end
 
-; also used for Dig out-of-battle effect
+; indirectly used by DIG in StartMenu_Pokemon.dig
 ItemUseEscapeRope:
 	ld a, [wIsInBattle]
 	and a
@@ -1508,7 +1514,7 @@ ItemUseEscapeRope:
 	ResetEvent EVENT_IN_SAFARI_ZONE
 	xor a
 	ld [wNumSafariBalls], a
-	ld [wSafariZoneGateCurScript], a
+	ld [wSafariZoneGateCurScript], a ; SCRIPT_SAFARIZONEGATE_DEFAULT
 	inc a
 	ld [wEscapedFromBattle], a
 	ld [wActionResultOrTookBattleTurn], a ; item used
@@ -1598,7 +1604,7 @@ ItemUseCardKey:
 
 INCLUDE "data/events/card_key_coords.asm"
 
-ItemUsePokedoll:
+ItemUsePokeDoll:
 	ld a, [wIsInBattle]
 	dec a
 	jp nz, ItemUseNotTime
@@ -1663,7 +1669,7 @@ ItemUseXStat:
 	ld [hl], a ; restore [wPlayerMoveNum]
 	ret
 
-ItemUsePokeflute:
+ItemUsePokeFlute:
 	ld a, [wIsInBattle]
 	and a
 	jr nz, .inBattle
@@ -1923,6 +1929,7 @@ ItemUseItemfinder:
 	and a
 	jp nz, ItemUseNotTime
 	call ItemUseReloadOverworldData
+	call DelayFrame
 	farcall HiddenItemNear ; check for hidden items
 	ld hl, ItemfinderFoundNothingText
 	jr nc, .printText ; if no hidden items
