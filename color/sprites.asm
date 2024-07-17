@@ -524,6 +524,19 @@ SpritePaletteAssignments: ; Characters on the overworld
 	; 0x48: SPRITE_LYING_OLD_MAN
 	db SPR_PAL_BROWN
 
+	; 0x49: SPRITE_GAMBLER
+    db SPR_PAL_RANDOM
+    ; 0x4&: SPRITE_GAMBLER
+    db SPR_PAL_RANDOM
+    ; 0x4b: SPRITE_GAMBLER
+    db SPR_PAL_RANDOM
+    ; 0x4c: SPRITE_GAMBLER
+    db SPR_PAL_RANDOM
+    ; 0x4d: SPRITE_GAMBLER
+    db SPR_PAL_RANDOM
+    ; 0x4e: SPRITE_GAMBLER
+    db SPR_PAL_RANDOM
+
 	assert_table_length NUM_SPRITES
 
 
@@ -548,6 +561,29 @@ SpritePaletteAssignments: ; Characters on the overworld
     ; 0x43: SPRITE_BLAINE
     db SPR_PAL_BROWN
 
+    ; 0x4f: SPRITE_GAMBLER
+    db SPR_PAL_RANDOM
+    ; 0x4f: SPRITE_GAMBLER
+    db SPR_PAL_RANDOM
+    ; 0x4f: SPRITE_GAMBLER
+    db SPR_PAL_RANDOM
+    ; 0x4f: SPRITE_GAMBLER
+    db SPR_PAL_RANDOM
+    ; 0x4f: SPRITE_GAMBLER
+    db SPR_PAL_RANDOM
+    ; 0x4f: SPRITE_GAMBLER
+    db SPR_PAL_RANDOM
+    ; 0x4f: SPRITE_GAMBLER
+    db SPR_PAL_RANDOM
+    ; 0x4f: SPRITE_GAMBLER
+    db SPR_PAL_RANDOM
+    ; 0x4f: SPRITE_GAMBLER
+    db SPR_PAL_RANDOM
+    ; 0x4f: SPRITE_GAMBLER
+    db SPR_PAL_RANDOM
+    ; 0x4f: SPRITE_GAMBLER
+    db SPR_PAL_RANDOM
+
 
 AnimationTileset1Palettes:
 	INCBIN "color/data/animtileset1palettes.bin"
@@ -563,9 +599,11 @@ TypeColorTable: ; Used for a select few sprites to be colorized based on attack 
 	db 7 ; POISON EQU $03
 	db 3 ; GROUND EQU $04
 	db 3 ; ROCK EQU $05
-	db 0
+	db 0 ; BIRD EQU $06
 	db 5 ; BUG EQU $07
 	db 7 ; GHOST EQU $08
+	db 0 ; GHOST EQU $08
+	db 0 ; GHOST EQU $08
 	db 0
 	db 0
 	db 0

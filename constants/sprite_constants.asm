@@ -75,10 +75,10 @@ DEF FIRST_STILL_SPRITE EQU const_value
 	const SPRITE_PAPER                   ; $47
 	const SPRITE_POKEDEX                 ; $48
 	const SPRITE_CLIPBOARD               ; $49
-	const SPRITE_SNORLAX                 ; $43
-	const SPRITE_UNUSED_OLD_AMBER        ; $4a
-	const SPRITE_OLD_AMBER               ; $4b
-	const SPRITE_UNUSED_GAMBLER_ASLEEP_1 ; $4c
-	const SPRITE_UNUSED_GAMBLER_ASLEEP_2 ; $4d
-	const SPRITE_GAMBLER_ASLEEP          ; $4e
+	const SPRITE_SNORLAX                 ; $4a
+	const SPRITE_UNUSED_OLD_AMBER        ; $4b
+	const SPRITE_OLD_AMBER               ; $4c
+	const SPRITE_UNUSED_GAMBLER_ASLEEP_1 ; $4d
+	const SPRITE_UNUSED_GAMBLER_ASLEEP_2 ; $4e
+	const SPRITE_GAMBLER_ASLEEP          ; $4f
 DEF NUM_SPRITES EQU const_value - 1
