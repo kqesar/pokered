@@ -837,7 +837,7 @@ TradeCenter_Trade:
 	call ClearScreen
 	call LoadHpBarAndStatusTilePatterns
 	xor a
-	ld [wUnusedCC5B], a
+	ld [wUnusedFlag], a
 	ldh a, [hSerialConnectionStatus]
 	cp USING_EXTERNAL_CLOCK
 	jr z, .usingExternalClock

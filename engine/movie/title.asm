@@ -213,7 +213,7 @@ DisplayTitleScreen:
 ;	ld [wNewSoundID], a
 	call PlayMusic
 	xor a
-	ld [wUnusedCC5B], a
+	ld [wUnusedFlag], a
 
 ; Keep scrolling in new mons indefinitely until the user performs input.
 .awaitUserInterruptionLoop
