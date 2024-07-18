@@ -44,67 +44,19 @@ IF DEF(_DEBUG)
 	call SetDebugNewGameParty
 
 	; Mewtwo
-	ld hl, wPartyMon1Moves
-	ld a, PSYCHIC_M
-	ld [hli], a
-	ld a, THUNDERBOLT
-	ld [hli], a
-	ld a, ICE_BEAM
-	ld [hli], a
-	ld a, FLAMETHROWER
-	ld [hl], a
-	ld hl, wPartyMon1PP
-	ld a, 10
-	ld [hli], a
-	ld a, 15
-	ld [hli], a
-	ld a, 10
-	ld [hli], a
-	ld a, 15
-	ld [hl], a
+	call .setMovesFirstPokemon
 
 	; Exeggutor gets four HM moves.
-	ld hl, wPartyMon2Moves
-	ld a, FLY
-	ld [hli], a
-	ld a, CUT
-	ld [hli], a
-	ld a, SURF
-	ld [hli], a
-	ld a, STRENGTH
-	ld [hl], a
-	ld hl, wPartyMon2PP
-	ld a, 15
-	ld [hli], a
-	ld a, 30
-	ld [hli], a
-	ld a, 15
-	ld [hli], a
-	ld [hl], a
+	call .setMovesSecondPokemon
 
 	; Jolteon gets Thunderbolt.
-	ld hl, wPartyMon3Moves + 3
-	ld a, THUNDERBOLT
-	ld [hl], a
-	ld hl, wPartyMon3PP + 3
-	ld a, 15
-	ld [hl], a
+	call .setMovesThirdPokemon
 
 	; Articuno gets Fly.
-	ld hl, wPartyMon5Moves
-	ld a, FLY
-	ld [hl], a
-	ld hl, wPartyMon5PP
-	ld a, 15
-	ld [hl], a
+	call .setMovesFifthPokemon
 
 	; Pikachu gets Surf.
-	ld hl, wPartyMon6Moves + 2
-	ld a, SURF
-	ld [hl], a
-	ld hl, wPartyMon6PP + 2
-	ld a, 15
-	ld [hl], a
+	call .setMovesSixthPokemon
 
 	; Get some debug items.
 	ld hl, wNumBagItems
@@ -137,6 +89,69 @@ IF DEF(_DEBUG)
 	inc hl ; hl = wPlayerStarter
 	ld a, STARTER1
 	ld [hl], a
+.setMovesFirstPokemon:
+    ld hl, wPartyMon1Moves
+    ld a, PSYCHIC_M
+    ld [hli], a
+    ld a, THUNDERBOLT
+    ld [hli], a
+    ld a, ICE_BEAM
+    ld [hli], a
+    ld a, FLAMETHROWER
+    ld [hl], a
+    ld hl, wPartyMon1PP
+    ld a, 10
+    ld [hli], a
+    ld a, 15
+    ld [hli], a
+    ld a, 10
+    ld [hli], a
+    ld a, 15
+    ld [hl], a
+    ret
+.setMovesSecondPokemon
+    ld hl, wPartyMon2Moves
+	ld a, FLY
+	ld [hli], a
+	ld a, CUT
+	ld [hli], a
+	ld a, SURF
+	ld [hli], a
+	ld a, STRENGTH
+	ld [hl], a
+	ld hl, wPartyMon2PP
+	ld a, 15
+	ld [hli], a
+	ld a, 30
+	ld [hli], a
+	ld a, 15
+	ld [hli], a
+	ld [hl], a
+	ret
+.setMovesThirdPokemon
+    ld hl, wPartyMon3Moves + 3
+    ld a, THUNDERBOLT
+    ld [hl], a
+    ld hl, wPartyMon3PP + 3
+    ld a, 15
+    ld [hl], a
+    ret
+.setMovesFifthPokemon
+    ld hl, wPartyMon5Moves
+	ld a, FLY
+	ld [hl], a
+	ld hl, wPartyMon5PP
+	ld a, 15
+	ld [hl], a
+    ret
+.setMovesSixthPokemon
+    ld hl, wPartyMon6Moves + 2
+    ld a, SURF
+    ld [hl], a
+    ld hl, wPartyMon6PP + 2
+    ld a, 15
+    ld [hl], a
+    ret
 
 DebugSetPokedexEntries:
 	ld b, wPokedexOwnedEnd - wPokedexOwned - 1
