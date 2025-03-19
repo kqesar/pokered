@@ -175,7 +175,7 @@ ENDC
 	call GBPalNormal
 	hlcoord 1, 0
 	call LoadFlippedFrontSpriteByMonIndex ; draw Pokémon picture
-	ld a, [wcf91]
+	ld a, [wCurPartySpecies]
 	call PlayCry ; play Pokémon cry
 	call WaitForTextScrollButtonPress ; wait for button
 	pop af

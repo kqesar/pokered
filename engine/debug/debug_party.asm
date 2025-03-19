@@ -4,7 +4,7 @@ SetDebugNewGameParty: ; unreferenced except in _DEBUG
 	ld a, [de]
 	cp -1
 	ret z
-	ld [wcf91], a
+	ld [wCurPartySpecies], a
 	ld a, %01000000 ; PureRGBnote: ADDED: 1 in higher nybble to skip nicknaming in debug mode
 	ld [wMonDataLocation], a
 	inc de
@@ -65,7 +65,7 @@ IF DEF(_DEBUG)
 	ld a, [de]
 	cp -1
 	jr z, .items_end
-	ld [wcf91], a
+	ld [wCurPartySpecies], a
 	inc de
 	ld a, [de]
 	inc de

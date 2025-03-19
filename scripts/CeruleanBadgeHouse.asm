@@ -34,7 +34,7 @@ CeruleanBadgeHouseMiddleAgedManText:
 	call DisplayListMenuID
 	jr c, .done
 	ld hl, CeruleanBadgeHouseBadgeTextPointers
-	ld a, [wcf91]
+	ld a, [wCurPartySpecies]
 	sub BOULDERBADGE
 	add a
 	ld d, $0

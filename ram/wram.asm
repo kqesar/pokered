@@ -1088,7 +1088,7 @@ wUnusedNamePointer:: dw
 
 wItemPrices:: dw
 
-wcf91:: db ; used with a lot of things (too much to list here)
+wCurPartySpecies:: db ; used with a lot of things (too much to list here)
 
 ; which pokemon you selected
 wWhichPokemon:: db

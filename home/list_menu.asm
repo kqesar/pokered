@@ -124,7 +124,7 @@ DisplayListMenuIDLoop::
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	ld [wcf91], a
+	ld [wCurPartySpecies], a
 	ld a, [wListMenuID]
 	and a ; PCPOKEMONLISTMENU?
 	jr z, .pokemonList
@@ -139,7 +139,7 @@ DisplayListMenuIDLoop::
 	ld a, [hl] ; a = item quantity
 	ld [wMaxItemQuantity], a
 .skipGettingQuantity
-	ld a, [wcf91]
+	ld a, [wCurPartySpecies]
 	ld [wd0b5], a
 	ld a, BANK(ItemNames)
 	ld [wPredefBank], a
@@ -413,7 +413,7 @@ PrintListMenuEntries::
 	push hl
 	ld a, [de]
 	ld de, ItemPrices
-	ld [wcf91], a
+	ld [wCurPartySpecies], a
 	call GetItemPrice ; get price
 	pop hl
 	ld bc, SCREEN_WIDTH + 5 ; 1 row down and 5 columns right
@@ -468,7 +468,7 @@ PrintListMenuEntries::
 	jr nz, .nextListEntry
 .printItemQuantity
 	ld a, [wd11e]
-	ld [wcf91], a
+	ld [wCurPartySpecies], a
 	call IsKeyItem ; check if item is unsellable
 	ld a, [wIsKeyItem]
 	and a ; is the item unsellable?

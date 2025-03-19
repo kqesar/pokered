@@ -408,7 +408,7 @@ ShowPokedexDataInternal:
 	call GBPalWhiteOut ; zero all palettes
 	call ClearScreen
 	ld a, [wd11e] ; pokemon ID
-	ld [wcf91], a
+	ld [wCurPartySpecies], a
 	push af
 	ld b, SET_PAL_POKEDEX
 	call RunPaletteCommand
@@ -492,7 +492,7 @@ ShowPokedexDataInternal:
 	call IsPokemonBitSet
 	pop af
 	ld [wd11e], a
-	ld a, [wcf91]
+	ld a, [wCurPartySpecies]
 	ld [wd0b5], a
 	pop de
 
@@ -509,7 +509,7 @@ ShowPokedexDataInternal:
 
 	ld a, [wd11e]
 	push af
-	ld a, [wcf91]
+	ld a, [wCurPartySpecies]
 	call PlayCry ; play pokemon cry
 	pop af
 	ld [wd11e], a
