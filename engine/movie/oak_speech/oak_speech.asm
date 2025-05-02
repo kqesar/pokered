@@ -4,9 +4,9 @@ PrepareOakSpeech:
 	ld a, [wOptions]
 	push af
 	; Retrieve BIT_DEBUG_MODE set in DebugMenu for StartNewGameDebug.
-	; BUG: StartNewGame carries over bit 5 from previous save files,
+	; BUG: StartNewGame carries over BIT_ALWAYS_ON_BIKE from previous save files,
 	; which causes CheckForceBikeOrSurf to not return.
-	; To fix this in debug builds, reset bit 5 here or in StartNewGame.
+	; To fix this in debug builds, reset BIT_ALWAYS_ON_BIKE here or in StartNewGame.
 	; In non-debug builds, the instructions can be removed.
 	ld a, [wStatusFlags6]
 	push af
@@ -58,7 +58,7 @@ OakSpeech:
 	predef InitPlayerData2
 	ld hl, wNumBoxItems
 	ld a, POTION
-	ld [wcf91], a
+	ld [wCurItem], a
 	ld a, 1
 	ld [wItemQuantity], a
 	call AddItemToInventory
@@ -76,9 +76,9 @@ ENDC
 	nop
 	nop
 	nop
-	ld a, [wStatusFlags6]
-	bit BIT_DEBUG_MODE, a
-	jp nz, .skipSpeech
+	;ld a, [wd732]
+	;bit BIT_DEBUG_MODE, a
+	;jp nz, .skipSpeech
 	ld de, ProfOakPic
 	lb bc, BANK(ProfOakPic), $00
 	call IntroDisplayPicCenteredOrUpperRight
@@ -89,8 +89,8 @@ ENDC
 	;call ClearScreen
 	call GetNidorinoPalID ; HAX
 	ld a, NIDORINO
-	ld [wd0b5], a
-	ld [wcf91], a
+	ld [wCurSpecies], a
+	ld [wCurPartySpecies], a
 	call GetMonHeader
 	hlcoord 6, 4
 	call LoadFlippedFrontSpriteByMonIndex

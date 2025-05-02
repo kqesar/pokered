@@ -224,7 +224,7 @@ BillsPCDeposit:
 	jp c, BillsPCMenu
 	call DisplayDepositWithdrawMenu
 	jp nc, BillsPCMenu
-	ld a, [wcf91]
+	ld a, [wCurPartySpecies]
 
 	call PlayCry
 ;	call GetCryData
@@ -279,7 +279,7 @@ BillsPCWithdraw:
 	ld a, [wWhichPokemon]
 	ld hl, wBoxMonNicks
 	call GetPartyMonName
-	ld a, [wcf91]
+	ld a, [wCurPartySpecies]
 
 	call PlayCry
 ;	call GetCryData
@@ -317,7 +317,7 @@ BillsPCRelease:
 	ld [wRemoveMonFromBox], a
 	call RemovePokemon
 	call WaitForSoundToFinish
-	ld a, [wcf91]
+	ld a, [wCurPartySpecies]
 	call PlayCry
 	ld hl, MonWasReleasedText
 	call PrintText
