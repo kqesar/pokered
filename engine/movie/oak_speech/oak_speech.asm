@@ -44,10 +44,10 @@ OakSpeech:
 	call PlaySound
 	IF DEF(_DEBUG)
         ld a, [wStatusFlags6]
-        bit 1, a
+        bit BIT_DEBUG_MODE, a
         jr nz, .skipMusic
     ENDC
-	ld a, 0 ; BANK(Music_Routes2)
+	ld a, BANK(Music_Routes2)
 	ld c, a
 	ld a, MUSIC_ROUTES2
 	call PlayMusic
@@ -76,9 +76,9 @@ ENDC
 	nop
 	nop
 	nop
-	;ld a, [wd732]
-	;bit BIT_DEBUG_MODE, a
-	;jp nz, .skipSpeech
+	ld a, [wStatusFlags6]
+	bit BIT_DEBUG_MODE, a
+	jp nz, .skipSpeech
 	ld de, ProfOakPic
 	lb bc, BANK(ProfOakPic), $00
 	call IntroDisplayPicCenteredOrUpperRight
@@ -153,7 +153,7 @@ ENDC
 .skipSpeech
 	ldh a, [hLoadedROMBank]
 	push af
-;	ld a, 0 ; BANK(Music_PalletTown)
+;	ld a, BANK(Music_PalletTown)
 ;	ld [wAudioROMBank], a
 ;	ld [wAudioSavedROMBank], a
 
