@@ -1,3 +1,71 @@
+MewtwoMovesAndPP:
+    db PSYCHIC_M, THUNDERBOLT, ICE_BEAM, FLAMETHROWER, $FF
+    db 10, 15, 10, 15, $FF
+
+ExeggutorMovesAndPP:
+    db FLY, CUT, SURF, STRENGTH, $FF
+    db 15, 30, 15, 15, $FF
+
+JolteonMovesAndPP:
+    db THUNDERBOLT, $FF
+    db 15, $FF
+
+ArticunoMovesAndPP:
+    db FLY, $FF
+    db 15, $FF
+
+PikachuMovesAndPP:
+    db SURF, $FF
+    db 15, $FF
+; ----------------------------------------------------------------------
+; SetMovesAndPP (version corrigée finale)
+; ----------------------------------------------------------------------
+; Copie 1 à 4 attaques + PP depuis un bloc structuré :
+;   db MOVE1, MOVE2, ..., $FF, PP1, PP2, ..., $FF
+; Écrit seulement les attaques/PP fournis.
+; ----------------------------------------------------------------------
+; Entrées :
+;   hl = destination des attaques
+;   de = destination des PP
+;   bc = début du bloc (attaque1...$FF, pp1...$FF)
+; ----------------------------------------------------------------------
+
+SetMovesAndPP:
+    push hl         ; Sauvegarde pointeur des attaques
+    push de         ; Sauvegarde pointeur des PP
+
+    ; -----------------------------
+    ; Phase 1 : copie des attaques
+    ; -----------------------------
+.copy_moves_loop:
+    ld a, [bc]
+    cp $FF
+    jr z, .move_to_pp_block
+    ld [hli], a      ; <<< FIX : avancer HL à chaque attaque
+    inc bc
+    jr .copy_moves_loop
+
+.move_to_pp_block:
+    inc bc           ; sauter le $FF pour passer au bloc de PP
+    pop de           ; DE = destination des PP
+
+    ; -----------------------------
+    ; Phase 2 : copie des PP
+    ; -----------------------------
+.copy_pp_loop:
+    ld a, [bc]
+    cp $FF
+    jr z, .done
+    ld [de], a
+    inc de
+    inc bc
+    jr .copy_pp_loop
+
+.done:
+    pop hl           ; Nettoyage pile (HL inutilisé ici mais par sécurité)
+    ret
+
+
 SetDebugNewGameParty: ; unreferenced except in _DEBUG
 	ld de, DebugNewGameParty
 .loop
@@ -80,6 +148,9 @@ IF DEF(_DEBUG)
 	ld hl, wPokedexSeen
 	call DebugSetPokedexEntries
 	SetEvent EVENT_GOT_POKEDEX
+	
+	;SetEvent Elite Four
+	SetEvent EVENT_BEAT_ELITE_FOUR	
 
 	; Rival chose Squirtle,
 	; Player chose Charmander.
@@ -91,50 +162,21 @@ IF DEF(_DEBUG)
 	ld [hl], a
 .setMovesFirstPokemon:
     ld hl, wPartyMon1Moves
-    ld a, PSYCHIC_M
-    ld [hli], a
-    ld a, THUNDERBOLT
-    ld [hli], a
-    ld a, ICE_BEAM
-    ld [hli], a
-    ld a, FLAMETHROWER
-    ld [hl], a
-    ld hl, wPartyMon1PP
-    ld a, 10
-    ld [hli], a
-    ld a, 15
-    ld [hli], a
-    ld a, 10
-    ld [hli], a
-    ld a, 15
-    ld [hl], a
+    ld de, wPartyMon1PP
+    ld bc, MewtwoMovesAndPP
+    call SetMovesAndPP
     ret
 .setMovesSecondPokemon
     ld hl, wPartyMon2Moves
-	ld a, FLY
-	ld [hli], a
-	ld a, CUT
-	ld [hli], a
-	ld a, SURF
-	ld [hli], a
-	ld a, STRENGTH
-	ld [hl], a
-	ld hl, wPartyMon2PP
-	ld a, 15
-	ld [hli], a
-	ld a, 30
-	ld [hli], a
-	ld a, 15
-	ld [hli], a
-	ld [hl], a
+    ld de, wPartyMon2PP
+    ld bc, ExeggutorMovesAndPP
+    call SetMovesAndPP
 	ret
 .setMovesThirdPokemon
     ld hl, wPartyMon3Moves + 3
-    ld a, THUNDERBOLT
-    ld [hl], a
-    ld hl, wPartyMon3PP + 3
-    ld a, 15
-    ld [hl], a
+    ld de, wPartyMon3PP + 3
+    ld bc, JolteonMovesAndPP
+    call SetMovesAndPP
     ret
 .setMovesFifthPokemon
     ld hl, wPartyMon5Moves
@@ -144,13 +186,11 @@ IF DEF(_DEBUG)
 	ld a, 15
 	ld [hl], a
     ret
-.setMovesSixthPokemon
+.setMovesSixthPokemon ; Decalage de 2
     ld hl, wPartyMon6Moves + 2
-    ld a, SURF
-    ld [hl], a
-    ld hl, wPartyMon6PP + 2
-    ld a, 15
-    ld [hl], a
+    ld de, wPartyMon6PP + 2
+	ld bc, PikachuMovesAndPP
+    call SetMovesAndPP
     ret
 
 DebugSetPokedexEntries:
