@@ -1,99 +1,89 @@
-MewtwoMovesAndPP:
+Mon1MovesAndPP:
+	db MEWTWO, 100
     db PSYCHIC_M, THUNDERBOLT, ICE_BEAM, FLAMETHROWER, $FF
     db 10, 15, 10, 15, $FF
 
-ExeggutorMovesAndPP:
+Mon2MovesAndPP:
+	db EXEGGUTOR, 100
     db FLY, CUT, SURF, STRENGTH, $FF
     db 15, 30, 15, 15, $FF
 
-JolteonMovesAndPP:
+Mon3MovesAndPP:
+	db HAUNTER, 100
     db THUNDERBOLT, $FF
     db 15, $FF
 
-ArticunoMovesAndPP:
+Mon4MovesAndPP:
+	db KADABRA, 100
+    db $FF
+    db $FF
+
+Mon5MovesAndPP:
+	db MEW, 100
     db FLY, $FF
     db 15, $FF
 
-PikachuMovesAndPP:
+Mon6MovesAndPP:
+	db PIDGEY, 5
     db SURF, $FF
     db 15, $FF
 ; ----------------------------------------------------------------------
-; SetMovesAndPP (version corrigée finale)
+; SetMovesAndPP (final corrected version)
 ; ----------------------------------------------------------------------
-; Copie 1 à 4 attaques + PP depuis un bloc structuré :
-;   db MOVE1, MOVE2, ..., $FF, PP1, PP2, ..., $FF
-; Écrit seulement les attaques/PP fournis.
+; Copies Pokemon with level + 1 to 4 moves + PP from a structured block:
+;   db MON1, 100
+;   db MOVE1, MOVE2, ..., $FF, 
+;   db PP1, PP2, ..., $FF
+; Writes only the moves/PP provided.
 ; ----------------------------------------------------------------------
-; Entrées :
-;   hl = destination des attaques
-;   de = destination des PP
-;   bc = début du bloc (attaque1...$FF, pp1...$FF)
+; Inputs:
+;   hl = destination for moves
+;   de = destination for PP
+;   bc = start of the block (move1...$FF, pp1...$FF)
 ; ----------------------------------------------------------------------
 
 SetMovesAndPP:
-    push hl         ; Sauvegarde pointeur des attaques
-    push de         ; Sauvegarde pointeur des PP
+	ld a, [bc]
+	ld [wCurPartySpecies], a
+	inc bc
+	ld a, %01000000 ; PureRGBnote: ADDED: 1 in higher nybble to skip nicknaming in debug mode
+	ld [wMonDataLocation], a
+	ld a, [bc]
+	ld [wCurEnemyLevel], a
+	inc bc
+	call AddPartyMon
 
+    push hl         ; Save the pointer to moves
+    push de         ; Save the pointer to PP
     ; -----------------------------
-    ; Phase 1 : copie des attaques
+    ; Phase 1: copy the moves
     ; -----------------------------
 .copy_moves_loop:
     ld a, [bc]
-    cp $FF
-    jr z, .move_to_pp_block
-    ld [hli], a      ; <<< FIX : avancer HL à chaque attaque
     inc bc
+    cp $FF
+    jp z, .move_to_pp_block
+    ld [hli], a      ; <<< FIX: advance HL after writing each move
     jr .copy_moves_loop
 
 .move_to_pp_block:
-    inc bc           ; sauter le $FF pour passer au bloc de PP
-    pop de           ; DE = destination des PP
+    pop de           ; DE = destination for PP
 
     ; -----------------------------
-    ; Phase 2 : copie des PP
+    ; Phase 2: copy the PP values
     ; -----------------------------
 .copy_pp_loop:
     ld a, [bc]
+    inc bc
     cp $FF
     jr z, .done
     ld [de], a
     inc de
-    inc bc
     jr .copy_pp_loop
 
 .done:
-    pop hl           ; Nettoyage pile (HL inutilisé ici mais par sécurité)
+    pop hl           ; Clean up the stack (HL not reused but popped for safety)
     ret
-
-
-SetDebugNewGameParty: ; unreferenced except in _DEBUG
-	ld de, DebugNewGameParty
-.loop
-	ld a, [de]
-	cp -1
-	ret z
-	ld [wCurPartySpecies], a
-	ld a, %01000000 ; PureRGBnote: ADDED: 1 in higher nybble to skip nicknaming in debug mode
-	ld [wMonDataLocation], a
-	inc de
-	ld a, [de]
-	ld [wCurEnemyLevel], a
-	inc de
-	call AddPartyMon
-	jr .loop
-
-DebugNewGameParty: ; unreferenced except in _DEBUG
-	; Exeggutor is the only debug party member shared with Red, Green, and Japanese Blue.
-	; "Tsunekazu Ishihara: Exeggutor is my favorite. That's because I was
-	; always using this character while I was debugging the program."
-	; From https://web.archive.org/web/20000607152840/http://pocket.ign.com/news/14973.html
-    db MEWTWO, 100
-	db EXEGGUTOR, 100
-	db HAUNTER, 100
-	db KADABRA, 100
-	db GRAVELER, 100
-	db ONIX, 100
-	db -1 ; end
 
 PrepareNewGameDebug: ; dummy except in _DEBUG
 IF DEF(_DEBUG)
@@ -108,22 +98,12 @@ IF DEF(_DEBUG)
 	; Get all badges except Earth Badge.
 	ld a, ~(1 << BIT_EARTHBADGE)
 	ld [wObtainedBadges], a
-
-	call SetDebugNewGameParty
-
-	; Mewtwo
+	
 	call .setMovesFirstPokemon
-
-	; Exeggutor gets four HM moves.
 	call .setMovesSecondPokemon
-
-	; Jolteon gets Thunderbolt.
 	call .setMovesThirdPokemon
-
-	; Articuno gets Fly.
+	call .setMovesFourthPokemon
 	call .setMovesFifthPokemon
-
-	; Pikachu gets Surf.
 	call .setMovesSixthPokemon
 
 	; Get some debug items.
@@ -163,35 +143,33 @@ IF DEF(_DEBUG)
 .setMovesFirstPokemon:
     ld hl, wPartyMon1Moves
     ld de, wPartyMon1PP
-    ld bc, MewtwoMovesAndPP
-    call SetMovesAndPP
-    ret
+    ld bc, Mon1MovesAndPP
+    jp SetMovesAndPP
 .setMovesSecondPokemon
     ld hl, wPartyMon2Moves
     ld de, wPartyMon2PP
-    ld bc, ExeggutorMovesAndPP
-    call SetMovesAndPP
-	ret
+    ld bc, Mon2MovesAndPP
+    jp SetMovesAndPP
 .setMovesThirdPokemon
-    ld hl, wPartyMon3Moves + 3
-    ld de, wPartyMon3PP + 3
-    ld bc, JolteonMovesAndPP
-    call SetMovesAndPP
-    ret
+    ld hl, wPartyMon3Moves + 2
+    ld de, wPartyMon3PP + 2
+    ld bc, Mon3MovesAndPP
+    jp SetMovesAndPP
+.setMovesFourthPokemon
+    ld hl, wPartyMon4Moves
+    ld de, wPartyMon4PP
+    ld bc, Mon4MovesAndPP
+    jp SetMovesAndPP
 .setMovesFifthPokemon
     ld hl, wPartyMon5Moves
-	ld a, FLY
-	ld [hl], a
-	ld hl, wPartyMon5PP
-	ld a, 15
-	ld [hl], a
-    ret
-.setMovesSixthPokemon ; Decalage de 2
+    ld de, wPartyMon5PP
+    ld bc, Mon5MovesAndPP
+    jp SetMovesAndPP
+.setMovesSixthPokemon
     ld hl, wPartyMon6Moves + 2
     ld de, wPartyMon6PP + 2
-	ld bc, PikachuMovesAndPP
-    call SetMovesAndPP
-    ret
+	ld bc, Mon6MovesAndPP
+    jp SetMovesAndPP
 
 DebugSetPokedexEntries:
 	ld b, wPokedexOwnedEnd - wPokedexOwned - 1
