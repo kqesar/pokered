@@ -99,12 +99,41 @@ IF DEF(_DEBUG)
 	ld a, ~(1 << BIT_EARTHBADGE)
 	ld [wObtainedBadges], a
 	
-	call .setMovesFirstPokemon
-	call .setMovesSecondPokemon
-	call .setMovesThirdPokemon
-	call .setMovesFourthPokemon
-	call .setMovesFifthPokemon
-	call .setMovesSixthPokemon
+	; Set moves for the first 6 Pokemon
+    ld hl, wPartyMon1Moves
+    ld de, wPartyMon1PP
+    ld bc, Mon1MovesAndPP
+    call SetMovesAndPP
+	
+	; Set moves for the second Pokemon.
+    ld hl, wPartyMon2Moves
+    ld de, wPartyMon2PP
+    ld bc, Mon2MovesAndPP
+    call SetMovesAndPP
+	
+	; Set moves for the third Pokemon.
+    ld hl, wPartyMon3Moves + 2
+    ld de, wPartyMon3PP + 2
+    ld bc, Mon3MovesAndPP
+    call SetMovesAndPP
+	
+	; Set moves for the fourth Pokemon.
+    ld hl, wPartyMon4Moves
+    ld de, wPartyMon4PP
+    ld bc, Mon4MovesAndPP
+    call SetMovesAndPP
+	
+	; Set moves for the fifth Pokemon.
+    ld hl, wPartyMon5Moves
+    ld de, wPartyMon5PP
+    ld bc, Mon5MovesAndPP
+    call SetMovesAndPP
+
+	; Set moves for the sixth Pokemon.
+    ld hl, wPartyMon6Moves + 2
+    ld de, wPartyMon6PP + 2
+	ld bc, Mon6MovesAndPP
+    call SetMovesAndPP
 
 	; Get some debug items.
 	ld hl, wNumBagItems
@@ -140,36 +169,6 @@ IF DEF(_DEBUG)
 	inc hl ; hl = wPlayerStarter
 	ld a, STARTER1
 	ld [hl], a
-.setMovesFirstPokemon:
-    ld hl, wPartyMon1Moves
-    ld de, wPartyMon1PP
-    ld bc, Mon1MovesAndPP
-    jp SetMovesAndPP
-.setMovesSecondPokemon
-    ld hl, wPartyMon2Moves
-    ld de, wPartyMon2PP
-    ld bc, Mon2MovesAndPP
-    jp SetMovesAndPP
-.setMovesThirdPokemon
-    ld hl, wPartyMon3Moves + 2
-    ld de, wPartyMon3PP + 2
-    ld bc, Mon3MovesAndPP
-    jp SetMovesAndPP
-.setMovesFourthPokemon
-    ld hl, wPartyMon4Moves
-    ld de, wPartyMon4PP
-    ld bc, Mon4MovesAndPP
-    jp SetMovesAndPP
-.setMovesFifthPokemon
-    ld hl, wPartyMon5Moves
-    ld de, wPartyMon5PP
-    ld bc, Mon5MovesAndPP
-    jp SetMovesAndPP
-.setMovesSixthPokemon
-    ld hl, wPartyMon6Moves + 2
-    ld de, wPartyMon6PP + 2
-	ld bc, Mon6MovesAndPP
-    jp SetMovesAndPP
 
 DebugSetPokedexEntries:
 	ld b, wPokedexOwnedEnd - wPokedexOwned - 1
