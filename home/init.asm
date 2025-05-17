@@ -107,6 +107,10 @@ DEF rLCDC_DEFAULT EQU (1 << rLCDC_ENABLE) | (1 << rLCDC_WINDOW_TILEMAP) | (1 << 
 	dec a
 	ld [wUpdateSpritesEnabled], a
 
+	IF DEF(_DEBUG)
+		jpfar DebugMenu ; PureRGBnote: ADDED: uncomment this to instantly enter debug mode on starting the game in the debug rom
+    ENDC
+
 	predef PlayIntro
 
 	call DisableLCD
@@ -115,7 +119,6 @@ DEF rLCDC_DEFAULT EQU (1 << rLCDC_ENABLE) | (1 << rLCDC_WINDOW_TILEMAP) | (1 << 
 	call ClearSprites
 	ld a, rLCDC_DEFAULT
 	ldh [rLCDC], a
-
 	jp PrepareTitleScreen
 
 ClearVram::
