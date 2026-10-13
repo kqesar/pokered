@@ -794,6 +794,14 @@ wOptionsTextSpeedCursorX:: db
 wOptionsBattleAnimCursorX:: db
 wOptionsBattleStyleCursorX:: db
 wOptionsCancelCursorX:: db
+; 0 = page 1, 1 = page 2
+wOptionsPage:: db
+
+NEXTU
+; page 2 reuses the same cursor bytes
+wOptionsBikeMusicCursorX:: db
+wOptionsSurfMusicCursorX:: db
+wOptionsSpriteStyleCursorX:: db
 
 NEXTU
 ; tile ID of the badge number being drawn
@@ -1770,7 +1778,8 @@ wOptions:: db
 
 wObtainedBadges:: flag_array NUM_BADGES
 
-	ds 1
+; options page 2 (see SPRITE_STYLE_* and BIT_*_MUSIC); this byte was unused
+wOptions2:: db
 
 wLetterPrintingDelayFlags:: db
 

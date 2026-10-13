@@ -39,6 +39,16 @@ DEF TEXT_DELAY_FAST   EQU %000 ; 0
 DEF TEXT_DELAY_MEDIUM EQU %001 ; 1
 DEF TEXT_DELAY_SLOW   EQU %011 ; 3
 
+; wOptions2 (options page 2, saved with the game)
+DEF SPRITE_STYLE_MASK EQU %11
+	const_def
+	const SPRITE_STYLE_GBC    ; 0 (default: Gen 2 pics and palettes)
+	const SPRITE_STYLE_RED    ; 1
+	const SPRITE_STYLE_YELLOW ; 2
+	const_def 6
+	const BIT_BIKE_MUSIC      ; 6 (set = play the bike music)
+	const BIT_SURF_MUSIC      ; 7 (set = play the surf music)
+
 ; wLetterPrintingDelayFlags
 	const_def
 	const BIT_FAST_TEXT_DELAY ; 0

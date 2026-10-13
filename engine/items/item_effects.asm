@@ -650,7 +650,7 @@ ItemUseBicycle:
 	call ItemUseReloadOverworldData
 	xor a
 	ld [wWalkBikeSurfState], a ; change player state to walking
-	;call PlayDefaultMusic ; play walking music
+	call PlayDefaultMusicIfNotPlaying ; play walking music
 	ld hl, GotOffBicycleText
 	jr .printText
 .tryToGetOnBike
@@ -662,7 +662,7 @@ ItemUseBicycle:
 	inc a
 	ld [wWalkBikeSurfState], a ; change player state to bicycling
 	ld hl, GotOnBicycleText
-	;call PlayDefaultMusic ; play bike riding music
+	call PlayDefaultMusicIfNotPlaying ; play bike riding music (if enabled)
 .printText
 	jp PrintText
 
@@ -684,7 +684,7 @@ ItemUseSurfboard:
 	set BIT_SCRIPTED_MOVEMENT_STATE, [hl]
 	ld a, 2
 	ld [wWalkBikeSurfState], a ; change player state to surfing
-	;call PlayDefaultMusic ; play surfing music
+	call PlayDefaultMusicIfNotPlaying ; play surfing music (if enabled)
 	ld hl, SurfingGotOnText
 	jp PrintText
 .tryToStopSurfing
@@ -722,7 +722,7 @@ ItemUseSurfboard:
 	ld [wWalkBikeSurfState], a ; change player state to walking
 	dec a
 	ld [wJoyIgnore], a
-	call PlayDefaultMusic ; play walking music
+	call PlayDefaultMusicIfNotPlaying ; play walking music
 	jp LoadWalkingPlayerSpriteGraphics
 ; uses a simulated button press to make the player move forward
 .makePlayerMoveForward

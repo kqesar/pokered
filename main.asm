@@ -394,3 +394,8 @@ INCLUDE "engine/overworld/elevator.asm"
 INCLUDE "engine/items/tm_prices.asm"
 
 INCLUDE "color/animations.asm"
+
+
+SECTION "Options Menu", ROMX
+
+INCLUDE "engine/menus/options.asm"
