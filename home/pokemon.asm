@@ -405,6 +405,10 @@ GetMonHeader::
 	ld de, wMonHeader
 	ld bc, BASE_DATA_SIZE
 	call CopyData
+	ld a, [wOptions2]
+	and SPRITE_STYLE_MASK
+	jr z, .done ; GBC sprite style: keep the base stats pics
+	farcall LoadGen1MonPicPointers
 	jr .done
 .specialID
 	ld hl, wMonHSpriteDim

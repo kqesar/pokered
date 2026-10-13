@@ -6,6 +6,14 @@ PlayDefaultMusic::
 	ld [wLastMusicSoundID], a
 	jr PlayDefaultMusicCommon
 
+PlayDefaultMusicIfNotPlaying::
+; Like PlayDefaultMusic, but doesn't restart the default music if it's already
+; playing (e.g. getting on the bike while the bike music is disabled).
+	call WaitForSoundToFinish
+	ld c, 0
+	ld d, c
+	jr PlayDefaultMusicCommon
+
 PlayDefaultMusicFadeOutCurrent::
 ; Fade out the current music and then play the default music.
 	ld c, 10
@@ -24,10 +32,16 @@ PlayDefaultMusicCommon::
 	jr z, .walking
 	cp $2
 	jr z, .surfing
+	ld a, [wOptions2]
+	bit BIT_BIKE_MUSIC, a
+	jr z, .walking ; bike music disabled in the options
 	ld a, MUSIC_BIKE_RIDING
 	jr .next
 
 .surfing
+	ld a, [wOptions2]
+	bit BIT_SURF_MUSIC, a
+	jr z, .walking ; surf music disabled in the options
 	ld a, MUSIC_SURFING
 
 .next

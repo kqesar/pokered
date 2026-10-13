@@ -3,7 +3,11 @@
 GetNidorinoPalID:
 	call ClearScreen
 IF GEN_2_GRAPHICS
+	ld a, [wOptions2]
+	and SPRITE_STYLE_MASK
 	ld a, PAL_NIDORINO
+	jr z, GotPalID ; GBC sprite style
+	ld a, PAL_PURPLEMON
 ELSE
 	ld a, PAL_PURPLEMON
 ENDC

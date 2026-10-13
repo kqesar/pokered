@@ -7105,21 +7105,19 @@ LoadMonBackPic:
 	call ClearScreenArea
 	ld hl,  wMonHBackSprite - wMonHeader
 	call UncompressMonSprite
-	predef_id ScaleSpriteByTwo
 
 	IF GEN_2_GRAPHICS
-		call LoadMonBackSpriteHook
-		nop
-		nop
-		nop
-		nop
-		nop
-		nop
-	ELSE
-		call Predef ; ScaleSpriteByTwo
+		ld a, [wOptions2]
+		and SPRITE_STYLE_MASK
+		jr nz, .gen1BackPic
+		call LoadMonBackSpriteHook ; GBC sprite style: no pixelated backsprites
+		jr .backPicLoaded
+.gen1BackPic
+	ENDC
+		predef ScaleSpriteByTwo
 		ld de, vBackPic
 		call InterlaceMergeSpriteBuffers ; combine the two buffers to a single 2bpp sprite
-	ENDC
+.backPicLoaded
 
 	ld hl, vSprites
 	ld de, vBackPic

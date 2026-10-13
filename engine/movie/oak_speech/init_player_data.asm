@@ -32,10 +32,9 @@ DEF START_MONEY EQU $3000
 
 	ld [wMonDataLocation], a
 
-	ld hl, wObtainedBadges
-	ld [hli], a
-
-	ld [hl], a
+	ld [wObtainedBadges], a
+	; the next byte is wOptions2 (options page 2): like wOptions,
+	; it survives a New Game, so it isn't cleared here anymore
 
 	ld hl, wPlayerCoins
 	ld [hli], a
