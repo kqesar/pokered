@@ -204,7 +204,12 @@ TrainerPalettes: ; Gen II trainer sprites are given their own palettes
 	db PAL_AGATHA
 	db PAL_LANCE
 	assert_table_length NUM_POKEMON + 1 + NUM_TRAINERS + 1
-ELSE
+
+; Gen 1 palettes of pokered-gbc, used at runtime with the RED and YELLOW
+; sprite styles (see GetMonsterPalettesTable)
+MonsterPalettesGen1:
+	table_width 1, MonsterPalettesGen1
+ENDC
 	db PAL_MEWMON    ; MISSINGNO
 	db PAL_GREENMON  ; BULBASAUR
 	db PAL_GREENMON  ; IVYSAUR
@@ -360,4 +365,3 @@ ELSE
 	db PAL_MEWMON    ; STEELIX
 	assert_table_length NUM_POKEMON + 1
 ; Trainers use index 0 of MonsterPalettes
-ENDC

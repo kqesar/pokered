@@ -59,6 +59,18 @@ SetPalFunctions:
 	dw SetPal_NameEntry	   ; Name entry (partially replaces 08)
 	dw SetPal_BattleAfterBlack ; Like SetPal_Battle but specifically for clearing the black palettes
 
+; hl = palette table for the POKéMON SPRITES option (preserves af)
+GetMonsterPalettesTable:
+	push af
+	ld hl, MonsterPalettes
+	ld a, [wOptions2]
+	and SPRITE_STYLE_MASK
+	jr z, .gotTable ; GBC sprite style: Gen 2 palettes
+	ld hl, MonsterPalettesGen1
+.gotTable
+	pop af
+	ret
+
 ; HAXed to give trainers palettes independantly
 ; Also skips the "transform" check, caller does that instead
 DeterminePaletteID:
@@ -70,7 +82,7 @@ DeterminePaletteID:
 	pop bc
 
 	ld a, [wPokedexNum]
-	ld hl, MonsterPalettes
+	call GetMonsterPalettesTable
 	and a
 	jr nz, .skipDexNumConversion ; Check if trainer?
 
@@ -113,7 +125,7 @@ DetermineBackSpritePaletteID:
 	pop bc
 
 	ld a, [wPokedexNum]
-	ld hl, MonsterPalettes
+	call GetMonsterPalettesTable
 	and a
 	jr nz, .getPaletteID ; Check if trainer?
 

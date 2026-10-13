@@ -399,3 +399,8 @@ INCLUDE "color/animations.asm"
 SECTION "Options Menu", ROMX
 
 INCLUDE "engine/menus/options.asm"
+
+
+SECTION "Gen 1 Mon Pics", ROMX
+
+INCLUDE "engine/gfx/gen1_mon_pics.asm"
